@@ -1,0 +1,16 @@
+body {
+  background: url("/images/bg.jpg") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-position: center !important;
+  opacity: 0.9;
+}
+#header {
+  background: url("/images/header.jpg") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-position: center !important;
+  opacity: 100 !important;
+}
