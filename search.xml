@@ -4,9 +4,38 @@
   
     
     <entry>
+      <title>让电源键关机变重启</title>
+      <link href="/bnwin/2021/09/05/soft/index/"/>
+      <url>/bnwin/2021/09/05/soft/index/</url>
+      
+        <content type="html"><![CDATA[<img src="http://www.bnwin.com/wp-content/uploads/2021/05/1621350706-111-200x150.jpg" /><p>注意：需要关闭无盘的闪电关机，开启闪电关机，本软件无效！</p><p>功能：运行本工具，按电源键，或系统中点关机，会执行重启！总之就是不关机，关机就是重启，关机直接重启，关机会重启，说三遍!</p><p>适用范围：息屏挖矿，按电源键会关机，本软件作用就显现了!机器正在挖矿，显示器黑屏，总有顾客以为机器是关了的，去按电源键开机，这时机器就会关机。顾客就会以为这台机器有问题，明明按了开关键，结果机器没开起，有些会立马换一台机器，重复上面的操作。使用了本软件，按了电源键不会关机，直接变成重启，顾客不会置疑了，呼叫网管的次数少了!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 首页 </category>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> winapi </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
-      <link href="/2021/09/04/hello-world/"/>
-      <url>/2021/09/04/hello-world/</url>
+      <link href="/bnwin/2021/09/04/hello-world/"/>
+      <url>/bnwin/2021/09/04/hello-world/</url>
       
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
