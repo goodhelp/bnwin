@@ -119,7 +119,7 @@
   list-style-position: inside;
 }
 body {
-  background: url("/images/bg.jpg") !important;
+  background: url("../images/bg.jpg") !important;
   -webkit-background-size: cover !important;
   -moz-background-size: cover !important;
   background-size: cover !important;
@@ -129,7 +129,7 @@ body {
   opacity: 0.9;
 }
 #header {
-  background: url("/images/header.jpg") !important;
+  background: url("../images/header.jpg") !important;
   -webkit-background-size: cover !important;
   -moz-background-size: cover !important;
   background-size: cover !important;
