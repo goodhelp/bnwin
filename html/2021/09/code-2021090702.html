@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码 | 百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="autoit3,dxva2" />
+    
+    <meta name="description" content="通过调用dxva2.dll文件，修改显示器的设置，和按显示器上的物理按钮效果一样，有效的解决显示器上按钮不好设置，按钮功能不明的问题，有些显示器不支持，如果你使用的无效果，说明你显示器不支持此调节功能!下载地址：源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950">
+<meta property="og:type" content="article">
+<meta property="og:title" content="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码">
+<meta property="og:url" content="http://goodhelp.gitee.io/html/2021/09/code-2021090702">
+<meta property="og:site_name" content="百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!">
+<meta property="og:description" content="通过调用dxva2.dll文件，修改显示器的设置，和按显示器上的物理按钮效果一样，有效的解决显示器上按钮不好设置，按钮功能不明的问题，有些显示器不支持，如果你使用的无效果，说明你显示器不支持此调节功能!下载地址：源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://goodhelp.gitee.io/bnwin/images/pasted-0.png">
+<meta property="article:published_time" content="2021-09-07T04:37:00.000Z">
+<meta property="article:modified_time" content="2021-09-07T05:18:55.485Z">
+<meta property="article:author" content="百脑问">
+<meta property="article:tag" content="autoit3">
+<meta property="article:tag" content="dxva2">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://goodhelp.gitee.io/bnwin/images/pasted-0.png">
+    
+
+    
+        <link rel="alternate" href="/" title="百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/bnwin/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/bnwin/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/bnwin/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/bnwin/css/style.css">
+
+
+    
+<script src="/bnwin/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/bnwin/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/bnwin/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+	<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/bnwin/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/bnwin/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/bnwin/categories/soft/">软件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/bnwin/categories/code/">源码</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/bnwin/categories/material/">素材</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/bnwin/categories/article/">文章</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/bnwin/categories/video/">视频</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/bnwin/about/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/bnwin/',
+        CONTENT_URL: '/bnwin/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/bnwin/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/bnwin/categories/code/">源码</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码-1" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/bnwin/html/2021/09/code-2021090702" class="article-date">
+       <time datetime="2021-09-07T04:37:00.000Z" itemprop="datePublished">2021-09-07</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/bnwin/html/2021/09/code-2021090702" class="article-date">
+     <time datetime="2021-09-07T05:18:55.485Z" itemprop="dateModified">2021-09-07</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/bnwin/tags/autoit3/" rel="tag">autoit3</a>, <a class="tag-link-link" href="/bnwin/tags/dxva2/" rel="tag">dxva2</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p><img src="/bnwin/images/pasted-0.png" alt="显示器调节"><br>通过调用dxva2.dll文件，修改显示器的设置，和按显示器上的物理按钮效果一样，有效的解决显示器上按钮不好设置，按钮功能不明的问题，有些显示器不支持，如果你使用的无效果，说明你显示器不支持此调节功能!下载地址：<a target="_blank" rel="noopener" href="http://www.bnwin.com/go/?aHR0cDovL3d3dy5qaWFueWlpdC5jb20vY29udGVudC91cGxvYWRmaWxlLzIwMTkwMy9hZGY1MTU1MjM2Njc1OC56aXA=">源码</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;WinAPI.au3&gt;</span><br><span class="line">#include &lt;WinAPIFiles.au3&gt;</span><br><span class="line">#include &lt;WinAPIGdi.au3&gt;</span><br><span class="line">#include &lt;GUIConstantsEx.au3&gt;</span><br><span class="line">#include &lt;GuiSlider.au3&gt;</span><br><span class="line">#include &lt;Array.au3&gt;</span><br><span class="line">Opt(&quot;GUIOnEventMode&quot;, 1)</span><br><span class="line">$g_szVersion = &quot;RU1Y2-D59U9&quot;</span><br><span class="line">If WinExists($g_szVersion) Then Exit</span><br><span class="line">AutoItWinSetTitle($g_szVersion)</span><br><span class="line">Global Const $Dxva2 = DllOpen(&quot;Dxva2.dll&quot;)</span><br><span class="line">If @error Then Exit 1</span><br><span class="line">Global Const $tagSTRUCT = &quot;HANDLE hPhysicalMonitor;WCHAR szPhysicalMonitorDescription[128];&quot;</span><br><span class="line">Global Const $tag_MC_TIMING_REPORT = &quot;BYTE bTimingStatusByte; DWORD dwHorizontalFrequencyInHZ; DWORD dwVerticalFrequencyInHZ&quot;</span><br><span class="line">Global Const $tag_DISPLAY_BRIGHTNESS = &quot;byte ucDisplayPolicy; byte ucACBrightness; byte ucDCBrightness&quot;</span><br><span class="line">Global Const $IOCTL_VIDEO_QUERY_SUPPORTED_BRIGHTNESS = _WinAPI_IOCTL($FILE_DEVICE_VIDEO, 0x125, $METHOD_BUFFERED, $FILE_ANY_ACCESS)</span><br><span class="line">Global Const $IOCTL_VIDEO_QUERY_DISPLAY_BRIGHTNESS = _WinAPI_IOCTL($FILE_DEVICE_VIDEO, 0x126, $METHOD_BUFFERED, $FILE_ANY_ACCESS)</span><br><span class="line">Global Const $IOCTL_VIDEO_SET_DISPLAY_BRIGHTNESS = _WinAPI_IOCTL($FILE_DEVICE_VIDEO, 0x127, $METHOD_BUFFERED, $FILE_ANY_ACCESS)</span><br><span class="line">Global $idSlider1, $idSlider2, $idButton1, $idButton2, $idLabel1, $idLabel2</span><br><span class="line">Global $hMonitor, $brightness, $contrast, $switch1, $switch2, $VCPReply</span><br><span class="line">Global $idLabel3, $idSlider3, $hDevice, $BRIGHTNESS_LCD_Array</span><br><span class="line">$hDevice = LCD()</span><br><span class="line">If Not @error Then</span><br><span class="line">        LCD_Set($hDevice)</span><br><span class="line">        If $hDevice Then _WinAPI_CloseHandle($hDevice)</span><br><span class="line">        DllClose($Dxva2)</span><br><span class="line">        Exit</span><br><span class="line">EndIf</span><br><span class="line">$hMonitor = _WinAPI_MonitorFromWindow(_WinAPI_GetDesktopWindow(), $MONITOR_DEFAULTTOPRIMARY) ;返回主显示器句柄</span><br><span class="line">$hMonitor = _GetPhysicalMonitorsFromHMONITOR($hMonitor) ;获取物理显示器句柄</span><br><span class="line">$StringLength = CapabilitiesRequestAndCapabilitiesReply($hMonitor)</span><br><span class="line">$Gui = GUICreate(&quot;显示器设置&quot;, 262, 220, -1, -1)</span><br><span class="line">GUISetOnEvent($GUI_EVENT_CLOSE, &quot;_exit&quot;)</span><br><span class="line">$idSlider1 = GUICtrlCreateSlider(10, 30, 240, 20, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))</span><br><span class="line">GUICtrlSetOnEvent($idSlider1, &quot;Brightness&quot;)</span><br><span class="line">GUICtrlSetLimit($idSlider1, 100)</span><br><span class="line">$idSlider2 = GUICtrlCreateSlider(10, 82, 240, 20, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))</span><br><span class="line">GUICtrlSetOnEvent($idSlider2, &quot;Contrast&quot;)</span><br><span class="line">GUICtrlSetLimit($idSlider2, 100)</span><br><span class="line">$idButton1 = GUICtrlCreateButton(&quot;宽屏切换&quot;, 16, 160, 85, 25)</span><br><span class="line">GUICtrlSetOnEvent($idButton1, &quot;Button1&quot;)</span><br><span class="line">$idButton2 = GUICtrlCreateButton(&quot;恢复默认&quot;, 158, 160, 85, 25)</span><br><span class="line">GUICtrlSetOnEvent($idButton2, &quot;Button2&quot;)</span><br><span class="line">$idLabel1 = GUICtrlCreateLabel(&quot;  亮度调节:不可用&quot;, 10, 10, 140, 20)</span><br><span class="line">$idLabel2 = GUICtrlCreateLabel(&quot;对比度调节:不可用&quot;, 10, 60, 140, 20)</span><br><span class="line">$Combo1 = GUICtrlCreateCombo(&quot;&quot;, 102, 120, 100, 25, 0x0003)</span><br><span class="line">GUICtrlSetOnEvent($Combo1, &quot;Color&quot;)</span><br><span class="line">GUICtrlCreateLabel(&quot;色温调节&quot;, 32, 124, 48, 20)</span><br><span class="line">_GUICtrlSlider_SetTipSide($idSlider1, $TBTS_TOP)</span><br><span class="line">_GUICtrlSlider_SetTipSide($idSlider2, $TBTS_TOP)</span><br><span class="line">If $StringLength &lt;&gt; &quot;&quot; Then</span><br><span class="line">        $VCP_Array = Manage_vcp($StringLength)</span><br><span class="line">        $VCPReply = _GetVCPFeatureAndVCPFeatureReply($hMonitor, 0x86)</span><br><span class="line">        If $VCPReply[0] = 0 Then GUICtrlSetState($idButton1, $GUI_DISABLE)</span><br><span class="line">        $brightness = _GetMonitorBrightness($hMonitor) ;获取监视器亮度</span><br><span class="line">        ConsoleWrite($brightness[1] &amp; @CRLF)</span><br><span class="line">        $contrast = _GetMonitorContrast($hMonitor) ;获取监视器对比度</span><br><span class="line">        If $brightness[2] &lt;&gt; 0 Then $switch1 = True</span><br><span class="line">        If $contrast[2] &lt;&gt; 0 Then $switch2 = True</span><br><span class="line">        If $switch1 Then</span><br><span class="line">                GUICtrlSetData($idSlider1, $brightness[1])</span><br><span class="line">                GUICtrlSetData($idLabel1, &quot;设置亮度:&quot; &amp; $brightness[1])</span><br><span class="line">        EndIf</span><br><span class="line">        If $switch2 Then</span><br><span class="line">                GUICtrlSetData($idSlider2, $contrast[1])</span><br><span class="line">                GUICtrlSetData($idLabel2, &quot;设置对比度:&quot; &amp; $contrast[1])</span><br><span class="line">        EndIf</span><br><span class="line">        </span><br><span class="line">        For $i = 0 To UBound($VCP_Array) - 1</span><br><span class="line">                If $VCP_Array[$i][0] = &quot;14&quot; Then</span><br><span class="line">                        If $VCP_Array[$i][1] &lt;&gt; &quot;&quot; Then</span><br><span class="line">                                $Color_Array = StringSplit($VCP_Array[$i][1], &quot; &quot;, 2)</span><br><span class="line">                                $Color_String = &quot;&quot;</span><br><span class="line">                                For $S = 0 To UBound($Color_Array) - 1</span><br><span class="line">                                        $temp = Select_Color($Color_Array[$S])</span><br><span class="line">                                        If $temp &lt;&gt; &quot;&quot; Then $Color_String &amp;= $temp &amp; &quot;|&quot;</span><br><span class="line">                                Next</span><br><span class="line">                        EndIf</span><br><span class="line">                        ExitLoop</span><br><span class="line">                EndIf</span><br><span class="line">        Next</span><br><span class="line">        </span><br><span class="line">        If $Color_String &lt;&gt; &quot;&quot; Then</span><br><span class="line">                $VCPCode = _GetVCPFeatureAndVCPFeatureReply($hMonitor, 0x14)</span><br><span class="line">                GUICtrlSetData($Combo1, $Color_String, Select_Color($VCPCode[1] - 1))</span><br><span class="line">        Else</span><br><span class="line">                GUICtrlSetData($Combo1, &quot;不支持&quot;, &quot;不支持&quot;)</span><br><span class="line">                GUICtrlSetState($Combo1, $GUI_DISABLE)</span><br><span class="line">        EndIf</span><br><span class="line">        GUISetState(@SW_SHOW, $Gui)</span><br><span class="line">Else</span><br><span class="line">        WinSetTitle($Gui, &quot;&quot;, &quot;未发现DDC/CI&quot;)</span><br><span class="line">        GUICtrlSetData($Combo1, &quot;不支持&quot;, &quot;不支持&quot;)</span><br><span class="line">        GUICtrlSetState($idSlider1, $GUI_DISABLE)</span><br><span class="line">        GUICtrlSetState($idSlider2, $GUI_DISABLE)</span><br><span class="line">        GUICtrlSetState($idButton1, $GUI_DISABLE)</span><br><span class="line">        GUICtrlSetState($Combo1, $GUI_DISABLE)</span><br><span class="line">        GUISetState(@SW_SHOW, $Gui)</span><br><span class="line">EndIf</span><br><span class="line"></span><br><span class="line">While 1</span><br><span class="line">        Sleep(50)</span><br><span class="line">WEnd</span><br><span class="line"></span><br><span class="line">Func LCD()</span><br><span class="line">        Local $iDevice</span><br><span class="line">        $iDevice = _WinAPI_CreateFileEx(&quot;\\.\LCD&quot;, $OPEN_EXISTING, $GENERIC_READ + $GENERIC_WRITE, $FILE_ANY_ACCESS, 0)</span><br><span class="line">        Return (@error) ? (SetError(1, _WinAPI_GetLastErrorMessage(), False)) : ($iDevice)</span><br><span class="line">EndFunc   ;==&gt;LCD</span><br><span class="line"></span><br><span class="line">Func LCD_Set($iDevice)</span><br><span class="line">        Local $brightness = DllStructCreate(&quot;BYTE[256]&quot;)</span><br><span class="line">        Local $DISPLAY_BRIGHTNESS = DllStructCreate(&quot;BYTE[3]&quot;)</span><br><span class="line">        $success = _WinAPI_DeviceIoControl($iDevice, $IOCTL_VIDEO_QUERY_SUPPORTED_BRIGHTNESS, Null, 0, DllStructGetPtr($brightness), 0xff)</span><br><span class="line">        If $success = False Then Return</span><br><span class="line">        $BRIGHTNESS_LCD_Array = Brightness_lcd(DllStructGetData($brightness, 1))</span><br><span class="line">        $success = _WinAPI_DeviceIoControl($iDevice, $IOCTL_VIDEO_QUERY_DISPLAY_BRIGHTNESS, Null, 0, DllStructGetPtr($DISPLAY_BRIGHTNESS), 0x03)</span><br><span class="line">        If $success = False Then Return</span><br><span class="line">        $DISPLAY_BRIGHTNESS_READ = Int(BinaryMid(DllStructGetData($DISPLAY_BRIGHTNESS, 1), 3, 1))</span><br><span class="line"></span><br><span class="line">        $Gui = GUICreate(&quot;内置LCD显示器&quot;, 262, 80, -1, -1)</span><br><span class="line">        GUISetOnEvent($GUI_EVENT_CLOSE, &quot;_exit&quot;)</span><br><span class="line">        $idSlider3 = GUICtrlCreateSlider(10, 30, 240, 20, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))</span><br><span class="line">        GUICtrlSetLimit($idSlider3, 100)</span><br><span class="line">        $idLabel3 = GUICtrlCreateLabel(&quot;  亮度调节:&quot;, 10, 10, 140, 20)</span><br><span class="line">        GUICtrlSetData($idSlider3, $DISPLAY_BRIGHTNESS_READ)</span><br><span class="line">        GUICtrlSetData($idLabel3, &quot;设置亮度:&quot; &amp; $DISPLAY_BRIGHTNESS_READ)</span><br><span class="line">        GUICtrlSetOnEvent($idSlider3, &quot;Brightness_set_lcd&quot;)</span><br><span class="line">        GUISetState(@SW_SHOW, $Gui)</span><br><span class="line">        WinSetTitle($Gui, &quot;&quot;, &quot;内置LCD显示器&quot;)</span><br><span class="line">        While 1</span><br><span class="line">                Sleep(50)</span><br><span class="line">        WEnd</span><br><span class="line">EndFunc   ;==&gt;LCD_Set</span><br><span class="line"></span><br><span class="line">Func Brightness_set_lcd()</span><br><span class="line">        Local $lcd_BRIGHTNESS, $DISPLAY_BRIGHTNESS, $success</span><br><span class="line">        $lcd_BRIGHTNESS = GUICtrlRead($idSlider3)</span><br><span class="line">        GUICtrlSetData($idLabel3, &quot;设置亮度:&quot; &amp; $lcd_BRIGHTNESS)</span><br><span class="line">        For $i = 0 To UBound($BRIGHTNESS_LCD_Array)</span><br><span class="line">                If $lcd_BRIGHTNESS &lt;= $BRIGHTNESS_LCD_Array[$i] Then</span><br><span class="line">                        $DISPLAY_BRIGHTNESS = DllStructCreate($tag_DISPLAY_BRIGHTNESS)</span><br><span class="line">                        DllStructSetData($DISPLAY_BRIGHTNESS, &quot;ucDisplayPolicy&quot;, 3)</span><br><span class="line">                        DllStructSetData($DISPLAY_BRIGHTNESS, &quot;ucACBrightness&quot;, $BRIGHTNESS_LCD_Array[$i])</span><br><span class="line">                        DllStructSetData($DISPLAY_BRIGHTNESS, &quot;ucDCBrightness&quot;, $BRIGHTNESS_LCD_Array[$i])</span><br><span class="line">                        $success = _WinAPI_DeviceIoControl($hDevice, $IOCTL_VIDEO_SET_DISPLAY_BRIGHTNESS, DllStructGetPtr($DISPLAY_BRIGHTNESS), DllStructGetSize($DISPLAY_BRIGHTNESS), Null, 0)</span><br><span class="line">                        If $success = False Then Return</span><br><span class="line">                        ExitLoop</span><br><span class="line">                EndIf</span><br><span class="line">        Next</span><br><span class="line">EndFunc   ;==&gt;Brightness_set_lcd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Func Select_Color($iValue)</span><br><span class="line">        Local $String</span><br><span class="line">        If StringIsXDigit($iValue) Then $iValue = Dec($iValue)</span><br><span class="line">        Switch $iValue</span><br><span class="line">                Case 1</span><br><span class="line">                        $String = &quot;sRGB&quot;</span><br><span class="line">                Case 2</span><br><span class="line">                        $String = &quot;原生显示&quot;</span><br><span class="line">                Case 3</span><br><span class="line">                        $String = &quot;4000K&quot;</span><br><span class="line">                Case 4</span><br><span class="line">                        $String = &quot;5000K&quot;</span><br><span class="line">                Case 5</span><br><span class="line">                        $String = &quot;6500K&quot;</span><br><span class="line">                Case 6</span><br><span class="line">                        $String = &quot;7500K&quot;</span><br><span class="line">                Case 7</span><br><span class="line">                        $String = &quot;8200K&quot;</span><br><span class="line">                Case 8</span><br><span class="line">                        $String = &quot;9300K&quot;</span><br><span class="line">                Case 9</span><br><span class="line">                        $String = &quot;10000K&quot;</span><br><span class="line">                Case 10</span><br><span class="line">                        $String = &quot;11500K&quot;</span><br><span class="line">                Case 11</span><br><span class="line">                        $String = &quot;User1&quot;</span><br><span class="line">                Case 12</span><br><span class="line">                        $String = &quot;User2&quot;</span><br><span class="line">                Case 13</span><br><span class="line">                        $String = &quot;User3&quot;</span><br><span class="line">                Case Else</span><br><span class="line">        EndSwitch</span><br><span class="line">        Return $String</span><br><span class="line">EndFunc   ;==&gt;Select_Color</span><br><span class="line"></span><br><span class="line">Func Color()</span><br><span class="line">        Local $iValue = GUICtrlRead($Combo1)</span><br><span class="line">        Select</span><br><span class="line">                Case $iValue = &quot;sRGB&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x01)</span><br><span class="line">                Case $iValue = &quot;原生显示&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x02)</span><br><span class="line">                Case $iValue = &quot;4000K&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x03)</span><br><span class="line">                Case $iValue = &quot;5000K&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x04)</span><br><span class="line">                Case $iValue = &quot;6500K&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x05)</span><br><span class="line">                Case $iValue = &quot;7500K&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x06)</span><br><span class="line">                Case $iValue = &quot;8200K&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x07)</span><br><span class="line">                Case $iValue = &quot;9300K&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x08)</span><br><span class="line">                Case $iValue = &quot;10000K&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x09)</span><br><span class="line">                Case $iValue = &quot;11500K&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x0a)</span><br><span class="line">                Case $iValue = &quot;User1&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x0b)</span><br><span class="line">                Case $iValue = &quot;User2&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x0c)</span><br><span class="line">                Case $iValue = &quot;User3&quot;</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x14, 0x0d)</span><br><span class="line">                Case Else</span><br><span class="line">        EndSelect</span><br><span class="line">EndFunc   ;==&gt;Color</span><br><span class="line"></span><br><span class="line">Func Button1()</span><br><span class="line">        Local $VCPCode</span><br><span class="line">        If $switch1 And $switch2 Then</span><br><span class="line">                $VCPCode = _GetVCPFeatureAndVCPFeatureReply($hMonitor, 0x86)</span><br><span class="line">                ConsoleWrite($VCPCode[1] &amp; @CRLF)</span><br><span class="line">                If $VCPCode[1] = 8 Then</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x86, 0x02)</span><br><span class="line">                        GUICtrlSetData($idButton1, &quot;窄屏&quot;)</span><br><span class="line">                Else</span><br><span class="line">                        _SetVCPFeature($hMonitor, 0x86, 0x08)</span><br><span class="line">                        GUICtrlSetData($idButton1, &quot;宽屏&quot;)</span><br><span class="line">                EndIf</span><br><span class="line">        EndIf</span><br><span class="line">EndFunc   ;==&gt;Button1</span><br><span class="line"></span><br><span class="line">Func Button2()</span><br><span class="line">        GUICtrlSetData($idButton2, &quot;Reset..&quot;)</span><br><span class="line">        Sleep(250)</span><br><span class="line">        GUISetState(@SW_HIDE)</span><br><span class="line">        If $switch1 Or $switch2 Then</span><br><span class="line">                _RestoreMonitorFactoryDefaults($hMonitor)</span><br><span class="line">                Sleep(1000)</span><br><span class="line">        EndIf</span><br><span class="line">        _DestroyPhysicalMonitor($hMonitor) ;关闭监视器句柄</span><br><span class="line">        DllClose($Dxva2)</span><br><span class="line">        Exit</span><br><span class="line">EndFunc   ;==&gt;Button2</span><br><span class="line"></span><br><span class="line">Func Brightness()</span><br><span class="line">        If Not $switch1 Then Return</span><br><span class="line">        GUICtrlSetData($idLabel1, &quot;设置亮度:&quot; &amp; GUICtrlRead($idSlider1))</span><br><span class="line">        _SetMonitorBrightness($hMonitor, GUICtrlRead($idSlider1))</span><br><span class="line">EndFunc   ;==&gt;Brightness</span><br><span class="line"></span><br><span class="line">Func Contrast()</span><br><span class="line">        If Not $switch2 Then Return</span><br><span class="line">        GUICtrlSetData($idLabel2, &quot;设置对比度:&quot; &amp; GUICtrlRead($idSlider2))</span><br><span class="line">        _SetMonitorContrast($hMonitor, GUICtrlRead($idSlider2))</span><br><span class="line">EndFunc   ;==&gt;Contrast</span><br><span class="line"></span><br><span class="line">Func _GetMonitorBrightness(Const $h_monitor)</span><br><span class="line">        Local Const $MinimumBrightness = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        Local Const $CurrentBrightness = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        Local Const $MaximumBrightness = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;GetMonitorBrightness&quot;, _</span><br><span class="line">                        &quot;handle&quot;, $h_monitor, _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($MinimumBrightness), _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($CurrentBrightness), _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($MaximumBrightness))</span><br><span class="line">        If @error Then Return SetError(1, _WinAPI_GetLastErrorMessage(), False)</span><br><span class="line">        Local Const $brightness[3] = [DllStructGetData($MinimumBrightness, 1), _</span><br><span class="line">                        DllStructGetData($CurrentBrightness, 1), _</span><br><span class="line">                        DllStructGetData($MaximumBrightness, 1)]</span><br><span class="line">        Return $brightness</span><br><span class="line">EndFunc   ;==&gt;_GetMonitorBrightness</span><br><span class="line"></span><br><span class="line">Func _GetMonitorContrast(Const $h_monitor)</span><br><span class="line">        Local Const $MinimumContrast = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        Local Const $CurrentContrast = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        Local Const $MaximumContrast = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;GetMonitorContrast&quot;, _</span><br><span class="line">                        &quot;handle&quot;, $h_monitor, _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($MinimumContrast), _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($CurrentContrast), _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($MaximumContrast))</span><br><span class="line">        If @error Then Return SetError(1, _WinAPI_GetLastErrorMessage(), False)</span><br><span class="line">        Local Const $contrast[3] = [DllStructGetData($MinimumContrast, 1), _</span><br><span class="line">                        DllStructGetData($CurrentContrast, 1), _</span><br><span class="line">                        DllStructGetData($MaximumContrast, 1)]</span><br><span class="line">        Return $contrast</span><br><span class="line">EndFunc   ;==&gt;_GetMonitorContrast</span><br><span class="line"></span><br><span class="line">Func _SetMonitorBrightness(Const $h_monitor, Const $NewBrightness)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;SetMonitorBrightness&quot;, &quot;ptr&quot;, $h_monitor, &quot;dword&quot;, $NewBrightness)</span><br><span class="line">        Return (@error ? SetError(1, _WinAPI_GetLastErrorMessage(), False) : True)</span><br><span class="line">EndFunc   ;==&gt;_SetMonitorBrightness</span><br><span class="line"></span><br><span class="line">Func _SetMonitorContrast(Const $h_monitor, Const $contrast)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;SetMonitorContrast&quot;, &quot;ptr&quot;, $h_monitor, &quot;dword&quot;, $contrast)</span><br><span class="line">        Return (@error ? SetError(1, _WinAPI_GetLastErrorMessage(), False) : True)</span><br><span class="line">EndFunc   ;==&gt;_SetMonitorContrast</span><br><span class="line"></span><br><span class="line">Func _GetPhysicalMonitorsFromHMONITOR(Const $pMonitor)</span><br><span class="line">        Local $Number = DllStructCreate(&quot;DWORD&quot;)</span><br><span class="line">        Local $i, $tagPhysical, $M = 1</span><br><span class="line">        $Ret = DllCall($Dxva2, &quot;bool&quot;, &quot;GetNumberOfPhysicalMonitorsFromHMONITOR&quot;, _</span><br><span class="line">                        &quot;handle&quot;, $pMonitor, _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($Number))</span><br><span class="line">        $NumberOfMonitors = DllStructGetData($Number, 1)</span><br><span class="line">        For $i = 1 To $NumberOfMonitors</span><br><span class="line">                $tagPhysical &amp;= $tagSTRUCT</span><br><span class="line">        Next</span><br><span class="line">        $MonitorArray = DllStructCreate($tagSTRUCT)</span><br><span class="line">        $Ret = DllCall($Dxva2, &quot;bool&quot;, &quot;GetPhysicalMonitorsFromHMONITOR&quot;, _</span><br><span class="line">                        &quot;handle&quot;, $pMonitor, _</span><br><span class="line">                        &quot;DWORD&quot;, $NumberOfMonitors, _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($MonitorArray))</span><br><span class="line">        </span><br><span class="line">        Return DllStructGetData($MonitorArray, 1) ;返回第一个显示器句柄</span><br><span class="line">EndFunc   ;==&gt;_GetPhysicalMonitorsFromHMONITOR</span><br><span class="line"></span><br><span class="line">Func CapabilitiesRequestAndCapabilitiesReply(Const $h_monitor)</span><br><span class="line">        Local Const $tagStringLength = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;GetCapabilitiesStringLength&quot;, &quot;handle&quot;, $h_monitor, &quot;ptr&quot;, DllStructGetPtr($tagStringLength))</span><br><span class="line">        Local Const $CapabilitiesStringLength = DllStructGetData($tagStringLength, 1)</span><br><span class="line">        Local Const $CapabilitiesString = DllStructCreate(&quot;char[&quot; &amp; $CapabilitiesStringLength &amp; &#x27;]&#x27;)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;CapabilitiesRequestAndCapabilitiesReply&quot;, _</span><br><span class="line">                        &quot;handle&quot;, $h_monitor, _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($CapabilitiesString), _</span><br><span class="line">                        &quot;dword&quot;, DllStructGetSize($CapabilitiesString))</span><br><span class="line">        Return (@error) ? (SetError(1, _WinAPI_GetLastErrorMessage(), False)) : (DllStructGetData($CapabilitiesString, 1))</span><br><span class="line">EndFunc   ;==&gt;CapabilitiesRequestAndCapabilitiesReply</span><br><span class="line"></span><br><span class="line">Func _RestoreMonitorFactoryDefaults(Const $h_monitor)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;RestoreMonitorFactoryDefaults&quot;, &quot;ptr&quot;, $h_monitor)</span><br><span class="line">        Return (@error) ? (SetError(1, _WinAPI_GetLastErrorMessage(), False)) : (True)</span><br><span class="line">EndFunc   ;==&gt;_RestoreMonitorFactoryDefaults</span><br><span class="line"></span><br><span class="line">Func _SetVCPFeature(Const $h_monitor, Const $VCPCode, Const $NewValue)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;SetVCPFeature&quot;, _</span><br><span class="line">                        &quot;handle&quot;, $h_monitor, _</span><br><span class="line">                        &quot;byte&quot;, $VCPCode, _</span><br><span class="line">                        &quot;dword&quot;, $NewValue)</span><br><span class="line"></span><br><span class="line">        Return (@error) ? (SetError(1, _WinAPI_GetLastErrorMessage(), False)) : (True)</span><br><span class="line">EndFunc   ;==&gt;_SetVCPFeature</span><br><span class="line"></span><br><span class="line">Func _GetVCPFeatureAndVCPFeatureReply(Const $h_monitor, Const $VCPCode)</span><br><span class="line">        Local Const $CurrentValue = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        Local Const $MaximumValue = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        Local Const $VCPCodeType = DllStructCreate(&quot;dword_ptr&quot;)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;GetVCPFeatureAndVCPFeatureReply&quot;, _</span><br><span class="line">                        &quot;handle&quot;, $h_monitor, _</span><br><span class="line">                        &quot;byte&quot;, $VCPCode, _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($VCPCodeType), _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($CurrentValue), _</span><br><span class="line">                        &quot;ptr&quot;, DllStructGetPtr($MaximumValue))</span><br><span class="line">        If @error Then Return SetError(1, _WinAPI_GetLastErrorMessage(), False)</span><br><span class="line">        Local Const $VCPFeatureReply[3] = [DllStructGetData($VCPCodeType, 1), DllStructGetData($CurrentValue, 1), DllStructGetData($MaximumValue, 1)]</span><br><span class="line">        Return $VCPFeatureReply</span><br><span class="line">EndFunc   ;==&gt;_GetVCPFeatureAndVCPFeatureReply</span><br><span class="line"></span><br><span class="line">Func Manage_vcp(Const $String)</span><br><span class="line">        Local $Exp, $i, $tmp, $OUT_String</span><br><span class="line">        $Exp = StringRegExp($String, &quot;(?&lt;=vcp\()([A-Za-z0-9]&#123;2&#125;[\)\(]?\s?)*(?=\))&quot;, 2)</span><br><span class="line">        If @error Then Return</span><br><span class="line">        $Exp = StringRegExp($Exp[0], &quot;([0-9A-Fa-f]&#123;2&#125;)(\(.+?\))?&quot;, 4)</span><br><span class="line">        If @error Then Return</span><br><span class="line">        Local $Array[UBound($Exp)][2]</span><br><span class="line">        For $i = 0 To UBound($Exp) - 1</span><br><span class="line">                $tmp = $Exp[$i]</span><br><span class="line">                $Array[$i][0] = StringStripWS(StringLeft($tmp[0], 2), 8)</span><br><span class="line">                $OUT_String = StringStripWS(StringTrimLeft($tmp[0], 2), 3)</span><br><span class="line">                If $OUT_String &lt;&gt; &quot;&quot; Then</span><br><span class="line">                        $OUT_String = StringTrimLeft(StringTrimRight($OUT_String, 1), 1)</span><br><span class="line">                        $Array[$i][1] = $OUT_String</span><br><span class="line">                EndIf</span><br><span class="line">        Next</span><br><span class="line">        Return $Array</span><br><span class="line">EndFunc   ;==&gt;Manage_vcp</span><br><span class="line"></span><br><span class="line">Func _DestroyPhysicalMonitor(Const $h_monitor)</span><br><span class="line">        DllCall($Dxva2, &quot;bool&quot;, &quot;DestroyPhysicalMonitor&quot;, &quot;ptr&quot;, $h_monitor)</span><br><span class="line">        Return (@error) ? (SetError(1, _WinAPI_GetLastErrorMessage(), False)) : (True)</span><br><span class="line">EndFunc   ;==&gt;_DestroyPhysicalMonitor</span><br><span class="line"></span><br><span class="line">Func Brightness_lcd(Const $BRIGHTNESS_Lcd)</span><br><span class="line">        Local $BRIGHTNESS_String, $tmp, $i</span><br><span class="line">        For $i = 1 To BinaryLen($BRIGHTNESS_Lcd)</span><br><span class="line">                $tmp = Int(BinaryMid($BRIGHTNESS_Lcd, $i, 1))</span><br><span class="line">                If $i = 1 Then</span><br><span class="line">                        $BRIGHTNESS_String &amp;= $tmp &amp; &quot;;&quot;</span><br><span class="line">                Else</span><br><span class="line">                        If $tmp = 0 Then ExitLoop</span><br><span class="line">                        $BRIGHTNESS_String &amp;= $tmp &amp; &quot;;&quot;</span><br><span class="line">                EndIf</span><br><span class="line">        Next</span><br><span class="line">        Return StringSplit(StringTrimRight($BRIGHTNESS_String, 1), &quot;;&quot;, 2)</span><br><span class="line">EndFunc   ;==&gt;Brightness_lcd</span><br><span class="line"></span><br><span class="line">Func _exit()</span><br><span class="line">        If $hDevice Then _WinAPI_CloseHandle($hDevice)</span><br><span class="line">        _DestroyPhysicalMonitor($hMonitor) ;关闭监视器句柄</span><br><span class="line">        DllClose($Dxva2)</span><br><span class="line">        Exit</span><br><span class="line">EndFunc   ;==&gt;_exit</span><br></pre></td></tr></table></figure>
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码",
+        "image": "http://goodhelp.gitee.io/bnwin/images/pasted-0.png",
+        "keywords": "autoit3 dxva2",
+        "genre": "源码",
+        "datePublished": "2021-09-07",
+        "dateCreated": "2021-09-07",
+        "dateModified": "2021-09-07",
+        "url": "http://goodhelp.gitee.io/html/2021/09/code-2021090702.html",
+        "description": "通过调用dxva2.dll文件，修改显示器的设置，和按显示器上的物理按钮效果一样，有效的解决显示器上按钮不好设置，按钮功能不明的问题，有些显示器不支持，如果你使用的无效果，说明你显示器不支持此调节功能!下载地址：源码
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950",
+        "wordCount": 5916
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <!-- Valine -->
+    <div class="vcomments"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+            
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="tiktok" href="/bnwin/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-tiktok"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weixin" href="/bnwin/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weixin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="/bnwin/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://gitee.com/goodhelp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/bnwin/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/bnwin/html/2021/09/code-undefined" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            aardio的listview自绘源代码
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/bnwin/html/2021/09/soft-2021090501" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">让电源键关机变重启</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/bnwin/html/2021/09/code-undefined" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/bnwin/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/bnwin/html/2021/09/code-undefined" class="title">单机游戏死亡阴影aardio内存修改器源码</a></p>
+                            <p class="item-date"><time datetime="2021-09-07T14:11:47.000Z" itemprop="datePublished">2021-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/bnwin/html/2021/09/code-undefined" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/bnwin/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/bnwin/html/2021/09/code-undefined" class="title">aardio的listview自绘源代码</a></p>
+                            <p class="item-date"><time datetime="2021-09-07T13:52:47.000Z" itemprop="datePublished">2021-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/bnwin/html/2021/09/code-2021090702" class="thumbnail">
+    
+    
+        <span style="background-image:url(/bnwin/images/pasted-0.png)" alt="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/bnwin/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/bnwin/html/2021/09/code-2021090702" class="title">显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码</a></p>
+                            <p class="item-date"><time datetime="2021-09-07T04:37:00.000Z" itemprop="datePublished">2021-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/bnwin/html/2021/09/soft-2021090501" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.bnwin.com/wp-content/uploads/2021/05/1621350706-111-200x150.jpg)" alt="让电源键关机变重启" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/bnwin/categories/soft/">软件</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/bnwin/categories/%E9%A6%96%E9%A1%B5/">首页</a></p>
+                            <p class="item-title"><a href="/bnwin/html/2021/09/soft-2021090501" class="title">让电源键关机变重启</a></p>
+                            <p class="item-date"><time datetime="2021-09-05T13:37:03.000Z" itemprop="datePublished">2021-09-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/bnwin/html/2021/09/video-2021090401" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/bnwin/categories/video/">视频</a></p>
+                            <p class="item-title"><a href="/bnwin/html/2021/09/video-2021090401" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2021-09-04T15:20:00.000Z" itemprop="datePublished">2021-09-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/bnwin/categories/code/">源码</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/bnwin/categories/video/">视频</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/bnwin/categories/soft/">软件</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/bnwin/categories/%E9%A6%96%E9%A1%B5/">首页</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/bnwin/archives/2021/09/">九月 2021</a><span class="archive-list-count">5</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/bnwin/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/bnwin/tags/aardio/" rel="tag">aardio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/bnwin/tags/autoit3/" rel="tag">autoit3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/bnwin/tags/dxva2/" rel="tag">dxva2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/bnwin/tags/winapi/" rel="tag">winapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/bnwin/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/bnwin/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/bnwin/tags/aardio/" style="font-size: 10px;">aardio</a> <a href="/bnwin/tags/autoit3/" style="font-size: 10px;">autoit3</a> <a href="/bnwin/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/bnwin/tags/winapi/" style="font-size: 10px;">winapi</a> <a href="/bnwin/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/bnwin/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 百脑问</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "",
+            appId: "jMSxmHAw9NqD0eJ9vLdM0oBN-gzGzoHsz",
+            appKey: "UC5hUmLTn6CnDrPuQLRXHX4y",
+            placeholder: "发表你的看法!",
+            avatar:"identicon",
+            recordIP:"",
+            visitor: "true"
+        });
+    </script>
+
+
+
+
+
+    
+        
+<script src="/bnwin/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/bnwin/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/bnwin/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/bnwin/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/bnwin/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/bnwin/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/bnwin/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/bnwin/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/bnwin/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/bnwin/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/bnwin/js/main.js"></script>
+
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>	
+</body>
+</html>
