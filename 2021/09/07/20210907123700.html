@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码 | 百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="autoit3,dxva2,显示器设置" />
+    
+    <meta name="description" content="通过调用dxva2.dll文件，修改显示器的设置，和按显示器上的物理按钮效果一样，有效的解决显示器上按钮不好设置，按钮功能不明的问题，有些显示器不支持，如果你使用的无效果，说明你显示器不支持此调节功能!下载地址：源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950">
+<meta property="og:type" content="article">
+<meta property="og:title" content="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码">
+<meta property="og:url" content="http://goodhelp.gitee.io/2021/09/07/20210907123700">
+<meta property="og:site_name" content="百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!">
+<meta property="og:description" content="通过调用dxva2.dll文件，修改显示器的设置，和按显示器上的物理按钮效果一样，有效的解决显示器上按钮不好设置，按钮功能不明的问题，有些显示器不支持，如果你使用的无效果，说明你显示器不支持此调节功能!下载地址：源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://goodhelp.gitee.io/images/c9ae1552366758.png">
+<meta property="article:published_time" content="2021-09-07T04:37:00.000Z">
+<meta property="article:modified_time" content="2021-09-09T14:53:52.324Z">
+<meta property="article:author" content="百脑问">
+<meta property="article:tag" content="autoit3">
+<meta property="article:tag" content="dxva2">
+<meta property="article:tag" content="显示器设置">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://goodhelp.gitee.io/images/c9ae1552366758.png">
+    
+
+    
+        <link rel="alternate" href="/" title="百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+	<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/soft/">软件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/code/">源码</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/material/">素材</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/article/">文章</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/video/">视频</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/code/">源码</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-code/显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/09/07/20210907123700" class="article-date">
+       <time datetime="2021-09-07T04:37:00.000Z" itemprop="datePublished">2021-09-07</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/09/07/20210907123700" class="article-date">
+     <time datetime="2021-09-09T14:53:52.324Z" itemprop="dateModified">2021-09-09</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/autoit3/" rel="tag">autoit3</a>, <a class="tag-link-link" href="/tags/dxva2/" rel="tag">dxva2</a>, <a class="tag-link-link" href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" rel="tag">显示器设置</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p><img src="/images/c9ae1552366758.png" alt="显示器调节"><br>通过调用dxva2.dll文件，修改显示器的设置，和按显示器上的物理按钮效果一样，有效的解决显示器上按钮不好设置，按钮功能不明的问题，有些显示器不支持，如果你使用的无效果，说明你显示器不支持此调节功能!下载地址：<a target="_blank" rel="noopener" href="https://www.jianyiit.com/content/uploadfile/201903/adf51552366758.zip">源码</a></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;WinAPI.au3&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;WinAPIFiles.au3&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;WinAPIGdi.au3&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GUIConstantsEx.au3&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GuiSlider.au3&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Array.au3&gt;</span></span></span><br><span class="line">Opt(<span class="string">&quot;GUIOnEventMode&quot;</span>, <span class="number">1</span>)</span><br><span class="line">$g_szVersion = <span class="string">&quot;RU1Y2-D59U9&quot;</span></span><br><span class="line"><span class="keyword">If</span> <span class="built_in">WinExists</span>($g_szVersion) <span class="keyword">Then</span> <span class="keyword">Exit</span></span><br><span class="line"><span class="built_in">AutoItWinSetTitle</span>($g_szVersion)</span><br><span class="line"><span class="keyword">Global</span> <span class="keyword">Const</span> $Dxva2 = <span class="built_in">DllOpen</span>(<span class="string">&quot;Dxva2.dll&quot;</span>)</span><br><span class="line"><span class="keyword">If</span> <span class="symbol">@error</span> <span class="keyword">Then</span> <span class="keyword">Exit</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">Global</span> <span class="keyword">Const</span> $tagSTRUCT = <span class="string">&quot;HANDLE hPhysicalMonitor;WCHAR szPhysicalMonitorDescription[128];&quot;</span></span><br><span class="line"><span class="keyword">Global</span> <span class="keyword">Const</span> $tag_MC_TIMING_REPORT = <span class="string">&quot;BYTE bTimingStatusByte; DWORD dwHorizontalFrequencyInHZ; DWORD dwVerticalFrequencyInHZ&quot;</span></span><br><span class="line"><span class="keyword">Global</span> <span class="keyword">Const</span> $tag_DISPLAY_BRIGHTNESS = <span class="string">&quot;byte ucDisplayPolicy; byte ucACBrightness; byte ucDCBrightness&quot;</span></span><br><span class="line"><span class="keyword">Global</span> <span class="keyword">Const</span> $IOCTL_VIDEO_QUERY_SUPPORTED_BRIGHTNESS = _WinAPI_IOCTL($FILE_DEVICE_VIDEO, <span class="number">0x125</span>, $METHOD_BUFFERED, $FILE_ANY_ACCESS)</span><br><span class="line"><span class="keyword">Global</span> <span class="keyword">Const</span> $IOCTL_VIDEO_QUERY_DISPLAY_BRIGHTNESS = _WinAPI_IOCTL($FILE_DEVICE_VIDEO, <span class="number">0x126</span>, $METHOD_BUFFERED, $FILE_ANY_ACCESS)</span><br><span class="line"><span class="keyword">Global</span> <span class="keyword">Const</span> $IOCTL_VIDEO_SET_DISPLAY_BRIGHTNESS = _WinAPI_IOCTL($FILE_DEVICE_VIDEO, <span class="number">0x127</span>, $METHOD_BUFFERED, $FILE_ANY_ACCESS)</span><br><span class="line"><span class="keyword">Global</span> $idSlider1, $idSlider2, $idButton1, $idButton2, $idLabel1, $idLabel2</span><br><span class="line"><span class="keyword">Global</span> $hMonitor, $brightness, $contrast, $switch1, $switch2, $VCPReply</span><br><span class="line"><span class="keyword">Global</span> $idLabel3, $idSlider3, $hDevice, $BRIGHTNESS_LCD_Array</span><br><span class="line">$hDevice = LCD()</span><br><span class="line"><span class="keyword">If</span> <span class="literal">Not</span> <span class="symbol">@error</span> <span class="keyword">Then</span></span><br><span class="line">        LCD_Set($hDevice)</span><br><span class="line">        <span class="keyword">If</span> $hDevice <span class="keyword">Then</span> _WinAPI_CloseHandle($hDevice)</span><br><span class="line">        <span class="built_in">DllClose</span>($Dxva2)</span><br><span class="line">        <span class="keyword">Exit</span></span><br><span class="line"><span class="keyword">EndIf</span></span><br><span class="line">$hMonitor = _WinAPI_MonitorFromWindow(_WinAPI_GetDesktopWindow(), $MONITOR_DEFAULTTOPRIMARY) <span class="comment">;返回主显示器句柄</span></span><br><span class="line">$hMonitor = _GetPhysicalMonitorsFromHMONITOR($hMonitor) <span class="comment">;获取物理显示器句柄</span></span><br><span class="line">$StringLength = CapabilitiesRequestAndCapabilitiesReply($hMonitor)</span><br><span class="line">$Gui = <span class="built_in">GUICreate</span>(<span class="string">&quot;显示器设置&quot;</span>, <span class="number">262</span>, <span class="number">220</span>, <span class="number">-1</span>, <span class="number">-1</span>)</span><br><span class="line"><span class="built_in">GUISetOnEvent</span>($GUI_EVENT_CLOSE, <span class="string">&quot;_exit&quot;</span>)</span><br><span class="line">$idSlider1 = <span class="built_in">GUICtrlCreateSlider</span>(<span class="number">10</span>, <span class="number">30</span>, <span class="number">240</span>, <span class="number">20</span>, <span class="built_in">BitOR</span>($TBS_TOOLTIPS, $TBS_AUTOTICKS))</span><br><span class="line"><span class="built_in">GUICtrlSetOnEvent</span>($idSlider1, <span class="string">&quot;Brightness&quot;</span>)</span><br><span class="line"><span class="built_in">GUICtrlSetLimit</span>($idSlider1, <span class="number">100</span>)</span><br><span class="line">$idSlider2 = <span class="built_in">GUICtrlCreateSlider</span>(<span class="number">10</span>, <span class="number">82</span>, <span class="number">240</span>, <span class="number">20</span>, <span class="built_in">BitOR</span>($TBS_TOOLTIPS, $TBS_AUTOTICKS))</span><br><span class="line"><span class="built_in">GUICtrlSetOnEvent</span>($idSlider2, <span class="string">&quot;Contrast&quot;</span>)</span><br><span class="line"><span class="built_in">GUICtrlSetLimit</span>($idSlider2, <span class="number">100</span>)</span><br><span class="line">$idButton1 = <span class="built_in">GUICtrlCreateButton</span>(<span class="string">&quot;宽屏切换&quot;</span>, <span class="number">16</span>, <span class="number">160</span>, <span class="number">85</span>, <span class="number">25</span>)</span><br><span class="line"><span class="built_in">GUICtrlSetOnEvent</span>($idButton1, <span class="string">&quot;Button1&quot;</span>)</span><br><span class="line">$idButton2 = <span class="built_in">GUICtrlCreateButton</span>(<span class="string">&quot;恢复默认&quot;</span>, <span class="number">158</span>, <span class="number">160</span>, <span class="number">85</span>, <span class="number">25</span>)</span><br><span class="line"><span class="built_in">GUICtrlSetOnEvent</span>($idButton2, <span class="string">&quot;Button2&quot;</span>)</span><br><span class="line">$idLabel1 = <span class="built_in">GUICtrlCreateLabel</span>(<span class="string">&quot;  亮度调节:不可用&quot;</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">140</span>, <span class="number">20</span>)</span><br><span class="line">$idLabel2 = <span class="built_in">GUICtrlCreateLabel</span>(<span class="string">&quot;对比度调节:不可用&quot;</span>, <span class="number">10</span>, <span class="number">60</span>, <span class="number">140</span>, <span class="number">20</span>)</span><br><span class="line">$Combo1 = <span class="built_in">GUICtrlCreateCombo</span>(<span class="string">&quot;&quot;</span>, <span class="number">102</span>, <span class="number">120</span>, <span class="number">100</span>, <span class="number">25</span>, <span class="number">0x0003</span>)</span><br><span class="line"><span class="built_in">GUICtrlSetOnEvent</span>($Combo1, <span class="string">&quot;Color&quot;</span>)</span><br><span class="line"><span class="built_in">GUICtrlCreateLabel</span>(<span class="string">&quot;色温调节&quot;</span>, <span class="number">32</span>, <span class="number">124</span>, <span class="number">48</span>, <span class="number">20</span>)</span><br><span class="line">_GUICtrlSlider_SetTipSide($idSlider1, $TBTS_TOP)</span><br><span class="line">_GUICtrlSlider_SetTipSide($idSlider2, $TBTS_TOP)</span><br><span class="line"><span class="keyword">If</span> $StringLength &lt;&gt; <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">        $VCP_Array = Manage_vcp($StringLength)</span><br><span class="line">        $VCPReply = _GetVCPFeatureAndVCPFeatureReply($hMonitor, <span class="number">0x86</span>)</span><br><span class="line">        <span class="keyword">If</span> $VCPReply[0] = <span class="number">0</span> <span class="keyword">Then</span> <span class="built_in">GUICtrlSetState</span>($idButton1, $GUI_DISABLE)</span><br><span class="line">        $brightness = _GetMonitorBrightness($hMonitor) <span class="comment">;获取监视器亮度</span></span><br><span class="line">        <span class="built_in">ConsoleWrite</span>($brightness[1] &amp; <span class="symbol">@CRLF</span>)</span><br><span class="line">        $contrast = _GetMonitorContrast($hMonitor) <span class="comment">;获取监视器对比度</span></span><br><span class="line">        <span class="keyword">If</span> $brightness[2] &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span> $switch1 = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">If</span> $contrast[2] &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span> $switch2 = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">If</span> $switch1 <span class="keyword">Then</span></span><br><span class="line">                <span class="built_in">GUICtrlSetData</span>($idSlider1, $brightness[1])</span><br><span class="line">                <span class="built_in">GUICtrlSetData</span>($idLabel1, <span class="string">&quot;设置亮度:&quot;</span> &amp; $brightness[1])</span><br><span class="line">        <span class="keyword">EndIf</span></span><br><span class="line">        <span class="keyword">If</span> $switch2 <span class="keyword">Then</span></span><br><span class="line">                <span class="built_in">GUICtrlSetData</span>($idSlider2, $contrast[1])</span><br><span class="line">                <span class="built_in">GUICtrlSetData</span>($idLabel2, <span class="string">&quot;设置对比度:&quot;</span> &amp; $contrast[1])</span><br><span class="line">        <span class="keyword">EndIf</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">For</span> $i = <span class="number">0</span> <span class="keyword">To</span> <span class="built_in">UBound</span>($VCP_Array) - <span class="number">1</span></span><br><span class="line">                <span class="keyword">If</span> $VCP_Array[$i][0] = <span class="string">&quot;14&quot;</span> <span class="keyword">Then</span></span><br><span class="line">                        <span class="keyword">If</span> $VCP_Array[$i][1] &lt;&gt; <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">                                $Color_Array = <span class="built_in">StringSplit</span>($VCP_Array[$i][1], <span class="string">&quot; &quot;</span>, <span class="number">2</span>)</span><br><span class="line">                                $Color_String = <span class="string">&quot;&quot;</span></span><br><span class="line">                                <span class="keyword">For</span> $S = <span class="number">0</span> <span class="keyword">To</span> <span class="built_in">UBound</span>($Color_Array) - <span class="number">1</span></span><br><span class="line">                                        $temp = Select_Color($Color_Array[$S])</span><br><span class="line">                                        <span class="keyword">If</span> $temp &lt;&gt; <span class="string">&quot;&quot;</span> <span class="keyword">Then</span> $Color_String &amp;= $temp &amp; <span class="string">&quot;|&quot;</span></span><br><span class="line">                                <span class="keyword">Next</span></span><br><span class="line">                        <span class="keyword">EndIf</span></span><br><span class="line">                        <span class="keyword">ExitLoop</span></span><br><span class="line">                <span class="keyword">EndIf</span></span><br><span class="line">        <span class="keyword">Next</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">If</span> $Color_String &lt;&gt; <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">                $VCPCode = _GetVCPFeatureAndVCPFeatureReply($hMonitor, <span class="number">0x14</span>)</span><br><span class="line">                <span class="built_in">GUICtrlSetData</span>($Combo1, $Color_String, Select_Color($VCPCode[1] - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">                <span class="built_in">GUICtrlSetData</span>($Combo1, <span class="string">&quot;不支持&quot;</span>, <span class="string">&quot;不支持&quot;</span>)</span><br><span class="line">                <span class="built_in">GUICtrlSetState</span>($Combo1, $GUI_DISABLE)</span><br><span class="line">        <span class="keyword">EndIf</span></span><br><span class="line">        <span class="built_in">GUISetState</span>(<span class="symbol">@SW_SHOW</span>, $Gui)</span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">        <span class="built_in">WinSetTitle</span>($Gui, <span class="string">&quot;&quot;</span>, <span class="string">&quot;未发现DDC/CI&quot;</span>)</span><br><span class="line">        <span class="built_in">GUICtrlSetData</span>($Combo1, <span class="string">&quot;不支持&quot;</span>, <span class="string">&quot;不支持&quot;</span>)</span><br><span class="line">        <span class="built_in">GUICtrlSetState</span>($idSlider1, $GUI_DISABLE)</span><br><span class="line">        <span class="built_in">GUICtrlSetState</span>($idSlider2, $GUI_DISABLE)</span><br><span class="line">        <span class="built_in">GUICtrlSetState</span>($idButton1, $GUI_DISABLE)</span><br><span class="line">        <span class="built_in">GUICtrlSetState</span>($Combo1, $GUI_DISABLE)</span><br><span class="line">        <span class="built_in">GUISetState</span>(<span class="symbol">@SW_SHOW</span>, $Gui)</span><br><span class="line"><span class="keyword">EndIf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">While</span> <span class="number">1</span></span><br><span class="line">        <span class="built_in">Sleep</span>(<span class="number">50</span>)</span><br><span class="line"><span class="keyword">WEnd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">LCD</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">Local</span> $iDevice</span><br><span class="line">        $iDevice = _WinAPI_CreateFileEx(<span class="string">&quot;\\.\LCD&quot;</span>, $OPEN_EXISTING, $GENERIC_READ + $GENERIC_WRITE, $FILE_ANY_ACCESS, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">Return</span> (<span class="symbol">@error</span>) ? (<span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>)) : ($iDevice)</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;LCD</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">LCD_Set</span><span class="params">($iDevice)</span></span></span><br><span class="line">        <span class="keyword">Local</span> $brightness = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;BYTE[256]&quot;</span>)</span><br><span class="line">        <span class="keyword">Local</span> $DISPLAY_BRIGHTNESS = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;BYTE[3]&quot;</span>)</span><br><span class="line">        $success = _WinAPI_DeviceIoControl($iDevice, $IOCTL_VIDEO_QUERY_SUPPORTED_BRIGHTNESS, <span class="literal">Null</span>, <span class="number">0</span>, <span class="built_in">DllStructGetPtr</span>($brightness), <span class="number">0xff</span>)</span><br><span class="line">        <span class="keyword">If</span> $success = <span class="literal">False</span> <span class="keyword">Then</span> <span class="keyword">Return</span></span><br><span class="line">        $BRIGHTNESS_LCD_Array = Brightness_lcd(<span class="built_in">DllStructGetData</span>($brightness, <span class="number">1</span>))</span><br><span class="line">        $success = _WinAPI_DeviceIoControl($iDevice, $IOCTL_VIDEO_QUERY_DISPLAY_BRIGHTNESS, <span class="literal">Null</span>, <span class="number">0</span>, <span class="built_in">DllStructGetPtr</span>($DISPLAY_BRIGHTNESS), <span class="number">0x03</span>)</span><br><span class="line">        <span class="keyword">If</span> $success = <span class="literal">False</span> <span class="keyword">Then</span> <span class="keyword">Return</span></span><br><span class="line">        $DISPLAY_BRIGHTNESS_READ = <span class="built_in">Int</span>(<span class="built_in">BinaryMid</span>(<span class="built_in">DllStructGetData</span>($DISPLAY_BRIGHTNESS, <span class="number">1</span>), <span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        $Gui = <span class="built_in">GUICreate</span>(<span class="string">&quot;内置LCD显示器&quot;</span>, <span class="number">262</span>, <span class="number">80</span>, <span class="number">-1</span>, <span class="number">-1</span>)</span><br><span class="line">        <span class="built_in">GUISetOnEvent</span>($GUI_EVENT_CLOSE, <span class="string">&quot;_exit&quot;</span>)</span><br><span class="line">        $idSlider3 = <span class="built_in">GUICtrlCreateSlider</span>(<span class="number">10</span>, <span class="number">30</span>, <span class="number">240</span>, <span class="number">20</span>, <span class="built_in">BitOR</span>($TBS_TOOLTIPS, $TBS_AUTOTICKS))</span><br><span class="line">        <span class="built_in">GUICtrlSetLimit</span>($idSlider3, <span class="number">100</span>)</span><br><span class="line">        $idLabel3 = <span class="built_in">GUICtrlCreateLabel</span>(<span class="string">&quot;  亮度调节:&quot;</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">140</span>, <span class="number">20</span>)</span><br><span class="line">        <span class="built_in">GUICtrlSetData</span>($idSlider3, $DISPLAY_BRIGHTNESS_READ)</span><br><span class="line">        <span class="built_in">GUICtrlSetData</span>($idLabel3, <span class="string">&quot;设置亮度:&quot;</span> &amp; $DISPLAY_BRIGHTNESS_READ)</span><br><span class="line">        <span class="built_in">GUICtrlSetOnEvent</span>($idSlider3, <span class="string">&quot;Brightness_set_lcd&quot;</span>)</span><br><span class="line">        <span class="built_in">GUISetState</span>(<span class="symbol">@SW_SHOW</span>, $Gui)</span><br><span class="line">        <span class="built_in">WinSetTitle</span>($Gui, <span class="string">&quot;&quot;</span>, <span class="string">&quot;内置LCD显示器&quot;</span>)</span><br><span class="line">        <span class="keyword">While</span> <span class="number">1</span></span><br><span class="line">                <span class="built_in">Sleep</span>(<span class="number">50</span>)</span><br><span class="line">        <span class="keyword">WEnd</span></span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;LCD_Set</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Brightness_set_lcd</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">Local</span> $lcd_BRIGHTNESS, $DISPLAY_BRIGHTNESS, $success</span><br><span class="line">        $lcd_BRIGHTNESS = <span class="built_in">GUICtrlRead</span>($idSlider3)</span><br><span class="line">        <span class="built_in">GUICtrlSetData</span>($idLabel3, <span class="string">&quot;设置亮度:&quot;</span> &amp; $lcd_BRIGHTNESS)</span><br><span class="line">        <span class="keyword">For</span> $i = <span class="number">0</span> <span class="keyword">To</span> <span class="built_in">UBound</span>($BRIGHTNESS_LCD_Array)</span><br><span class="line">                <span class="keyword">If</span> $lcd_BRIGHTNESS &lt;= $BRIGHTNESS_LCD_Array[$i] <span class="keyword">Then</span></span><br><span class="line">                        $DISPLAY_BRIGHTNESS = <span class="built_in">DllStructCreate</span>($tag_DISPLAY_BRIGHTNESS)</span><br><span class="line">                        <span class="built_in">DllStructSetData</span>($DISPLAY_BRIGHTNESS, <span class="string">&quot;ucDisplayPolicy&quot;</span>, <span class="number">3</span>)</span><br><span class="line">                        <span class="built_in">DllStructSetData</span>($DISPLAY_BRIGHTNESS, <span class="string">&quot;ucACBrightness&quot;</span>, $BRIGHTNESS_LCD_Array[$i])</span><br><span class="line">                        <span class="built_in">DllStructSetData</span>($DISPLAY_BRIGHTNESS, <span class="string">&quot;ucDCBrightness&quot;</span>, $BRIGHTNESS_LCD_Array[$i])</span><br><span class="line">                        $success = _WinAPI_DeviceIoControl($hDevice, $IOCTL_VIDEO_SET_DISPLAY_BRIGHTNESS, <span class="built_in">DllStructGetPtr</span>($DISPLAY_BRIGHTNESS), <span class="built_in">DllStructGetSize</span>($DISPLAY_BRIGHTNESS), <span class="literal">Null</span>, <span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">If</span> $success = <span class="literal">False</span> <span class="keyword">Then</span> <span class="keyword">Return</span></span><br><span class="line">                        <span class="keyword">ExitLoop</span></span><br><span class="line">                <span class="keyword">EndIf</span></span><br><span class="line">        <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Brightness_set_lcd</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Select_Color</span><span class="params">($iValue)</span></span></span><br><span class="line">        <span class="keyword">Local</span> $String</span><br><span class="line">        <span class="keyword">If</span> <span class="built_in">StringIsXDigit</span>($iValue) <span class="keyword">Then</span> $iValue = <span class="built_in">Dec</span>($iValue)</span><br><span class="line">        <span class="keyword">Switch</span> $iValue</span><br><span class="line">                <span class="keyword">Case</span> <span class="number">1</span></span><br><span class="line">                        $String = <span class="string">&quot;sRGB&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">2</span></span><br><span class="line">                        $String = <span class="string">&quot;原生显示&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">3</span></span><br><span class="line">                        $String = <span class="string">&quot;4000K&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">4</span></span><br><span class="line">                        $String = <span class="string">&quot;5000K&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">5</span></span><br><span class="line">                        $String = <span class="string">&quot;6500K&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">6</span></span><br><span class="line">                        $String = <span class="string">&quot;7500K&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">7</span></span><br><span class="line">                        $String = <span class="string">&quot;8200K&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">8</span></span><br><span class="line">                        $String = <span class="string">&quot;9300K&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">9</span></span><br><span class="line">                        $String = <span class="string">&quot;10000K&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">10</span></span><br><span class="line">                        $String = <span class="string">&quot;11500K&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">11</span></span><br><span class="line">                        $String = <span class="string">&quot;User1&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">12</span></span><br><span class="line">                        $String = <span class="string">&quot;User2&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="number">13</span></span><br><span class="line">                        $String = <span class="string">&quot;User3&quot;</span></span><br><span class="line">                <span class="keyword">Case</span> <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">EndSwitch</span></span><br><span class="line">        <span class="keyword">Return</span> $String</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Select_Color</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Color</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">Local</span> $iValue = <span class="built_in">GUICtrlRead</span>($Combo1)</span><br><span class="line">        <span class="keyword">Select</span></span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;sRGB&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x01</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;原生显示&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x02</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;4000K&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x03</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;5000K&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x04</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;6500K&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x05</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;7500K&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x06</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;8200K&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x07</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;9300K&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x08</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;10000K&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x09</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;11500K&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x0a</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;User1&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x0b</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;User2&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x0c</span>)</span><br><span class="line">                <span class="keyword">Case</span> $iValue = <span class="string">&quot;User3&quot;</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x14</span>, <span class="number">0x0d</span>)</span><br><span class="line">                <span class="keyword">Case</span> <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">EndSelect</span></span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Color</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Button1</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">Local</span> $VCPCode</span><br><span class="line">        <span class="keyword">If</span> $switch1 <span class="literal">And</span> $switch2 <span class="keyword">Then</span></span><br><span class="line">                $VCPCode = _GetVCPFeatureAndVCPFeatureReply($hMonitor, <span class="number">0x86</span>)</span><br><span class="line">                <span class="built_in">ConsoleWrite</span>($VCPCode[1] &amp; <span class="symbol">@CRLF</span>)</span><br><span class="line">                <span class="keyword">If</span> $VCPCode[1] = <span class="number">8</span> <span class="keyword">Then</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x86</span>, <span class="number">0x02</span>)</span><br><span class="line">                        <span class="built_in">GUICtrlSetData</span>($idButton1, <span class="string">&quot;窄屏&quot;</span>)</span><br><span class="line">                <span class="keyword">Else</span></span><br><span class="line">                        _SetVCPFeature($hMonitor, <span class="number">0x86</span>, <span class="number">0x08</span>)</span><br><span class="line">                        <span class="built_in">GUICtrlSetData</span>($idButton1, <span class="string">&quot;宽屏&quot;</span>)</span><br><span class="line">                <span class="keyword">EndIf</span></span><br><span class="line">        <span class="keyword">EndIf</span></span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Button1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Button2</span><span class="params">()</span></span></span><br><span class="line">        <span class="built_in">GUICtrlSetData</span>($idButton2, <span class="string">&quot;Reset..&quot;</span>)</span><br><span class="line">        <span class="built_in">Sleep</span>(<span class="number">250</span>)</span><br><span class="line">        <span class="built_in">GUISetState</span>(<span class="symbol">@SW_HIDE</span>)</span><br><span class="line">        <span class="keyword">If</span> $switch1 <span class="literal">Or</span> $switch2 <span class="keyword">Then</span></span><br><span class="line">                _RestoreMonitorFactoryDefaults($hMonitor)</span><br><span class="line">                <span class="built_in">Sleep</span>(<span class="number">1000</span>)</span><br><span class="line">        <span class="keyword">EndIf</span></span><br><span class="line">        _DestroyPhysicalMonitor($hMonitor) <span class="comment">;关闭监视器句柄</span></span><br><span class="line">        <span class="built_in">DllClose</span>($Dxva2)</span><br><span class="line">        <span class="keyword">Exit</span></span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Button2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Brightness</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">If</span> <span class="literal">Not</span> $switch1 <span class="keyword">Then</span> <span class="keyword">Return</span></span><br><span class="line">        <span class="built_in">GUICtrlSetData</span>($idLabel1, <span class="string">&quot;设置亮度:&quot;</span> &amp; <span class="built_in">GUICtrlRead</span>($idSlider1))</span><br><span class="line">        _SetMonitorBrightness($hMonitor, <span class="built_in">GUICtrlRead</span>($idSlider1))</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Brightness</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Contrast</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">If</span> <span class="literal">Not</span> $switch2 <span class="keyword">Then</span> <span class="keyword">Return</span></span><br><span class="line">        <span class="built_in">GUICtrlSetData</span>($idLabel2, <span class="string">&quot;设置对比度:&quot;</span> &amp; <span class="built_in">GUICtrlRead</span>($idSlider2))</span><br><span class="line">        _SetMonitorContrast($hMonitor, <span class="built_in">GUICtrlRead</span>($idSlider2))</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Contrast</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_GetMonitorBrightness</span><span class="params">(Const $h_monitor)</span></span></span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $MinimumBrightness = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $CurrentBrightness = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $MaximumBrightness = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;GetMonitorBrightness&quot;</span>, _</span><br><span class="line">                        <span class="string">&quot;handle&quot;</span>, $h_monitor, _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($MinimumBrightness), _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($CurrentBrightness), _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($MaximumBrightness))</span><br><span class="line">        <span class="keyword">If</span> <span class="symbol">@error</span> <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $brightness[3] = [<span class="built_in">DllStructGetData</span>($MinimumBrightness, <span class="number">1</span>), _</span><br><span class="line">                        <span class="built_in">DllStructGetData</span>($CurrentBrightness, <span class="number">1</span>), _</span><br><span class="line">                        <span class="built_in">DllStructGetData</span>($MaximumBrightness, <span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">Return</span> $brightness</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_GetMonitorBrightness</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_GetMonitorContrast</span><span class="params">(Const $h_monitor)</span></span></span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $MinimumContrast = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $CurrentContrast = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $MaximumContrast = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;GetMonitorContrast&quot;</span>, _</span><br><span class="line">                        <span class="string">&quot;handle&quot;</span>, $h_monitor, _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($MinimumContrast), _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($CurrentContrast), _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($MaximumContrast))</span><br><span class="line">        <span class="keyword">If</span> <span class="symbol">@error</span> <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $contrast[3] = [<span class="built_in">DllStructGetData</span>($MinimumContrast, <span class="number">1</span>), _</span><br><span class="line">                        <span class="built_in">DllStructGetData</span>($CurrentContrast, <span class="number">1</span>), _</span><br><span class="line">                        <span class="built_in">DllStructGetData</span>($MaximumContrast, <span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">Return</span> $contrast</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_GetMonitorContrast</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_SetMonitorBrightness</span><span class="params">(Const $h_monitor, Const $NewBrightness)</span></span></span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;SetMonitorBrightness&quot;</span>, <span class="string">&quot;ptr&quot;</span>, $h_monitor, <span class="string">&quot;dword&quot;</span>, $NewBrightness)</span><br><span class="line">        <span class="keyword">Return</span> (<span class="symbol">@error</span> ? <span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>) : <span class="literal">True</span>)</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_SetMonitorBrightness</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_SetMonitorContrast</span><span class="params">(Const $h_monitor, Const $contrast)</span></span></span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;SetMonitorContrast&quot;</span>, <span class="string">&quot;ptr&quot;</span>, $h_monitor, <span class="string">&quot;dword&quot;</span>, $contrast)</span><br><span class="line">        <span class="keyword">Return</span> (<span class="symbol">@error</span> ? <span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>) : <span class="literal">True</span>)</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_SetMonitorContrast</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_GetPhysicalMonitorsFromHMONITOR</span><span class="params">(Const $pMonitor)</span></span></span><br><span class="line">        <span class="keyword">Local</span> $Number = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;DWORD&quot;</span>)</span><br><span class="line">        <span class="keyword">Local</span> $i, $tagPhysical, $M = <span class="number">1</span></span><br><span class="line">        $Ret = <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;GetNumberOfPhysicalMonitorsFromHMONITOR&quot;</span>, _</span><br><span class="line">                        <span class="string">&quot;handle&quot;</span>, $pMonitor, _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($Number))</span><br><span class="line">        $NumberOfMonitors = <span class="built_in">DllStructGetData</span>($Number, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">For</span> $i = <span class="number">1</span> <span class="keyword">To</span> $NumberOfMonitors</span><br><span class="line">                $tagPhysical &amp;= $tagSTRUCT</span><br><span class="line">        <span class="keyword">Next</span></span><br><span class="line">        $MonitorArray = <span class="built_in">DllStructCreate</span>($tagSTRUCT)</span><br><span class="line">        $Ret = <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;GetPhysicalMonitorsFromHMONITOR&quot;</span>, _</span><br><span class="line">                        <span class="string">&quot;handle&quot;</span>, $pMonitor, _</span><br><span class="line">                        <span class="string">&quot;DWORD&quot;</span>, $NumberOfMonitors, _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($MonitorArray))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">Return</span> <span class="built_in">DllStructGetData</span>($MonitorArray, <span class="number">1</span>) <span class="comment">;返回第一个显示器句柄</span></span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_GetPhysicalMonitorsFromHMONITOR</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">CapabilitiesRequestAndCapabilitiesReply</span><span class="params">(Const $h_monitor)</span></span></span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $tagStringLength = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;GetCapabilitiesStringLength&quot;</span>, <span class="string">&quot;handle&quot;</span>, $h_monitor, <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($tagStringLength))</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $CapabilitiesStringLength = <span class="built_in">DllStructGetData</span>($tagStringLength, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $CapabilitiesString = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;char[&quot;</span> &amp; $CapabilitiesStringLength &amp; <span class="string">&#x27;]&#x27;</span>)</span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;CapabilitiesRequestAndCapabilitiesReply&quot;</span>, _</span><br><span class="line">                        <span class="string">&quot;handle&quot;</span>, $h_monitor, _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($CapabilitiesString), _</span><br><span class="line">                        <span class="string">&quot;dword&quot;</span>, <span class="built_in">DllStructGetSize</span>($CapabilitiesString))</span><br><span class="line">        <span class="keyword">Return</span> (<span class="symbol">@error</span>) ? (<span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>)) : (<span class="built_in">DllStructGetData</span>($CapabilitiesString, <span class="number">1</span>))</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;CapabilitiesRequestAndCapabilitiesReply</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_RestoreMonitorFactoryDefaults</span><span class="params">(Const $h_monitor)</span></span></span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;RestoreMonitorFactoryDefaults&quot;</span>, <span class="string">&quot;ptr&quot;</span>, $h_monitor)</span><br><span class="line">        <span class="keyword">Return</span> (<span class="symbol">@error</span>) ? (<span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>)) : (<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_RestoreMonitorFactoryDefaults</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_SetVCPFeature</span><span class="params">(Const $h_monitor, Const $VCPCode, Const $NewValue)</span></span></span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;SetVCPFeature&quot;</span>, _</span><br><span class="line">                        <span class="string">&quot;handle&quot;</span>, $h_monitor, _</span><br><span class="line">                        <span class="string">&quot;byte&quot;</span>, $VCPCode, _</span><br><span class="line">                        <span class="string">&quot;dword&quot;</span>, $NewValue)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">Return</span> (<span class="symbol">@error</span>) ? (<span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>)) : (<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_SetVCPFeature</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_GetVCPFeatureAndVCPFeatureReply</span><span class="params">(Const $h_monitor, Const $VCPCode)</span></span></span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $CurrentValue = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $MaximumValue = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $VCPCodeType = <span class="built_in">DllStructCreate</span>(<span class="string">&quot;dword_ptr&quot;</span>)</span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;GetVCPFeatureAndVCPFeatureReply&quot;</span>, _</span><br><span class="line">                        <span class="string">&quot;handle&quot;</span>, $h_monitor, _</span><br><span class="line">                        <span class="string">&quot;byte&quot;</span>, $VCPCode, _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($VCPCodeType), _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($CurrentValue), _</span><br><span class="line">                        <span class="string">&quot;ptr&quot;</span>, <span class="built_in">DllStructGetPtr</span>($MaximumValue))</span><br><span class="line">        <span class="keyword">If</span> <span class="symbol">@error</span> <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">Local</span> <span class="keyword">Const</span> $VCPFeatureReply[3] = [<span class="built_in">DllStructGetData</span>($VCPCodeType, <span class="number">1</span>), <span class="built_in">DllStructGetData</span>($CurrentValue, <span class="number">1</span>), <span class="built_in">DllStructGetData</span>($MaximumValue, <span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">Return</span> $VCPFeatureReply</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_GetVCPFeatureAndVCPFeatureReply</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Manage_vcp</span><span class="params">(Const $String)</span></span></span><br><span class="line">        <span class="keyword">Local</span> $Exp, $i, $tmp, $OUT_String</span><br><span class="line">        $Exp = <span class="built_in">StringRegExp</span>($String, <span class="string">&quot;(?&lt;=vcp\()([A-Za-z0-9]&#123;2&#125;[\)\(]?\s?)*(?=\))&quot;</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">If</span> <span class="symbol">@error</span> <span class="keyword">Then</span> <span class="keyword">Return</span></span><br><span class="line">        $Exp = <span class="built_in">StringRegExp</span>($Exp[0], <span class="string">&quot;([0-9A-Fa-f]&#123;2&#125;)(\(.+?\))?&quot;</span>, <span class="number">4</span>)</span><br><span class="line">        <span class="keyword">If</span> <span class="symbol">@error</span> <span class="keyword">Then</span> <span class="keyword">Return</span></span><br><span class="line">        <span class="keyword">Local</span> $Array[UBound($Exp)][<span class="number">2</span>]</span><br><span class="line">        <span class="keyword">For</span> $i = <span class="number">0</span> <span class="keyword">To</span> <span class="built_in">UBound</span>($Exp) - <span class="number">1</span></span><br><span class="line">                $tmp = $Exp[$i]</span><br><span class="line">                $Array[$i][0] = <span class="built_in">StringStripWS</span>(<span class="built_in">StringLeft</span>($tmp[0], <span class="number">2</span>), <span class="number">8</span>)</span><br><span class="line">                $OUT_String = <span class="built_in">StringStripWS</span>(<span class="built_in">StringTrimLeft</span>($tmp[0], <span class="number">2</span>), <span class="number">3</span>)</span><br><span class="line">                <span class="keyword">If</span> $OUT_String &lt;&gt; <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">                        $OUT_String = <span class="built_in">StringTrimLeft</span>(<span class="built_in">StringTrimRight</span>($OUT_String, <span class="number">1</span>), <span class="number">1</span>)</span><br><span class="line">                        $Array[$i][1] = $OUT_String</span><br><span class="line">                <span class="keyword">EndIf</span></span><br><span class="line">        <span class="keyword">Next</span></span><br><span class="line">        <span class="keyword">Return</span> $Array</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Manage_vcp</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_DestroyPhysicalMonitor</span><span class="params">(Const $h_monitor)</span></span></span><br><span class="line">        <span class="built_in">DllCall</span>($Dxva2, <span class="string">&quot;bool&quot;</span>, <span class="string">&quot;DestroyPhysicalMonitor&quot;</span>, <span class="string">&quot;ptr&quot;</span>, $h_monitor)</span><br><span class="line">        <span class="keyword">Return</span> (<span class="symbol">@error</span>) ? (<span class="built_in">SetError</span>(<span class="number">1</span>, _WinAPI_GetLastErrorMessage(), <span class="literal">False</span>)) : (<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_DestroyPhysicalMonitor</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">Brightness_lcd</span><span class="params">(Const $BRIGHTNESS_Lcd)</span></span></span><br><span class="line">        <span class="keyword">Local</span> $BRIGHTNESS_String, $tmp, $i</span><br><span class="line">        <span class="keyword">For</span> $i = <span class="number">1</span> <span class="keyword">To</span> <span class="built_in">BinaryLen</span>($BRIGHTNESS_Lcd)</span><br><span class="line">                $tmp = <span class="built_in">Int</span>(<span class="built_in">BinaryMid</span>($BRIGHTNESS_Lcd, $i, <span class="number">1</span>))</span><br><span class="line">                <span class="keyword">If</span> $i = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">                        $BRIGHTNESS_String &amp;= $tmp &amp; <span class="string">&quot;;&quot;</span></span><br><span class="line">                <span class="keyword">Else</span></span><br><span class="line">                        <span class="keyword">If</span> $tmp = <span class="number">0</span> <span class="keyword">Then</span> <span class="keyword">ExitLoop</span></span><br><span class="line">                        $BRIGHTNESS_String &amp;= $tmp &amp; <span class="string">&quot;;&quot;</span></span><br><span class="line">                <span class="keyword">EndIf</span></span><br><span class="line">        <span class="keyword">Next</span></span><br><span class="line">        <span class="keyword">Return</span> <span class="built_in">StringSplit</span>(<span class="built_in">StringTrimRight</span>($BRIGHTNESS_String, <span class="number">1</span>), <span class="string">&quot;;&quot;</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;Brightness_lcd</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_exit</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">If</span> $hDevice <span class="keyword">Then</span> _WinAPI_CloseHandle($hDevice)</span><br><span class="line">        _DestroyPhysicalMonitor($hMonitor) <span class="comment">;关闭监视器句柄</span></span><br><span class="line">        <span class="built_in">DllClose</span>($Dxva2)</span><br><span class="line">        <span class="keyword">Exit</span></span><br><span class="line"><span class="keyword">EndFunc</span>   <span class="comment">;==&gt;_exit</span></span><br></pre></td></tr></table></figure>
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码",
+        "image": "http://goodhelp.gitee.io/images/c9ae1552366758.png",
+        "keywords": "autoit3 dxva2 显示器设置",
+        "genre": "源码",
+        "datePublished": "2021-09-07",
+        "dateCreated": "2021-09-07",
+        "dateModified": "2021-09-09",
+        "url": "http://goodhelp.gitee.io/2021/09/07/20210907123700.html",
+        "description": "通过调用dxva2.dll文件，修改显示器的设置，和按显示器上的物理按钮效果一样，有效的解决显示器上按钮不好设置，按钮功能不明的问题，有些显示器不支持，如果你使用的无效果，说明你显示器不支持此调节功能!下载地址：源码
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950",
+        "wordCount": 6846
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <!-- Valine -->
+    <div class="vcomments"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+            
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="tiktok" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-tiktok"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weixin" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weixin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://gitee.com/goodhelp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2021/09/07/20210907215247" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            aardio的listview自绘源代码
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2021/09/04/20210904232000" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Hello World</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/08/20210908093700" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/2021/09/08/20210908093700" class="title">锐起CGO2043客户端绿色出盘源码</a></p>
+                            <p class="item-date"><time datetime="2021-09-08T01:37:00.000Z" itemprop="datePublished">2021-09-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/07/20210907221147" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/2021/09/07/20210907221147" class="title">单机游戏死亡阴影aardio内存修改器源码</a></p>
+                            <p class="item-date"><time datetime="2021-09-07T14:11:47.000Z" itemprop="datePublished">2021-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/07/20210907215247" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/2021/09/07/20210907215247" class="title">aardio的listview自绘源代码</a></p>
+                            <p class="item-date"><time datetime="2021-09-07T13:52:47.000Z" itemprop="datePublished">2021-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/07/20210907123700" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/c9ae1552366758.png)" alt="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/2021/09/07/20210907123700" class="title">显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码</a></p>
+                            <p class="item-date"><time datetime="2021-09-07T04:37:00.000Z" itemprop="datePublished">2021-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/04/20210904232000" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/video/">视频</a></p>
+                            <p class="item-title"><a href="/2021/09/04/20210904232000" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2021-09-04T15:20:00.000Z" itemprop="datePublished">2021-09-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">视频</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2008%E5%A5%A5%E8%BF%90%E4%BC%9A/" rel="tag">2008奥运会</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Your-world-within/" rel="tag">Your world within</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aardio/" rel="tag">aardio</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/autoit3/" rel="tag">autoit3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3/" rel="tag">dcef3</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/" rel="tag">debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi/" rel="tag">delphi</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dxva2/" rel="tag">dxva2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/listview/" rel="tag">listview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" rel="tag">time小青龙伴奏</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8D%E8%A6%81%E5%B0%8F%E7%9C%8B%E8%87%AA%E5%B7%B1/" rel="tag">不要小看自己</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E5%9B%BD%E6%98%A5%E8%8A%82/" rel="tag">中国春节</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" rel="tag">关机重启</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" rel="tag">内存修改</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" rel="tag">励志视频</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">去广告</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%91%E5%B9%B4%E5%BC%BA/" rel="tag">少年强</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" rel="tag">座右铭</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%83%85%E8%AF%97/" rel="tag">情诗</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2/" rel="tag">教育</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" rel="tag">新年视频</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" rel="tag">显示器设置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B1%87%E7%BC%96/" rel="tag">汇编</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" rel="tag">电源键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" rel="tag">英语名言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" rel="tag">蓝屏代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%94%90%E8%B5%B7/" rel="tag">锐起</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2008%E5%A5%A5%E8%BF%90%E4%BC%9A/" style="font-size: 10px;">2008奥运会</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Your-world-within/" style="font-size: 10px;">Your world within</a> <a href="/tags/aardio/" style="font-size: 12.5px;">aardio</a> <a href="/tags/autoit3/" style="font-size: 10px;">autoit3</a> <a href="/tags/dcef3/" style="font-size: 17.5px;">dcef3</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/delphi/" style="font-size: 20px;">delphi</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview/" style="font-size: 10px;">listview</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/%E4%B8%8D%E8%A6%81%E5%B0%8F%E7%9C%8B%E8%87%AA%E5%B7%B1/" style="font-size: 10px;">不要小看自己</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%98%A5%E8%8A%82/" style="font-size: 10px;">中国春节</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" style="font-size: 10px;">内存修改</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 15px;">励志视频</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 12.5px;">去广告</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E5%B0%91%E5%B9%B4%E5%BC%BA/" style="font-size: 10px;">少年强</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 12.5px;">情诗</a> <a href="/tags/%E6%95%99%E8%82%B2/" style="font-size: 10px;">教育</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 10px;">汇编</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E9%94%90%E8%B5%B7/" style="font-size: 10px;">锐起</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 百脑问</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "",
+            appId: "jMSxmHAw9NqD0eJ9vLdM0oBN-gzGzoHsz",
+            appKey: "UC5hUmLTn6CnDrPuQLRXHX4y",
+            placeholder: "发表你的看法!",
+            avatar:"identicon",
+            recordIP:"",
+            visitor: "true"
+        });
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>	
+</body>
+</html>
