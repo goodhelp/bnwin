@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>如何查出桌面的弹出窗口是谁创建的? | 百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="去广告" />
+    
+    <meta name="description" content="做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!来看看桌面出现的这个弹出窗口在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！  打开 句柄精灵ViewWizard (下载句柄精灵请到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何查出桌面的弹出窗口是谁创建的?">
+<meta property="og:url" content="https://goodhelp.github.io/page/2806439394/">
+<meta property="og:site_name" content="百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得">
+<meta property="og:description" content="做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!来看看桌面出现的这个弹出窗口在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！  打开 句柄精灵ViewWizard (下载句柄精灵请到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://goodhelp.github.io/images/bnwin.com_2017-11-26_08-08-19.png">
+<meta property="article:published_time" content="2017-11-26T15:49:29.000Z">
+<meta property="article:modified_time" content="2021-09-11T16:39:56.116Z">
+<meta property="article:author" content="百脑问">
+<meta property="article:tag" content="去广告">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodhelp.github.io/images/bnwin.com_2017-11-26_08-08-19.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+	<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/soft/">软件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/code/">源码</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/material/">素材</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/article/">文章</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/other/">其他</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/article/">文章</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-article/如何查出桌面的弹出窗口是谁创建的" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        如何查出桌面的弹出窗口是谁创建的?
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/page/2806439394/" class="article-date">
+       <time datetime="2017-11-26T15:49:29.000Z" itemprop="datePublished">2017-11-26</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/page/2806439394/" class="article-date">
+     <time datetime="2021-09-11T16:39:56.116Z" itemprop="dateModified">2021-09-12</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">去广告</a>
+    </div>
+
+                
+   <span id="/page/2806439394/" class="leancloud-visitors" data-flag-title="如何查出桌面的弹出窗口是谁创建的?">
+   <i class="fa fa-eye"></i>
+   <span class="post-meta-item-text">阅读次数: </span>
+   <i class="leancloud-visitors-count">1000000</i>
+   </span>
+
+
+                
+   <div class="article-counter">
+      <i class="fa fa-file-word-o"></i>
+      <span class="post-count-item-text">本文字数: </span>
+      <span class="post-count">1.1k</span>
+      <i class="fa fa-clock-o"></i>
+      <span class="post-time-item-text">阅读时长: </span>
+      <span class="post-count">4 分钟 </span>
+   </div>
+
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p>做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!<br>来看看桌面出现的这个弹出窗口<br><img src="/images/bnwin.com_2017-11-26_08-08-19.png" alt=""><br>在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！</p>
+<ol>
+<li>打开 句柄精灵ViewWizard (下载句柄精灵请到 <a target="_blank" rel="noopener" href="http://www.bnwin.com/2017/11/03/202.html">http://www.bnwin.com/2017/11/03/202.html</a>)  界面如下<img src="/images/ViewWizard.png" alt=""></li>
+<li>鼠标按住 句柄精灵的 十字图标<br><img src="/images/bnwin.com_2017-11-26_08-12-33.png" alt="">拖到这个弹出的窗口上！</li>
+<li>这时句柄精灵就显示出来这个程序的所有信息<img src="/images/1511684029-338.png" alt="">
+这个窗口的模块是 C:\Users\Administrator\AppData\Local\Temp\QXREPAIR1.DLL 往下面拉，看看进程是谁
+<img src="/images/1509.png" alt="">
+exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe 是由谁创建的呢？父进程是 916 [svchost.exe] 找到了是谁创建的，是什么进程，就可以相应的进行控制了!你可以禁止XFIXER.exe的运行，或者禁止svchost.exe在temp目录创建xfixer.exe文件等！
+你也可以根据句柄精灵提供的窗口信息进行自动关闭!对于这种有独立进程的弹出窗口你可能通过任务管理器也能查找到，虽然没有使用句柄精灵方便，但通过其他程序加载dll库文件弹出的窗口，通过任务管理器就无能为力了!
+我们来看看英雄联盟选择英雄时左边的窗口是谁创建的
+<img src="/images/20171126163443.png" alt="">
+打开句柄精灵，拖动十字图标到这个窗口上，看看句柄精灵中的信息
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">属性 数据</span><br><span class="line">基本&gt;</span><br><span class="line">句柄 67140 [0x00010644]</span><br><span class="line">文本</span><br><span class="line">长度 0</span><br><span class="line">类名 TWINCONTROL</span><br><span class="line">基类 Generic</span><br><span class="line">描述 通用窗口</span><br><span class="line">ID *</span><br><span class="line">数据 0x130B9478</span><br><span class="line">字节 *</span><br><span class="line">实例 *</span><br><span class="line">模块 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe</span><br><span class="line">父窗&gt;</span><br><span class="line">句柄 [65552]</span><br><span class="line">文本 [Desktop]</span><br><span class="line">类名 [#32769]</span><br><span class="line">基类 [Generic]</span><br><span class="line">显示&gt;</span><br><span class="line">状态 常规&gt;</span><br><span class="line">可视 yes</span><br><span class="line">有效 yes</span><br><span class="line">置顶 yes</span><br><span class="line">分层 no</span><br><span class="line">透明 no</span><br><span class="line">重叠 no</span><br><span class="line">不活动 no</span><br><span class="line">Unicode yes</span><br><span class="line">密码框 no</span><br><span class="line">掩码</span><br><span class="line">不透明度 *</span><br><span class="line">Z序 3</span><br><span class="line">大小&gt;</span><br><span class="line">窗口矩形 (1508,415)-(1810,798) 302×383</span><br><span class="line">还原矩形 (1508,415)-(1810,798) 302×383</span><br><span class="line">客户矩形(屏幕) (1508,415)-(1810,798) 302×383</span><br><span class="line">客户矩形(窗口) (0,0)-(302,383) 302×383</span><br><span class="line">最大化坐标 (0,0) 1920×1050</span><br><span class="line">最小最大尺寸 0x0 1930×1057</span><br><span class="line">当前窗口坐标</span><br><span class="line">当前客户坐标</span><br><span class="line">关系&gt;</span><br><span class="line">父窗口 65552 [0x00010010] #32769 “Desktop”</span><br><span class="line">根窗口 *</span><br><span class="line">所有者窗口 *</span><br><span class="line">首个子窗口 *</span><br><span class="line">首兄弟窗口 394540 [0x0006052C] MSCTFIME UI “MSCTFIME UI”</span><br><span class="line">上一个窗口 918714 [0x000E04BA] IME “Default IME”</span><br><span class="line">下一个窗口 198612 [0x000307D4] Auto-Suggest Dropdown “”</span><br><span class="line">尾兄弟窗口 65812 [0x00010114] Progman “Program Manager”</span><br><span class="line">样式&gt;</span><br><span class="line">标准样式 0x96020000 (2516713472)</span><br><span class="line">描述 WS_POPUP|WS_VISIBLE|WS_CLIPSIBLINGS|WS_CLIPCHILDREN|WS_GROUP</span><br><span class="line">控件</span><br><span class="line">扩展样式 0x00000088 (136)</span><br><span class="line">描述 WS_EX_TOPMOST|WS_EX_TOOLWINDOW</span><br><span class="line">控件</span><br><span class="line">类&gt;</span><br><span class="line">类名 TWINCONTROL</span><br><span class="line">类原子 0xC2CC (49868)</span><br><span class="line">类字节 *</span><br><span class="line">窗口字节 *</span><br><span class="line">类样式 0x00000008 (8)</span><br><span class="line">描述 CS_DBLCLKS</span><br><span class="line">图标 *</span><br><span class="line">小图标 *</span><br><span class="line">光标 0x00010003 IDC_ARROW</span><br><span class="line">画刷 *</span><br><span class="line">菜单 *</span><br><span class="line">过程 0x55C1AD90 (1438756240) [Unicode]</span><br><span class="line">模块 0x00400000 (4194304)</span><br><span class="line">模块路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe</span><br><span class="line">菜单&gt;</span><br><span class="line">句柄 *</span><br><span class="line">子菜单</span><br><span class="line">所有子菜单</span><br><span class="line">菜单项</span><br><span class="line">菜单矩形</span><br><span class="line">字体&gt;</span><br><span class="line">句柄 *</span><br><span class="line">名称</span><br><span class="line">大小</span><br><span class="line">粗体</span><br><span class="line">斜体</span><br><span class="line">删除线</span><br><span class="line">下划线</span><br><span class="line">字符集</span><br><span class="line">进程&gt;</span><br><span class="line">进程ID 7060 [0x00001B94]</span><br><span class="line">线程ID 2560 [0x00000A00]</span><br><span class="line">进程启动 2017-11-26 16:32:06</span><br><span class="line">线程启动 2017-11-26 16:32:06</span><br><span class="line">内存使用 32,248 KB</span><br><span class="line">内存峰值 91,252 KB</span><br><span class="line">虚拟内存 82,008 KB</span><br><span class="line">线程计数 17</span><br><span class="line">句柄计数 324</span><br><span class="line">GUI对象 GDI:52, User:40</span><br><span class="line">映像名称 pallas.exe</span><br><span class="line">EXE路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe</span><br><span class="line">物理路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe</span><br><span class="line">命令行</span><br><span class="line">父进程 6444 [tgp_daemon.exe]</span><br><span class="line">文件&gt;</span><br><span class="line">名称 pallas.exe</span><br><span class="line">大小 7390408</span><br><span class="line">版本 4.1.1.123</span><br><span class="line">版权 Copyright (C) 2015 Tencent.All Rights Reserved</span><br><span class="line">产品 WeGame</span><br><span class="line">公司 腾讯计算机系统有限公司</span><br><span class="line">描述 Tencent.WeGame.Pallas</span><br><span class="line">创建时间 2015-12-31 21:14:44</span><br><span class="line">统计&gt;</span><br><span class="line">子窗口</span><br><span class="line">所有子窗口</span><br><span class="line">无效子窗口</span><br><span class="line">隐藏子窗口</span><br><span class="line">线程窗口 12</span><br><span class="line">进程窗口 12</span><br><span class="line">附加&gt;</span><br><span class="line">基本类型 Generic (通用)</span><br></pre></td></tr></table></figure>
+正确使用句柄精灵，可以找出广告程序等弹出窗口的幕后黑手！</li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "如何查出桌面的弹出窗口是谁创建的?",
+        "image": "https://goodhelp.github.io/images/bnwin.com_2017-11-26_08-08-19.png",
+        "keywords": "去广告",
+        "genre": "文章",
+        "datePublished": "2017-11-26",
+        "dateCreated": "2017-11-26",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.github.io/page/2806439394/",
+        "description": "做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!来看看桌面出现的这个弹出窗口在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！
+
+打开 句柄精灵ViewWizard (下载句柄精灵请到 ",
+        "wordCount": 411
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <!-- Valine -->
+    <div class="vcomments"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+            
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="tiktok" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-tiktok"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=603981&site=qq&menu=yes" target="_blank" rel="noopener">
+                        <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://gitee.com/goodhelp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+		  <p>国内镜像：<a target="_blank" rel="noopener" href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/page/43472519/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            如何让dcef3支持mp3和h.264_mp4解码播放(有源码及dll)!
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/page/3502241198/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">如何让手机控制电脑之TeamViewer</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2434381964/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/2354883490,3989130937.jpg)" alt="可实现维护通道的vbs脚本类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2434381964/" class="title">可实现维护通道的vbs脚本类</a></p>
+                            <p class="item-date"><time datetime="2021-09-11T14:19:22.000Z" itemprop="datePublished">2021-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/1082310208/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/1621350706-111.jpg)" alt="让电源键关机变重启" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/1082310208/" class="title">让电源键关机变重启</a></p>
+                            <p class="item-date"><time datetime="2021-05-18T13:37:03.000Z" itemprop="datePublished">2021-05-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/3043345977/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/8qu-img2.png)" alt="八圈9.5版关闭侧边栏工具" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/3043345977/" class="title">八圈9.5版关闭侧边栏工具</a></p>
+                            <p class="item-date"><time datetime="2019-10-12T13:58:27.000Z" itemprop="datePublished">2019-10-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/365528154/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/c9ae1552366758.png)" alt="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/page/365528154/" class="title">显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码</a></p>
+                            <p class="item-date"><time datetime="2019-10-11T04:37:00.000Z" itemprop="datePublished">2019-10-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2203111529/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/wblmzs.gif)" alt="网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2203111529/" class="title">网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别</a></p>
+                            <p class="item-date"><time datetime="2019-03-21T13:56:27.000Z" itemprop="datePublished">2019-03-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/other/">其他</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">23</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/">2001</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi/" rel="tag">delphi</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3/" rel="tag">dcef3</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">去广告</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui/" rel="tag">unigui</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ae%E6%A8%A1%E6%9D%BF/" rel="tag">ae模板</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" rel="tag">励志视频</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aardio/" rel="tag">aardio</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2008%E5%A5%A5%E8%BF%90%E4%BC%9A/" style="font-size: 10px;">2008奥运会</a> <a href="/tags/8%E5%9C%88%E5%B9%BF%E5%91%8A/" style="font-size: 10px;">8圈广告</a> <a href="/tags/aardio/" style="font-size: 11.25px;">aardio</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.75px;">ae模板</a> <a href="/tags/autoit/" style="font-size: 11.25px;">autoit</a> <a href="/tags/ce/" style="font-size: 10px;">ce</a> <a href="/tags/dcef3/" style="font-size: 17.5px;">dcef3</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/delphi/" style="font-size: 20px;">delphi</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview/" style="font-size: 10px;">listview</a> <a href="/tags/php/" style="font-size: 16.25px;">php</a> <a href="/tags/remoteado/" style="font-size: 10px;">remoteado</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui/" style="font-size: 13.75px;">unigui</a> <a href="/tags/vbs/" style="font-size: 10px;">vbs</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%98%A5%E8%8A%82/" style="font-size: 10px;">中国春节</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" style="font-size: 10px;">内存修改</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.5px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 18.75px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 16.25px;">去广告</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.25px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 13.75px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 10px;">汇编</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.5px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 15px;">视频</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a> <a href="/tags/%E9%94%90%E8%B5%B7/" style="font-size: 11.25px;">锐起</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 百脑问</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "false",
+            appId: "jMSxmHAw9NqD0eJ9vLdM0oBN-gzGzoHsz",
+            appKey: "UC5hUmLTn6CnDrPuQLRXHX4y",
+            placeholder: "必须吐槽一下!",
+            avatar:"mp",
+            recordIP:"true",
+            visitor: "true"
+        });
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>	
+</body>
+</html>

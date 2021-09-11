@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>8088汇编速查手册 | 百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="汇编" />
+    
+    <meta name="description" content="汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8088汇编速查手册">
+<meta property="og:url" content="https://goodhelp.github.io/page/753365309/">
+<meta property="og:site_name" content="百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得">
+<meta property="og:description" content="汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-07T15:33:22.000Z">
+<meta property="article:modified_time" content="2021-09-11T16:39:20.294Z">
+<meta property="article:author" content="百脑问">
+<meta property="article:tag" content="汇编">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+	<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/soft/">软件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/code/">源码</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/material/">素材</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/article/">文章</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/other/">其他</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/article/">文章</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-article/8088汇编速查手册" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        8088汇编速查手册
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/page/753365309/" class="article-date">
+       <time datetime="2017-11-07T15:33:22.000Z" itemprop="datePublished">2017-11-07</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/page/753365309/" class="article-date">
+     <time datetime="2021-09-11T16:39:20.294Z" itemprop="dateModified">2021-09-12</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%B1%87%E7%BC%96/" rel="tag">汇编</a>
+    </div>
+
+                
+   <span id="/page/753365309/" class="leancloud-visitors" data-flag-title="8088汇编速查手册">
+   <i class="fa fa-eye"></i>
+   <span class="post-meta-item-text">阅读次数: </span>
+   <i class="leancloud-visitors-count">1000000</i>
+   </span>
+
+
+                
+   <div class="article-counter">
+      <i class="fa fa-file-word-o"></i>
+      <span class="post-count-item-text">本文字数: </span>
+      <span class="post-count">1.9k</span>
+      <i class="fa fa-clock-o"></i>
+      <span class="post-time-item-text">阅读时长: </span>
+      <span class="post-count">7 分钟 </span>
+   </div>
+
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p>汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对应的不同平台之间不可直接移植。下面是汇编指令<br>一、数据传输指令<br>───────────────────────────────────────<br>    它们在存贮器和寄存器、寄存器和输入输出端口之间传送数据.<br>    1. 通用数据传送指令.<br>        MOV    传送字或字节.<br>        MOVSX  先符号扩展,再传送.<br>        MOVZX  先零扩展,再传送.<br>        PUSH    把字压入堆栈.<br>        POP    把字弹出堆栈.<br>        PUSHA  把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.<br>        POPA    把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.<br>        PUSHAD  把EAX,ECX,EDX,EBX,ESP,EBP,ESI,EDI依次压入堆栈.<br>        POPAD  把EDI,ESI,EBP,ESP,EBX,EDX,ECX,EAX依次弹出堆栈.<br>        BSWAP  交换32位寄存器里字节的顺序<br>        XCHG    交换字或字节.( 至少有一个操作数为寄存器,段寄存器不可作为操作数)<br>        CMPXCHG 比较并交换操作数.( 第二个操作数必须为累加器AL/AX/EAX )<br>        XADD    先交换再累加.( 结果在第一个操作数里 )<br>        XLAT    字节查表转换.<br>                ── BX 指向一张 256 字节的表的起点, AL 为表的索引值 (0-255,即<br>                0-FFH); 返回 AL 为查表结果. ( [BX+AL]-&gt;AL )<br>    2. 输入输出端口传送指令.<br>        IN      I/O端口输入. ( 语法: IN 累加器, {端口号│DX} )<br>        OUT    I/O端口输出. ( 语法: OUT {端口号│DX},累加器 )<br>          输入输出端口由立即方式指定时, 其范围是 0-255; 由寄存器 DX 指定时,<br>          其范围是 0-65535.<br>    3. 目的地址传送指令.<br>        LEA    装入有效地址.<br>          例: LEA DX,string  ;把偏移地址存到DX.<br>        LDS    传送目标指针,把指针内容装入DS.<br>          例: LDS SI,string  ;把段地址:偏移地址存到DS:SI.<br>        LES    传送目标指针,把指针内容装入ES.<br>          例: LES DI,string  ;把段地址:偏移地址存到ES:DI.<br>        LFS    传送目标指针,把指针内容装入FS.<br>          例: LFS DI,string  ;把段地址:偏移地址存到FS:DI.<br>        LGS    传送目标指针,把指针内容装入GS.<br>          例: LGS DI,string  ;把段地址:偏移地址存到GS:DI.<br>        LSS    传送目标指针,把指针内容装入SS.<br>          例: LSS DI,string  ;把段地址:偏移地址存到SS:DI.<br>    4. 标志传送指令.<br>        LAHF    标志寄存器传送,把标志装入AH.<br>        SAHF    标志寄存器传送,把AH内容装入标志寄存器.<br>        PUSHF  标志入栈.<br>        POPF    标志出栈.<br>        PUSHD  32位标志入栈.<br>        POPD    32位标志出栈.<br>二、算术运算指令<br>───────────────────────────────────────<br>        　　ADD    加法.<br>        ADC    带进位加法.<br>        INC    加 1.<br>        AAA    加法的ASCII码调整.<br>        DAA    加法的十进制调整.<br>        SUB    减法.<br>        SBB    带借位减法.<br>        DEC    减 1.<br>        NEC    求反(以 0 减之).<br>        CMP    比较.(两操作数作减法,仅修改标志位,不回送结果).<br>        AAS    减法的ASCII码调整.<br>        DAS    减法的十进制调整.<br>        MUL    无符号乘法.<br>        IMUL    整数乘法.<br>          以上两条,结果回送AH和AL(字节运算),或DX和AX(字运算),<br>        AAM    乘法的ASCII码调整.<br>        DIV    无符号除法.<br>        IDIV    整数除法.<br>          以上两条,结果回送:<br>              商回送AL,余数回送AH, (字节运算);<br>          或  商回送AX,余数回送DX, (字运算).<br>        AAD    除法的ASCII码调整.<br>        CBW    字节转换为字. (把AL中字节的符号扩展到AH中去)<br>        CWD    字转换为双字. (把AX中的字的符号扩展到DX中去)<br>        CWDE    字转换为双字. (把AX中的字符号扩展到EAX中去)<br>        CDQ    双字扩展.    (把EAX中的字的符号扩展到EDX中去)<br>三、逻辑运算指令<br>───────────────────────────────────────<br>        　　AND    与运算.<br>        OR      或运算.<br>        XOR    异或运算.<br>        NOT    取反.<br>        TEST    测试.(两操作数作与运算,仅修改标志位,不回送结果).<br>        SHL    逻辑左移.<br>        SAL    算术左移.(=SHL)<br>        SHR    逻辑右移.<br>        SAR    算术右移.(=SHR)<br>        ROL    循环左移.<br>        ROR    循环右移.<br>        RCL    通过进位的循环左移.<br>        RCR    通过进位的循环右移.<br>          以上八种移位指令,其移位次数可达255次.<br>              移位一次时, 可直接用操作码.  如 SHL AX,1.<br>              移位&gt;1次时, 则由寄存器CL给出移位次数.<br>                如  MOV CL,04<br>                    SHL AX,CL<br>四、串指令<br>───────────────────────────────────────<br>            　DS:SI  源串段寄存器  :源串变址.<br>            ES:DI  目标串段寄存器:目标串变址.<br>            CX      重复次数计数器.<br>            AL/AX  扫描值.<br>            D标志  0表示重复操作中SI和DI应自动增量; 1表示应自动减量.<br>            Z标志  用来控制扫描或比较操作的结束.<br>        MOVS    串传送.<br>            ( MOVSB  传送字符.    MOVSW  传送字.    MOVSD  传送双字. )<br>        CMPS    串比较.<br>            ( CMPSB  比较字符.    CMPSW  比较字. )<br>        SCAS    串扫描.<br>            把AL或AX的内容与目标串作比较,比较结果反映在标志位.<br>        LODS    装入串.<br>            把源串中的元素(字或字节)逐一装入AL或AX中.<br>            ( LODSB  传送字符.    LODSW  传送字.    LODSD  传送双字. )<br>        STOS    保存串.<br>            是LODS的逆过程.<br>        REP            当CX/ECX&lt;&gt;0时重复.<br>        REPE/REPZ      当ZF=1或比较结果相等,且CX/ECX&lt;&gt;0时重复.<br>        REPNE/REPNZ    当ZF=0或比较结果不相等,且CX/ECX&lt;&gt;0时重复.<br>        REPC          当CF=1且CX/ECX&lt;&gt;0时重复.<br>        REPNC          当CF=0且CX/ECX&lt;&gt;0时重复.<br>五、程序转移指令<br>───────────────────────────────────────<br>    　1&gt;无条件转移指令 (长转移)<br>        JMP    无条件转移指令<br>        CALL    过程调用<br>        RET/RETF过程返回.<br>    2&gt;条件转移指令 (短转移,-128到+127的距离内)<br>        ( 当且仅当(SF XOR OF)=1时,OP1&lt;OP2 )<br>        JA/JNBE 不小于或不等于时转移.<br>        JAE/JNB 大于或等于转移.<br>        JB/JNAE 小于转移.<br>        JBE/JNA 小于或等于转移.<br>          以上四条,测试无符号整数运算的结果(标志C和Z).<br>        JG/JNLE 大于转移.<br>        JGE/JNL 大于或等于转移.<br>        JL/JNGE 小于转移.<br>        JLE/JNG 小于或等于转移.<br>          以上四条,测试带符号整数运算的结果(标志S,O和Z).<br>        JE/JZ  等于转移.<br>        JNE/JNZ 不等于时转移.<br>        JC      有进位时转移.<br>        JNC    无进位时转移.<br>        JNO    不溢出时转移.<br>        JNP/JPO 奇偶性为奇数时转移.<br>        JNS    符号位为 “0” 时转移.<br>        JO      溢出转移.<br>        JP/JPE  奇偶性为偶数时转移.<br>        JS      符号位为 “1” 时转移.<br>    3&gt;循环控制指令(短转移)<br>        LOOP            CX不为零时循环.<br>        LOOPE/LOOPZ    CX不为零且标志Z=1时循环.<br>        LOOPNE/LOOPNZ  CX不为零且标志Z=0时循环.<br>        JCXZ            CX为零时转移.<br>        JECXZ          ECX为零时转移.<br>    4&gt;中断指令<br>        INT    中断指令<br>        INTO    溢出中断<br>        IRET    中断返回<br>    5&gt;处理器控制指令<br>        HLT    处理器暂停, 直到出现中断或复位信号才继续.<br>        WAIT    当芯片引线TEST为高电平时使CPU进入等待状态.<br>        ESC    转换到外处理器.<br>        LOCK    封锁总线.<br>        NOP    空操作.<br>        STC    置进位标志位.<br>        CLC    清进位标志位.<br>        CMC    进位标志取反.<br>        STD    置方向标志位.<br>        CLD    清方向标志位.<br>        STI    置中断允许位.<br>        CLI    清中断允许位.<br>六、伪指令<br>───────────────────────────────────────<br>        　　DW      定义字(2字节).<br>        PROC    定义过程.<br>        ENDP    过程结束.<br>        SEGMENT 定义段.<br>        ASSUME  建立段寄存器寻址.<br>        ENDS    段结束.<br>        END    程序结束.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "8088汇编速查手册",
+        "image": "https://goodhelp.github.io",
+        "keywords": "汇编",
+        "genre": "文章",
+        "datePublished": "2017-11-07",
+        "dateCreated": "2017-11-07",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.github.io/page/753365309/",
+        "description": "汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对",
+        "wordCount": 2048
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <!-- Valine -->
+    <div class="vcomments"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+            
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="tiktok" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-tiktok"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=603981&site=qq&menu=yes" target="_blank" rel="noopener">
+                        <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://gitee.com/goodhelp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+		  <p>国内镜像：<a target="_blank" rel="noopener" href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/page/2135853815/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            英语名言警句
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/page/2104750721/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">dos的debug命令详解</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2434381964/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/2354883490,3989130937.jpg)" alt="可实现维护通道的vbs脚本类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2434381964/" class="title">可实现维护通道的vbs脚本类</a></p>
+                            <p class="item-date"><time datetime="2021-09-11T14:19:22.000Z" itemprop="datePublished">2021-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/1082310208/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/1621350706-111.jpg)" alt="让电源键关机变重启" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/1082310208/" class="title">让电源键关机变重启</a></p>
+                            <p class="item-date"><time datetime="2021-05-18T13:37:03.000Z" itemprop="datePublished">2021-05-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/3043345977/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/8qu-img2.png)" alt="八圈9.5版关闭侧边栏工具" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/3043345977/" class="title">八圈9.5版关闭侧边栏工具</a></p>
+                            <p class="item-date"><time datetime="2019-10-12T13:58:27.000Z" itemprop="datePublished">2019-10-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/365528154/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/c9ae1552366758.png)" alt="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/page/365528154/" class="title">显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码</a></p>
+                            <p class="item-date"><time datetime="2019-10-11T04:37:00.000Z" itemprop="datePublished">2019-10-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2203111529/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/wblmzs.gif)" alt="网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2203111529/" class="title">网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别</a></p>
+                            <p class="item-date"><time datetime="2019-03-21T13:56:27.000Z" itemprop="datePublished">2019-03-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/other/">其他</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">23</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/">2001</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi/" rel="tag">delphi</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3/" rel="tag">dcef3</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">去广告</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui/" rel="tag">unigui</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ae%E6%A8%A1%E6%9D%BF/" rel="tag">ae模板</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" rel="tag">励志视频</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aardio/" rel="tag">aardio</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2008%E5%A5%A5%E8%BF%90%E4%BC%9A/" style="font-size: 10px;">2008奥运会</a> <a href="/tags/8%E5%9C%88%E5%B9%BF%E5%91%8A/" style="font-size: 10px;">8圈广告</a> <a href="/tags/aardio/" style="font-size: 11.25px;">aardio</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.75px;">ae模板</a> <a href="/tags/autoit/" style="font-size: 11.25px;">autoit</a> <a href="/tags/ce/" style="font-size: 10px;">ce</a> <a href="/tags/dcef3/" style="font-size: 17.5px;">dcef3</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/delphi/" style="font-size: 20px;">delphi</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview/" style="font-size: 10px;">listview</a> <a href="/tags/php/" style="font-size: 16.25px;">php</a> <a href="/tags/remoteado/" style="font-size: 10px;">remoteado</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui/" style="font-size: 13.75px;">unigui</a> <a href="/tags/vbs/" style="font-size: 10px;">vbs</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%98%A5%E8%8A%82/" style="font-size: 10px;">中国春节</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" style="font-size: 10px;">内存修改</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.5px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 18.75px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 16.25px;">去广告</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.25px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 13.75px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 10px;">汇编</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.5px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 15px;">视频</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a> <a href="/tags/%E9%94%90%E8%B5%B7/" style="font-size: 11.25px;">锐起</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 百脑问</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "false",
+            appId: "jMSxmHAw9NqD0eJ9vLdM0oBN-gzGzoHsz",
+            appKey: "UC5hUmLTn6CnDrPuQLRXHX4y",
+            placeholder: "必须吐槽一下!",
+            avatar:"mp",
+            recordIP:"true",
+            visitor: "true"
+        });
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>	
+</body>
+</html>

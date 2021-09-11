@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>dcef3加载flash闪烁问题简单解决方法 | 百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="delphi,dcef3" />
+    
+    <meta name="description" content="dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!  一种方法是hook 具体可以看这篇文章 http:&#x2F;&#x2F;blog.csdn.net&#x2F;zx2356&#x2F;article&#x2F;details&#x2F;51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码1234567891011">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dcef3加载flash闪烁问题简单解决方法">
+<meta property="og:url" content="https://goodhelp.github.io/page/1936827288/">
+<meta property="og:site_name" content="百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得">
+<meta property="og:description" content="dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!  一种方法是hook 具体可以看这篇文章 http:&#x2F;&#x2F;blog.csdn.net&#x2F;zx2356&#x2F;article&#x2F;details&#x2F;51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码1234567891011">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://goodhelp.github.io/images/20171130235247.png">
+<meta property="article:published_time" content="2017-11-30T16:08:51.000Z">
+<meta property="article:modified_time" content="2021-09-11T16:40:56.965Z">
+<meta property="article:author" content="百脑问">
+<meta property="article:tag" content="delphi">
+<meta property="article:tag" content="dcef3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodhelp.github.io/images/20171130235247.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+	<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/soft/">软件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/code/">源码</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/material/">素材</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/article/">文章</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/other/">其他</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/article/">文章</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-article/dcef3加载flash闪烁问题简单解决方法" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        dcef3加载flash闪烁问题简单解决方法
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/page/1936827288/" class="article-date">
+       <time datetime="2017-11-30T16:08:51.000Z" itemprop="datePublished">2017-12-01</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/page/1936827288/" class="article-date">
+     <time datetime="2021-09-11T16:40:56.965Z" itemprop="dateModified">2021-09-12</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/dcef3/" rel="tag">dcef3</a>, <a class="tag-link-link" href="/tags/delphi/" rel="tag">delphi</a>
+    </div>
+
+                
+   <span id="/page/1936827288/" class="leancloud-visitors" data-flag-title="dcef3加载flash闪烁问题简单解决方法">
+   <i class="fa fa-eye"></i>
+   <span class="post-meta-item-text">阅读次数: </span>
+   <i class="leancloud-visitors-count">1000000</i>
+   </span>
+
+
+                
+   <div class="article-counter">
+      <i class="fa fa-file-word-o"></i>
+      <span class="post-count-item-text">本文字数: </span>
+      <span class="post-count">1.1k</span>
+      <i class="fa fa-clock-o"></i>
+      <span class="post-time-item-text">阅读时长: </span>
+      <span class="post-count">5 分钟 </span>
+   </div>
+
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p>dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!</p>
+<ol>
+<li>一种方法是hook 具体可以看这篇文章 <a target="_blank" rel="noopener" href="http://blog.csdn.net/zx2356/article/details/51514403">http://blog.csdn.net/zx2356/article/details/51514403</a><br>这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unit</span> HookExt;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">interface</span></span><br><span class="line"><span class="keyword">uses</span></span><br><span class="line">   uhook,Windows,SysUtils;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">type</span></span><br><span class="line">  TFuncCreateProcessA = <span class="function"><span class="keyword">function</span><span class="params">(lpApplicationName: LPCSTR; lpCommandLine: LPSTR;</span></span></span><br><span class="line"><span class="params"><span class="function">    lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;</span></span></span><br><span class="line"><span class="params"><span class="function">    lpEnvironment: Pointer; lpCurrentDirectory: LPCSTR; <span class="keyword">const</span> lpStartupInfo: TStartupInfoA;</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">var</span> lpProcessInformation: TProcessInformation)</span>:</span> BOOL; <span class="keyword">stdcall</span>;</span><br><span class="line">  TFuncCreateProcessW = <span class="function"><span class="keyword">function</span><span class="params">(lpApplicationName: LPCWSTR; lpCommandLine: LPWSTR;</span></span></span><br><span class="line"><span class="params"><span class="function">    lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;</span></span></span><br><span class="line"><span class="params"><span class="function">    lpEnvironment: Pointer; lpCurrentDirectory: LPCWSTR; <span class="keyword">const</span> lpStartupInfo: TStartupInfoW;</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">var</span> lpProcessInformation: TProcessInformation)</span>:</span> BOOL; <span class="keyword">stdcall</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">implementation</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  hhk: HHook;</span><br><span class="line">  MapFile: THandle;</span><br><span class="line">  startPID: PDWORD;</span><br><span class="line">  Hook: <span class="keyword">array</span> [<span class="number">0</span> .. <span class="number">1</span>] <span class="keyword">of</span> TNtHookClass;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">NewCreateProcessA</span><span class="params">(lpApplicationName: LPCSTR; lpCommandLine: LPSTR;</span></span></span><br><span class="line"><span class="params"><span class="function">  lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;</span></span></span><br><span class="line"><span class="params"><span class="function">  lpEnvironment: Pointer; lpCurrentDirectory: LPCSTR; <span class="keyword">const</span> lpStartupInfo: TStartupInfoA;</span></span></span><br><span class="line"><span class="params"><span class="function">  <span class="keyword">var</span> lpProcessInformation: TProcessInformation)</span>:</span> BOOL; <span class="keyword">stdcall</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  strCommandLine: AnsiString;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  strCommandLine := StrPas(lpCommandLine);</span><br><span class="line">  <span class="keyword">if</span> (Pos(<span class="string">&#x27;echo NOT SANDBOXED&#x27;</span>,strCommandLine)&gt;<span class="number">0</span>) <span class="keyword">or</span>  (Pos(<span class="string">&#x27;no-sandbox&#x27;</span>,strCommandLine)&gt;<span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">    Result := True</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    Hook[<span class="number">0</span>].UnHook;</span><br><span class="line">    Result := TFuncCreateProcessA(Hook[<span class="number">0</span>].BaseAddr)(lpApplicationName, lpCommandLine, lpProcessAttributes,</span><br><span class="line">      lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo,</span><br><span class="line">      lpProcessInformation);</span><br><span class="line">    Hook[<span class="number">0</span>].Hook;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">NewCreateProcessW</span><span class="params">(lpApplicationName: LPCWSTR; lpCommandLine: LPWSTR;</span></span></span><br><span class="line"><span class="params"><span class="function">  lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;</span></span></span><br><span class="line"><span class="params"><span class="function">  lpEnvironment: Pointer; lpCurrentDirectory: LPCWSTR; <span class="keyword">const</span> lpStartupInfo: TStartupInfoW;</span></span></span><br><span class="line"><span class="params"><span class="function">  <span class="keyword">var</span> lpProcessInformation: TProcessInformation)</span>:</span> BOOL; <span class="keyword">stdcall</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  strCommandLine: <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  strCommandLine := StrPas(lpCommandLine);</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span> (Pos(<span class="string">&#x27;echo NOT SANDBOXED&#x27;</span>,strCommandLine)&gt;<span class="number">0</span>) <span class="keyword">or</span>  (Pos(<span class="string">&#x27;no-sandbox&#x27;</span>,strCommandLine)&gt;<span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">    Result := True</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    Hook[<span class="number">1</span>].UnHook;</span><br><span class="line">    Result := TFuncCreateProcessW(Hook[<span class="number">1</span>].BaseAddr)(lpApplicationName, lpCommandLine, lpProcessAttributes,</span><br><span class="line">      lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo,</span><br><span class="line">      lpProcessInformation);</span><br><span class="line">    Hook[<span class="number">1</span>].Hook;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 安装API Hook</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">InitHook</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Hook[<span class="number">0</span>] := TNtHookClass.Create(<span class="string">&#x27;kernel32.dll&#x27;</span>, <span class="string">&#x27;CreateProcessA&#x27;</span>, @NewCreateProcessA);</span><br><span class="line">  Hook[<span class="number">1</span>] := TNtHookClass.Create(<span class="string">&#x27;kernel32.dll&#x27;</span>, <span class="string">&#x27;CreateProcessW&#x27;</span>, @NewCreateProcessW);</span><br><span class="line">  <span class="comment">// Hook[2] := TNtHookClass.Create( &#x27;user32.dll&#x27;, &#x27;MessageBoxA&#x27;, @NewMessageBoxA );</span></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 删除API Hook</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">UnInitHook</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  i: Integer;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span> <span class="keyword">to</span> High(Hook) <span class="keyword">do</span></span><br><span class="line">    FreeAndNil(Hook[i]);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 环境处理</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">DllEntry</span><span class="params">(dwReason: DWORD)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">case</span> dwReason <span class="keyword">of</span></span><br><span class="line">    DLL_PROCESS_ATTACH:</span><br><span class="line">      InitHook;</span><br><span class="line">    DLL_PROCESS_DETACH:</span><br><span class="line">      UnInitHook;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">initialization</span></span><br><span class="line">   InitHook;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">finalization</span></span><br><span class="line">  UnInitHook;</span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+其中的uHook.pas源码:<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unit</span> uHook;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">interface</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">uses</span></span><br><span class="line">Windows, Messages, SysUtils;</span><br><span class="line"><span class="keyword">type</span></span><br><span class="line">  TNtJmpCode = <span class="keyword">packed</span> <span class="keyword">record</span></span><br><span class="line">    MovEax: Byte;</span><br><span class="line">    Addr: DWORD;</span><br><span class="line">    JmpCode: Word;</span><br><span class="line">    dwReserved: Byte;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="title">TNtHookClass</span> = <span class="keyword">class</span>(TObject)</span><br><span class="line">  <span class="keyword">private</span></span><br><span class="line">    hProcess: THandle;</span><br><span class="line">    NewAddr: TNtJmpCode;</span><br><span class="line">    OldAddr: <span class="keyword">array</span> [<span class="number">0</span> .. <span class="number">7</span>] <span class="keyword">of</span> Byte;</span><br><span class="line">    ReadOk: Boolean;</span><br><span class="line">  <span class="keyword">public</span></span><br><span class="line">    BaseAddr: Pointer;</span><br><span class="line">    <span class="function"><span class="keyword">constructor</span> <span class="title">Create</span><span class="params">(<span class="keyword">const</span> ADllName, AFuncName: <span class="keyword">string</span>; ANewFunc: Pointer)</span>;</span></span><br><span class="line">    <span class="function"><span class="keyword">destructor</span> <span class="title">Destroy</span>;</span> <span class="keyword">override</span>;</span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">Hook</span>;</span></span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">UnHook</span>;</span></span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">implementation</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&#123; TNtHookClass &#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">constructor</span> <span class="title">TNtHookClass</span>.<span class="title">Create</span><span class="params">(<span class="keyword">const</span> ADllName, AFuncName: <span class="keyword">string</span>; ANewFunc: Pointer)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  dllModule: HMODULE;</span><br><span class="line">  lpNumberOfBytesReacd: DWORD; <span class="comment">//NativeUInt;</span></span><br><span class="line">  i:Integer;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="comment">// 获取模块句柄</span></span><br><span class="line">  dllModule := GetModuleHandle(PWideChar(ADllName));</span><br><span class="line">  <span class="keyword">if</span> dllModule = <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">    dllModule := LoadLibrary(PWideChar(ADllName));</span><br><span class="line">  <span class="comment">// 得到模块入口地址</span></span><br><span class="line">  BaseAddr := Pointer(GetProcAddress(dllModule, PWideChar(AFuncName)));</span><br><span class="line">  <span class="comment">// 获取当前进程句柄</span></span><br><span class="line">  hProcess := GetCurrentProcess;</span><br><span class="line">  <span class="comment">// 指向新地址的指针</span></span><br><span class="line">  NewAddr.MovEax := <span class="number">$B8</span>;</span><br><span class="line">  NewAddr.Addr := DWORD(ANewFunc);</span><br><span class="line">  NewAddr.JmpCode := <span class="number">$E0FF</span>;</span><br><span class="line">  <span class="comment">// 保存原始地址</span></span><br><span class="line"> </span><br><span class="line">  ReadOk:=ReadProcessMemory(hProcess, BaseAddr, Pointer(@OldAddr), <span class="number">8</span>, lpNumberOfBytesReacd);</span><br><span class="line">  <span class="comment">// 开始拦截</span></span><br><span class="line">  Hook;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">destructor</span> <span class="title">TNtHookClass</span>.<span class="title">Destroy</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  UnHook;</span><br><span class="line">  CloseHandle(hProcess);</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">inherited</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TNtHookClass</span>.<span class="title">Hook</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  lpNumberOfBytesRead: DWORD;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> ReadOk <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">  <span class="comment">// 写入新的地址</span></span><br><span class="line">  WriteProcessMemory(hProcess, BaseAddr, @NewAddr, <span class="number">8</span>, lpNumberOfBytesRead);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TNtHookClass</span>.<span class="title">UnHook</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  lpNumberOfBytesRead: DWORD;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> ReadOk <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">  <span class="comment">// 恢复地址</span></span><br><span class="line">  WriteProcessMemory(hProcess, BaseAddr, @OldAddr, <span class="number">8</span>, lpNumberOfBytesRead);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure></li>
+<li>这种hook处理不好就容易蓝屏，更简单的方法如下：用二进制编辑软件，比如winhex,我这儿采用UltraEdit,用UltraEdit打开flash插件dll文件 pepflashplayer.dll<img src="/images/20171130235247.png" alt="">
+搜索comspec修改为somspec,(修改的名字只要和comspec不相同即可)修改cmd.exe为cm1.exe (修改的名字只要和cmd.exe不相同即可)
+<img src="/images/20171130235450.png" alt="">
+修改后为
+<img src="/images/20171130235700.png" alt="">
+然后保存即可，这时打开flash就不会有dos黑框闪一下了！</li>
+<li>第三种方法，更简单，什么都不用修改，只要在你的程序目录下新建一个文本文件，然后改名为cmd.exe，因为弹出黑框需要使用cmd程序，而系统搜索程序是从进程当前的工作目录开始查找，所以直接这样建一个不能执行的cmd.exe文件可以拦截cmd的调用。这个方法最简单！</li>
+</ol>
+<p>第一种hook方法是修改flash文件，但其实是采用动态方法改了汇编代码，处理不好容易蓝屏。第二种方法修改flash插件文件,原理是：flash执行cmd的逻辑是，先读取环境变量comspec(cmd.exe的全路径)，读取到就执行它，读取不到就不执行cmd.exe.只要把变量和cmd.exe名字修改，就执行不成功，就没有DOS黑框出来!第一种方法是在flash插件要运行cmd.exe的时候再进行拦截，是动态修改的，而第二种是直接让flash找不到变量和cmd.exe程序，flash自己判断不用执行，是静态修改!第三种是懒人方法!但几种方法实现的效果都是阻止cmd.exe的正常执行!同时你就可以这样思考了，为了让flash不出现闪黑框的问题，就变成了如何阻止cmd.exe的执行，比如你在你自己的程序中先修改一下comspec环境变量，也是可以阻止cmd.exe执行的，大家自由发挥!</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "dcef3加载flash闪烁问题简单解决方法",
+        "image": "https://goodhelp.github.io/images/20171130235247.png",
+        "keywords": "delphi dcef3",
+        "genre": "文章",
+        "datePublished": "2017-12-01",
+        "dateCreated": "2017-12-01",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.github.io/page/1936827288/",
+        "description": "dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!
+
+一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码1234567891011",
+        "wordCount": 1213
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <!-- Valine -->
+    <div class="vcomments"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+            
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="tiktok" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-tiktok"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=603981&site=qq&menu=yes" target="_blank" rel="noopener">
+                        <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://gitee.com/goodhelp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+		  <p>国内镜像：<a target="_blank" rel="noopener" href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/page/576111441/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            单独调用运行8圈挂机锁工具
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/page/3675410287/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">如何自定义修改TChromium的header头信息!</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2434381964/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/2354883490,3989130937.jpg)" alt="可实现维护通道的vbs脚本类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2434381964/" class="title">可实现维护通道的vbs脚本类</a></p>
+                            <p class="item-date"><time datetime="2021-09-11T14:19:22.000Z" itemprop="datePublished">2021-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/1082310208/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/1621350706-111.jpg)" alt="让电源键关机变重启" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/1082310208/" class="title">让电源键关机变重启</a></p>
+                            <p class="item-date"><time datetime="2021-05-18T13:37:03.000Z" itemprop="datePublished">2021-05-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/3043345977/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/8qu-img2.png)" alt="八圈9.5版关闭侧边栏工具" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/3043345977/" class="title">八圈9.5版关闭侧边栏工具</a></p>
+                            <p class="item-date"><time datetime="2019-10-12T13:58:27.000Z" itemprop="datePublished">2019-10-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/365528154/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/c9ae1552366758.png)" alt="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/page/365528154/" class="title">显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码</a></p>
+                            <p class="item-date"><time datetime="2019-10-11T04:37:00.000Z" itemprop="datePublished">2019-10-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2203111529/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/wblmzs.gif)" alt="网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2203111529/" class="title">网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别</a></p>
+                            <p class="item-date"><time datetime="2019-03-21T13:56:27.000Z" itemprop="datePublished">2019-03-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/other/">其他</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">23</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/">2001</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi/" rel="tag">delphi</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3/" rel="tag">dcef3</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">去广告</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui/" rel="tag">unigui</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ae%E6%A8%A1%E6%9D%BF/" rel="tag">ae模板</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" rel="tag">励志视频</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aardio/" rel="tag">aardio</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2008%E5%A5%A5%E8%BF%90%E4%BC%9A/" style="font-size: 10px;">2008奥运会</a> <a href="/tags/8%E5%9C%88%E5%B9%BF%E5%91%8A/" style="font-size: 10px;">8圈广告</a> <a href="/tags/aardio/" style="font-size: 11.25px;">aardio</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.75px;">ae模板</a> <a href="/tags/autoit/" style="font-size: 11.25px;">autoit</a> <a href="/tags/ce/" style="font-size: 10px;">ce</a> <a href="/tags/dcef3/" style="font-size: 17.5px;">dcef3</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/delphi/" style="font-size: 20px;">delphi</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview/" style="font-size: 10px;">listview</a> <a href="/tags/php/" style="font-size: 16.25px;">php</a> <a href="/tags/remoteado/" style="font-size: 10px;">remoteado</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui/" style="font-size: 13.75px;">unigui</a> <a href="/tags/vbs/" style="font-size: 10px;">vbs</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%98%A5%E8%8A%82/" style="font-size: 10px;">中国春节</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" style="font-size: 10px;">内存修改</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.5px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 18.75px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 16.25px;">去广告</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.25px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 13.75px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 10px;">汇编</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.5px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 15px;">视频</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a> <a href="/tags/%E9%94%90%E8%B5%B7/" style="font-size: 11.25px;">锐起</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 百脑问</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "false",
+            appId: "jMSxmHAw9NqD0eJ9vLdM0oBN-gzGzoHsz",
+            appKey: "UC5hUmLTn6CnDrPuQLRXHX4y",
+            placeholder: "必须吐槽一下!",
+            avatar:"mp",
+            recordIP:"true",
+            visitor: "true"
+        });
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>	
+</body>
+</html>

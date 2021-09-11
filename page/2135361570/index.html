@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>TeamViewer_resetclientID重置PC端id源码 | 百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="vbs,autoit" />
+    
+    <meta name="description" content="如何重置TeamViewer的ID？我们先来了解一下什么是WMI,WMI有一组API。我们不管使用VBScript、PowerShell脚本还是利用C#的来访问WMI的类库，都是因为WMI向外暴露的一组API。这些API是在系统安装WMI模块的时候安装的，通过他们我们能够能拿到我们想要的类。WMI有一个存储库。尽管WMI的多数实例数据都不存储在WMI中，但是WMI确实有一个存储库，用来存放提供程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TeamViewer_resetclientID重置PC端id源码">
+<meta property="og:url" content="https://goodhelp.github.io/page/2135361570/">
+<meta property="og:site_name" content="百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得">
+<meta property="og:description" content="如何重置TeamViewer的ID？我们先来了解一下什么是WMI,WMI有一组API。我们不管使用VBScript、PowerShell脚本还是利用C#的来访问WMI的类库，都是因为WMI向外暴露的一组API。这些API是在系统安装WMI模块的时候安装的，通过他们我们能够能拿到我们想要的类。WMI有一个存储库。尽管WMI的多数实例数据都不存储在WMI中，但是WMI确实有一个存储库，用来存放提供程序">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-06-13T05:10:50.000Z">
+<meta property="article:modified_time" content="2021-09-11T16:41:15.900Z">
+<meta property="article:author" content="百脑问">
+<meta property="article:tag" content="vbs">
+<meta property="article:tag" content="autoit">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+	<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/soft/">软件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/code/">源码</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/material/">素材</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/article/">文章</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/other/">其他</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/code/">源码</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-code/TeamViewer-resetclientID重置PC端id源码" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        TeamViewer_resetclientID重置PC端id源码
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/page/2135361570/" class="article-date">
+       <time datetime="2018-06-13T05:10:50.000Z" itemprop="datePublished">2018-06-13</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/page/2135361570/" class="article-date">
+     <time datetime="2021-09-11T16:41:15.900Z" itemprop="dateModified">2021-09-12</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/autoit/" rel="tag">autoit</a>, <a class="tag-link-link" href="/tags/vbs/" rel="tag">vbs</a>
+    </div>
+
+                
+   <span id="/page/2135361570/" class="leancloud-visitors" data-flag-title="TeamViewer_resetclientID重置PC端id源码">
+   <i class="fa fa-eye"></i>
+   <span class="post-meta-item-text">阅读次数: </span>
+   <i class="leancloud-visitors-count">1000000</i>
+   </span>
+
+
+                
+   <div class="article-counter">
+      <i class="fa fa-file-word-o"></i>
+      <span class="post-count-item-text">本文字数: </span>
+      <span class="post-count">2.7k</span>
+      <i class="fa fa-clock-o"></i>
+      <span class="post-time-item-text">阅读时长: </span>
+      <span class="post-count">15 分钟 </span>
+   </div>
+
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p>如何重置TeamViewer的ID？我们先来了解一下什么是WMI,<br>WMI有一组API。我们不管使用VBScript、PowerShell脚本还是利用C#的来访问WMI的类库，都是因为WMI向外暴露的一组API。这些API是在系统安装WMI模块的时候安装的，通过他们我们能够能拿到我们想要的类。WMI有一个存储库。尽管WMI的多数实例数据都不存储在WMI中，但是WMI确实有一个存储库，用来存放提供程序提供的类信息，或者称为类的蓝图或者Schema。WMI有一个Service。WMI总是能够响应用户的访问，那是因为它有一个一直运行的Windows服务，名字叫Winmgmt。停止这个服务，所有对WMI的操作都将没有反应。WMI是可扩展的。人人都知道WMI能干很多事情，读取本机硬盘信息、读取远程计算机的用户信息、读取域用户信息等等。基本上，你能想到的获取或者更改资源的操作，它都能干。可谓吃得少，干得多。它为什么这么能干呢？这基于WMI的可扩展性。WMI对资源的操作，不是它自己实现了什么方法，而完全取决于向它注册的提供程序。</p>
+<p>如何重置TeamViewer的ID？重置TeamViewer的ID的原理是什么，请看下面的源码<br>Autoit3源代码</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">RequireAdmin</span></span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_ProcessGetName</span><span class="params">($i_PID)</span></span></span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> <span class="built_in">ProcessExists</span>($i_PID) <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Local</span> $a_Processes = <span class="built_in">ProcessList</span>()</span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> <span class="symbol">@error</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="keyword">For</span> $i = <span class="number">1</span> <span class="keyword">To</span> $a_Processes[0][0]</span><br><span class="line">			<span class="keyword">If</span> $a_Processes[$i][1] = $i_PID <span class="keyword">Then</span> <span class="keyword">Return</span> $a_Processes[$i][0]</span><br><span class="line">		<span class="keyword">Next</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">Return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_ProcessGetPriority</span><span class="params">($vProcess)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $i_PID = <span class="built_in">ProcessExists</span>($vProcess)</span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> $i_PID <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Local</span> $hDLL = <span class="built_in">DllOpen</span>(<span class="string">&#x27;kernel32.dll&#x27;</span>)</span><br><span class="line">	<span class="keyword">Local</span> $aProcessHandle = <span class="built_in">DllCall</span>($hDLL, <span class="string">&#x27;int&#x27;</span>, <span class="string">&#x27;OpenProcess&#x27;</span>, <span class="string">&#x27;int&#x27;</span>, <span class="number">0x0400</span>, <span class="string">&#x27;int&#x27;</span>, <span class="literal">False</span>, <span class="string">&#x27;int&#x27;</span>, $i_PID)</span><br><span class="line">	<span class="keyword">Local</span> $aPriority = <span class="built_in">DllCall</span>($hDLL, <span class="string">&#x27;int&#x27;</span>, <span class="string">&#x27;GetPriorityClass&#x27;</span>, <span class="string">&#x27;int&#x27;</span>, $aProcessHandle[0])</span><br><span class="line">	<span class="built_in">DllCall</span>($hDLL, <span class="string">&#x27;int&#x27;</span>, <span class="string">&#x27;CloseHandle&#x27;</span>, <span class="string">&#x27;int&#x27;</span>, $aProcessHandle[0])</span><br><span class="line">	<span class="built_in">DllClose</span>($hDLL)</span><br><span class="line">	<span class="keyword">Switch</span> $aPriority[0]</span><br><span class="line">		<span class="keyword">Case</span> <span class="number">0x00000040</span></span><br><span class="line">			<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">		<span class="keyword">Case</span> <span class="number">0x00004000</span></span><br><span class="line">			<span class="keyword">Return</span> <span class="number">1</span></span><br><span class="line">		<span class="keyword">Case</span> <span class="number">0x00000020</span></span><br><span class="line">			<span class="keyword">Return</span> <span class="number">2</span></span><br><span class="line">		<span class="keyword">Case</span> <span class="number">0x00008000</span></span><br><span class="line">			<span class="keyword">Return</span> <span class="number">3</span></span><br><span class="line">		<span class="keyword">Case</span> <span class="number">0x00000080</span></span><br><span class="line">			<span class="keyword">Return</span> <span class="number">4</span></span><br><span class="line">		<span class="keyword">Case</span> <span class="number">0x00000100</span></span><br><span class="line">			<span class="keyword">Return</span> <span class="number">5</span></span><br><span class="line">		<span class="keyword">Case</span> <span class="keyword">Else</span></span><br><span class="line">			<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">Return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">EndSwitch</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_RunDOS</span><span class="params">($sCommand)</span></span></span><br><span class="line">	<span class="keyword">Return</span> <span class="built_in">RunWait</span>(<span class="symbol">@ComSpec</span> &amp; <span class="string">&quot; /C &quot;</span> &amp; $sCommand, <span class="string">&quot;&quot;</span>, <span class="symbol">@SW_HIDE</span>)</span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_FileCountLines</span><span class="params">($sFilePath)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $N = <span class="built_in">FileGetSize</span>($sFilePath) - <span class="number">1</span></span><br><span class="line">	<span class="keyword">If</span> <span class="symbol">@error</span> <span class="literal">Or</span> $N = <span class="number">-1</span> <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">Return</span> <span class="built_in">StringLen</span>(<span class="built_in">StringAddCR</span>(<span class="built_in">FileRead</span>($sFilePath, $N))) - $N + <span class="number">1</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_FileCreate</span><span class="params">($sFilePath)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $hOpenFile</span><br><span class="line">	<span class="keyword">Local</span> $hWriteFile</span><br><span class="line">	$hOpenFile = <span class="built_in">FileOpen</span>($sFilePath, <span class="number">2</span>)</span><br><span class="line">	<span class="keyword">If</span> $hOpenFile = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	$hWriteFile = <span class="built_in">FileWrite</span>($hOpenFile, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	<span class="keyword">If</span> $hWriteFile = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="built_in">FileClose</span>($hOpenFile)</span><br><span class="line">	<span class="keyword">Return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_FileListToArray</span><span class="params">($sPath, $sFilter = <span class="string">&quot;*&quot;</span>, $iFlag = <span class="number">0</span>)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $hSearch, $sFile, $asFileList[1]</span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> <span class="built_in">FileExists</span>($sPath) <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="built_in">SetError</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	<span class="keyword">If</span> (<span class="built_in">StringInStr</span>($sFilter, <span class="string">&quot;\&quot;</span>)) <span class="literal">Or</span> (<span class="built_in">StringInStr</span>($sFilter, <span class="string">&quot;/&quot;</span>)) <span class="literal">Or</span> (<span class="built_in">StringInStr</span>($sFilter, <span class="string">&quot;:&quot;</span>)) <span class="literal">Or</span> (<span class="built_in">StringInStr</span>($sFilter, <span class="string">&quot;&gt;&quot;</span>)) <span class="literal">Or</span> (<span class="built_in">StringInStr</span>($sFilter, <span class="string">&quot;&lt;&quot;</span>)) <span class="literal">Or</span> (<span class="built_in">StringInStr</span>($sFilter, <span class="string">&quot;|&quot;</span>)) <span class="literal">Or</span> (<span class="built_in">StringStripWS</span>($sFilter, <span class="number">8</span>) = <span class="string">&quot;&quot;</span>) <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="built_in">SetError</span>(<span class="number">2</span>, <span class="number">2</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> ($iFlag = <span class="number">0</span> <span class="literal">Or</span> $iFlag = <span class="number">1</span> <span class="literal">Or</span> $iFlag = <span class="number">2</span>) <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="built_in">SetError</span>(<span class="number">3</span>, <span class="number">3</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	$hSearch = <span class="built_in">FileFindFirstFile</span>($sPath &amp; <span class="string">&quot;\&quot;</span> &amp; $sFilter)</span><br><span class="line">	<span class="keyword">If</span> $hSearch = <span class="number">-1</span> <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="built_in">SetError</span>(<span class="number">4</span>, <span class="number">4</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	<span class="keyword">While</span> <span class="number">1</span></span><br><span class="line">		$sFile = <span class="built_in">FileFindNextFile</span>($hSearch)</span><br><span class="line">		<span class="keyword">If</span> <span class="symbol">@error</span> <span class="keyword">Then</span></span><br><span class="line">			<span class="built_in">SetError</span>(<span class="number">0</span>)</span><br><span class="line">			<span class="keyword">ExitLoop</span></span><br><span class="line">		<span class="keyword">EndIf</span></span><br><span class="line">		<span class="keyword">If</span> $iFlag = <span class="number">1</span> <span class="literal">And</span> <span class="built_in">StringInStr</span>(<span class="built_in">FileGetAttrib</span>($sPath &amp; <span class="string">&quot;\&quot;</span> &amp; $sFile), <span class="string">&quot;D&quot;</span>) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span> <span class="keyword">ContinueLoop</span></span><br><span class="line">		<span class="keyword">If</span> $iFlag = <span class="number">2</span> <span class="literal">And</span> <span class="built_in">StringInStr</span>(<span class="built_in">FileGetAttrib</span>($sPath &amp; <span class="string">&quot;\&quot;</span> &amp; $sFile), <span class="string">&quot;D&quot;</span>) = <span class="number">0</span> <span class="keyword">Then</span> <span class="keyword">ContinueLoop</span></span><br><span class="line">		<span class="keyword">ReDim</span> $asFileList[UBound($asFileList) + <span class="number">1</span>]</span><br><span class="line">		$asFileList[0] = $asFileList[0] + <span class="number">1</span></span><br><span class="line">		$asFileList[UBound($asFileList) - <span class="number">1</span>] = $sFile</span><br><span class="line">	<span class="keyword">WEnd</span></span><br><span class="line">	<span class="built_in">FileClose</span>($hSearch)</span><br><span class="line">	<span class="keyword">Return</span> $asFileList</span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_FilePrint</span><span class="params">($s_File, $i_Show = @SW_HIDE)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $a_Ret = <span class="built_in">DllCall</span>(<span class="string">&quot;shell32.dll&quot;</span>, <span class="string">&quot;long&quot;</span>, <span class="string">&quot;ShellExecute&quot;</span>, _</span><br><span class="line">			<span class="string">&quot;hwnd&quot;</span>, <span class="number">0</span>, _</span><br><span class="line">			<span class="string">&quot;string&quot;</span>, <span class="string">&quot;print&quot;</span>, _</span><br><span class="line">			<span class="string">&quot;string&quot;</span>, $s_File, _</span><br><span class="line">			<span class="string">&quot;string&quot;</span>, <span class="string">&quot;&quot;</span>, _</span><br><span class="line">			<span class="string">&quot;string&quot;</span>, <span class="string">&quot;&quot;</span>, _</span><br><span class="line">			<span class="string">&quot;int&quot;</span>, $i_Show)</span><br><span class="line">	<span class="keyword">If</span> $a_Ret[0] &gt; <span class="number">32</span> <span class="literal">And</span> <span class="literal">Not</span> <span class="symbol">@error</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="keyword">Return</span> <span class="number">1</span></span><br><span class="line">	<span class="keyword">Else</span></span><br><span class="line">		<span class="built_in">SetError</span>($a_Ret[0])</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_FileReadToArray</span><span class="params">($sFilePath, ByRef $aArray)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $hFile</span><br><span class="line">	$hFile = <span class="built_in">FileOpen</span>($sFilePath, <span class="number">0</span>)</span><br><span class="line">	<span class="keyword">If</span> $hFile = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	$aArray = <span class="built_in">StringSplit</span>(<span class="built_in">StringStripCR</span>(<span class="built_in">FileRead</span>($hFile, <span class="built_in">FileGetSize</span>($sFilePath))), <span class="symbol">@LF</span>)</span><br><span class="line">	<span class="built_in">FileClose</span>($hFile)</span><br><span class="line">	<span class="keyword">Return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_FileWriteFromArray</span><span class="params">($sFilePath, $a_Array, $i_Base = <span class="number">0</span>, $i_UBound = <span class="number">0</span>)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $hFile</span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> <span class="built_in">IsArray</span>($a_Array) <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Local</span> $last = <span class="built_in">UBound</span>($a_Array) - <span class="number">1</span></span><br><span class="line">	<span class="keyword">If</span> $i_UBound &lt; <span class="number">1</span> <span class="literal">Or</span> $i_UBound &gt; $last <span class="keyword">Then</span> $i_UBound = $last</span><br><span class="line">	<span class="keyword">If</span> $i_Base &lt; <span class="number">0</span> <span class="literal">Or</span> $i_Base &gt; $last <span class="keyword">Then</span> $i_Base = <span class="number">0</span></span><br><span class="line">	$hFile = <span class="built_in">FileOpen</span>($sFilePath, <span class="number">2</span>)</span><br><span class="line">	<span class="keyword">If</span> $hFile = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="built_in">FileWrite</span>($hFile, $a_Array[$i_Base])</span><br><span class="line">	<span class="keyword">For</span> $x = $i_Base + <span class="number">1</span> <span class="keyword">To</span> $i_UBound</span><br><span class="line">		<span class="built_in">FileWrite</span>($hFile, <span class="symbol">@CRLF</span> &amp; $a_Array[$x])</span><br><span class="line">	<span class="keyword">Next</span></span><br><span class="line">	<span class="built_in">FileClose</span>($hFile)</span><br><span class="line">	<span class="keyword">Return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_FileWriteLog</span><span class="params">($sLogPath, $sLogMsg)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $sDateNow</span><br><span class="line">	<span class="keyword">Local</span> $sTimeNow</span><br><span class="line">	<span class="keyword">Local</span> $sMsg</span><br><span class="line">	<span class="keyword">Local</span> $hOpenFile</span><br><span class="line">	<span class="keyword">Local</span> $hWriteFile</span><br><span class="line">	$sDateNow = <span class="symbol">@YEAR</span> &amp; <span class="string">&quot;-&quot;</span> &amp; <span class="symbol">@MON</span> &amp; <span class="string">&quot;-&quot;</span> &amp; <span class="symbol">@MDAY</span></span><br><span class="line">	$sTimeNow = <span class="symbol">@HOUR</span> &amp; <span class="string">&quot;:&quot;</span> &amp; <span class="symbol">@MIN</span> &amp; <span class="string">&quot;:&quot;</span> &amp; <span class="symbol">@SEC</span></span><br><span class="line">	$sMsg = $sDateNow &amp; <span class="string">&quot; &quot;</span> &amp; $sTimeNow &amp; <span class="string">&quot; : &quot;</span> &amp; $sLogMsg</span><br><span class="line">	$hOpenFile = <span class="built_in">FileOpen</span>($sLogPath, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">If</span> $hOpenFile = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	$hWriteFile = <span class="built_in">FileWriteLine</span>($hOpenFile, $sMsg)</span><br><span class="line">	<span class="keyword">If</span> $hWriteFile = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="built_in">FileClose</span>($hOpenFile)</span><br><span class="line">	<span class="keyword">Return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_FileWriteToLine</span><span class="params">($sFile, $iLine, $sText, $fOverWrite = <span class="number">0</span>)</span></span></span><br><span class="line">	<span class="keyword">If</span> $iLine &lt;= <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">4</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> <span class="built_in">IsString</span>($sText) <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">6</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">If</span> $fOverWrite &lt;&gt; <span class="number">0</span> <span class="literal">And</span> $fOverWrite &lt;&gt; <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">5</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> <span class="built_in">FileExists</span>($sFile) <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Local</span> $filtxt = <span class="built_in">FileRead</span>($sFile, <span class="built_in">FileGetSize</span>($sFile))</span><br><span class="line">	$filtxt = <span class="built_in">StringSplit</span>($filtxt, <span class="symbol">@CRLF</span>, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">UBound</span>($filtxt, <span class="number">1</span>) &lt; $iLine <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Local</span> $fil = <span class="built_in">FileOpen</span>($sFile, <span class="number">2</span>)</span><br><span class="line">	<span class="keyword">If</span> $fil = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">3</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">0</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">For</span> $i = <span class="number">1</span> <span class="keyword">To</span> <span class="built_in">UBound</span>($filtxt) - <span class="number">1</span></span><br><span class="line">		<span class="keyword">If</span> $i = $iLine <span class="keyword">Then</span></span><br><span class="line">			<span class="keyword">If</span> $fOverWrite = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">				<span class="keyword">If</span> $sText &lt;&gt; <span class="string">&#x27;&#x27;</span> <span class="keyword">Then</span></span><br><span class="line">					<span class="built_in">FileWrite</span>($fil, $sText &amp; <span class="symbol">@CRLF</span>)</span><br><span class="line">				<span class="keyword">Else</span></span><br><span class="line">					<span class="built_in">FileWrite</span>($fil, $sText)</span><br><span class="line">				<span class="keyword">EndIf</span></span><br><span class="line">			<span class="keyword">EndIf</span></span><br><span class="line">			<span class="keyword">If</span> $fOverWrite = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">				<span class="built_in">FileWrite</span>($fil, $sText &amp; <span class="symbol">@CRLF</span>)</span><br><span class="line">				<span class="built_in">FileWrite</span>($fil, $filtxt[$i] &amp; <span class="symbol">@CRLF</span>)</span><br><span class="line">			<span class="keyword">EndIf</span></span><br><span class="line">		<span class="keyword">ElseIf</span> $i &lt; <span class="built_in">UBound</span>($filtxt, <span class="number">1</span>) - <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">			<span class="built_in">FileWrite</span>($fil, $filtxt[$i] &amp; <span class="symbol">@CRLF</span>)</span><br><span class="line">		<span class="keyword">ElseIf</span> $i = <span class="built_in">UBound</span>($filtxt, <span class="number">1</span>) - <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">			<span class="built_in">FileWrite</span>($fil, $filtxt[$i])</span><br><span class="line">		<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Next</span></span><br><span class="line">	<span class="built_in">FileClose</span>($fil)</span><br><span class="line">	<span class="keyword">Return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_PathFull</span><span class="params">($sRelativePath, $sBasePath = @WorkingDir)</span></span></span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> $sRelativePath <span class="literal">Or</span> $sRelativePath = <span class="string">&quot;.&quot;</span> <span class="keyword">Then</span> <span class="keyword">Return</span> $sBasePath</span><br><span class="line">	<span class="keyword">Local</span> $sFullPath = <span class="built_in">StringReplace</span>($sRelativePath, <span class="string">&quot;/&quot;</span>, <span class="string">&quot;\&quot;</span>)</span><br><span class="line">	<span class="keyword">Local</span> $sPath = <span class="built_in">StringLeft</span>($sFullPath, <span class="number">2</span>)</span><br><span class="line">	<span class="built_in">StringReplace</span>($sFullPath, <span class="string">&quot;\&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	<span class="keyword">If</span> <span class="symbol">@extended</span> = <span class="built_in">StringLen</span>($sFullPath) <span class="keyword">Then</span> <span class="keyword">Return</span> <span class="built_in">StringLeft</span>($sBasePath, <span class="number">2</span>) &amp; <span class="string">&quot;\&quot;</span></span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringLeft</span>($sFullPath, <span class="number">1</span>) = <span class="string">&quot;\&quot;</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="keyword">If</span> $sPath = <span class="string">&quot;\\&quot;</span> <span class="keyword">Then</span></span><br><span class="line">			$sFullPath = <span class="built_in">StringTrimLeft</span>($sFullPath, <span class="number">2</span>)</span><br><span class="line">			$sPath &amp;= <span class="built_in">StringLeft</span>($sFullPath, <span class="built_in">StringInStr</span>($sFullPath, <span class="string">&quot;\&quot;</span>) - <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Else</span></span><br><span class="line">			$sPath = <span class="built_in">StringLeft</span>($sBasePath, <span class="number">2</span>)</span><br><span class="line">		<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">ElseIf</span> <span class="literal">Not</span> <span class="built_in">StringInStr</span>($sPath, <span class="string">&quot;:&quot;</span>) <span class="keyword">Then</span></span><br><span class="line">		$sFullPath = $sBasePath &amp; <span class="string">&quot;\&quot;</span> &amp; $sFullPath</span><br><span class="line">		$sPath = <span class="built_in">StringLeft</span>($sBasePath, <span class="number">2</span>)</span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Local</span> $aTemp = <span class="built_in">StringSplit</span>($sFullPath, <span class="string">&quot;\&quot;</span>)</span><br><span class="line">	<span class="keyword">Local</span> $aPathParts[$aTemp[0]], $j = <span class="number">0</span></span><br><span class="line">	<span class="keyword">For</span> $i = <span class="number">2</span> <span class="keyword">To</span> $aTemp[0]</span><br><span class="line">		<span class="keyword">If</span> $aTemp[$i] = <span class="string">&quot;..&quot;</span> <span class="keyword">Then</span></span><br><span class="line">			<span class="keyword">If</span> $j <span class="keyword">Then</span> $j -= <span class="number">1</span></span><br><span class="line">		<span class="keyword">ElseIf</span> <span class="literal">Not</span> ($aTemp[$i] = <span class="string">&quot;&quot;</span> <span class="literal">And</span> $i &lt;&gt; $aTemp[0]) <span class="literal">And</span> $aTemp[$i] &lt;&gt; <span class="string">&quot;.&quot;</span> <span class="keyword">Then</span></span><br><span class="line">			$aPathParts[$j] = $aTemp[$i]</span><br><span class="line">			$j += <span class="number">1</span></span><br><span class="line">		<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Next</span></span><br><span class="line">	$sFullPath = $sPath</span><br><span class="line">	<span class="keyword">For</span> $i = <span class="number">0</span> <span class="keyword">To</span> $j - <span class="number">1</span></span><br><span class="line">		$sFullPath &amp;= <span class="string">&quot;\&quot;</span> &amp; $aPathParts[$i]</span><br><span class="line">	<span class="keyword">Next</span></span><br><span class="line">	<span class="keyword">While</span> <span class="built_in">StringInStr</span>($sFullPath, <span class="string">&quot;.\&quot;</span>)</span><br><span class="line">		$sFullPath = <span class="built_in">StringReplace</span>($sFullPath, <span class="string">&quot;.\&quot;</span>, <span class="string">&quot;\&quot;</span>)</span><br><span class="line">	<span class="keyword">WEnd</span></span><br><span class="line">	<span class="keyword">Return</span> $sFullPath</span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_PathMake</span><span class="params">($szDrive, $szDir, $szFName, $szExt)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $szFullPath</span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringLen</span>($szDrive) <span class="keyword">Then</span></span><br><span class="line">		<span class="keyword">If</span> <span class="literal">Not</span> (<span class="built_in">StringLeft</span>($szDrive, <span class="number">2</span>) = <span class="string">&quot;\\&quot;</span>) <span class="keyword">Then</span> $szDrive = <span class="built_in">StringLeft</span>($szDrive, <span class="number">1</span>) &amp; <span class="string">&quot;:&quot;</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringLen</span>($szDir) <span class="keyword">Then</span></span><br><span class="line">		<span class="keyword">If</span> <span class="literal">Not</span> (<span class="built_in">StringRight</span>($szDir, <span class="number">1</span>) = <span class="string">&quot;\&quot;</span>) <span class="literal">And</span> <span class="literal">Not</span> (<span class="built_in">StringRight</span>($szDir, <span class="number">1</span>) = <span class="string">&quot;/&quot;</span>) <span class="keyword">Then</span> $szDir = $szDir &amp; <span class="string">&quot;\&quot;</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringLen</span>($szExt) <span class="keyword">Then</span></span><br><span class="line">		<span class="keyword">If</span> <span class="literal">Not</span> (<span class="built_in">StringLeft</span>($szExt, <span class="number">1</span>) = <span class="string">&quot;.&quot;</span>) <span class="keyword">Then</span> $szExt = <span class="string">&quot;.&quot;</span> &amp; $szExt</span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	$szFullPath = $szDrive &amp; $szDir &amp; $szFName &amp; $szExt</span><br><span class="line">	<span class="keyword">Return</span> $szFullPath</span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_PathSplit</span><span class="params">($szPath, ByRef $szDrive, ByRef $szDir, ByRef $szFName, ByRef $szExt)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $drive = <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">Local</span> $dir = <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">Local</span> $fname = <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">Local</span> $ext = <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">Local</span> $pos</span><br><span class="line">	<span class="keyword">Local</span> $array[5]</span><br><span class="line">	$array[0] = $szPath</span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringMid</span>($szPath, <span class="number">2</span>, <span class="number">1</span>) = <span class="string">&quot;:&quot;</span> <span class="keyword">Then</span></span><br><span class="line">		$drive = <span class="built_in">StringLeft</span>($szPath, <span class="number">2</span>)</span><br><span class="line">		$szPath = <span class="built_in">StringTrimLeft</span>($szPath, <span class="number">2</span>)</span><br><span class="line">	<span class="keyword">ElseIf</span> <span class="built_in">StringLeft</span>($szPath, <span class="number">2</span>) = <span class="string">&quot;\\&quot;</span> <span class="keyword">Then</span></span><br><span class="line">		$szPath = <span class="built_in">StringTrimLeft</span>($szPath, <span class="number">2</span>)</span><br><span class="line">		$pos = <span class="built_in">StringInStr</span>($szPath, <span class="string">&quot;\&quot;</span>)</span><br><span class="line">		<span class="keyword">If</span> $pos = <span class="number">0</span> <span class="keyword">Then</span> $pos = <span class="built_in">StringInStr</span>($szPath, <span class="string">&quot;/&quot;</span>)</span><br><span class="line">		<span class="keyword">If</span> $pos = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">			$drive = <span class="string">&quot;\\&quot;</span> &amp; $szPath</span><br><span class="line">			$szPath = <span class="string">&quot;&quot;</span></span><br><span class="line">		<span class="keyword">Else</span></span><br><span class="line">			$drive = <span class="string">&quot;\\&quot;</span> &amp; <span class="built_in">StringLeft</span>($szPath, $pos - <span class="number">1</span>)</span><br><span class="line">			$szPath = <span class="built_in">StringTrimLeft</span>($szPath, $pos - <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Local</span> $nPosForward = <span class="built_in">StringInStr</span>($szPath, <span class="string">&quot;/&quot;</span>, <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">	<span class="keyword">Local</span> $nPosBackward = <span class="built_in">StringInStr</span>($szPath, <span class="string">&quot;\&quot;</span>, <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">	<span class="keyword">If</span> $nPosForward &gt;= $nPosBackward <span class="keyword">Then</span></span><br><span class="line">		$pos = $nPosForward</span><br><span class="line">	<span class="keyword">Else</span></span><br><span class="line">		$pos = $nPosBackward</span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	$dir = <span class="built_in">StringLeft</span>($szPath, $pos)</span><br><span class="line">	$fname = <span class="built_in">StringRight</span>($szPath, <span class="built_in">StringLen</span>($szPath) - $pos)</span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringLen</span>($dir) = <span class="number">0</span> <span class="keyword">Then</span> $fname = $szPath</span><br><span class="line">	$pos = <span class="built_in">StringInStr</span>($fname, <span class="string">&quot;.&quot;</span>, <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">	<span class="keyword">If</span> $pos <span class="keyword">Then</span></span><br><span class="line">		$ext = <span class="built_in">StringRight</span>($fname, <span class="built_in">StringLen</span>($fname) - ($pos - <span class="number">1</span>))</span><br><span class="line">		$fname = <span class="built_in">StringLeft</span>($fname, $pos - <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	$szDrive = $drive</span><br><span class="line">	$szDir = $dir</span><br><span class="line">	$szFName = $fname</span><br><span class="line">	$szExt = $ext</span><br><span class="line">	$array[1] = $drive</span><br><span class="line">	$array[2] = $dir</span><br><span class="line">	$array[3] = $fname</span><br><span class="line">	$array[4] = $ext</span><br><span class="line">	<span class="keyword">Return</span> $array</span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_ReplaceStringInFile</span><span class="params">($szFileName, $szSearchString, $szReplaceString, $fCaseness = <span class="number">0</span>, $fOccurance = <span class="number">1</span>)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $iRetVal = <span class="number">0</span></span><br><span class="line">	<span class="keyword">Local</span> $szTempFile, $hWriteHandle, $aFileLines, $nCount, $sEndsWith, $hFile</span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringInstr</span>(<span class="built_in">FileGetAttrib</span>($szFileName),<span class="string">&quot;R&quot;</span>) <span class="keyword">then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">6</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	$hFile = <span class="built_in">FileOpen</span>($szFileName, <span class="number">0</span>)</span><br><span class="line">	<span class="keyword">If</span> $hFile = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Local</span> $s_TotFile = <span class="built_in">FileRead</span>($hFile, <span class="built_in">FileGetSize</span>($szFileName))</span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringRight</span>($s_TotFile, <span class="number">2</span>) = <span class="symbol">@CRLF</span> <span class="keyword">Then</span></span><br><span class="line">		$sEndsWith = <span class="symbol">@CRLF</span></span><br><span class="line">	<span class="keyword">ElseIf</span> <span class="built_in">StringRight</span>($s_TotFile, <span class="number">1</span>) = <span class="symbol">@CR</span> <span class="keyword">Then</span></span><br><span class="line">		$sEndsWith = <span class="symbol">@CR</span></span><br><span class="line">	<span class="keyword">ElseIf</span> <span class="built_in">StringRight</span>($s_TotFile, <span class="number">1</span>) = <span class="symbol">@LF</span> <span class="keyword">Then</span></span><br><span class="line">		$sEndsWith = <span class="symbol">@LF</span></span><br><span class="line">	<span class="keyword">Else</span></span><br><span class="line">		$sEndsWith = <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	$aFileLines = <span class="built_in">StringSplit</span>(<span class="built_in">StringStripCR</span>($s_TotFile), <span class="symbol">@LF</span>)</span><br><span class="line">	<span class="built_in">FileClose</span>($hFile)</span><br><span class="line">	$szTempFile = _TempFile()</span><br><span class="line">	$hWriteHandle = <span class="built_in">FileOpen</span>($szTempFile, <span class="number">2</span>)</span><br><span class="line">	<span class="keyword">If</span> $hWriteHandle = <span class="number">-1</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">For</span> $nCount = <span class="number">1</span> <span class="keyword">To</span> $aFileLines[0]</span><br><span class="line">		<span class="keyword">If</span> <span class="built_in">StringInStr</span>($aFileLines[$nCount], $szSearchString, $fCaseness) <span class="keyword">Then</span></span><br><span class="line">			$aFileLines[$nCount] = <span class="built_in">StringReplace</span>($aFileLines[$nCount], $szSearchString, $szReplaceString, <span class="number">1</span> - $fOccurance, $fCaseness)</span><br><span class="line">			$iRetVal = $iRetVal + <span class="number">1</span></span><br><span class="line">			<span class="keyword">If</span> $fOccurance = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">				$iRetVal = <span class="number">1</span></span><br><span class="line">				<span class="keyword">ExitLoop</span></span><br><span class="line">			<span class="keyword">EndIf</span></span><br><span class="line">		<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Next</span></span><br><span class="line">	<span class="keyword">For</span> $nCount = <span class="number">1</span> <span class="keyword">To</span> $aFileLines[0] - <span class="number">1</span></span><br><span class="line">		<span class="keyword">If</span> <span class="built_in">FileWriteLine</span>($hWriteHandle, $aFileLines[$nCount]) = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">			<span class="built_in">SetError</span>(<span class="number">3</span>)</span><br><span class="line">			<span class="built_in">FileClose</span>($hWriteHandle)</span><br><span class="line">			<span class="keyword">Return</span> <span class="number">-1</span></span><br><span class="line">		<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Next</span></span><br><span class="line">	<span class="keyword">If</span> $aFileLines[$nCount] &lt;&gt; <span class="string">&quot;&quot;</span> <span class="keyword">Then</span> <span class="built_in">FileWrite</span>($hWriteHandle, $aFileLines[$nCount] &amp; $sEndsWith)</span><br><span class="line">	<span class="built_in">FileClose</span>($hWriteHandle)</span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">FileDelete</span>($szFileName) = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">4</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">FileMove</span>($szTempFile, $szFileName) = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">		<span class="built_in">SetError</span>(<span class="number">5</span>)</span><br><span class="line">		<span class="keyword">Return</span> <span class="number">-1</span></span><br><span class="line">	<span class="keyword">EndIf</span></span><br><span class="line">	<span class="keyword">Return</span> $iRetVal</span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="function"><span class="keyword">Func</span> <span class="title">_TempFile</span><span class="params">($s_DirectoryName = @TempDir, $s_FilePrefix = <span class="string">&quot;~&quot;</span>, $s_FileExtension = <span class="string">&quot;.tmp&quot;</span>, $i_RandomLength = <span class="number">7</span>)</span></span></span><br><span class="line">	<span class="keyword">Local</span> $s_TempName</span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> <span class="built_in">FileExists</span>($s_DirectoryName) <span class="keyword">Then</span> $s_DirectoryName = <span class="symbol">@TempDir</span></span><br><span class="line">	<span class="keyword">If</span> <span class="literal">Not</span> <span class="built_in">FileExists</span>($s_DirectoryName) <span class="keyword">Then</span> $s_DirectoryName = <span class="symbol">@ScriptDir</span></span><br><span class="line">	<span class="keyword">If</span> <span class="built_in">StringRight</span>($s_DirectoryName, <span class="number">1</span>) &lt;&gt; <span class="string">&quot;\&quot;</span> <span class="keyword">Then</span> $s_DirectoryName = $s_DirectoryName &amp; <span class="string">&quot;\&quot;</span></span><br><span class="line">	<span class="keyword">Do</span></span><br><span class="line">		$s_TempName = <span class="string">&quot;&quot;</span></span><br><span class="line">		<span class="keyword">While</span> <span class="built_in">StringLen</span>($s_TempName) &lt; $i_RandomLength</span><br><span class="line">			$s_TempName = $s_TempName &amp; <span class="built_in">Chr</span>(<span class="built_in">Random</span>(<span class="number">97</span>, <span class="number">122</span>, <span class="number">1</span>))</span><br><span class="line">		<span class="keyword">WEnd</span></span><br><span class="line">		$s_TempName = $s_DirectoryName &amp; $s_FilePrefix &amp; $s_TempName &amp; $s_FileExtension</span><br><span class="line">	<span class="keyword">Until</span> <span class="literal">Not</span> <span class="built_in">FileExists</span>($s_TempName)</span><br><span class="line">	<span class="keyword">Return</span> ($s_TempName)</span><br><span class="line"><span class="keyword">EndFunc</span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"> <span class="keyword">If</span> <span class="built_in">WinExists</span>(<span class="symbol">@ScriptName</span>) <span class="keyword">Then</span> <span class="keyword">Exit</span></span><br><span class="line"> <span class="built_in">AutoItWinSetTitle</span>(<span class="symbol">@ScriptName</span>)</span><br><span class="line"> <span class="built_in">AutoItSetOption</span>(<span class="string">&quot;TrayIconHide&quot;</span>, <span class="number">1</span>)</span><br><span class="line"> <span class="built_in">AutoItSetOption</span>(<span class="string">&quot;MouseCoordMode&quot;</span>, <span class="number">0</span>)</span><br><span class="line"> <span class="keyword">If</span> <span class="built_in">ProcessExists</span>(<span class="string">&quot;TeamViewer_Service.exe&quot;</span>) <span class="keyword">Then</span></span><br><span class="line"> <span class="built_in">RunWait</span>(<span class="symbol">@ComSpec</span> &amp; <span class="string">&quot; /C net stop TeamViewer&quot;</span>,<span class="string">&quot;&quot;</span>, <span class="symbol">@SW_HIDE</span>)</span><br><span class="line"> <span class="keyword">EndIf</span></span><br><span class="line"> <span class="keyword">If</span> <span class="built_in">ProcessExists</span>(<span class="string">&quot;TeamViewer.exe&quot;</span>) <span class="keyword">Then</span></span><br><span class="line"> <span class="built_in">ProcessClose</span>(<span class="string">&quot;TeamViewer.exe&quot;</span>)</span><br><span class="line"> <span class="keyword">EndIf</span></span><br><span class="line"> <span class="built_in">RegDelete</span>(<span class="string">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\TeamViewer&quot;</span>, <span class="string">&quot;ClientID&quot;</span>)</span><br><span class="line"> <span class="keyword">Local</span> $iRc = _RunDos(<span class="string">&quot;wmic class Win33_ComputerSystemProduct delete&quot;</span>)</span><br><span class="line"> $VBSFile = <span class="symbol">@ScriptDir</span>&amp;<span class="string">&#x27;\source.vbs&#x27;</span></span><br><span class="line"> <span class="keyword">If</span> <span class="literal">Not</span> <span class="built_in">FileExists</span>($VBSFile) <span class="keyword">Then</span> _FileCreate($VBSFile)</span><br><span class="line"> <span class="built_in">FileSetAttrib</span>(<span class="symbol">@ScriptDir</span>&amp;<span class="string">&#x27;\source.vbs&#x27;</span>, <span class="string">&quot;+H&quot;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;intHighNumber = 99999&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;intLowNumber = 10000&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;intNumbers = 1&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27; Randomize&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27; intNumber = Int((intHighNumber - intLowNumber + 1) * Rnd + intLowNumber)&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;strnum = &quot;01234567-8910-ABCD-1111-093F03C&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;strnum = strnum &amp; Cstr(intNumber)&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;Set oLocation = CreateObject(&quot;WbemScripting.SWbemLocator&quot;)&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;Set oServices = oLocation.ConnectServer(, &quot;root\cimv2&quot;)&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;Set FakeClass = oServices.Get&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Path_.Class = &quot;Win33_ComputerSystemProduct&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_.add &quot;Caption&quot;, 8&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_.add &quot;Description&quot;, 8&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_.add &quot;IdentifyingNumber&quot;, 8&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_.add &quot;Name&quot;, 8&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_.add &quot;SKUNumber&quot;, 8&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_.add &quot;UUID&quot;, 8&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_.add &quot;Vendor&quot;, 8&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_.add &quot;Version&quot;, 8&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Properties_(&quot;Name&quot;).Qualifiers_.add &quot;key&quot;, false&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Put_&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;Set FakeClass = GetObject(&quot;Winmgmts:root\cimv2:Win33_ComputerSystemProduct&quot;).SpawnInstance_&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Caption = &quot;http://www.teamviewer.com&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Description = &quot;class for teamviewer&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.IdentifyingNumber = &quot;www.teamviewer.com&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Name = &quot;Teamviewer&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.SKUNumber = &quot;&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.UUID = strnum&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Vendor = &quot;Teamviewer&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Version = &quot;6.x&quot;&#x27;</span>)</span><br><span class="line"> <span class="built_in">FileWriteLine</span> (<span class="string">&#x27;source.vbs&#x27;</span>, <span class="string">&#x27;FakeClass.Put_&#x27;</span>)</span><br><span class="line"> <span class="built_in">ShellExecute</span> (<span class="string">&quot;source.vbs&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;open&quot;</span>)</span><br><span class="line"> <span class="built_in">Sleep</span>(<span class="number">500</span>)</span><br><span class="line"> <span class="built_in">FileDelete</span>(<span class="symbol">@ScriptDir</span>&amp;<span class="string">&#x27;\source.vbs&#x27;</span>)</span><br><span class="line"> <span class="built_in">RunWait</span>(<span class="symbol">@ComSpec</span> &amp; <span class="string">&quot; /C net start TeamViewer&quot;</span>,<span class="string">&quot;&quot;</span>, <span class="symbol">@SW_HIDE</span>)</span><br><span class="line"> <span class="built_in">Run</span>(<span class="symbol">@ScriptDir</span>&amp;<span class="string">&#x27;\TeamViewer.exe&#x27;</span>)</span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">; ----------------------------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
+<h3 id="其中关键的source-vbs代码"><a href="#其中关键的source-vbs代码" class="headerlink" title="其中关键的source.vbs代码"></a>其中关键的source.vbs代码</h3><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">intHighNumber = <span class="number">99999</span></span><br><span class="line"> </span><br><span class="line">intLowNumber = <span class="number">10000</span></span><br><span class="line"> </span><br><span class="line">intNumbers = <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"> Randomize</span><br><span class="line"> </span><br><span class="line"> intNumber = Int((intHighNumber - intLowNumber + <span class="number">1</span>) * Rnd + intLowNumber)</span><br><span class="line"> </span><br><span class="line">strnum = <span class="string">&quot;01234567-8910-ABCD-1111-093F03C&quot;</span></span><br><span class="line">strnum = strnum &amp; <span class="built_in">Cstr</span>(intNumber)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">Set</span> oLocation = CreateObject(<span class="string">&quot;WbemScripting.SWbemLocator&quot;</span>)</span><br><span class="line"><span class="keyword">Set</span> oServices = oLocation.ConnectServer(, <span class="string">&quot;root\cimv2&quot;</span>)</span><br><span class="line"><span class="keyword">Set</span> FakeClass = oServices.<span class="keyword">Get</span></span><br><span class="line"> </span><br><span class="line">FakeClass.Path_.<span class="keyword">Class</span> = <span class="string">&quot;Win33_ComputerSystemProduct&quot;</span></span><br><span class="line"> </span><br><span class="line">FakeClass.Properties_.add <span class="string">&quot;Caption&quot;</span>, <span class="number">8</span></span><br><span class="line">FakeClass.Properties_.add <span class="string">&quot;Description&quot;</span>, <span class="number">8</span></span><br><span class="line">FakeClass.Properties_.add <span class="string">&quot;IdentifyingNumber&quot;</span>, <span class="number">8</span></span><br><span class="line">FakeClass.Properties_.add <span class="string">&quot;Name&quot;</span>, <span class="number">8</span></span><br><span class="line">FakeClass.Properties_.add <span class="string">&quot;SKUNumber&quot;</span>, <span class="number">8</span></span><br><span class="line">FakeClass.Properties_.add <span class="string">&quot;UUID&quot;</span>, <span class="number">8</span></span><br><span class="line">FakeClass.Properties_.add <span class="string">&quot;Vendor&quot;</span>, <span class="number">8</span></span><br><span class="line">FakeClass.Properties_.add <span class="string">&quot;Version&quot;</span>, <span class="number">8</span></span><br><span class="line">FakeClass.Properties_(<span class="string">&quot;Name&quot;</span>).Qualifiers_.add <span class="string">&quot;key&quot;</span>, <span class="literal">false</span></span><br><span class="line">FakeClass.Put_</span><br><span class="line"> </span><br><span class="line"><span class="keyword">Set</span> FakeClass = GetObject(<span class="string">&quot;Winmgmts:root\cimv2:Win33_ComputerSystemProduct&quot;</span>).SpawnInstance_</span><br><span class="line"> </span><br><span class="line">FakeClass.Caption = <span class="string">&quot;http://www.teamviewer.com&quot;</span></span><br><span class="line">FakeClass.Description = <span class="string">&quot;class for teamviewer&quot;</span></span><br><span class="line">FakeClass.IdentifyingNumber = <span class="string">&quot;www.teamviewer.com&quot;</span></span><br><span class="line">FakeClass.Name = <span class="string">&quot;Teamviewer&quot;</span></span><br><span class="line">FakeClass.SKUNumber = <span class="string">&quot;&quot;</span></span><br><span class="line">FakeClass.UUID = strnum</span><br><span class="line">FakeClass.Vendor = <span class="string">&quot;Teamviewer&quot;</span></span><br><span class="line">FakeClass.Version = <span class="string">&quot;10.x&quot;</span></span><br><span class="line">FakeClass.Put_</span><br></pre></td></tr></table></figure>
+<p>仅此远远不够，还得需要修改teamviewer中的Win32_ComputerSystemProduct为Win33_ComputerSystemProduct，同时去掉teamviewer的自校验!</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "TeamViewer_resetclientID重置PC端id源码",
+        "image": "https://goodhelp.github.io",
+        "keywords": "vbs autoit",
+        "genre": "源码",
+        "datePublished": "2018-06-13",
+        "dateCreated": "2018-06-13",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.github.io/page/2135361570/",
+        "description": "如何重置TeamViewer的ID？我们先来了解一下什么是WMI,WMI有一组API。我们不管使用VBScript、PowerShell脚本还是利用C#的来访问WMI的类库，都是因为WMI向外暴露的一组API。这些API是在系统安装WMI模块的时候安装的，通过他们我们能够能拿到我们想要的类。WMI有一个存储库。尽管WMI的多数实例数据都不存储在WMI中，但是WMI确实有一个存储库，用来存放提供程序",
+        "wordCount": 3576
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <!-- Valine -->
+    <div class="vcomments"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+            
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="tiktok" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-tiktok"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=603981&site=qq&menu=yes" target="_blank" rel="noopener">
+                        <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://gitee.com/goodhelp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+		  <p>国内镜像：<a target="_blank" rel="noopener" href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/page/2797625853/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            ApacheBench(ab)服务器负载压力测试软件
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/page/1757268201/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">安卓手机控制windows电脑的三种方法</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2434381964/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/2354883490,3989130937.jpg)" alt="可实现维护通道的vbs脚本类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2434381964/" class="title">可实现维护通道的vbs脚本类</a></p>
+                            <p class="item-date"><time datetime="2021-09-11T14:19:22.000Z" itemprop="datePublished">2021-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/1082310208/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/1621350706-111.jpg)" alt="让电源键关机变重启" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/1082310208/" class="title">让电源键关机变重启</a></p>
+                            <p class="item-date"><time datetime="2021-05-18T13:37:03.000Z" itemprop="datePublished">2021-05-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/3043345977/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/8qu-img2.png)" alt="八圈9.5版关闭侧边栏工具" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/3043345977/" class="title">八圈9.5版关闭侧边栏工具</a></p>
+                            <p class="item-date"><time datetime="2019-10-12T13:58:27.000Z" itemprop="datePublished">2019-10-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/365528154/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/c9ae1552366758.png)" alt="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/page/365528154/" class="title">显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码</a></p>
+                            <p class="item-date"><time datetime="2019-10-11T04:37:00.000Z" itemprop="datePublished">2019-10-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2203111529/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/wblmzs.gif)" alt="网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2203111529/" class="title">网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别</a></p>
+                            <p class="item-date"><time datetime="2019-03-21T13:56:27.000Z" itemprop="datePublished">2019-03-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/other/">其他</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">23</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/">2001</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi/" rel="tag">delphi</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3/" rel="tag">dcef3</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">去广告</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui/" rel="tag">unigui</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ae%E6%A8%A1%E6%9D%BF/" rel="tag">ae模板</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" rel="tag">励志视频</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aardio/" rel="tag">aardio</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2008%E5%A5%A5%E8%BF%90%E4%BC%9A/" style="font-size: 10px;">2008奥运会</a> <a href="/tags/8%E5%9C%88%E5%B9%BF%E5%91%8A/" style="font-size: 10px;">8圈广告</a> <a href="/tags/aardio/" style="font-size: 11.25px;">aardio</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.75px;">ae模板</a> <a href="/tags/autoit/" style="font-size: 11.25px;">autoit</a> <a href="/tags/ce/" style="font-size: 10px;">ce</a> <a href="/tags/dcef3/" style="font-size: 17.5px;">dcef3</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/delphi/" style="font-size: 20px;">delphi</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview/" style="font-size: 10px;">listview</a> <a href="/tags/php/" style="font-size: 16.25px;">php</a> <a href="/tags/remoteado/" style="font-size: 10px;">remoteado</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui/" style="font-size: 13.75px;">unigui</a> <a href="/tags/vbs/" style="font-size: 10px;">vbs</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%98%A5%E8%8A%82/" style="font-size: 10px;">中国春节</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" style="font-size: 10px;">内存修改</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.5px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 18.75px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 16.25px;">去广告</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.25px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 13.75px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 10px;">汇编</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.5px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 15px;">视频</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a> <a href="/tags/%E9%94%90%E8%B5%B7/" style="font-size: 11.25px;">锐起</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 百脑问</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "false",
+            appId: "jMSxmHAw9NqD0eJ9vLdM0oBN-gzGzoHsz",
+            appKey: "UC5hUmLTn6CnDrPuQLRXHX4y",
+            placeholder: "必须吐槽一下!",
+            avatar:"mp",
+            recordIP:"true",
+            visitor: "true"
+        });
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>	
+</body>
+</html>
