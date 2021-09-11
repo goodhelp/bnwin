@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>简单的聊天菜单 | 百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="原创软件" />
+    
+    <meta name="description" content="这是一个分类菜单，比如显示聊天菜单等几个程序的工具，此菜单可以定义命令行参数 第一个参数是每一行显示几个图标第二个参数是标题名称第三个参数是配置文件名第四个参数是背景图片 比如参数写为 4 办公软件 bgmenu.ini skin.jpg 那么这表示使用bgmenu.ini配置文件，skin.jpg做为背景图片，每行显示4个图标，标题为 办公软件 的菜单 效果看一下，仿QQ界面，是很漂亮的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的聊天菜单">
+<meta property="og:url" content="https://goodhelp.gitee.io/2017/10/26/22">
+<meta property="og:site_name" content="百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!">
+<meta property="og:description" content="这是一个分类菜单，比如显示聊天菜单等几个程序的工具，此菜单可以定义命令行参数 第一个参数是每一行显示几个图标第二个参数是标题名称第三个参数是配置文件名第四个参数是背景图片 比如参数写为 4 办公软件 bgmenu.ini skin.jpg 那么这表示使用bgmenu.ini配置文件，skin.jpg做为背景图片，每行显示4个图标，标题为 办公软件 的菜单 效果看一下，仿QQ界面，是很漂亮的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://goodhelp.gitee.io/images/1-259x300.png">
+<meta property="article:published_time" content="2017-10-26T13:20:45.000Z">
+<meta property="article:modified_time" content="2021-09-11T13:22:54.790Z">
+<meta property="article:author" content="百脑问">
+<meta property="article:tag" content="原创软件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodhelp.gitee.io/images/1-259x300.png">
+    
+
+    
+        <link rel="alternate" href="/" title="百脑问+ | 人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+	<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/soft/">软件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/code/">源码</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/material/">素材</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/article/">文章</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/other/">其他</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/soft/">软件</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-soft/简单的聊天菜单" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        简单的聊天菜单
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/10/26/22" class="article-date">
+       <time datetime="2017-10-26T13:20:45.000Z" itemprop="datePublished">2017-10-26</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2017/10/26/22" class="article-date">
+     <time datetime="2021-09-11T13:22:54.790Z" itemprop="dateModified">2021-09-11</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a>
+    </div>
+
+                
+   <span id="/2017/10/26/22" class="leancloud-visitors" data-flag-title="简单的聊天菜单">
+   <i class="fa fa-eye"></i>
+   <span class="post-meta-item-text">阅读次数: </span>
+   <i class="leancloud-visitors-count">1000000</i>
+   </span>
+
+
+                
+   <div class="article-counter">
+      <i class="fa fa-file-word-o"></i>
+      <span class="post-count-item-text">本文字数: </span>
+      <span class="post-count">189</span>
+      <i class="fa fa-clock-o"></i>
+      <span class="post-time-item-text">阅读时长: </span>
+      <span class="post-count">1 分钟 </span>
+   </div>
+
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p>这是一个分类菜单，比如显示聊天菜单等几个程序的工具，此菜单可以定义命令行参数</p>
+<p>第一个参数是每一行显示几个图标<br>第二个参数是标题名称<br>第三个参数是配置文件名<br>第四个参数是背景图片</p>
+<p>比如参数写为</p>
+<p>4 办公软件 bgmenu.ini skin.jpg</p>
+<p>那么这表示使用bgmenu.ini配置文件，skin.jpg做为背景图片，每行显示4个图标，标题为 办公软件 的菜单</p>
+<p>效果看一下，仿QQ界面，是很漂亮的<br><img src="/images/1-259x300.png" alt=""></p>
+<img src="/images/2-284x300.png" alt="">
+
+<img src="/images/3-259x300.png" alt="">
+
+<p>下载地址：</p>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1bY8gEHz2-k2I7DskKW1eJQ">https://pan.baidu.com/s/1bY8gEHz2-k2I7DskKW1eJQ</a> 提取码: yrtq 复制这段内容后打开百度网盘手机App，操作更方便哦</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "简单的聊天菜单",
+        "image": "https://goodhelp.gitee.io/images/1-259x300.png",
+        "keywords": "原创软件",
+        "genre": "软件",
+        "datePublished": "2017-10-26",
+        "dateCreated": "2017-10-26",
+        "dateModified": "2021-09-11",
+        "url": "https://goodhelp.gitee.io/2017/10/26/22.html",
+        "description": "这是一个分类菜单，比如显示聊天菜单等几个程序的工具，此菜单可以定义命令行参数
+第一个参数是每一行显示几个图标第二个参数是标题名称第三个参数是配置文件名第四个参数是背景图片
+比如参数写为
+4 办公软件 bgmenu.ini skin.jpg
+那么这表示使用bgmenu.ini配置文件，skin.jpg做为背景图片，每行显示4个图标，标题为 办公软件 的菜单
+效果看一下，仿QQ界面，是很漂亮的
+
+
+
+",
+        "wordCount": 17
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <!-- Valine -->
+    <div class="vcomments"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+            
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="tiktok" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-tiktok"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weixin" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weixin"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://gitee.com/goodhelp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/10/26/31" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            显示器亮度调节工具
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/10/26/48" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">锐起CGO2043服务端出盘源码</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/09/11/2021091101" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/2354883490,3989130937.jpg)" alt="可实现维护通道的vbs脚本类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/2021/09/11/2021091101" class="title">可实现维护通道的vbs脚本类</a></p>
+                            <p class="item-date"><time datetime="2021-09-11T14:19:22.000Z" itemprop="datePublished">2021-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/05/18/646" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/1621350706-111.jpg)" alt="让电源键关机变重启" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/2021/05/18/646" class="title">让电源键关机变重启</a></p>
+                            <p class="item-date"><time datetime="2021-05-18T13:37:03.000Z" itemprop="datePublished">2021-05-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/10/12/630" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/8qu-img2.png)" alt="八圈9.5版关闭侧边栏工具" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/2019/10/12/630" class="title">八圈9.5版关闭侧边栏工具</a></p>
+                            <p class="item-date"><time datetime="2019-10-12T13:58:27.000Z" itemprop="datePublished">2019-10-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/10/11/625" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/c9ae1552366758.png)" alt="显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/2019/10/11/625" class="title">显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码</a></p>
+                            <p class="item-date"><time datetime="2019-10-11T04:37:00.000Z" itemprop="datePublished">2019-10-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/21/610" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/wblmzs.gif)" alt="网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/2019/03/21/610" class="title">网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别</a></p>
+                            <p class="item-date"><time datetime="2019-03-21T13:56:27.000Z" itemprop="datePublished">2019-03-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/other/">其他</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">23</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/">2001</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi/" rel="tag">delphi</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3/" rel="tag">dcef3</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui/" rel="tag">unigui</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ae%E6%A8%A1%E6%9D%BF/" rel="tag">ae模板</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">去广告</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" rel="tag">励志视频</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aardio/" rel="tag">aardio</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2008%E5%A5%A5%E8%BF%90%E4%BC%9A/" style="font-size: 10px;">2008奥运会</a> <a href="/tags/8%E5%9C%88%E5%B9%BF%E5%91%8A/" style="font-size: 10px;">8圈广告</a> <a href="/tags/aardio/" style="font-size: 11.25px;">aardio</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.75px;">ae模板</a> <a href="/tags/autoit/" style="font-size: 11.25px;">autoit</a> <a href="/tags/ce/" style="font-size: 10px;">ce</a> <a href="/tags/dcef3/" style="font-size: 17.5px;">dcef3</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/delphi/" style="font-size: 20px;">delphi</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview/" style="font-size: 10px;">listview</a> <a href="/tags/php/" style="font-size: 16.25px;">php</a> <a href="/tags/remoteado/" style="font-size: 10px;">remoteado</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui/" style="font-size: 13.75px;">unigui</a> <a href="/tags/vbs/" style="font-size: 10px;">vbs</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%98%A5%E8%8A%82/" style="font-size: 10px;">中国春节</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" style="font-size: 10px;">内存修改</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.5px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 18.75px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 12.5px;">去广告</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.25px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 13.75px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 10px;">汇编</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.5px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 15px;">视频</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a> <a href="/tags/%E9%94%90%E8%B5%B7/" style="font-size: 11.25px;">锐起</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 百脑问</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "false",
+            appId: "jMSxmHAw9NqD0eJ9vLdM0oBN-gzGzoHsz",
+            appKey: "UC5hUmLTn6CnDrPuQLRXHX4y",
+            placeholder: "必须吐槽一下!",
+            avatar:"mp",
+            recordIP:"true",
+            visitor: "true"
+        });
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>	
+</body>
+</html>

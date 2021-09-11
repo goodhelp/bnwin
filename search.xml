@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>可实现维护通道的vbs脚本类</title>
+      <link href="/2021/09/11/2021091101.html"/>
+      <url>/2021/09/11/2021091101.html</url>
+      
+        <content type="html"><![CDATA[<img src="/images/2354883490,3989130937.jpg" alt=""><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>闲来无事，为了方便，用vbs写了一个类！ 别瞧不上vbs脚本语言，其实当你学习的语言越多，发现所有编程语言都是那么一回事，最终的目的都是完成某项功能，vbs的 好处就是可以使用系统的计事本直接编辑，不需要任何语言安装环境，python开源库是多，但却必须安装python的语言环境， c++等语言生成的程序功能是可以足够强大，但要立即增加修改功能却很麻烦(因为需要安装编程环境)！ vbs特别适合拿来即用，代码不对随时可以修改！就好比批处理虽然功能不强，windows却一直保留到现在！也许windows的激活 slmgr.vbs和office的激活ospp.vbs一直保留到现在的原因可能就是说明vbs还是有存在的道理的!如果你仔细看了这个vbs自定义 类，你就会发现vbs也可以实现很多功能！比如这个vbs类中的中止线程函数，所有语言实现，都是取得线程ID，然后发送中止线 程的消息，其实此自定义类就用了三句代码，这就是其他软件中的根据窗口关闭网吧广告的功能，也可以中止那些在任务管理器 中无法结束的进程！</p><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>vbs常用函数代码，包括一些特色函数，杀毒软件可能会报毒，使用notepad++等软件可直接查看源代码，未进行任何加密 最大的特色，可以让vbs使用windows api函数，api能办到的功能，vbs也能做到! 自定义vbs类的函数，见demo\demo.vbs文件</p><h2 id="软件架构"><a href="#软件架构" class="headerlink" title="软件架构"></a>软件架构</h2><p>lib目录的MyVbsClass.vbs和dynwrapx.dll为核心文件，即vbs自定义类</p><p>demo为示例代码， 维护通道是使用vbs自定义类写的网吧开机维护通道</p><p>虽然是明文方式写的vbs脚本，一样能实现如深蓝维护通道等类软件中的绝大部份功能，一样可以关闭网吧的广告及广告窗口!</p><h2 id="安装教程"><a href="#安装教程" class="headerlink" title="安装教程"></a>安装教程</h2><p>把lib目录复制一份<br>新建一目录，引用lib中的MyVbsClass.vbs即可使用其全部函数，引用方法见demo\demo.vbs<br>仅适用于64位系统</p><h2 id="当前实现功能"><a href="#当前实现功能" class="headerlink" title="当前实现功能"></a>当前实现功能</h2><p>‘call myfun.MakeLink(“罗技鼠标设置”,”G:\常用软件\罗技鼠标游戏驱动\Rungame.exe”,””,”G:\常用软件\罗技鼠标游戏驱动\48731.ico”) ‘创建桌面快捷方式<br>‘call myfun.MakeUrl(“<a href="http://www.bnwin.com&quot;,&quot;百脑问&quot;,true/">http://www.bnwin.com&quot;,&quot;百脑问&quot;,true</a>) ‘收藏夹栏添加网址<br>‘call myfun.SetHomepage(“<a href="https://www.baidu.com&quot;/">https://www.baidu.com&quot;</a>) ‘设置ie主页<br>‘msgbox myfun.GetExePath(“C:\Program Files\Internet Explorer\iexplore.exe”) ‘根据路径取目录<br>‘msgbox myfun.IsExitFile(“c:\abc.txt”) ‘判断文件是否存在<br>‘msgbox myfun.IsExitDir(“c:\abc”,true) ‘判断目录是否存在<br>‘call myfun.MyCreateFolder(“c:\abc\1233\dd”)  ‘创建目录可多级<br>‘call myfun.XCopy(“D:\dump”,”d:\456”,true) ‘拷目录 多级<br>‘call myfun.CopyFile(“C:\Windows\win.ini”,”d:\323\aaa.txt”,true)  ‘拷贝文件<br>‘call myfun.DelFile(“c:\abd\123.txt”)  ‘删除文件<br>‘call myfun.DelDir(“c:\abd&quot;)  ‘删除目录<br>‘Call myfun.Run(“””C:\Program Files (x86)\Internet Explorer\iexplore.exe””  <a href="http://www.bnwin.com&quot;,false/">http://www.bnwin.com&quot;,false</a>)  ‘路径带有空格，要用引号把空格路径括起，会检测文件是否存在，不能用于执行dos命令<br>‘msgbox myfun.ping(“192.168.0.1”)  ‘ping是否在线<br>‘MsgBox myfun.GetMac   ‘取得网卡mac地址<br>‘MsgBox myfun.GetIP   ‘取得本机ip地址<br>‘MsgBox myfun.GetComputerName   ‘取得机器名<br>‘MsgBox myfun.GetOS  ‘取得操作系统是win7还是win10<br>‘MsgBox myfun.X86orX64  ‘系统是64位还是32位<br>‘call myfun.ReadBinary(“c:\windows\notepad.exe”,”d:\123.txt”) ‘把文件生成16进制字符串文本文件<br>‘call myfun.WriteBinary(“d:\123.exe”,”d:\123.txt”,true)  ‘把16进制文本文件还原为可执行文件<br>‘call myfun.Sleep(5)  ‘延时5秒<br>‘call myfun.ImportReg(“.\reg.reg”)  ‘导入注册表<br>‘call myfun.RunBat(“.\test.bat”)  ‘运行批处理文件<br>‘myfun.Runcmd “dir c:\ &gt;c:\1.txt” ‘运行dos命令<br>‘call myfun.import(“d:\abc.vbs”)  ‘导入vbs文件<br>‘call myfun.CloseProcess(“SunloginRemote.exe”)  ‘关闭指定进程<br>‘call myfun.IsProcess(“qq.exe”)     ‘检查指定进程是否存在<br>‘call myfun.IsProcessEx(“qq.exe|notepad.exe”)  ‘指定指定列表进程是否存在<br>‘call myfun.CloseProcessEx(“qq.exe|wechat.exe”)  ‘结束进程列表<br>‘call myfun.RegExpTest(“sdf|456”,”123456789”)  ‘正则判断是否存在指定内容<br>‘call myfun.KillWindow(“”,”计算机”)  ‘关闭指定类名或标题的窗口<br>‘call myfun.WriteReg(“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\Start Page”,”<a href="https://www.baidu.com&quot;,&quot;&quot;/">https://www.baidu.com&quot;,&quot;&quot;</a>)  ‘写注册表值<br>‘MsgBox myfun.ReadReg(“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\Start Page”) ‘读注册表值<br>‘call myfun.HideWindow(“Notepad”,””) ‘按类名或标题隐藏窗口 未关闭<br>‘call myfun.KillThread(“Notepad”,””)  ‘按类名或标题中止显示此窗口的线程 如果是单线程，程序则会退出 可用于关闭广告窗口<br>‘call myfun.DownFile(“<a href="http://gh.api.99988866.xyz/github.com/Chuyu-Team/Dism-Multi-language/releases/download/v10.1.1001.10/Dism++10.1.1001.10_d4ba4eb035254b3326d6adc6638bc9c8daea7018.zip&quot;,&quot;d:/dism.zip&quot;">http://gh.api.99988866.xyz/github.com/Chuyu-Team/Dism-Multi-language/releases/download/v10.1.1001.10/Dism++10.1.1001.10_d4ba4eb035254b3326d6adc6638bc9c8daea7018.zip&quot;,&quot;d:\dism.zip&quot;</a>)  ‘下载远程文件<br>‘call myfun.SyncTime  ‘同步时间<br>‘MsgBox myfun.GetSysRunTime() ‘取得系统开机时间 关机时间 返回时间较长，可用于学习查询系统日志<br>‘call myfun.log(“测试”)   ‘写日志文件 日志文件在当前脚本下，以日期命名<br>‘MsgBox myfun.IsSuperAdmin() ‘判断无盘是否有超级用户<br>‘MsgBox myfun.FromUnixTime(“1630211522”,8) ‘unix时间转北京时间<br>‘msgbox myfun.ToUnixTime(now, 8)  ‘把当前时间转成unix时间<br>‘myfun.WriteIni “节点”,”键名”,”值”,”d:\123.ini”   ‘写INI文件<br>‘msgbox myfun.ReadIni(“节点”,”键名”,”默认值”,”d:\123.ini”) ‘读ini文件<br>‘call myfun.CreatLink(“d:\pg”,”C:\Program Files (x86)”)  ‘’把C盘程序目录映射到D盘pg目录,访问D:\pg相当于访问C:\Program Files (x86)内容<br>‘msgbox “系统运行了：”&amp;myfun.GetOsRunTime&amp;”分钟”<br>‘call myfun.SysVolme  ‘把系统音量调到最大<br>‘call myfun.Depolicy(“禁止常用端口”)  ‘创建本机安全策略禁止135 137 139 445 3389端口<br>‘call myfun.CloseMonitor(2) ‘2关闭显示 -1打开显示器<br>‘call myfun.RunAu3(“E:\软件工程\vbs\demo\monitor.au3”,false) ‘恢复显示器所有设置<br>‘call myfun.RestMonitor() ‘恢复显示器所有设置</p><h2 id="开源地址：https-gitee-com-goodhelp-vbs-code"><a href="#开源地址：https-gitee-com-goodhelp-vbs-code" class="headerlink" title="开源地址：https://gitee.com/goodhelp/vbs-code"></a>开源地址：<a href="https://gitee.com/goodhelp/vbs-code">https://gitee.com/goodhelp/vbs-code</a></h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+            <tag> 开源项目 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>让电源键关机变重启</title>
       <link href="/2021/05/18/646.html"/>
       <url>/2021/05/18/646.html</url>
@@ -20,9 +47,36 @@
       
         <tags>
             
+            <tag> 原创软件 </tag>
+            
             <tag> 关机重启 </tag>
             
             <tag> 电源键 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>八圈9.5版关闭侧边栏工具</title>
+      <link href="/2019/10/12/630.html"/>
+      <url>/2019/10/12/630.html</url>
+      
+        <content type="html"><![CDATA[<img src="/images/8qu-img2.png" alt="">如果说8圈智能场所管理平台等，提高了网吧运营管理的效率，让整个管理流程更加便捷；那么8圈机器人，就是让整个运营管理更加智能化，降低人为因素造成的失误，在原有的基础上提高运营管理的准确性、安全性。<p>据李金平介绍，8圈机器人能够轻松解决困扰网吧业主的收银员不负责，收银员成本高，招聘难，员工不稳定，财务统计困难，身份证冒用现象频发等系列问题。</p><p>不仅如此，8圈机器人优势明显：</p><p>设置简单、操作方便，无需专人指导一点就会；全天候24小时工作，节省人工成本开支提高竞争力；在财务管理上，自助收银，机器人收入按班次自动汇总，当班收入掌上8圈随时可查，更安全；AI人脸识别，杜绝人证不一致。</p><p>9.5版去侧边栏下载地址:</p><p><a href="https://item.taobao.com/item.htm?ft=t&id=655108849725">点击开始下载</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
             
         </tags>
       
@@ -60,11 +114,61 @@
     
     
     <entry>
+      <title>网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别</title>
+      <link href="/2019/03/21/610.html"/>
+      <url>/2019/03/21/610.html</url>
+      
+        <content type="html"><![CDATA[<p>网吧耳麦助手是一款自动设置系统主音量，自动设置麦克风音量，自动设置麦克风加强级别，波形显示麦克风音量的软件！</p><p>可使用命令行运行，命令行无界面，运行后自动退出<br>参数一 为 允许/禁止所有声音效果 0为允许 1为禁止<br>参数二 为 设置主音量 取值范围为0-100<br>参数三 为 设置麦克风音量 取值范围为0-100<br>参数四 为 设置麦克风加强 取值范围为 0 10 20 30 40<br>例如 autosound.exe 1 100 100 30表示禁止所有声音效果，<br>主音量设置为100 麦克风音量为100 麦克风加强为30</p><p>运行本软件，看下面的麦克风检测的动态条，就可知麦克风是否正常!</p><p>本软件支持win7 win10 不支持winxp<br><img src="/images/wblmzs.gif" alt="网吧耳麦助手演示动画"></p><p>下载地址</p><p>链接: <a href="https://pan.baidu.com/s/1b5KCsTAPffjVh40SyUUuVw">https://pan.baidu.com/s/1b5KCsTAPffjVh40SyUUuVw</a> 提取码: sek6 复制这段内容后打开百度网盘手机App，操作更方便哦 解压密码 bnwin.com</p><p>加强版自动检测上报麦克风是否损坏，方便及时更换麦克风损坏的耳机，不用一台一台的试耳麦是否完好!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>8圈计费系统9.5独立挂机_充值_换机_下机等功能工具</title>
+      <link href="/2019/03/21/607.html"/>
+      <url>/2019/03/21/607.html</url>
+      
+        <content type="html"><![CDATA[<p>8圈计费系统独立挂机\充值\换机\下机等功能工具<br>适用于8圈 9.5版</p><p>2019-03-24 新增参数二支持</p><p>参数二为1，按8圈计费原生方式显示，为空或其他值，则直接显示功能界面!</p><p>如 8圈挂机.exe 1 1 表示按8圈计费原生方式显示下机!而 8圈挂机.exe 1 则直接显示下机界面，不会有8圈的主界面! 如 8圈挂机.exe 0 1 则按8圈计费原生方式显示挂机</p><p>参数 1 下机<br>参数 2 换机<br>参数 3 呼叫<br>参数 4 充值<br>参数 5 去上网<br>参数 6 商城<br>参数 7 聊天<br>参数 8 修改密码<br>参数 9 包时<br>不加参数或其他值 挂机<br><img src="/images/lock9.5.gif" alt=""></p><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址:"></a>下载地址:</h2><p><a href="https://item.taobao.com/item.htm?ft=t&id=655874499629">点我开始下载</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>单机游戏死亡阴影aardio内存修改器源码</title>
       <link href="/2018/10/26/594.html"/>
       <url>/2018/10/26/594.html</url>
       
-        <content type="html"><![CDATA[<p>aardio是专用于桌面软件快速开发的新一代混合型编程语言 – 具有动态语言轻便、灵活的特性，而且又可以同时支持静态类型开发，象静态语言那样使用。aardio可以直接支持原生DLL，即使是外部EXE进程中的函数，也可以使用一句代码声明为普通的aardio函数对象( 原生call支持 )，aardio支持非常多的标准调用约定，例如 stdcall，cdecl，thiscall，fastcall，regparm(n) 等调用约定都可以支持。aardio虽然小，但支持的接口很丰富、可以支持com静态动态双接口，象VBS一样原生支持com对象。</p><p>以下是使用aardio写的修改单机游戏死亡阴影3的游戏数据源码，仅供学习aardio使用!新建一个aardio代码文件，把下面代码复制到代码文件中，就可直接运行!</p><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win.ui;</span><br><span class="line"><span class="keyword">import</span> process;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//声明变量hero3,jz</span></span><br><span class="line">var hero3,jz;</span><br><span class="line">hero3=process.find(<span class="string">&quot;Heroes3.exe&quot;</span>)</span><br><span class="line"><span class="keyword">if</span>(hero3)&#123;</span><br><span class="line">    <span class="comment">//把基址赋值给jz变量</span></span><br><span class="line">    jz=hero3.readNumber(<span class="number">0</span>x82B0BC)        </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    win.msgbox(<span class="string">&quot;请您先运行游戏&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*DSG&#123;&#123;*/</span></span><br><span class="line">var winform = win.form(text=<span class="string">&quot;死亡阴影修改器&quot;</span>;left=<span class="number">300</span>;right=<span class="number">440</span>;bottom=<span class="number">247</span>;max=<span class="literal">false</span>;parent=...)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=<span class="string">&quot;button&quot;</span>;text=<span class="string">&quot;修改&quot;</span>;left=<span class="number">33</span>;top=<span class="number">202</span>;right=<span class="number">105</span>;bottom=<span class="number">237</span>;z=<span class="number">1</span>&#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">/*&#125;&#125;*/</span></span><br><span class="line"> </span><br><span class="line">bqm = &#123; <span class="string">&quot;水晶：&quot;</span>;<span class="string">&quot;水银：&quot;</span>;<span class="string">&quot;石头：&quot;</span>;<span class="string">&quot;金钱：&quot;</span>;<span class="string">&quot;木材：&quot;</span>;<span class="string">&quot;宝石：&quot;</span>;<span class="string">&quot;硫磺：&quot;</span> &#125;</span><br><span class="line">py  = &#123; sj=Oxac;sy=Oxa0;st=Oxa4;jq=<span class="number">0</span>xb4;mc=Ox9c;bs=<span class="number">0</span>xb0;lh=Oxa8 &#125;</span><br><span class="line">bjk = &#123; <span class="string">&quot;sj&quot;</span>;<span class="string">&quot;sy&quot;</span>;<span class="string">&quot;st&quot;</span>;<span class="string">&quot;jq&quot;</span>;<span class="string">&quot;mc&quot;</span>;<span class="string">&quot;bs&quot;</span>;<span class="string">&quot;lh&quot;</span> &#125;</span><br><span class="line">tab = &#123; &#125;</span><br><span class="line"> </span><br><span class="line">winform.button.oncommand = <span class="built_in">function</span>(id,event)&#123; </span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;#bjk;<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(winform[<span class="string">&quot;edit_&quot;</span>+bjk[ i ]].text != <span class="number">0</span>&amp;&amp;winform[<span class="string">&quot;edit_&quot;</span>+bjk[ i ]].text !=<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">            table.push(tab,bjk[ i ])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;#tab;<span class="number">1</span>)&#123; </span><br><span class="line">        <span class="comment">//win.msgbox(winform[&quot;edit_&quot;+tab[ i ]].text,&quot;死亡阴影修改器&quot;)</span></span><br><span class="line">        hero3.writeNumber(jz+py[tab[ i ]],winform[<span class="string">&quot;edit_&quot;</span>+tab[ i ]].text)</span><br><span class="line">    &#125;</span><br><span class="line">    tab=&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var topp = <span class="number">5</span></span><br><span class="line">var bott = <span class="number">25</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;#bqm;<span class="number">1</span>)&#123;</span><br><span class="line">    winform.add( [<span class="string">&quot;edit_&quot;</span>+bjk[ i ]]=&#123;num=<span class="number">1</span>;bottom=bott;text=<span class="string">&quot;999&quot;</span>;left=<span class="number">50</span>;top=topp;z=<span class="number">3</span>;right=<span class="number">114</span>;edge=<span class="number">1</span>;cls=<span class="string">&quot;edit&quot;</span> &#125;)</span><br><span class="line">    winform.add( [<span class="string">&quot;static&quot;</span>+i]=&#123; bottom=bott;right=<span class="number">52</span>;left=<span class="number">16</span>;text=bqm[ i ];top=topp;z=<span class="number">1</span>;transparent=<span class="number">1</span>;cls=<span class="string">&quot;static&quot;</span>&#125;)</span><br><span class="line">    topp+=<span class="number">24</span></span><br><span class="line">    bott+=<span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><p>其中的基址0x82B0BC，及偏移量为什么是这个数据，就需要你使用ce自己分析了! 对aardio不熟悉可以查看在线手机 aardio使用手册</p>]]></content>
+        <content type="html"><![CDATA[<img src="/images/2012-2_2012216161145996090.jpg" alt="">aardio是专用于桌面软件快速开发的新一代混合型编程语言 – 具有动态语言轻便、灵活的特性，而且又可以同时支持静态类型开发，象静态语言那样使用。aardio可以直接支持原生DLL，即使是外部EXE进程中的函数，也可以使用一句代码声明为普通的aardio函数对象( 原生call支持 )，aardio支持非常多的标准调用约定，例如 stdcall，cdecl，thiscall，fastcall，regparm(n) 等调用约定都可以支持。aardio虽然小，但支持的接口很丰富、可以支持com静态动态双接口，象VBS一样原生支持com对象。<p>以下是使用aardio写的修改单机游戏死亡阴影3的游戏数据源码，仅供学习aardio使用!新建一个aardio代码文件，把下面代码复制到代码文件中，就可直接运行!</p><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win.ui;</span><br><span class="line"><span class="keyword">import</span> process;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//声明变量hero3,jz</span></span><br><span class="line">var hero3,jz;</span><br><span class="line">hero3=process.find(<span class="string">&quot;Heroes3.exe&quot;</span>)</span><br><span class="line"><span class="keyword">if</span>(hero3)&#123;</span><br><span class="line">    <span class="comment">//把基址赋值给jz变量</span></span><br><span class="line">    jz=hero3.readNumber(<span class="number">0</span>x82B0BC)        </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    win.msgbox(<span class="string">&quot;请您先运行游戏&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*DSG&#123;&#123;*/</span></span><br><span class="line">var winform = win.form(text=<span class="string">&quot;死亡阴影修改器&quot;</span>;left=<span class="number">300</span>;right=<span class="number">440</span>;bottom=<span class="number">247</span>;max=<span class="literal">false</span>;parent=...)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=<span class="string">&quot;button&quot;</span>;text=<span class="string">&quot;修改&quot;</span>;left=<span class="number">33</span>;top=<span class="number">202</span>;right=<span class="number">105</span>;bottom=<span class="number">237</span>;z=<span class="number">1</span>&#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">/*&#125;&#125;*/</span></span><br><span class="line"> </span><br><span class="line">bqm = &#123; <span class="string">&quot;水晶：&quot;</span>;<span class="string">&quot;水银：&quot;</span>;<span class="string">&quot;石头：&quot;</span>;<span class="string">&quot;金钱：&quot;</span>;<span class="string">&quot;木材：&quot;</span>;<span class="string">&quot;宝石：&quot;</span>;<span class="string">&quot;硫磺：&quot;</span> &#125;</span><br><span class="line">py  = &#123; sj=Oxac;sy=Oxa0;st=Oxa4;jq=<span class="number">0</span>xb4;mc=Ox9c;bs=<span class="number">0</span>xb0;lh=Oxa8 &#125;</span><br><span class="line">bjk = &#123; <span class="string">&quot;sj&quot;</span>;<span class="string">&quot;sy&quot;</span>;<span class="string">&quot;st&quot;</span>;<span class="string">&quot;jq&quot;</span>;<span class="string">&quot;mc&quot;</span>;<span class="string">&quot;bs&quot;</span>;<span class="string">&quot;lh&quot;</span> &#125;</span><br><span class="line">tab = &#123; &#125;</span><br><span class="line"> </span><br><span class="line">winform.button.oncommand = <span class="built_in">function</span>(id,event)&#123; </span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;#bjk;<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(winform[<span class="string">&quot;edit_&quot;</span>+bjk[ i ]].text != <span class="number">0</span>&amp;&amp;winform[<span class="string">&quot;edit_&quot;</span>+bjk[ i ]].text !=<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">            table.push(tab,bjk[ i ])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;#tab;<span class="number">1</span>)&#123; </span><br><span class="line">        <span class="comment">//win.msgbox(winform[&quot;edit_&quot;+tab[ i ]].text,&quot;死亡阴影修改器&quot;)</span></span><br><span class="line">        hero3.writeNumber(jz+py[tab[ i ]],winform[<span class="string">&quot;edit_&quot;</span>+tab[ i ]].text)</span><br><span class="line">    &#125;</span><br><span class="line">    tab=&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">var topp = <span class="number">5</span></span><br><span class="line">var bott = <span class="number">25</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;#bqm;<span class="number">1</span>)&#123;</span><br><span class="line">    winform.add( [<span class="string">&quot;edit_&quot;</span>+bjk[ i ]]=&#123;num=<span class="number">1</span>;bottom=bott;text=<span class="string">&quot;999&quot;</span>;left=<span class="number">50</span>;top=topp;z=<span class="number">3</span>;right=<span class="number">114</span>;edge=<span class="number">1</span>;cls=<span class="string">&quot;edit&quot;</span> &#125;)</span><br><span class="line">    winform.add( [<span class="string">&quot;static&quot;</span>+i]=&#123; bottom=bott;right=<span class="number">52</span>;left=<span class="number">16</span>;text=bqm[ i ];top=topp;z=<span class="number">1</span>;transparent=<span class="number">1</span>;cls=<span class="string">&quot;static&quot;</span>&#125;)</span><br><span class="line">    topp+=<span class="number">24</span></span><br><span class="line">    bott+=<span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><p>其中的基址0x82B0BC，及偏移量为什么是这个数据，就需要你使用ce自己分析了! 对aardio不熟悉可以查看在线手机 aardio使用手册</p>]]></content>
       
       
       <categories>
@@ -91,7 +195,7 @@
       <link href="/2018/10/26/596.html"/>
       <url>/2018/10/26/596.html</url>
       
-        <content type="html"><![CDATA[<p>aardio的listview自绘源代码，在aardio新建一代码文件，复制下面的代码到代码文件中，直接运行就可以看到效果!</p><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win.ui;</span><br><span class="line"><span class="comment">/*DSG&#123;&#123;*/</span></span><br><span class="line">var winform = win.form(text=<span class="string">&quot;listview中添加进度条演示&quot;</span>;right=<span class="number">945</span>;bottom=<span class="number">474</span>)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=<span class="string">&quot;button&quot;</span>;text=<span class="string">&quot;(点击这里随机更新一次第二行的进度值)&quot;</span>;left=<span class="number">0</span>;top=<span class="number">392</span>;right=<span class="number">944</span>;bottom=<span class="number">472</span>;font=LOGFONT(h=-<span class="number">21</span>);z=<span class="number">2</span>&#125;;</span><br><span class="line">流程编辑框=&#123;cls=<span class="string">&quot;listview&quot;</span>;left=<span class="number">0</span>;top=<span class="number">0</span>;right=<span class="number">946</span>;bottom=<span class="number">384</span>;edge=<span class="number">1</span>;font=LOGFONT(h=-<span class="number">19</span>;name=<span class="string">&#x27;FontAwesome&#x27;</span>);fullRow=<span class="number">1</span>;vscroll=<span class="number">1</span>;z=<span class="number">1</span>&#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">/*&#125;&#125;*/</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> win.fontAwesome;</span><br><span class="line"><span class="keyword">import</span> win.graphics;</span><br><span class="line"><span class="keyword">import</span> win.imageList;</span><br><span class="line">var imagelist = win.imageList(<span class="number">5</span>,<span class="number">34</span>);</span><br><span class="line">winform.流程编辑框.setImageList( imagelist,<span class="number">1</span><span class="comment">/*_LVSIL_SMALL*/</span> );</span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;&quot;</span>,<span class="number">30</span>,,<span class="number">0</span>x2<span class="comment">/*_LVCFMT_CENTER*/</span>) </span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;中断&quot;</span>,<span class="number">80</span>,,<span class="number">0</span>x2<span class="comment">/*_LVCFMT_CENTER*/</span>) </span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;备注&quot;</span>,<span class="number">300</span>,,<span class="number">0</span>x0<span class="comment">/*_LVCFMT_LEFT*/</span>) </span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;功能&quot;</span>,<span class="number">100</span>,,<span class="number">0</span>x0<span class="comment">/*_LVCFMT_LEFT*/</span>)</span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;参数&quot;</span>,<span class="number">300</span>,,<span class="number">0</span>x0<span class="comment">/*_LVCFMT_LEFT*/</span>)</span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;&quot;</span>,<span class="number">30</span>,,<span class="number">0</span>x2<span class="comment">/*_LVCFMT_CENTER*/</span>)</span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;&quot;</span>,<span class="number">1</span>,,<span class="number">0</span>x2<span class="comment">/*_LVCFMT_CENTER*/</span>)</span><br><span class="line"><span class="comment">//自适应列宽度 </span></span><br><span class="line">winform.流程编辑框.adjust = <span class="built_in">function</span>(cx,cy)&#123;</span><br><span class="line">    winform.流程编辑框.fillParent(<span class="number">5</span><span class="comment">/*列序号*/</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">30</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=1000;[&quot;模式&quot;]=&quot;相对运动&quot;;[&quot;距离&quot;]=&quot;2380&quot;;[&quot;是否等待&quot;]=&quot;否&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00d&#x27;</span>;<span class="string">&#x27;\uF05e&#x27;</span>;<span class="number">100</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=300;[&quot;模式&quot;]=&quot;连续运动&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">200</span>;<span class="string">&quot;调用子程序&quot;</span>;<span class="string">&#x27;&#123;[&quot;调用子程序&quot;]=&quot;连续读传感器&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">50</span>;<span class="string">&quot;调用子程序&quot;</span>;<span class="string">&#x27;&#123;[&quot;调用子程序&quot;]=&quot;回字形对准算法&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">150</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=1000;[&quot;模式&quot;]=&quot;相对运动&quot;;[&quot;距离&quot;]=&quot;2380&quot;;[&quot;是否等待&quot;]=&quot;否&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">120</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=1000;[&quot;模式&quot;]=&quot;相对运动&quot;;[&quot;距离&quot;]=&quot;2380&quot;;[&quot;是否等待&quot;]=&quot;否&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00d&#x27;</span>;<span class="string">&#x27;\uF05e&#x27;</span>;<span class="number">10</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=300;[&quot;模式&quot;]=&quot;连续运动&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">70</span>;<span class="string">&quot;调用子程序&quot;</span>;<span class="string">&#x27;&#123;[&quot;调用子程序&quot;]=&quot;连续读传感器&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">260</span>;<span class="string">&quot;调用子程序&quot;</span>;<span class="string">&#x27;&#123;[&quot;调用子程序&quot;]=&quot;回字形对准算法&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">130</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=1000;[&quot;模式&quot;]=&quot;相对运动&quot;;[&quot;距离&quot;]=&quot;2380&quot;;[&quot;是否等待&quot;]=&quot;否&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line"> </span><br><span class="line"><span class="comment">//自绘</span></span><br><span class="line">winform.流程编辑框.onnotify = <span class="built_in">function</span>(id,code,ptr)&#123; </span><br><span class="line">        <span class="keyword">if</span>( code == <span class="number">0</span>xFFFFFFF4<span class="comment">/*_NM_CUSTOMDRAW*/</span> )&#123;</span><br><span class="line">                var lvcd = winform.流程编辑框.getNotifyCustomDraw(code,ptr);</span><br><span class="line">                <span class="keyword">if</span>( lvcd.nmcd.dwDrawStage == <span class="number">0</span>x10001<span class="comment">/*_CDDS_ITEMPREPAINT*/</span>)</span><br><span class="line">                        <span class="keyword">return</span> <span class="number">0</span>x20<span class="comment">/*_CDRF_NOTIFYSUBITEMDRAW*/</span></span><br><span class="line">                elseif( lvcd.nmcd.dwDrawStage == <span class="number">1</span><span class="comment">/*_CDDS_PREPAINT*/</span> )&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="number">0</span>x20<span class="comment">/*_CDRF_NOTIFYITEMDRAW*/</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                elseif( lvcd.nmcd.dwDrawStage == ( <span class="number">0</span>x10001<span class="comment">/*_CDDS_ITEMPREPAINT*/</span> | <span class="number">0</span>x20000<span class="comment">/*_CDDS_SUBITEM*/</span>) )&#123; </span><br><span class="line">                        <span class="comment">//注意这里 iSubItem 的索引自0开始( 其他函数通常自1开始 )</span></span><br><span class="line">                        </span><br><span class="line">                        var cvs = win.graphics.canvas(); <span class="comment">// 创建一个画布</span></span><br><span class="line">                    cvs.fromHDC(lvcd.nmcd.hdc); <span class="comment">// 传入 hDC</span></span><br><span class="line">                    var nItem = lvcd.nmcd.dwItemSpec+<span class="number">1</span>;</span><br><span class="line">                    var nSubItem = lvcd.iSubItem;</span><br><span class="line">                    var rc = owner.getItemRect(nItem,nSubItem);</span><br><span class="line">                    <span class="keyword">if</span>(nSubItem == <span class="number">3</span>)&#123;</span><br><span class="line">                            </span><br><span class="line">                            var RetRc = ::RECT(rc.left+<span class="number">1</span>,rc.top+<span class="number">6</span>,rc.right-tonumber(owner.getItemText(nItem,<span class="number">3</span>)),rc.bottom-<span class="number">6</span>);</span><br><span class="line">                            cvs.brush.color = <span class="number">0</span>x00ff00;</span><br><span class="line">                            cvs.fillRect(RetRc)</span><br><span class="line">                                    </span><br><span class="line">                    &#125;</span><br><span class="line">                    cvs.pen.color = <span class="number">0</span>xebebeb; <span class="comment">// 定义画笔的颜色</span></span><br><span class="line">                    cvs.drawEdge(rc);</span><br><span class="line">                        </span><br><span class="line">                    lvcd.update()</span><br><span class="line">                    cvs.destroy();</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">return</span> <span class="number">0</span><span class="comment">/*_CDRF_DODEFAULT*/</span></span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//演示更新进度</span></span><br><span class="line">winform.button.oncommand = <span class="built_in">function</span>(id,event)&#123;</span><br><span class="line">        winform.流程编辑框.setItemText(tostring(math.random(<span class="number">10</span>,<span class="number">280</span>)),<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<img src="/images/aardio.jpg" alt="">aardio的listview自绘源代码，在aardio新建一代码文件，复制下面的代码到代码文件中，直接运行就可以看到效果!<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> win.ui;</span><br><span class="line"><span class="comment">/*DSG&#123;&#123;*/</span></span><br><span class="line">var winform = win.form(text=<span class="string">&quot;listview中添加进度条演示&quot;</span>;right=<span class="number">945</span>;bottom=<span class="number">474</span>)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=<span class="string">&quot;button&quot;</span>;text=<span class="string">&quot;(点击这里随机更新一次第二行的进度值)&quot;</span>;left=<span class="number">0</span>;top=<span class="number">392</span>;right=<span class="number">944</span>;bottom=<span class="number">472</span>;font=LOGFONT(h=-<span class="number">21</span>);z=<span class="number">2</span>&#125;;</span><br><span class="line">流程编辑框=&#123;cls=<span class="string">&quot;listview&quot;</span>;left=<span class="number">0</span>;top=<span class="number">0</span>;right=<span class="number">946</span>;bottom=<span class="number">384</span>;edge=<span class="number">1</span>;font=LOGFONT(h=-<span class="number">19</span>;name=<span class="string">&#x27;FontAwesome&#x27;</span>);fullRow=<span class="number">1</span>;vscroll=<span class="number">1</span>;z=<span class="number">1</span>&#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">/*&#125;&#125;*/</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> win.fontAwesome;</span><br><span class="line"><span class="keyword">import</span> win.graphics;</span><br><span class="line"><span class="keyword">import</span> win.imageList;</span><br><span class="line">var imagelist = win.imageList(<span class="number">5</span>,<span class="number">34</span>);</span><br><span class="line">winform.流程编辑框.setImageList( imagelist,<span class="number">1</span><span class="comment">/*_LVSIL_SMALL*/</span> );</span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;&quot;</span>,<span class="number">30</span>,,<span class="number">0</span>x2<span class="comment">/*_LVCFMT_CENTER*/</span>) </span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;中断&quot;</span>,<span class="number">80</span>,,<span class="number">0</span>x2<span class="comment">/*_LVCFMT_CENTER*/</span>) </span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;备注&quot;</span>,<span class="number">300</span>,,<span class="number">0</span>x0<span class="comment">/*_LVCFMT_LEFT*/</span>) </span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;功能&quot;</span>,<span class="number">100</span>,,<span class="number">0</span>x0<span class="comment">/*_LVCFMT_LEFT*/</span>)</span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;参数&quot;</span>,<span class="number">300</span>,,<span class="number">0</span>x0<span class="comment">/*_LVCFMT_LEFT*/</span>)</span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;&quot;</span>,<span class="number">30</span>,,<span class="number">0</span>x2<span class="comment">/*_LVCFMT_CENTER*/</span>)</span><br><span class="line">winform.流程编辑框.insertColumn(<span class="string">&quot;&quot;</span>,<span class="number">1</span>,,<span class="number">0</span>x2<span class="comment">/*_LVCFMT_CENTER*/</span>)</span><br><span class="line"><span class="comment">//自适应列宽度 </span></span><br><span class="line">winform.流程编辑框.adjust = <span class="built_in">function</span>(cx,cy)&#123;</span><br><span class="line">    winform.流程编辑框.fillParent(<span class="number">5</span><span class="comment">/*列序号*/</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">30</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=1000;[&quot;模式&quot;]=&quot;相对运动&quot;;[&quot;距离&quot;]=&quot;2380&quot;;[&quot;是否等待&quot;]=&quot;否&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00d&#x27;</span>;<span class="string">&#x27;\uF05e&#x27;</span>;<span class="number">100</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=300;[&quot;模式&quot;]=&quot;连续运动&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">200</span>;<span class="string">&quot;调用子程序&quot;</span>;<span class="string">&#x27;&#123;[&quot;调用子程序&quot;]=&quot;连续读传感器&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">50</span>;<span class="string">&quot;调用子程序&quot;</span>;<span class="string">&#x27;&#123;[&quot;调用子程序&quot;]=&quot;回字形对准算法&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">150</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=1000;[&quot;模式&quot;]=&quot;相对运动&quot;;[&quot;距离&quot;]=&quot;2380&quot;;[&quot;是否等待&quot;]=&quot;否&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">120</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=1000;[&quot;模式&quot;]=&quot;相对运动&quot;;[&quot;距离&quot;]=&quot;2380&quot;;[&quot;是否等待&quot;]=&quot;否&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00d&#x27;</span>;<span class="string">&#x27;\uF05e&#x27;</span>;<span class="number">10</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=300;[&quot;模式&quot;]=&quot;连续运动&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">70</span>;<span class="string">&quot;调用子程序&quot;</span>;<span class="string">&#x27;&#123;[&quot;调用子程序&quot;]=&quot;连续读传感器&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">260</span>;<span class="string">&quot;调用子程序&quot;</span>;<span class="string">&#x27;&#123;[&quot;调用子程序&quot;]=&quot;回字形对准算法&quot;;[&quot;是否等待&quot;]=&quot;是&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line">winform.流程编辑框.addItem( &#123; </span><br><span class="line">        text=&#123;<span class="string">&#x27;\uF00c&#x27;</span>;<span class="string">&#x27;\uF1db&#x27;</span>;<span class="number">130</span>;<span class="string">&quot;直线运动&quot;</span>;<span class="string">&#x27;&#123;[&quot;速度&quot;]=1000;[&quot;模式&quot;]=&quot;相对运动&quot;;[&quot;距离&quot;]=&quot;2380&quot;;[&quot;是否等待&quot;]=&quot;否&quot;;&#125;&#x27;</span>;<span class="string">&#x27;\uF01a&#x27;</span>&#125; </span><br><span class="line">&#125; )</span><br><span class="line"> </span><br><span class="line"><span class="comment">//自绘</span></span><br><span class="line">winform.流程编辑框.onnotify = <span class="built_in">function</span>(id,code,ptr)&#123; </span><br><span class="line">        <span class="keyword">if</span>( code == <span class="number">0</span>xFFFFFFF4<span class="comment">/*_NM_CUSTOMDRAW*/</span> )&#123;</span><br><span class="line">                var lvcd = winform.流程编辑框.getNotifyCustomDraw(code,ptr);</span><br><span class="line">                <span class="keyword">if</span>( lvcd.nmcd.dwDrawStage == <span class="number">0</span>x10001<span class="comment">/*_CDDS_ITEMPREPAINT*/</span>)</span><br><span class="line">                        <span class="keyword">return</span> <span class="number">0</span>x20<span class="comment">/*_CDRF_NOTIFYSUBITEMDRAW*/</span></span><br><span class="line">                elseif( lvcd.nmcd.dwDrawStage == <span class="number">1</span><span class="comment">/*_CDDS_PREPAINT*/</span> )&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="number">0</span>x20<span class="comment">/*_CDRF_NOTIFYITEMDRAW*/</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                elseif( lvcd.nmcd.dwDrawStage == ( <span class="number">0</span>x10001<span class="comment">/*_CDDS_ITEMPREPAINT*/</span> | <span class="number">0</span>x20000<span class="comment">/*_CDDS_SUBITEM*/</span>) )&#123; </span><br><span class="line">                        <span class="comment">//注意这里 iSubItem 的索引自0开始( 其他函数通常自1开始 )</span></span><br><span class="line">                        </span><br><span class="line">                        var cvs = win.graphics.canvas(); <span class="comment">// 创建一个画布</span></span><br><span class="line">                    cvs.fromHDC(lvcd.nmcd.hdc); <span class="comment">// 传入 hDC</span></span><br><span class="line">                    var nItem = lvcd.nmcd.dwItemSpec+<span class="number">1</span>;</span><br><span class="line">                    var nSubItem = lvcd.iSubItem;</span><br><span class="line">                    var rc = owner.getItemRect(nItem,nSubItem);</span><br><span class="line">                    <span class="keyword">if</span>(nSubItem == <span class="number">3</span>)&#123;</span><br><span class="line">                            </span><br><span class="line">                            var RetRc = ::RECT(rc.left+<span class="number">1</span>,rc.top+<span class="number">6</span>,rc.right-tonumber(owner.getItemText(nItem,<span class="number">3</span>)),rc.bottom-<span class="number">6</span>);</span><br><span class="line">                            cvs.brush.color = <span class="number">0</span>x00ff00;</span><br><span class="line">                            cvs.fillRect(RetRc)</span><br><span class="line">                                    </span><br><span class="line">                    &#125;</span><br><span class="line">                    cvs.pen.color = <span class="number">0</span>xebebeb; <span class="comment">// 定义画笔的颜色</span></span><br><span class="line">                    cvs.drawEdge(rc);</span><br><span class="line">                        </span><br><span class="line">                    lvcd.update()</span><br><span class="line">                    cvs.destroy();</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">return</span> <span class="number">0</span><span class="comment">/*_CDRF_DODEFAULT*/</span></span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//演示更新进度</span></span><br><span class="line">winform.button.oncommand = <span class="built_in">function</span>(id,event)&#123;</span><br><span class="line">        winform.流程编辑框.setItemText(tostring(math.random(<span class="number">10</span>,<span class="number">280</span>)),<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -254,6 +358,31 @@
             <tag> delphi </tag>
             
             <tag> php </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>自定义8圈桌面侧边栏_领航桌面侧边栏原理</title>
+      <link href="/2018/03/30/532.html"/>
+      <url>/2018/03/30/532.html</url>
+      
+        <content type="html"><![CDATA[<p>本软件适用于不想使用营销软件，不想关闭8圈桌面侧边栏，只想把8圈桌面侧边栏遮挡（就象领航桌面侧边栏一样把8圈的桌面侧边栏遮挡），虽然不想用营销软件但又想自定义桌面侧边栏! 那么你可以使用本自定义8圈桌面侧边栏！本软件不修改8圈任何文件，不影响8圈系统的正常功能!完全独立于8圈。<br>在网吧环境中，有时我们想不使用营销活动，不计积分，不发红包，不搞游戏活动等等，只是想使用一下呼叫网管，点歌，显示一下网吧公告等基本的功能!最重要的一点，不想使用营销软件，因为使用这些基本功能，营销软件会有广告,还有一点，在8圈计费系统中，不希望看到8圈桌面那毫无美感而不能更改的侧边栏!本软件就是适用于以上环境!功能如下</p><ul><li>遮挡8圈桌面侧边栏<br>删除本软件目录中的config.ini文件，运行本软件，自动遮档8圈桌面侧边栏，原理和领航营销软件2.0遮挡8圈桌面侧边栏一样!</li><li>可自定义侧边栏<br>在本软件skin目录中，内置了领航1.0的桌面侧边栏6款皮肤，领航2.0的桌面侧边栏，和网乐的一款桌面皮肤!只需要在config.ini中设置皮肤名称就可以显示类似营销软件的界面,比如设置  皮肤=lhv2 运行本软件则会显示领航2.0的桌面侧边栏皮肤!最重要的是你可以把桌面侧边完全当成画板，自定义桌面侧边哪儿显示什么，如何显示，只要你会html，css，js其他的语法，那么强大的自定义桌面侧边栏就会由你说了算!</li><li>自定义的侧边栏链接可运行任何程序<br>比如在自定义侧边栏的html文件中添加一个链接<a class=”ic-y1″></a> 那么我们只需要添加一个onclick事件，象这样<a class=”ic-y1″ onclick=’javascript:external.Run(“c:/Windows/system32/calc.exe”,”运行参数”)’></a>就是点击这个链接，运行机器中的计算器程序。点击桌面侧边栏就运行程序的命令是 onclick=’javascript:external.Run(“可执行程序完整路径”,”运行参数”)’  其中可执行程序完整路径的斜杠需要是/  你可以参照本软件目录的skin目录中的html皮肤修改!这样我们就可以只使用营销软件的服务端，而不使用营销软件的客户端，本软件可以和网乐营销软件服务端有效完美结合，而不使用网乐营销软件的客户端。使用其他营销软件的服务端也大同小异!比如我们想在桌面侧边栏显示美化的在线充值按钮，挂机，呼叫网管等，等只需要按照这样添加就行了！如果你想调用8圈的在线充值等功能，可以结合本站的<a href="http://www.bnwin.com/2017/12/15/332.html%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8">http://www.bnwin.com/2017/12/15/332.html软件使用</a>!</li></ul><p>如果你在8圈系统中使用了营销软件，请不要使用本软件!本软件必须运行在有8圈桌面侧边栏的环境，没有8圈桌面侧边栏，运行会什么也不会显示！如果你只是想不显示8圈桌面侧边栏，请看这儿<a href="http://www.bnwin.com/2017/10/26/42.html">http://www.bnwin.com/2017/10/26/42.html</a></p><p>看看运行效果<br><img src="/images/1522506679-1.gif" alt=""><br>软件下载地址<br>链接: <a href="https://pan.baidu.com/s/1QK67GHENwYxyuHyirvhwiQ">https://pan.baidu.com/s/1QK67GHENwYxyuHyirvhwiQ</a> 提取码: rvja 复制这段内容后打开百度网盘手机App，操作更方便哦<br>如果你觉得自带桌面侧边栏样式，不符合你的美感，你也不会html，我们可以有偿桌面侧边栏皮肤定制!</p><p>使用此软件方法绝不会提示计费系统异常，如下这种情况!<br><img src="/images/1522507998-0.png" alt=""></p><p><em><strong>本软件已停止更新，仅适合于八圈9.5以下版本</strong></em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
             
         </tags>
       
@@ -498,6 +627,31 @@
         <tags>
             
             <tag> 精品软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>自定义公告_超强的自定义网吧公告程序</title>
+      <link href="/2018/02/03/457.html"/>
+      <url>/2018/02/03/457.html</url>
+      
+        <content type="html"><![CDATA[<p>在网吧，开机一般会有一个公告程序运行，在桌面上显示一些通知，注意事项，或网吧活动等内容!现普通使用的公告是营销软件的公告，在营销软件后台设置公告，选择一个模板，开启开机运行！但营销系统的公告程序相当死板，不能自定义显示样式，并且会显示一些广告之类没用的内容!本站的自定义公告应运而生!此自定义公告程序并非只能使用在网吧，任何需要开机运行公告的地方都可以使用本程序!</p><p>自定义公告程序功能:</p><ol><li>完全自定义公告模板。你可以把桌面当成一块画板，任意制作模板，我们提供了八套模板，不会制作模板只需要改文字就可以了!如果你会html，完全可以自定义桌面在哪儿显示什么公告内容!你不会网页编辑也可以，你只要会word排版，然后把word文件存为web格式，一样可以做为公告程序显示!</li><li>随机显示模板。公告显示的目的就是让顾客注意看，并不是广告，但很多顾客开机后就关闭了，根本不会看，因为一成不变的显示方式，让顾客没有新颖感！本站自定义公告程序会根据本程序的html目录中的html模板，随机显示公告，让每次开机都保持新鲜感!如果你只想显示固定的模板，你只需要在html目录，只保留一款公告模板即可!</li><li>模板中可自定义启动程序!在设计模板时，使用onclick=’javascript:external.Run(“可执行程序”,”程序参数”)’ 来启动运行程序，比如我们在html模板中添加一按钮，然后添加onclick=’javascript:external.Run(“ClientStarter.exe”,”barapp /WebApps/web/BClient/call.html”)’  就是启动了网乐程序的呼叫网管! 需要注意的是这儿的可执行程序如果不加路径，就是在当前公告所在目录的程序，另外需要注意的加上路径或参数时，斜杠必须是正斜杠!</li></ol><p>看看其中几款公告<br><img src="/images/1517663920-1.png" alt=""><br>以图片的形式动态显示公告内容，以下是文字方式显示公告，公告窗体运行时都是动态方式出现，动感十足!<br><img src="/images/1517663961-2.png" alt=""><br><img src="/images/1517663979-3.png" alt=""><br><img src="/images/1517663993-4.png" alt=""><br><img src="/images/1517807664-1.jpg" alt=""></p><p>下载地址：</p><p>链接: <a href="https://pan.baidu.com/s/17Vx9Ad6-XbFDoptL4V2mdQ">https://pan.baidu.com/s/17Vx9Ad6-XbFDoptL4V2mdQ</a> 提取码: rnjj 复制这段内容后打开百度网盘手机App，操作更方便哦</p><p> 解压密码 bnwin.com</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
             
         </tags>
       
@@ -978,6 +1132,31 @@
     
     
     <entry>
+      <title>绝地求生pubg黑屏补丁、内存优化、画质优化工具</title>
+      <link href="/2017/12/28/356.html"/>
+      <url>/2017/12/28/356.html</url>
+      
+        <content type="html"><![CDATA[<p>本绝地求生工具包括内存优化，画质增强(reshade)，黑屏补丁，跳VC插件检测功能！</p><p>本绝地求生pubg黑屏补丁和内存优化补丁特点:此黑屏补丁，不需要开机运行，绝地求生运行时运行本补丁即可，试想，开机运行的黑屏补丁，顾客不玩绝地求生你也运行？不是问题？黑屏补丁不管你在盖伦或是云更新下载的绝地求生，只要是绝地求生就行，本黑屏补丁直接检测游戏本身!内存优化，在游戏中不会出现卡顿现象，内存优化不会回收绝地大逃杀已经使用的内存，只回收非绝地求生程序所占的内存，本来内存优化就是把内存给绝地求生使用， 你再回收绝地求生的内存，会不会造成游戏中卡一下，你自己都想象得到!有些顾客先玩几把英雄联盟，再玩一会儿穿越火线，然后朋友一起约起玩绝地大逃杀，大家都知道腾讯的游戏退出并不是运行游戏时启动的程序在退出时都会退出，并且有些顾客根本就不退出英雄联盟等游戏，就直接运行绝地大逃杀，在你只有8G内存的情况下，顾客就会甩鼠标，拍键盘，说你机器卡得不得了!关键是他开机运行了什么？所以本内存优化补丁会直接优化这些根本不是当前需要运行的程序所占内存!使用所谓的内存优化专家，也是会收回绝地求生所占内存，游戏中也是会卡一下的，他是不会区分的！使用本补丁，无盘系统8G内存，回写缓存设置1G，一直玩绝地求生，不重启不卡!</p><ol><li>绝地大逃杀pubg黑屏问题，在绝地大逃杀pc3.5.5更新后，到现在pc3.5.7都存在运行绝地大逃杀会一直黑屏，鼠标要点一下才会进入游戏，这影响了用户的体验，不明白的玩家会认为是机器配置问题，我们来看看这个现象，看有黑屏的动画<img src="/images/jdfw.gif" alt="">使用pubg黑屏补丁，解决后没有黑屏的动画<img src="/images/jdfw1.gif" alt="">一直快速进入游戏界面！</li><li>绝地求生画质增强(reshade)功能,本功能集成官方认可的reshade画质增强插件，运行时在Steam登录窗口显示按钮，由用户自由选择是否开启reshade画质增强!不需要去下载安装reshade，不需要你为了使用reshace去设置找pubg的路径，全自动启用reshade画质插件，退出本绝地求生工具，自动清理reshade文件，不留痕迹，不会影响原本的pubg环境!</li><li>同时本绝地求生工具具有windows优化大师的内存优化功能，可以设置小于多少内存的，多少分钟并且物理内存使用率超过91%进行一次内存回收，留出更多的物理内存给绝地大逃杀pubg使用。本绝地求生工具的内存优化，优化时游戏中不会出现卡顿情况!</li><li>绝地大逃杀pubg内存优化补丁的原理，使用了SetProcessWorkingSetSize函数，把物理内存占用存在虚拟内存上，windows的这个SetProcessWorkingSetSize函数来设置应用程序最小和最大的运行空间，只会保留需要的内存。当应用程序被闲置或系统内存太低时，操作系统会自动调用这个机制来设置应用程序的内存。如果你的物理内存小于8G，可以使用本补丁进行优化，如果你16G内存就不需要使用了！此种优化内存并非优秀的方法，市面上的优化内存软件基本使用此原理，最优秀的方法是添加物理内存！</li><li>使用方法：运行绝地大逃杀时启动本绝地求生工具的setup.exe文件即可，你可以在游戏菜单中进行设置!steam退出，本补丁自动退出！<img src="/images/1515511601-1.gif" alt=""></li></ol><p>其中的配置文件设置说明(如果删除config.ini配置文件，就是只使用pubg黑屏补丁！)</p><p>[setup]<br>;启用clearmemory后内存小于memorysize设定的多少G，每cleartime设置的分钟优化一次内存占用,1为启用 0为禁用，默认为0<br>;启用内存清理的前提条件是，pubg游戏在运行，并且物理内存使用率超过91%<br>clearmemory=0<br>memorysize=9<br>cleartime=2<br>;启用blackpatch＝1，启动pubg没有黑屏，直接进界面，0为不处理，默认为1<br>;用于pubg pc 3.5.5版，如果后续版本无黑屏就可以不启动<br>blackpatch=1<br>;跳过安装vc2008 2010 2012 2013 2015 2017和dx2010 PhysX,1为跳过安装并且设置steam为中文，0为不处理，默认为0<br>skipplug=1<br>;reshade画质增强补丁 1为开启，0为不开启，默认为0，进入游戏后shift+F2呼出reshade界面<br>reshade=0</p><p>下载地址:</p><p>1.不带reshade画质增强插件功能的下载地址  链接: <a href="https://pan.baidu.com/s/1oAiMaoE">https://pan.baidu.com/s/1oAiMaoE</a> 密码: g8ie 解压密码 bnwin.com  启动方式：绝地求生启动前运行pubgtool.exe</p><p>2.具有绝地求生reshade画质增强插件功能的下载地址  </p><p>链接：<a href="https://pan.baidu.com/s/1eTOJ7gu">https://pan.baidu.com/s/1eTOJ7gu</a> 密码：phm0 解压密码 bnwin.com</p><p>附加提供游戏加加的绝地求生助手的reshade画质配置文件,游戏加加的绝地求生助手对绝地求生的画质优化也是集成的reshade，如果你显卡比较好，可以用绝地求生助手的ini替换掉bnwin.ini，就可以使用绝地求生助手的画质设置效果!游戏加加的reshade配置文件下载:   链接：<a href="https://pan.baidu.com/s/1dG20VEL">https://pan.baidu.com/s/1dG20VEL</a> 密码：0x8a 解压密码 bnwin.com   使用游戏加加的reshade配置的方法：<br><img src="/images/1515513387-1.gif" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>delphi中如何自定义dcef3的右键菜单？</title>
       <link href="/2017/12/28/353.html"/>
       <url>/2017/12/28/353.html</url>
@@ -1128,6 +1307,31 @@
         <tags>
             
             <tag> delphi </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>单独调用运行8圈挂机锁工具</title>
+      <link href="/2017/12/15/332.html"/>
+      <url>/2017/12/15/332.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="适用于八圈9-5以下版本，9-5版本请查看本站其他页面"><a href="#适用于八圈9-5以下版本，9-5版本请查看本站其他页面" class="headerlink" title="适用于八圈9.5以下版本，9.5版本请查看本站其他页面"></a>适用于八圈9.5以下版本，9.5版本请查看本站其他页面</h3><p>8圈网管计费系统，自带有挂机锁，一般的网吧均在桌面添加一个挂机锁，但单独的挂机锁或无盘提供的挂机锁，只要重启机器就解锁了，但计费系统的挂机锁则不同，重启机器后，8圈网管计费系统的挂机锁仍然是挂机状态！（如果顾客忘记了8圈挂机锁的密码，可以直接在8圈计费服务端对着挂机机器右键解锁，无需挂机密码，而普通的挂机锁密码忘了就没法，只有重启，重启后就解锁了!这也是8圈计费挂机锁的优势所在!）看看8圈网管计费系统界面<br><img src="/images/8quanlock.png" alt=""><br>，而8圈的挂机锁一般要点开界面才能运行，无法把8圈挂机锁创建快捷方式到桌面，本程序独立于8圈网管计费系统，运行本程序自动运行8圈的挂机锁，这样就可以把无盘系统的挂机锁或单独的挂机全部换成8圈的挂机锁了!</p><p>本程序直接运行实现功能就是 8圈的挂机锁，同时可以添加参数运行<br>加参数 1 运行就是 8圈的结账下机<br>加参数 2 运行就是 8圈的电脑换机<br>加参数 3 运行就是 8圈的呼叫网管<br>加参数 4 运行就是 8圈的在线充值</p><p>如何添加参数，请看下面的gif动画<br><img src="/images/1514389702-1.gif" alt=""></p><p>下载地址:</p><p>———————-<br>支持8圈9.4.4<br>链接: <a href="https://pan.baidu.com/s/159bjiteKJnRwNhlGGK05Lg">https://pan.baidu.com/s/159bjiteKJnRwNhlGGK05Lg</a> 密码: shrs<br>增加参数 5 运行就是 8圈的修改密码功能<br>———————-<br>8圈9.4.4以前版本<br>链接: <a href="https://pan.baidu.com/s/1nvoVTLB">https://pan.baidu.com/s/1nvoVTLB</a> 密码: jxg4</p><p>解压密码 bnwin.com</p><p>查看8圈相关软件 控制8圈桌面侧边栏<a href="http://www.bnwin.com/2017/10/26/42.html">http://www.bnwin.com/2017/10/26/42.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
             
         </tags>
       
@@ -1783,6 +1987,131 @@
     
     
     <entry>
+      <title>关闭8圈桌面侧边栏工具</title>
+      <link href="/2017/10/26/42.html"/>
+      <url>/2017/10/26/42.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="关闭8圈桌面侧边栏工具-适用于八圈9-5以下版本"><a href="#关闭8圈桌面侧边栏工具-适用于八圈9-5以下版本" class="headerlink" title="关闭8圈桌面侧边栏工具-适用于八圈9.5以下版本"></a>关闭8圈桌面侧边栏工具-适用于八圈9.5以下版本</h3><p>此页面工具仅适用于八圈9.5以下版本，不适用于八圈9.5及以上版本，9.5版本请查看本站其他页面</p><p>8圈网管平台(8圈计费系统)是专门针对新型网吧网咖会所开发的一款全新网管服务软件!官方网站:<a href="http://www.8quan.com/">http://www.8quan.com</a></p><p>网吧计费系统8圈，会在桌面右侧显示一个窗口，无法修改，无法控制是否显示！如何关闭8圈计费系统桌面上的窗口呢？本工具可以自由控制显示或隐藏，或销毁，还你桌面一个自由!<br>本程序可以加参数运行 加 1 隐藏 加 0 显示 加 2 销毁</p><p>销毁就是彻底关闭，窗体是不存在了，隐藏只是不显示出来，实际是存在的!</p><p>如何添加参数，请参照这儿 <a href="http://www.bnwin.com/2017/12/15/332.html">http://www.bnwin.com/2017/12/15/332.html</a></p><img src="/images/8quan.png" alt=""><p>下载地址：</p><p>关闭八圈9.5版工具下载地址</p><p><a href="http://www.bnwin.com/2019/10/12/630.html">http://www.bnwin.com/2019/10/12/630.html</a></p><p>此版本只适用于八圈9.5以下</p><p>V0.33版本 链接: <a href="https://pan.baidu.com/s/1gbsO1id1CM3obMiGRVUXNw">https://pan.baidu.com/s/1gbsO1id1CM3obMiGRVUXNw</a> 提取码: 5qyk</p><p>V0.32版本 链接: <a href="https://pan.baidu.com/s/1Im3iRntYOLnMgg-9yfM_MQ">https://pan.baidu.com/s/1Im3iRntYOLnMgg-9yfM_MQ</a> 提取码: aaax</p><p>V0.31版本 链接：<a href="https://pan.baidu.com/s/1kVSqDtd">https://pan.baidu.com/s/1kVSqDtd</a> 密码：nxxq</p><p>V0.3版本 链接: <a href="https://pan.baidu.com/s/1kV7WTMZ">https://pan.baidu.com/s/1kV7WTMZ</a> 密码: 3m1t 解压密码 bnwin.com</p><p>2018 09-22 V0.33<br>修改判断8圈侧边栏是否存在的方法，更具有通用性!</p><p>2018 09-21 V0.32<br>修改了9.4.4.15022版本发现不了侧边栏的问题，新版隐藏方式三即参数5 经测是可以使用在9.4.4.15510版本上的</p><p>2018 01-03 V0.31<br>使用命令行参数运行时，在没有发现8圈侧边栏时，会一直等待，8圈侧边栏出现，隐藏后，本程序自动退出!这样就可以开机直接运行本工具，而不用怕本工具启动时8圈侧边栏没出来，而隐藏不了侧边栏的问题!</p><p>运动方式</p><p>直接运行，手工操作界面<br>参数运行<br>0 旧版显示8圈侧边栏<br>1 旧版关闭8圈侧边栏<br>2 旧版销毁8圈侧边栏<br>3 新版隐藏方式一<br>4 新版隐藏方式二<br>5 新版隐藏方式三(适用于9.4.4版本)</p><p>自己先手工测试哪种方式能用，就选择哪种方式！<br>旧版指8圈9.4.3以前，新版指8圈9.4.3及以后版本</p><p>什么是运行参数？比如解压文件c8.exe在C盘根目录，那么直接运行<br>命令就是<br>c:\c8.exe<br>参数运行就是这样<br>c:\c8.exe 5<br>后面的数字5就是参数，参数和前面的执行程序之前加一个空格，如果<br>你的执行程序解压到有空格的目录，那么前面的运行程序要加引号如<br>“c:\空格 目录\c8.exe” 5</p><p>控制的就是桌面这一块<br><img src="/images/1516264932-1.gif" alt=""><br>当前版本V0.32 查看8圈相关软件 独立的8圈挂机锁 <a href="http://www.bnwin.com/2017/12/15/332.html">http://www.bnwin.com/2017/12/15/332.html</a></p><p>如果你觉得关闭8圈侧边栏对你的操作系统稳定性有影响，你可以查看自定义8圈桌面侧边栏的软件<a href="http://www.bnwin.com/2018/03/30/532.html">http://www.bnwin.com/2018/03/30/532.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>中止非驱动保护进程的工具</title>
+      <link href="/2017/10/26/39.html"/>
+      <url>/2017/10/26/39.html</url>
+      
+        <content type="html"><![CDATA[<p>本程序可以中止非驱动保护（驱动保护的进程无法结束）的绝大部份进程,对于一些广告进程无法通过任务管理器结束的，本工具可以结束，以及删除一些非驱动保护的文件。本程序设置好配置文件后运行就可以自动结束，完全自动化!</p><p>需要中止的进程和删除的文件以及需要隐藏的文件添加到setup.ini中，格式如下</p><p>[中止进程]<br>;结束任务管理器中无法结束的进程<br>;名称=进程的完整路径<br>wwbizsrv=C:\Program Files (x86)\Alibaba\wwbizsrv\wwbizsrv.exe</p><p>[删除文件]<br>;删除普通无法删除的文件<br>;名称=文件完整路径<br>删无权限文件=C:\Users\Administrator\Desktop\删无权限文件.txt</p><p>[隐藏文件]<br>;不删除，仅隐藏文件<br>;名称=文件完整路径<br>1=C:\Users\Administrator\Desktop\0.url<br>本程序运行会自动结束setup.ini配置中的进程，结束后自动退出程序，无运行界面!可以先用任务管理器试一下无法结束的进程，然后把此进程配置在setup.ini，即可结束，可以测试csrss.exe或winlogin.exe，不过结束这些系统核心进程会蓝屏!</p><ol><li>中止任务管理器无法中止的进程<img src="/images/taskkill.gif" alt=""></li><li>删除普通无法删除的文件<img src="/images/1516718596-1.gif" alt=""></li><li>删除没有权限的文件<img src="/images/1516803894-2.gif" alt=""></li></ol><p>下载地址：</p><p>链接: <a href="https://pan.baidu.com/s/1OY8tgGx5D8puJ8mPHAgjkw">https://pan.baidu.com/s/1OY8tgGx5D8puJ8mPHAgjkw</a> 提取码: vrjx 复制这段内容后打开百度网盘手机App，操作更方便哦</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>根据标题关键字禁止窗口的工具</title>
+      <link href="/2017/10/26/36.html"/>
+      <url>/2017/10/26/36.html</url>
+      
+        <content type="html"><![CDATA[<p>很多维护工具中都带有这个功能，本工具就是单一的功能，根据设置的关键字，自动关闭窗口，也许有些地方只需要这单一功能，比如给家里的孩子电脑中安装这个工具反黄!</p><p>下载地址</p><p>链接: <a href="https://pan.baidu.com/s/1i5rISLJ">https://pan.baidu.com/s/1i5rISLJ</a> 密码: wad7</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>显示器亮度调节工具</title>
+      <link href="/2017/10/26/31.html"/>
+      <url>/2017/10/26/31.html</url>
+      
+        <content type="html"><![CDATA[<p>显示器亮度调节工具，虽然有其他的，但我写的这个软件，包括显示器亮度调节，声音调节，鼠标调节和自定义程序启动，也许可以为你带来方便!<br><img src="/images/screen-300x261.png" alt=""><br>看看效果<br><img src="/images/tool.gif" alt=""></p><p>下载地址</p><p>链接: <a href="https://pan.baidu.com/s/1nuUAioT">https://pan.baidu.com/s/1nuUAioT</a> 密码: 1mx2</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>简单的聊天菜单</title>
+      <link href="/2017/10/26/22.html"/>
+      <url>/2017/10/26/22.html</url>
+      
+        <content type="html"><![CDATA[<p>这是一个分类菜单，比如显示聊天菜单等几个程序的工具，此菜单可以定义命令行参数</p><p>第一个参数是每一行显示几个图标<br>第二个参数是标题名称<br>第三个参数是配置文件名<br>第四个参数是背景图片</p><p>比如参数写为</p><p>4 办公软件 bgmenu.ini skin.jpg</p><p>那么这表示使用bgmenu.ini配置文件，skin.jpg做为背景图片，每行显示4个图标，标题为 办公软件 的菜单</p><p>效果看一下，仿QQ界面，是很漂亮的<br><img src="/images/1-259x300.png" alt=""></p><img src="/images/2-284x300.png" alt=""><img src="/images/3-259x300.png" alt=""><p>下载地址：</p><p>链接: <a href="https://pan.baidu.com/s/1bY8gEHz2-k2I7DskKW1eJQ">https://pan.baidu.com/s/1bY8gEHz2-k2I7DskKW1eJQ</a> 提取码: yrtq 复制这段内容后打开百度网盘手机App，操作更方便哦</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>锐起CGO2043服务端出盘源码</title>
       <link href="/2017/10/26/48.html"/>
       <url>/2017/10/26/48.html</url>
@@ -1854,6 +2183,31 @@
             <tag> delphi </tag>
             
             <tag> 锐起 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vip电影浏览器</title>
+      <link href="/2017/10/24/1.html"/>
+      <url>/2017/10/24/1.html</url>
+      
+        <content type="html"><![CDATA[<p>电影VIP浏览器，免费看VIP电影的神器，不会买电影网站会员，直接看会员影视剧。不用买电影网站特权，直接看<br>会员电影!最重要的是本软件无广告，界面美好!<br><img src="/images/20171112175224.png" alt=""></p><ol><li>如何添加一个新电影网站</li></ol><p>打开setup.ini　在[blist]中添加　网站名=网址　然后再在[bz]中添加播放页面网址标志 即可<br>如在[blist]中添加 ACFUN=<a href="http://www.acfun.cn/">http://www.acfun.cn/</a> 然后在[bz]中添加 acfun.cn/v/ac=ACFUN<br>因为acfun.cn网站的播放页网址一般为<a href="http://www.acfun.cn/v/ac3523372">http://www.acfun.cn/v/ac3523372</a> 网址中包含acfun.cn/v/ac就会<br>自动解析播放!</p><ol start="2"><li><p>如果电影网站的播放页网址无规律，怎么办？<br>如果一个电影网址的播放页无规律性标志，可以不在[bz]中添加，打开播放页后，点击鼠标右键，选择<br>播放此页　一样可以正常播放! 如果iqiyi绝大部份播放页网址都包括iqiyi.com/v_　但金刚狼的播放<br>页网址为<a href="http://vip.iqiyi.com/20111230/14">http://vip.iqiyi.com/20111230/14</a> … fc=87bbded392d221f5 这时只能看6分钟<br>但只要在该页面点右键，播放此页，即就可免费看完此影片!</p></li><li><p>点击电影弹出后无法播放，怎么办？</p></li></ol><p>我们没有提供vip电影解析，所有解析网址均收集自网络，如果电影网站算法改变，专做解析的网站没有<br>写出算法就可能无法播放，你可以在页面刷新，或者点击右键　切换解析线路　用其他的解析网站测试!<br>不是所有的解析网站可解析所有电影网站，有的解析网站只能解析一部份!</p><ol start="4"><li>在哪儿找解析网址?</li></ol><p>一种是到ckplayer的论坛<a href="http://bbs.ckplayer.com/%E6%9F%A5%E7%9C%8B%EF%BC%8C%E6%9C%89%E5%BE%88%E5%A4%9A%E5%85%8D%E8%B4%B9%E7%9A%84%E8%A7%A3%E6%9E%90%E7%BD%91%E7%AB%99%E5%8F%91%E5%B8%83%EF%BC%8C%E4%BA%8C%E6%98%AF%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80">http://bbs.ckplayer.com/查看，有很多免费的解析网站发布，二是直接打开</a><br>本程序的play.exe，可以显示我们收集的setup.ini参数!你也可以自己在ckplayer买解析源码自己建网址解析</p><ol start="5"><li>本软件收费吗？</li></ol><p>本软件不收费，如果你觉得本软件很好使用，你可以捐赠，多少不限，也许你的一点爱心可以促进我们优化软件</p><ol start="6"><li>能不能直接打开播放网址进行播放？</li></ol><p>可以，比如优酷的金刚狼播放网址为 <a href="http://v.youku.com/v_show/id_XNjU0ODc4OTQ4.html">http://v.youku.com/v_show/id_XNjU0ODc4OTQ4.html</a><br>你可以直接复制<a href="http://v.youku.com/v_show/id_XNjU0ODc4OTQ4.html%E8%BF%99%E4%B8%AA%E7%BD%91%E5%9D%80%E5%88%B0%E6%9C%AC%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%9C%B0%E5%9D%80%E6%A0%8F%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%8D%B3%E5%8F%AF%E4%BB%A5">http://v.youku.com/v_show/id_XNjU0ODc4OTQ4.html这个网址到本软件的地址栏回车，即可以</a><br>正常解析播放，一是可以去广告，二是可以看会员的电影，有些还支持用卷的！</p><ol start="7"><li>播放页面能不能不被其他窗口遮档?</li></ol><p>可以，播放页面点击右键，前端显示，播放页即一直在前!</p><ol start="8"><li>连续剧打开就播放，如何选择具体集数进行播放？</li></ol><p>一种是在浏览器找到具体集数的播放网址，复制到本软件的地址栏打开，另一种方法是使用搜索，搜索到具体集数的链接打开!</p><p>下载地址</p><p>链接: <a href="https://pan.baidu.com/s/12N9v1wgxSrX4wFbdvpyzKA">https://pan.baidu.com/s/12N9v1wgxSrX4wFbdvpyzKA</a> 提取码: ywyg</p><h3 id="升级日志"><a href="#升级日志" class="headerlink" title="升级日志:"></a>升级日志:</h3><p>v1.3<br>大幅提升解析播放成功率，支持DPlayer播放器!<br>v1.2<br>电影VIP浏览器可以支持自定义图标，图标为48*48放在skin目录.<br>电影VIP浏览器播放标志支持正则表达式，配置文件为每个网站单独为一个！可以为特定的网站指定特定的解析网址.<br>电影云播放器新增剧集显示！<br>电影云播放器新增播放历史记录!<br>电影云播放器解析线路和前端显示更加直观!<br>新增资源采集站直接播放实例，131等资源网站由于实际播放地址不是超链接，所以点开实际页面后是不会播放的，但可以直接点集电影云播放器的左下角的集数进行播放!</p><p>v1.1<br>提升电影VIP浏览器的打开速度！<br>提升电影云播放器的打开速度！<br>解决电影云播放器取播放页面标题不成功的问题！<br>电影云播放器加入收费解析网站的解析，可以正常使用如，vip-zp.com 老司机等收费解析的网址！<br>电影云播放器加入窗口透明度调节<br>电影云播放器加入使用限制，有使用时间限制!（主要是考虑解析网站开始收费，如果免费解析网站会进行封杀，如果你不使用电影云播放器V1.1使用V1.0，自己找免费解析网站一样可以正常使用!）<br>电影VIP浏览器和电影云播放器的版本可以点右键关于中查看!</p><p>v1.0</p><p>电影VIP浏览器和电影云播放器发布<br>可以免费解析各大视频网站的VIP电影，可以去掉解析网站加的广告，可以自定义解析特征串等!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
             
         </tags>
       
