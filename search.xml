@@ -123,18 +123,10 @@
       
       <categories>
           
-          <category> 视频 </category>
+          <category> 其他 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> 学习笔记 </tag>
-            
-            <tag> Hexo </tag>
-            
-        </tags>
       
     </entry>
     
@@ -168,6 +160,146 @@
     
     
     <entry>
+      <title>ApacheBench(ab)服务器负载压力测试软件</title>
+      <link href="/2018/10/21/590.html"/>
+      <url>/2018/10/21/590.html</url>
+      
+        <content type="html"><![CDATA[<p>ApacheBench(ab)使用简介<br>服务器负载太大而影响程序效率也是很常见的，Apache服务器自带有一个叫AB(ApacheBench)的工具，在bin目录下。使用这个轻巧的工具我们可以对服务器进行负载测试，</p><p>基本用法:</p><p>ab -n 全部请求数 -c 并发数 测试url<br>例；ab -n 100 -c 50 <a href="http://192.168.22.150:8088/gfmis/login">http://192.168.22.150:8088/gfmis/login</a></p><p><a href="http://19.104.10.79:8080/gfmis/login">http://19.104.10.79:8080/gfmis/login</a><br>例:ab -n 1000 -c 50 <a href="http://www.abc.com/a.php">http://www.abc.com/a.php</a></p><p>得到结果类似于(后面颜色字为中文翻译):</p><p>Server Software: Apache/2.0.55<br>Server Hostname: localhost<br>Server Port: 80</p><p>Document Path: /1.php<br>Document Length: 82522 bytes #请求文档大小</p><p>Concurrency Level: 50 #并发数<br>Time taken for tests: 92.76140 seconds #全部请求完成耗时<br>Complete requests: 10000 #全部请求数<br>Failed requests: 1974 #失败的请求<br>(Connect: 0, Length: 1974, Exceptions: 0)<br>Write errors: 0<br>Total transferred: 827019400 bytes #总传输大小<br>HTML transferred: 825219400 bytes<br>Requests per second: 108.61 [#/sec] (mean) #每秒请求数(平均)<br>Time per request: 460.381 [ms] (mean) #每次并发请求时间(所有并发)<br>Time per request: 9.208 [ms] (mean, across all concurrent requests) #每一请求时间(并发平均)<br>Transfer rate: 8771.39 [Kbytes/sec] received #传输速率</p><p>Connection Times (ms) #连接时间<br>min mean [+/-sd] median max<br>Connect(#连接): 0 0 2.1 0 46<br>Processing(#处理): 31 458 94.7 438 1078<br>Waiting(#等待): 15 437 87.5 422 938<br>Total: 31 458 94.7 438 1078</p><p>其它参数:</p><p>-n requests 全部请求数<br>-c concurrency 并发数<br>-t timelimit 最长等待回应时间<br>-p postfile POST数据文件<br>-T content-type POST Content-type<br>-v verbosity How much troubleshooting info to print<br>-w Print out results in HTML tables<br>-i Use HEAD instead of GET<br>-x attributes String to insert as table attributes<br>-y attributes String to insert as tr attributes<br>-z attributes String to insert as td or th attributes<br>-C attribute 加入cookie, eg. ‘Apache=1234. (repeatable)<br>-H attribute 加入http头, eg. ‘Accept-Encoding: gzip’<br>Inserted after all normal header lines. (repeatable)<br>-A attribute http验证,分隔传递用户名及密码<br>-P attribute Add Basic Proxy Authentication, the attributes<br>are a colon separated username and password.<br>-X proxy:port 代理服务器<br>-V 查看ab版本<br>-k Use HTTP KeepAlive feature<br>-d Do not show percentiles served table.<br>-S Do not show confidence estimators and warnings.<br>-g filename Output collected data to gnuplot format file.<br>-e filename Output CSV file with percentages served<br>-h Display usage information (this message)</p><p>看实际使用效果图<br><img src="/images/abtest.png" alt=""><br>下载地址：</p><p>链接: <a href="https://pan.baidu.com/s/1NjFciN9BRjwNGsVaiySrJg">https://pan.baidu.com/s/1NjFciN9BRjwNGsVaiySrJg</a> 提取码: 22be</p><p>解压密码 bnwin.com</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 精品软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>安卓手机控制windows电脑的三种方法</title>
+      <link href="/2018/05/31/550.html"/>
+      <url>/2018/05/31/550.html</url>
+      
+        <content type="html"><![CDATA[<p>windows系统的远程控制，软件有很多，但支持使用安卓手机控制windows电脑的软件，却不多，本文介绍三个常用的app来控制电脑！</p><ol><li>windows自带的远程桌面<br>win7系统如何打开远程桌面呢？右键打开桌面的[计算机]选择[属性]，进入[系统]界面，点击左边操作菜单中的[远程设置]选项卡，将直接进入[系统属性]中的[远程]菜单。钩选远程桌面，如下图<img src="/images/1527694134-1.png" alt="">,如果远程桌面在windows电脑中已经正常开放，那么你在命令行中使用telnet ip 3389，应该显示的是这样的界面<img src="/images/1527694261-2.png" alt="">其中标题中的IP显示的是你输入的IP。 如果远程桌面未正常开放，是会一直显示正在连接到你输入的ip，最后会显示连接失败!如果远程桌面不能正常开启，请搜索相关文章！本文不做深究!远程桌面在windows中开启后，在安卓手机中下载Microsoft远程桌面app，以下是在华为市场中显示的<img src="/images/1527694574-3.png" alt=""></li></ol><p>，其中在手机中的界面如下<br><img src="/images/1527694701-4.png" alt=""></p><p>windows自带的远程桌面的优点是，开启方便，windows端系统自带，无需要安装软件，只需要在手机上安装app就可以使用手机远程控制电脑了，并且手机上的操作很接近电脑，最重要一点，免费，电脑端和手机端都免费。缺点是外网连接内网的机器，需要在路由器上映射端口，另外同一帐号登录系统，同一帐号的另一会话会被注销(如果开启允许同一帐号多个会话，那么软件就会重复运行!就破坏了当前进程!)，也就是windows中的同一用户，登录系统使用的会话不同，windows本身是console，而远程登录的是rdp，远程登录上来后从console会话变为rdp,这会造成有些软件不能正常运行，比如点播软件就会停止播放音乐!<br>2. teamviewer<br>teamviewer是一款远程协助软件，个人使用免费，商业使用收费，需要在电脑端安装teamviewer，teamviewer如何使用手机控制电脑，可以看这篇文章《如何让手机控制电脑之TeamViewer 》最近teamviewer经常会出现判断为商业应用，然后5分钟中止连接，实际只有1分钟多点就中止连接了，如使用手机连接显示这样<br><img src="/images/Screenshot_2018-05-30-10-46-38.png" alt=""><br>，在电脑中被判断为商业用途还可以使用reset id程序重置teamviewer id(电脑中如何重置teamviewer ID，可以看《teamviewer 13破解方法-teamviewer 13 重置ID  》和《破解 teamviewer 12的5分钟商业用途判断－teamviewer 12 ID重置》 这两篇文章及下载相关程序，破解方法是泰国网站提供的，网站打开速度较慢)，teamviewer安卓手机被判定为商业用途怎么办呢？我们可以在手机中安装 双开助手 app，双开助手很多，但使用的是这一个<a href="http://www.multiopen.cn/">http://www.multiopen.cn/</a>  这个双开助手可以模拟手机的IMEI，在双开助手中新开teamviewer，teamviewer ID会重新生成，成功解决了teamviewer手机判定为商业用途的问题!<br><img src="/images/Screenshot_2018-05-30-10-47-25.png" alt=""></p><p>teamviewer的优点就是可以访问任何连网的机器，而不需要映射端口，内网对内网，内网对外网，外网对内网都可以访问！teamviewer是通过了teamviewer的服务器中转认证的，所以无需要映射端口。teamviewer远程连接后不会改变当前的会话，对当前正在运行的程序没有任何影响!缺点是teamviewer个人使用免费，商业用途收费，teamviewer被国内公司代理后，如果同一个teamviewer经常连接多个teamviewer ID，会被判定为商业用途，teamviewer收费还很贵!<br>3. vnc<br>vnc在windows系统中安装vnc服务端，如<a href="http://www.tightvnc.com/">http://www.tightvnc.com/</a> 的tvnc，是开源免费的，在手机端安装vnc viewer  vnc viewer手机界面如下<br><img src="/images/Screenshot_2018-05-31-00-11-08.png" alt=""><br>vnc的优点是免费开源，自己会c++，完全可以自定义vnc的服务端和客户端，但apk是realvnc的，不开源，tvnc网站也提供有app，vnc方式远程登录也不会更新当前会话，对正在运行的程序没有影响，vnc是跨平台的，vnc服务端可以安装在linux,windows,mac机器， 也就是手机可以控制各个平台的系统。缺点vnc内网也需要映射端口，并且vnc的密码只能8位，默认还是空密码（造成好多肉机存在），密码也是保存在注册表中的，还原密码程序也存在，不够安全!<br>4. 向日葵<br>向日葵远程控制软件，也支持移动设备远程访问电脑，向日葵远程控制软件只远程桌面不收费，其他如传文件是收费的，向日葵远程控制软件就是花生壳公司出品的!免费远程限速300k，基本使用够用了!</p><p>电脑端的远程控制软件radmin，没有手机版app，在现在移动设备飞速发展的今天，实属遗憾!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 控制电脑 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何自定义编译CheatEngine6.7</title>
+      <link href="/2018/05/08/546.html"/>
+      <url>/2018/05/08/546.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="如何自定义编译Cheat-Engine6-7-打造自己的CE6-7修改器，避免部分游戏的检测"><a href="#如何自定义编译Cheat-Engine6-7-打造自己的CE6-7修改器，避免部分游戏的检测" class="headerlink" title="如何自定义编译Cheat Engine6.7(打造自己的CE6.7修改器，避免部分游戏的检测)"></a>如何自定义编译Cheat Engine6.7(打造自己的CE6.7修改器，避免部分游戏的检测)</h3><p>Cheat Engine(作弊引擎ce) 是一款内存修改编辑工具 ，它允许你修改你的游戏或软件内存数据，以得到一些其他功能。它包括16进制编辑，反汇编程序，内存查找工具。与同类修改工具相比，它具有强大的反汇编功能，且自身附带了外挂制作工具，可以用它直接生成外挂。<br>Cheat Engine的开发语言是pascal,采用Lazarus IDE开发!Cheat Engine是一个开源软件！<br>Cheat Engine开源地址： <a href="https://github.com/cheat-engine/cheat-engine">https://github.com/cheat-engine/cheat-engine</a><br>Cheat Engine 官方网站：<a href="http://cheatengine.org/">http://cheatengine.org/</a></p><p>官方有编译好的版本，如果没有专门检测CE的程序，那么使用官方的CE就足够了，直接下载就可以运行!但现在很多游戏或程序对CE有检测，直接下载官方的CE会无法运行。这时我们可以自己编译Cheat Engine，当前官方最新版本为6.7，所以我们这儿介绍Cheat Engine6.7的修改及编译，避免部份游戏检测CE!</p><h2 id="前期工作："><a href="#前期工作：" class="headerlink" title="前期工作："></a>前期工作：</h2><ol><li>需要使用到的软件及ce源码等下载地址：</li></ol><ul><li>lazarus-1.6.4-fpc-3.0.2-win64.exe下载地址(Cheat Engine6.7是使用的lazarus1.6.4编译，所以必须下载1.6.4，此文件是64位的lazarus1.6.4的主安装文件)<br>官方推荐第三方下载链接：<a href="https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/">https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/</a><br>百脑问提供的百度云下载链接：<a href="https://pan.baidu.com/s/1VIRTU57RikwSMk1X15RP2w">https://pan.baidu.com/s/1VIRTU57RikwSMk1X15RP2w</a> 密码：mbwj</li><li>lazarus-1.6.4-fpc-3.0.2-cross-i386-win32-win64.exe(此文件是lazarus1.6.4编译为32位程序的补丁包)<br>官方推荐第三方下载链接：<a href="https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/">https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/</a><br>百脑问提供的百度云下载链接：<a href="https://pan.baidu.com/s/1iGnpHnOor2ygiz4TaY3OJw">https://pan.baidu.com/s/1iGnpHnOor2ygiz4TaY3OJw</a> 密码：bt8s</li><li>cheat-engine-6.7.zip(Cheat Engine6.7的源码包，你可以直接到<a href="https://github.com/cheat-engine/cheat-engine">https://github.com/cheat-engine/cheat-engine</a> 下载)<br>百脑问提供的百度云下载链接：<a href="https://pan.baidu.com/s/1bXTJkn6lHCFmOKc2AoJjEw">https://pan.baidu.com/s/1bXTJkn6lHCFmOKc2AoJjEw</a> 密码：68×2</li></ul><ol start="2"><li>安装好 lazarus-1.6.4-fpc-3.0.2-win64.exe和lazarus-1.6.4-fpc-3.0.2-cross-i386-win32-win64.exe 解开cheat-engine-6.7.zip源码包! 进入CE源码包的Cheat Engine目录，找到cheatengine.lpi，双击打开!</li></ol><h3 id="自定义cheatengine6-7"><a href="#自定义cheatengine6-7" class="headerlink" title="自定义cheatengine6.7"></a>自定义cheatengine6.7</h3><p>如果你熟悉lazarus的使用就可以轻松的修改Cheat Engine的源文件了，以下是假如你不了解lazarus的使用，仅仅是为了不让程序检测到ce而自定义ce！</p><p>前面的源码中双击cheatengine.lpi打开后的界面，象这样<br><img src="/images/1525793534-1.png" alt=""><br>第一步，我们修改ce的标题，按Shift+F12(也可以点击上面所示图中的第二行的第二个图标)打开窗口管理器，找到MainForm，双击打开，然后在Object Inspector窗口(如果没有显示Object Inspector窗口，可以在view菜单中点击Object Inspector打开，或者按F11打开)中单击MainForm:TMainForm 在下面的Properties选项卡中，找到Caption，修改后面的Cheat Engine 6.8为自己的标题，比如这儿修改为C_BnWin.Com_E6.7，然后Ctrl+O找到MainUnit2.pas打开，修改第16行的Cheat Engine 6.8 Beta 1为自己的标题，如这儿修改为C_BnWin.Com_E6.7</p><p>第二步，我们修改CE的图标 按Shift+Ctrl+F11在打开的窗口左边选中Project Option的Application 右边点击Load ICO，选择一个ico就可以修改ce的图标了!</p><p>第三步，编译32位的CE和64位的CE，和上面一样按Shift+Ctrl+F11 选中Compiler Options，右边下拉框中，选择Release 32-Bit，编译出的CE就是32位的 选择Release 64-Bit 编译出的CE就是64位的!</p><p>第四步，修改完成后，Ctrl+F9编译，在bin目录就会生成CE可执行文件了，32位和64位的CE编译后可执行文件应该为cheatengine-i386.exe和cheatengine-x86_64.exe</p><p>当然你也可以修改其他的相关信息，也可以加一些其他代码到CE的源代码中，这样就更不会检测到属于你自己的CE了!</p><p>下面是自定义Cheat Engine的视频教程!</p><iframe style="width:100%" frameborder="0" height="600" src="http://player.youku.com/embed/XMzU5NjUzODU2OA==" allowfullscreen=""></iframe><p>下面是百脑问bnwin.com自定义专用的CE6.7下载地址：</p><p>链接：<a href="https://pan.baidu.com/s/1TUCMpNo90H194u927ce3ug">https://pan.baidu.com/s/1TUCMpNo90H194u927ce3ug</a> 密码：f35t</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ce </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何快速让cef、wke、blink等支持mp4和mp3</title>
+      <link href="/2018/05/02/541.html"/>
+      <url>/2018/05/02/541.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="如何快速让cef、wke、blink等支持mp4和mp3-支持html5的video和audio标签"><a href="#如何快速让cef、wke、blink等支持mp4和mp3-支持html5的video和audio标签" class="headerlink" title="如何快速让cef、wke、blink等支持mp4和mp3(支持html5的video和audio标签)?"></a>如何快速让cef、wke、blink等支持mp4和mp3(支持html5的video和audio标签)?</h2><p>在cef中，默认是不支持mp3和mp4的，使用cef控件写的软件打开带有video或audio标签的视频或音频是会播放失败的!一种方法就是自己重新编译cef的库，加入支持mp3和mp4的支持。如何编译看这篇文章 如何让dcef3支持mp3和h.264 mp4解码播放(有源码及dll)!</p><p>这是从文件的本身出发，修改后支持mp3和mp4，从另一方面来说，采用cef的精简版控件，比如wke,blink或低版本的ie等，修改文件重新编译支持mp3和mp4的方法就不可行了!能不能不修改文件直接支持mp3和mp4的video和audio标签呢？这儿介绍一种修改html本身而不动浏览器控件文件的解决方法，当然你得有修改html文件的权限。</p><p>使用html5media让浏览器兼容&lt;Video&gt;&lt;Audio&gt;标签。html5media是一个开源项目<br>html5media 官网：<a href="https://html5media.info/">https://html5media.info/</a><br>html5media 项目：<a href="https://github.com/etianen/html5media">https://github.com/etianen/html5media</a><br>html5media Wiki：<a href="https://github.com/etianen/html5media/wiki">https://github.com/etianen/html5media/wiki</a></p><p>html5media 官网CDN:<a href="http://api.html5media.info/1.2.2/html5media.min.js">http://api.html5media.info/1.2.2/html5media.min.js</a><br>html5media 国内CDN:<a href="http://www.bootcdn.cn/html5media/">http://www.bootcdn.cn/html5media/</a></p><p>如何使用html5media？它只需要一行代码就可以使HTML5的video和audio标签在所有主流浏览器中都能正常工作。只需要在html的head文档中添加如下代码</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt; script src = “ http://api.html5media.info/1.1.8/html5media.min.js ” &gt; &lt;/ script &gt;</span><br></pre></td></tr></table></figure><p>然后按照html5的video标签添加的视频</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt; video src=&quot;video.mp4&quot; preload=&quot;&quot; controls=&quot;controls&quot; width=&quot;320&quot; height=&quot;200&quot;&gt;</span><br></pre></td></tr></table></figure><p>按照html5的audio标签添加的音频</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">&quot;audio.mp3&quot;</span> <span class="attr">controls</span> <span class="attr">preload</span>&gt;</span></span><br></pre></td></tr></table></figure><p>都可以正常播放了!</p><p>html5media的原理就是把不支持&lt;Video&gt;&lt;Audio&gt;标签的替换为使用flash播放！</p><p>这样使用html5media后，cef、wke、blink等所有浏览器都支持html5的video和audio标签了!</p><p>如果你是使用wke或blink在自己的程序界面中添加显示mp4或mp3，那么你需要自己把html5media.min.js和flowplayer.audio.swf flowplayer.controls.swf flowplayer.swf文件全部下载到你的程序目录(js文件和swf放在同一目录)，在你的程序中就可以在wke或blink中使用video或audio标签了!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>delphi如何实现php中的parse_url网址拆分函数?</title>
+      <link href="/2018/04/12/538.html"/>
+      <url>/2018/04/12/538.html</url>
+      
+        <content type="html"><![CDATA[<p>php中拆分URL的一个很重要的函数就是parse_url();但在delphi如何不正则分析就可以实现如此方便的功能呢？实际上delphi的indy有一个单元实现此功能-IdURI单元，实现如下分拆</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//login:password@somehost.somedomain.com:8080/some_path/something.html?param1=val&amp;param2=val#nose</span></span><br><span class="line">\__/   \___/ \______/ \_____________________/ \__/\_______________________/ \___________________/ \__/</span><br><span class="line"> |       |      |               |               |                |                   |              |</span><br><span class="line">Scheme Username Password       Host            Port             Path              Query         Fragment</span><br></pre></td></tr></table></figure><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">uses</span></span><br><span class="line">  ..., IdURI;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  URI: TIdURI;</span><br><span class="line"> </span><br><span class="line">URI := TIdURI.Create(<span class="string">&#x27;http://login:password@somehost.somedomain.com:8080/some_path/something_else.html?param1=val&amp;param2=val&#x27;</span>);</span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">   Protocol = URI.Protocol</span><br><span class="line">   Username = URI.Username</span><br><span class="line">   Password = URI.Password</span><br><span class="line">   Host = URI.Host</span><br><span class="line">   Port = URI.Port</span><br><span class="line">   Path = URI.Path</span><br><span class="line">   Query = URI.Params</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line">  URI.Free;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure><p>以下是使用InternetCrackUrl方法实现(依赖windows的WinInet库)</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#123;$APPTYPE CONSOLE&#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">uses</span></span><br><span class="line">  Windows,</span><br><span class="line">  SysUtils,</span><br><span class="line">  WinInet;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">ParseURL</span><span class="params">(<span class="keyword">const</span> lpszUrl: <span class="keyword">string</span>)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  lpszScheme      : <span class="keyword">array</span>[<span class="number">0</span>..INTERNET_MAX_SCHEME_LENGTH - <span class="number">1</span>] <span class="keyword">of</span> Char;</span><br><span class="line">  lpszHostName    : <span class="keyword">array</span>[<span class="number">0</span>..INTERNET_MAX_HOST_NAME_LENGTH - <span class="number">1</span>] <span class="keyword">of</span> Char;</span><br><span class="line">  lpszUserName    : <span class="keyword">array</span>[<span class="number">0</span>..INTERNET_MAX_USER_NAME_LENGTH - <span class="number">1</span>] <span class="keyword">of</span> Char;</span><br><span class="line">  lpszPassword    : <span class="keyword">array</span>[<span class="number">0</span>..INTERNET_MAX_PASSWORD_LENGTH - <span class="number">1</span>] <span class="keyword">of</span> Char;</span><br><span class="line">  lpszUrlPath     : <span class="keyword">array</span>[<span class="number">0</span>..INTERNET_MAX_PATH_LENGTH - <span class="number">1</span>] <span class="keyword">of</span> Char;</span><br><span class="line">  lpszExtraInfo   : <span class="keyword">array</span>[<span class="number">0</span>..<span class="number">1024</span> - <span class="number">1</span>] <span class="keyword">of</span> Char;</span><br><span class="line">  lpUrlComponents : TURLComponents;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  ZeroMemory(@lpszScheme, SizeOf(lpszScheme));</span><br><span class="line">  ZeroMemory(@lpszHostName, SizeOf(lpszHostName));</span><br><span class="line">  ZeroMemory(@lpszUserName, SizeOf(lpszUserName));</span><br><span class="line">  ZeroMemory(@lpszPassword, SizeOf(lpszPassword));</span><br><span class="line">  ZeroMemory(@lpszUrlPath, SizeOf(lpszUrlPath));</span><br><span class="line">  ZeroMemory(@lpszExtraInfo, SizeOf(lpszExtraInfo));</span><br><span class="line">  ZeroMemory(@lpUrlComponents, SizeOf(TURLComponents));</span><br><span class="line"> </span><br><span class="line">  lpUrlComponents.dwStructSize      := SizeOf(TURLComponents);</span><br><span class="line">  lpUrlComponents.lpszScheme        := lpszScheme;</span><br><span class="line">  lpUrlComponents.dwSchemeLength    := SizeOf(lpszScheme);</span><br><span class="line">  lpUrlComponents.lpszHostName      := lpszHostName;</span><br><span class="line">  lpUrlComponents.dwHostNameLength  := SizeOf(lpszHostName);</span><br><span class="line">  lpUrlComponents.lpszUserName      := lpszUserName;</span><br><span class="line">  lpUrlComponents.dwUserNameLength  := SizeOf(lpszUserName);</span><br><span class="line">  lpUrlComponents.lpszPassword      := lpszPassword;</span><br><span class="line">  lpUrlComponents.dwPasswordLength  := SizeOf(lpszPassword);</span><br><span class="line">  lpUrlComponents.lpszUrlPath       := lpszUrlPath;</span><br><span class="line">  lpUrlComponents.dwUrlPathLength   := SizeOf(lpszUrlPath);</span><br><span class="line">  lpUrlComponents.lpszExtraInfo     := lpszExtraInfo;</span><br><span class="line">  lpUrlComponents.dwExtraInfoLength := SizeOf(lpszExtraInfo);</span><br><span class="line"> </span><br><span class="line">  InternetCrackUrl(PChar(lpszUrl), Length(lpszUrl), ICU_DECODE <span class="keyword">or</span> ICU_ESCAPE, lpUrlComponents);</span><br><span class="line"> </span><br><span class="line">  Writeln(Format(<span class="string">&#x27;Protocol : %s&#x27;</span>,[lpszScheme]));</span><br><span class="line">  Writeln(Format(<span class="string">&#x27;Host     : %s&#x27;</span>,[lpszHostName]));</span><br><span class="line">  Writeln(Format(<span class="string">&#x27;User     : %s&#x27;</span>,[lpszUserName]));</span><br><span class="line">  Writeln(Format(<span class="string">&#x27;Password : %s&#x27;</span>,[lpszPassword]));</span><br><span class="line">  Writeln(Format(<span class="string">&#x27;Path     : %s&#x27;</span>,[lpszUrlPath]));</span><br><span class="line">  Writeln(Format(<span class="string">&#x27;ExtraInfo: %s&#x27;</span>,[lpszExtraInfo]));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">try</span></span><br><span class="line">   ParseURL(<span class="string">&#x27;http://login:password@somehost.somedomain.com/some_path/something_else.html?param1=val&amp;param2=val&#x27;</span>);</span><br><span class="line">  <span class="keyword">except</span></span><br><span class="line">    <span class="keyword">on</span> E: Exception <span class="keyword">do</span></span><br><span class="line">      Writeln(E.ClassName, <span class="string">&#x27;: &#x27;</span>, E.<span class="keyword">Message</span>);</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line">  readln;</span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure><p>以上运行输出效果<br>Protocol : http<br>Host : somehost.somedomain.com<br>User : login<br>Password : password<br>Path : /some_path/something_else.html<br>ExtraInfo: ?param1=val&amp;param2=val</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> delphi </tag>
+            
+            <tag> php </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何取得窗口的Z序</title>
+      <link href="/2018/03/30/530.html"/>
+      <url>/2018/03/30/530.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="如何取得窗口的Z序-How-to-get-the-window-s-z-order"><a href="#如何取得窗口的Z序-How-to-get-the-window-s-z-order" class="headerlink" title="如何取得窗口的Z序_How to get the window`s z-order?"></a>如何取得窗口的Z序_How to get the window`s z-order?</h3><p>Z 序：一个重叠窗口的堆，每个窗口在Z 序中 都有唯一一个位置。一个窗口的Z 序 ，指明了该窗口在重叠窗口堆中的位置。这个窗口堆 是沿着一个虚拟的轴——“ Z 轴”，从屏幕上垂直向屏幕外延伸。 Z 序顶部的窗口覆盖 Z 序中的其他窗口。 Z 序底部的窗口被 Z 序中的其他窗口覆盖。</p><p>系统用一个单链表维护 Z 序。系统按照顶端窗口、顶层窗口和子窗口的分类 ，将窗口插入到 Z 序表中。顶端窗口覆盖其他所有非顶端窗口，而不管它是不是活动窗口或是不是前台窗口。顶端窗口有 WS_EX_TOPMOST 风格。在 Z 序中，所有顶端窗口都在非顶端窗口之前。在 Z 序中，子窗口是按着他的父窗口进行分组的。</p><p>应用程序一旦创建了一个窗口，系统就将其放入Z 序中 同类窗口的顶部。可以调用 BringWindowToTop() 函数，把某窗口拉到 Z 序中同类窗口的顶部。可以利用 SetWindowPos() 和 DeferWindowPos() 函数对 Z 序进行重新排列。</p><p>用户在激活不同的窗口过程中会改变 Z 序。因为系统会将活动窗口，放置在 Z 序中同类窗口的顶部 。当一个窗口变成 Z 序中的顶层窗口时，它的所有子窗口也变为顶层窗口。可以用 GetTopWindow() 来查找一个父窗口的所有子窗口，并返回（ Z 序中）顶部子窗口的句柄。用 GetNextWindow() 函数，可以获得 Z 序中的前一个或后一个窗口的句柄。</p><p>对于顶端窗口，顶层窗口和子窗口，如果只考虑同一类的话，如果有多个，总会一个覆盖另一个。但是这三类是按照上面讲的排列的。也就是有人讲的：<br>1.TopMost在最上面<br>2，顶级窗口次之<br>3，子窗口在父窗口之上<br>4，同级窗口当前激活窗口在前</p><p>HDWP hdwp = BeginDeferWindowPos(2);</p><p>hdwp = DeferWindowPos( hdwp, hStatic, NULL, 0, 0,100, 20, SWP_NOACTIVATE | SWP_NOZORDER |SWP_NOMOVE );<br>hdwp = DeferWindowPos( hdwp, hEdit, NULL, 0, 0, 100, 20, SWP_NOACTIVATE | SWP_NOZORDER |SWP_NOMOVE );<br>EndDeferWindowPos( hdwp );</p><p>其作用和SetWindowPos()差不多。</p><p>6.HWND GetWindow(HWND hWnd,UINT uCmd)</p><p>此函数的作用是：返回与hWnd有某种关系的窗口的句柄，uCmd有以下几种意思：</p><p>GW_CHILD ： 如果指定窗口是父窗口，则获得的是在Z序顶端的子窗口的句柄，否则为NULL。函数仅检查指定父窗口的子窗口，不检查继承窗口。</p><p>GW_ENABLEDPOUP： （WindowsNT 5.0）返回的句柄标识了属于指定窗口的处于使能状态弹出式窗口（检索使用第一个由GW_HWNDNEXT 查找到的满足前述条件的窗口）；如果无使能窗口，则获得的句柄与指定窗口相同。</p><p>GW_HWNDFIRST ：返回的句柄标识了在Z序最高端的相同类型的窗口。如果指定窗口是最高端窗口，则该句柄标识了在Z序最高端的最高端窗口；如果指定窗口是顶层窗口，则该句柄标识了在z序最高端的顶层窗口：如果指定窗口是子窗口，则句柄标识了在Z序最高端的同属窗口。</p><p>GW_HWNDLAST :返回的句柄标识了在z序最低端的相同类型的窗口。如果指定窗口是最高端窗口，则该柄标识了在z序最低端的最高端窗口：如果指定窗口是顶层窗口，则该句柄标识了在z序最低端的顶层窗口；如果指定窗口是子窗口，则句柄标识了在Z序最低端的同属窗口。</p><p>GW_HWNDNEXT ：返回的句柄标识了在Z序中指定窗口下的相同类型的窗口。如果指定窗口是最高端窗口，则该句柄标识了在指定窗口下的最高端窗口：如果指定窗口是顶层窗口，则该句柄标识了在指定窗口下的顶层窗口；如果指定窗口是子窗口，则句柄标识了在指定窗口下的同属窗口。</p><p>GW HWNDPREV ：返回的句柄标识了在Z序中指定窗口上的相同类型的窗口。如果指定窗口是最高端窗口，则该句柄标识了在指定窗口上的最高端窗口；如果指定窗口是顶层窗口，则该句柄标识了在指定窗口上的顶层窗口；如果指定窗口是子窗口，则句柄标识了在指定窗口上的同属窗口。GW_OWNER ：返回的句柄标识了指定窗口的所有者窗口（如果存在）。返回值：如果函数成功，返回值为窗口句柄；如果与指定窗口有特定关系的窗口不存在，则返回值为NULL。</p><p>C#取得z-order的代码</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Runtime.InteropServices;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">namespace</span> Win32</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">HwndHelper</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        [DllImport(<span class="string">&quot;user32.dll&quot;</span>)]</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> IntPtr <span class="title">GetWindow</span><span class="params">(IntPtr hWnd, uint uCmd)</span></span>;</span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">GetWindowZOrder</span><span class="params">(IntPtr hwnd, out <span class="keyword">int</span> zOrder)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">const</span> uint GW_HWNDPREV = <span class="number">3</span>;</span><br><span class="line">            <span class="keyword">const</span> uint GW_HWNDLAST = <span class="number">1</span>;</span><br><span class="line"> </span><br><span class="line">            var lowestHwnd = GetWindow(hwnd, GW_HWNDLAST);</span><br><span class="line"> </span><br><span class="line">            var z = <span class="number">0</span>;</span><br><span class="line">            var hwndTmp = lowestHwnd;</span><br><span class="line">            <span class="keyword">while</span> (hwndTmp != IntPtr.Zero)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (hwnd == hwndTmp)</span><br><span class="line">                &#123;</span><br><span class="line">                    zOrder = z;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line"> </span><br><span class="line">                hwndTmp = GetWindow(hwndTmp, GW_HWNDPREV);</span><br><span class="line">                z++;</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            zOrder = <span class="keyword">int</span>.MinValue;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>aardio取得z-order的代码(取得windows的Z序代码)如下</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">get_zorder</span><span class="params">(win_hwnd)</span></span>&#123;</span><br><span class="line">    var lowestHwnd = ::User32.GetWindow(win_hwnd,<span class="number">0x1</span><span class="comment">/*_GW_HWNDLAST*/</span>);</span><br><span class="line">    var z=<span class="number">0</span>;</span><br><span class="line">    var hwndTmp=lowestHwnd;</span><br><span class="line"><span class="keyword">while</span> (hwndTmp != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (win_hwnd == hwndTmp)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> z;</span><br><span class="line">                &#125;</span><br><span class="line">                hwndTmp = ::User32.GetWindow(hwndTmp,<span class="number">0x3</span>);</span><br><span class="line">                z++;</span><br><span class="line">            &#125;    </span><br><span class="line">    <span class="keyword">return</span>  <span class="number">0</span>; </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ZIP一个没落天才的故事</title>
       <link href="/2018/03/27/505.html"/>
       <url>/2018/03/27/505.html</url>
@@ -185,6 +317,310 @@
         <tags>
             
             <tag> 人物故事 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>AE模板-动感极限运动动作电影游戏宣传片预告片信号损坏视频开场</title>
+      <link href="/2018/03/25/503.html"/>
+      <url>/2018/03/25/503.html</url>
+      
+        <content type="html"><![CDATA[<p>包含信号损坏，亮度置换，多摄像机分屏，摄像机推拉等多种动画场景视频图片文字效果，所有的镜头都是单独模块化的，可以自己随意拖拽组合成自己的开场宣传视频，默认包含以下已经做好的视频片头，可以直接使用：</p><p>开场视频风格 V1 (0:30)<br>开场视频风格 V1 (0:30)<br>开场视频风格 V1 (0:36)<br>预告片(0:30)<br>宣传片 (1:10)<br>动作电影宣传片 v1 (1:00)<br>动作电影宣传片 v2 (1:00)<br>动态幻灯片视频 v1 (2:13)<br>动态幻灯片视频 v2 (1:40)<br>3个Logo展示 (0:04)</p><p>版 本：AE CS5或者更高版本，必使用英文版AE<br>分辨率：4K高清3840×2160<br>插 件：不需要第三方插件<br>大 小：1.82GB<br>教 程：视频教程<br>音 乐：不包含背景音乐<br>注 意：模板修改需要有一定的AE基础，未入门的新手请谨慎购买，店主不负责帮忙修改<br>使用者一定要对AE了解，我们只提供模板，不包使用<br>不包括预览视频中图像（就是人物照片与实拍影片）与音乐素材<br>视频预览：<br><video style="width:100%;" src="http://vodcdn.video.taobao.com/oss/ali-video/e57181ee50f54f0ab5d09aa410217a2a/1463458085/video.mp4" controls="" preload="">您的浏览器不支持HTML5的 video 标签，无法为您播放！</video><br>视频截图：<br><img class="islazy size-full" data-original="https://img.alicdn.com/imgextra/i2/2856758419/TB2pZZ1oVXXXXX3XFXXXXXXXXXX_!!2856758419.jpg" src="https://img.alicdn.com/imgextra/i2/2856758419/TB2pZZ1oVXXXXX3XFXXXXXXXXXX_!!2856758419.jpg" alt="AE模板-动感极限运动动作电影游戏宣传片预告片信号损坏视频开场" width="750" height="3740" style="display: block;"><br>下载地址:<a href="https://pan.baidu.com/s/1Eefu1hnL336pMTdPrWd1sg">https://pan.baidu.com/s/1Eefu1hnL336pMTdPrWd1sg</a> 密码：omy0</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 素材 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ae模板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>恢宏大气金色文字</title>
+      <link href="/2018/03/25/501.html"/>
+      <url>/2018/03/25/501.html</url>
+      
+        <content type="html"><![CDATA[<p>【版本要求】:建议使用 AE CS6或更高的AE英文版打开<br>【插件要求】:Element V2;Particular<br>【模板尺寸】:1920X1080<br>【时间长度】:14秒<br>【音频】:有<br>【文件大小】:389M<br>【视频截图】:<br><img class="islazy size-full" data-original="https://img.alicdn.com/imgextra/i4/815662356/TB2AndvmthvOuFjSZFBXXcZgFXa_!!815662356.jpg" src="https://img.alicdn.com/imgextra/i4/815662356/TB2AndvmthvOuFjSZFBXXcZgFXa_!!815662356.jpg" alt="pa598 恢宏大气金色文字纪念红军长征胜利80周年AE模板片头源文件" width="750" height="423" style="display: block;"><br>【视频预览】:<br><video style="width:100%;" src="http://mp4.vjshi.com/2016-10-20/14ff56ba7500a9616ea6e693f4ef0291.mp4" controls="" preload="">您的浏览器不支持HTML5的 video 标签，无法为您播放！</video></p><p>下载地址<a href="https://pan.baidu.com/s/1gqNWtWYCc1mFpcBR22Lkgg">https://pan.baidu.com/s/1gqNWtWYCc1mFpcBR22Lkgg</a>  密码：5pxn</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 素材 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ae模板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>迅雷地址、快车地址和QQ旋风地址加解密原理</title>
+      <link href="/2018/03/12/497.html"/>
+      <url>/2018/03/12/497.html</url>
+      
+        <content type="html"><![CDATA[<p>迅雷地址和快车地址的加密方式很简单，其实都是用的Base64加密方式，只不过有一点点的小改动而已。</p><h2 id="1-迅雷链接地址加密方式"><a href="#1-迅雷链接地址加密方式" class="headerlink" title="1. 迅雷链接地址加密方式"></a>1. 迅雷链接地址加密方式</h2><p>迅雷链接地址转换原理是在地址的前方和后方加入两个字母AA、ZZ，然后再进行Base64加密，再加上Thunder://这个专用链接标识，从而转换成迅雷的专用地址。例如：原链接为：<a href="http://www.forece.net/win7.rar%E5%9C%A8%E5%8E%9F%E5%9C%B0%E5%9D%80%E5%89%8D%E9%9D%A2%E5%8A%A0%E2%80%9DAA%E2%80%9D%EF%BC%8C%E5%90%8E%E9%9D%A2%E5%8A%A0%E2%80%9DZZ%E2%80%9D(%E6%B3%A8%EF%BC%9A%E4%B8%8D%E5%8C%85%E6%8B%AC%E5%BC%95%E5%8F%B7)%EF%BC%8C%E5%9C%B0%E5%9D%80%E5%8F%98%E4%B8%BA">http://www.forece.net/win7.rar在原地址前面加”AA”，后面加”ZZ”(注：不包括引号)，地址变为</a><br>AA<a href="http://www.forece.net/win7.rarZZ%E6%AD%A4%E5%9C%B0%E5%9D%80base64%E7%BC%96%E7%A0%81%E4%B8%BA">http://www.forece.net/win7.rarZZ此地址base64编码为</a><br>QUFodHRwOi8vd3d3LmZvcmVjZS5uZXQvd2luNy5yYXJaWg==加入迅雷专链标识，即在上地址前加thunder://，即<br>thunder://QUFodHRwOi8vd3d3LmZvcmVjZS5uZXQvd2luNy5yYXJaWg==</p><h2 id="2-网际快车链接地址加密方式"><a href="#2-网际快车链接地址加密方式" class="headerlink" title="2. 网际快车链接地址加密方式"></a>2. 网际快车链接地址加密方式</h2><p>网际快车的链接地址转换原理和迅雷的类似，只不过是在地址前后加上[FLASHGET]，经过Base64加密，然后在地址前加flashget://这个快车专用链接标识，最后还需要加一个标识符（&amp;符号），符号任意，我一般就加我的名字（&amp;forece），这样就可以将普通http地址转换成快车的地址了。例如：原链接为：<a href="http://www.forece.net/win7.rar%E5%9C%A8%E5%8E%9F%E5%9C%B0%E5%9D%80%E5%89%8D%E5%90%8E%E9%83%BD%E5%8A%A0%E4%B8%8A%E2%80%9D[FLASHGET]%E2%80%9C(%E6%B3%A8%EF%BC%9A%E4%B8%8D%E5%8C%85%E6%8B%AC%E5%BC%95%E5%8F%B7)%EF%BC%8C%E5%9C%B0%E5%9D%80%E5%8F%98%E4%B8%BA[FLASHGET]http://www.forece.net/win7.rar[FLASHGET]">http://www.forece.net/win7.rar在原地址前后都加上”[FLASHGET]“(注：不包括引号)，地址变为[FLASHGET]http://www.forece.net/win7.rar[FLASHGET]</a><br>此地址base64编码为</p><p>W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=</p><p>加上快车专链标识和结尾符号，即在上地址前加flashget://，结尾加&amp;forece，即</p><p>flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&amp;forece</p><p>“&amp;符号”，符号怎么得出我也不清楚，只是看网上别人这么写的，至今无人报错。</p><h2 id="3-QQ旋风链接地址加密方式"><a href="#3-QQ旋风链接地址加密方式" class="headerlink" title="3. QQ旋风链接地址加密方式"></a>3. QQ旋风链接地址加密方式</h2><p>QQ旋风的地址转换相对就简单多了，将原地址直接base64编码加密就可以了，然后加上标识符qqdl://即可。例如：原链接为：<a href="http://www.forece.net/win7.rar%E6%AD%A4%E5%9C%B0%E5%9D%80base64%E7%BC%96%E7%A0%81%E4%B8%BA">http://www.forece.net/win7.rar此地址base64编码为</a><br>aHR0cDovL3d3dy5mb3JlY2UubmV0L3dpbjcucmFy</p><p>再加上旋风专链标识，在上地址前加qqdl://，即</p><p>qqdl://aHR0cDovL3d3dy5mb3JlY2UubmV0L3dpbjcucmFy</p><p>这样，普通的http地址就可以轻松的转换成快车，迅雷，旋风的地址了。相反，解密只要将过程反推即可。同样还是利用Base64加密，解密工具。迅雷地址和快车地址的加密方式很简单，其实都是用的Base64加密方式，只不过有一点点的小改动而已。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 逆向工程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>云更新无盘各版本官方下载地址</title>
+      <link href="/2018/03/06/491.html"/>
+      <url>/2018/03/06/491.html</url>
+      
+        <content type="html"><![CDATA[<p>云更新是专业高效的网吧数字内容管理软件,用户可以通过云更新搭建的三层更新平台实现海量娱乐内容的自动更新和下载，轻松完成娱乐内容的添加、管理和更新等一系列复杂的工作。云更新官方网站上只提供最新的云更新版本下载，以前的版本不提供下载，如果你需要下载以前的版本怎么办呢？</p><ol><li>云更新5498版的官方下载地址：(此版会被强制更新)<br>云更新5498版服务端安装包下载：<a href="http://file.yungengxin.com/Soft/download/Server_x64_2017.1.15.5498_Setup.zip">http://file.yungengxin.com/Soft/download/Server_x64_2017.1.15.5498_Setup.zip</a><br>云更新5498版客户端安装包下载：<a href="http://file.yungengxin.com/Soft/download/Client2017.1.15.5498_Setup.zip">http://file.yungengxin.com/Soft/download/Client2017.1.15.5498_Setup.zip</a></li><li>云更新6596版的官方下载地址：<br>云更新6596服务端安装包下载：<a href="http://file.yungengxin.com/Soft/download/Server_x64_2017.6.15.6596_Setup.zip">http://file.yungengxin.com/Soft/download/Server_x64_2017.6.15.6596_Setup.zip</a><br>云更新6596客户端安装包下载：<a href="http://file.yungengxin.com/Soft/download/Client2017.6.15.6596_Setup.zip">http://file.yungengxin.com/Soft/download/Client2017.6.15.6596_Setup.zip</a><br>云更新6596开包升级工具下载：<a href="http://file.yungengxin.com/Soft/download/ClientUpdate2017.6.15.6596.zip">http://file.yungengxin.com/Soft/download/ClientUpdate2017.6.15.6596.zip</a></li><li>云更新7625版的官方下载地址：<br>云更新7625服务端和客户端安装包下载：<a href="http://file.yungengxin.com/Soft/download/Standard_2017.10.15.7625.zip">http://file.yungengxin.com/Soft/download/Standard_2017.10.15.7625.zip</a></li></ol><p>看出什么端倪了吗？云更新官网虽然不提供旧版本的下载链接，实际上旧版本文件是存在云更新服务器上的，所有旧版本均存放在<a href="http://file.yungengxin.com/Soft/download/">http://file.yungengxin.com/Soft/download/</a>中的，如果此地址允许目录列表，那么就可以把云更新版本全部下载了，但此地址不支持目录列表，所以需要你知道你需要下载的文件的文件名！但我们可以看出，以前的版本服务端都这样按日期和版本号命名的，比如Server_x64_2017.1.15.5498_Setup.zip，指的是64位服务端(Server_x64)，发期日期是2017.1.15，版本号是5498，只要你知道这些就可以试着下载了。下面是我们从云更新服务器下载后保存到百度云上的!<br>百度云下载 链接: <a href="https://pan.baidu.com/s/1529CfcnaEmoqP1gI01ELBw">https://pan.baidu.com/s/1529CfcnaEmoqP1gI01ELBw</a> 密码: 3kht</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 云更新 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Delphi中那些容易混淆的基础知识</title>
+      <link href="/2018/02/28/472.html"/>
+      <url>/2018/02/28/472.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-、-、Addr、Pointer"><a href="#1-、-、Addr、Pointer" class="headerlink" title="1. @、^、Addr、Pointer"></a>1. @、^、Addr、Pointer</h2><p>Delphi(Pascal)中有几个特殊的符号，如@、^等，弄清楚这些符号的运行，首先要明白Delphi指针的一些基础知识：指针，是一个无符号整数（unsigned int），它是一个以当前系统寻址范围为取值范围的整数。指针对应着一个数据在内存中的地址，得到了指针就可以自由地修改该数据。指针的指针就是用来存放指针所在的内存地址的。<br>明白了指针的基本含义，就容易理解它们之间 的区别了：</p><ul><li>@XX：取变量、函数或过程XX的地址（获取指针）；</li><li>Addr(XX)：和@的作用类似，唯一的不同在于如果编译选项{$T-}没有打开，@返回的是一个通用的指针，如果编译选项打开了，@返回的是XX对应的指针，但Addr却不受此编译选项的约束。</li><li>^：当它出现在类型定义的前面时如 ^typename 表示指向这种类型的指针; 当它出现在指针变量后边时 如 point^ 返回指针指向的变量的值;</li><li>Pointer：无类型指针（对应PChar、PInteger等则为“有类型指针”）。<br>通过这段代码则更容易区分它们：<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span></span><br><span class="line">X, Y: Integer;  <span class="comment">// X and Y 整数类型</span></span><br><span class="line">P: ^Integer;  <span class="comment">// P 指向整数类型的指针</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">X := <span class="number">11</span>;  <span class="comment">// 给 X 赋值</span></span><br><span class="line">P := @X;  <span class="comment">// 把 x的地址赋给p</span></span><br><span class="line">Y := P^;  <span class="comment">// 取出p所指向的数值赋给y</span></span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>第二行定义了两个变量X，Y。 第三行声明了P是指向整数类型的指针；意味着P能够指向X或者Y的地址。第五行赋给X值，第六行把X的地址赋给P。最后通过P指向的变量赋值给Y。此时，X和Y有相同的值。<h2 id="2-Char、Byte"><a href="#2-Char、Byte" class="headerlink" title="2. Char、Byte"></a>2. Char、Byte</h2></li><li>Char是一个字符，必须赋以字符如‘A’等；</li><li>Byte是无符号整数，数值范围0~255。<br>虽然字符实质上也是整数，但与C不同，Delphi中将他们划为两种不同的类型，各自遵从不同的运算。比如运算符+对于Byte是整数加法，对于Char则是字符连接成串。<br>他们可以相互转化：Ord(‘A’)得到字符对应的整数，Chr(65)得到整数对应的字符。<br>同理，就很好区分array of Byte和array of Char了。<h2 id="3-Move、CopyMemory"><a href="#3-Move、CopyMemory" class="headerlink" title="3. Move、CopyMemory"></a>3. Move、CopyMemory</h2>Move字面意思上是“移动”的意思，其实不然，在Delphi中Move更像是Copy：它可以复制一段内存片段到另外一段内存空间中。如下代码：<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span></span><br><span class="line">  source, dest : <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="comment">// Set up our starting string</span></span><br><span class="line">  source := <span class="string">&#x27;123456789&#x27;</span>;</span><br><span class="line">  dest   := <span class="string">&#x27;---------&#x27;</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Copy a substring from source into the middle of dest</span></span><br><span class="line">  Move(source[<span class="number">5</span>], dest[<span class="number">3</span>], <span class="number">4</span>);</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Show the source and destination strings</span></span><br><span class="line">  ShowMessage(<span class="string">&#x27;Source = &#x27;</span>+source);</span><br><span class="line">  ShowMessage(<span class="string">&#x27;Dest   = &#x27;</span>+dest);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"><span class="comment">//结果------------------</span></span><br><span class="line"><span class="comment">//Source = 123456789</span></span><br><span class="line"><span class="comment">//Dest   = --5678---</span></span><br></pre></td></tr></table></figure>而CopyMemory则可以在Delphi的源码中看出端倪：<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">CopyMemory</span><span class="params">(Destination: Pointer; Source: Pointer; Length: DWORD)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Move(Source^, Destination^, Length);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>可以看出，CopyMemory其实也是调用了Move方法，但参数变了，CopyMemory参数是指针。当然，从源码还可以发现MoveMemory和CopyMemory是一模一样的功能。<br>CopyMemory一般的使用方法为：<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span></span><br><span class="line">  buf1,buf2: <span class="keyword">array</span>[<span class="number">0</span>..<span class="number">9</span>] <span class="keyword">of</span> AnsiChar;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  buf1 := <span class="string">&#x27;0123456789&#x27;</span>;</span><br><span class="line">  buf2 := <span class="string">&#x27;abcdefghij&#x27;</span>;</span><br><span class="line">  CopyMemory(@buf2[<span class="number">2</span>], @buf1[<span class="number">4</span>], <span class="number">5</span>);</span><br><span class="line">  ShowMessage(buf1); <span class="comment">&#123;0123456789&#125;</span></span><br><span class="line">  ShowMessage(buf2); <span class="comment">&#123;ab45678hij&#125;</span></span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure><h2 id="4-GetMem和FreeMem、GetMemory和FreeMemory、New和Dispose、StrAlloc和StrDispose、AllocMem"><a href="#4-GetMem和FreeMem、GetMemory和FreeMemory、New和Dispose、StrAlloc和StrDispose、AllocMem" class="headerlink" title="4. GetMem和FreeMem、GetMemory和FreeMemory、New和Dispose、StrAlloc和StrDispose、AllocMem"></a>4. GetMem和FreeMem、GetMemory和FreeMemory、New和Dispose、StrAlloc和StrDispose、AllocMem</h2>Delphi中的内存申请和释放方法比较多，但有一点儿需要牢记的是上述方法建议配对使用。<br>GetMem和FreeMem与GetMemory和FreeMemory在Delphi的源码中可以看到是被调用和调用的关系，FreeMemory会判断指针是否为空：<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetMemory</span><span class="params">(Size: Integer)</span>:</span> Pointer; <span class="keyword">cdecl</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Result := MemoryManager.GetMem(Size);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FreeMemory</span><span class="params">(P: Pointer)</span>:</span> Integer; <span class="keyword">cdecl</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">if</span> P = <span class="keyword">nil</span> <span class="keyword">then</span></span><br><span class="line">    Result := <span class="number">0</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    Result := MemoryManager.FreeMem(P);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>因此，建议用GetMemory和FreeMemory代替GetMem和FreeMem。<br>New和Dispose是用来管理变体类型内存分配，如变体结构体：<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TRecord = <span class="keyword">record</span></span><br><span class="line">Text: <span class="keyword">string</span>;</span><br><span class="line">Value: Integer;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line">PRecord = ^TRecord;</span><br></pre></td></tr></table></figure>如果用GetMem和FreeMem、GetMemory和FreeMemory来释放，会造成Text的内存没有释放，造成内存泄漏。如果用Dispose来释放指针，要加上定义信息，否则造成内存泄漏，正确写法Dispose(PRecord(Point))。另外需要注意的一点是：Delphi设计的Dispose释放内存时，只是标记这部分内存可以再用来被New等函数分配，并不是把从系统申请到的内存归还给操作系统，只在程序结束时，才全部释放给操作系统，因此并不能在资源管理器中看到Dispose的“显著效果”。<br>一般使用方法如下：<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Type</span></span><br><span class="line">　PMyRec = ^TMyRec;</span><br><span class="line">　TMyRec = <span class="keyword">record</span></span><br><span class="line">　　FName: <span class="keyword">string</span>;</span><br><span class="line">　　LName: <span class="keyword">string</span>;</span><br><span class="line">　<span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">　MyRecPtr: PMyRec;</span><br><span class="line">　TreeViewIndex: LongInt;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">　New(MyRecPtr);</span><br><span class="line">　MyRecPtr^.FName := Edit1.Text;</span><br><span class="line">　MyRecPtr^.LName := Edit2.Text;</span><br><span class="line">　<span class="comment">&#123;其他处理&#125;</span></span><br><span class="line">　Dispose(MyRecPtr);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>StrAlloc和StrDispose这个函数也是一对，他们分配PChar加一个Cardinal长度，因此一定要用StrDispose释放，否则容易造成4字节的内存泄漏。StrAlloc分配的指针可以使用StrBufSize来获得大小。<br>AllocMem和GetMem的区别在于AllocMem在申请内存后会初始化这段内存（把内存全部初始化为#0），同样和FreeMem配对使用。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> delphi </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ce6.7中文版及CE找基址教程</title>
+      <link href="/2018/02/09/468.html"/>
+      <url>/2018/02/09/468.html</url>
+      
+        <content type="html"><![CDATA[<p>Cheat Engine(作弊引擎ce) 是一款内存修改编辑工具 ，它允许你修改你的游戏或软件内存数据，以得到一些其他功能。它包括16进制编辑，反汇编程序，内存查找工具。与同类修改工具相比，它具有强大的反汇编功能，且自身附带了外挂制作工具，可以用它直接生成外挂。<br>CE游戏修改器(cheat engine)的原理其实很简单，如果学过编程的人一定会知道debug这个工具，debug是可以反汇编的，只不过是手工的非常的麻烦，而CE游戏修改器(cheat engine)让反汇编变得更为简单，可以跟踪特定数字的内存地址，通过修改这些数字来达到修改游戏数据的目的，从而达到轻松过关或永远打不死等等。<br><img src="/images/1518189492-1.png" alt=""><br>CE游戏修改器(cheat engine)是国外的一款非常优秀的内存修改软件，用这个软件的游戏爱好者不计其数，他不但可以修改Flash游戏，对其他单机游戏也同样所向披靡。 CE内存修改器(Cheat Engine)用法也不是很复杂，首先是要先打开游戏，然后打开Cheat Engine软件，点击左上角的那个电脑图标，在弹出来的框中选择游戏进程，然后选择扫描类型和数值类型，进行扫描并修改!</p><p>CE 官方网站：<a href="http://cheatengine.org/">http://cheatengine.org/</a><br>CE 官方中文翻译包： <a href="http://cheatengine.org/download/ch_cn.zip">http://cheatengine.org/download/ch_cn.zip</a><br>GitHub 下载地址：<a href="https://github.com/cheat-engine/cheat-engine/releases">https://github.com/cheat-engine/cheat-engine/releases</a><br>CE 官方教程：<a href="http://wiki.cheatengine.org/index.php?title=Tutorials">http://wiki.cheatengine.org/index.php?title=Tutorials</a><br>吾爱站下载：<a href="https://down.52pojie.cn/Tools/Debuggers/Cheat%20Engine%20v6.7.exe">https://down.52pojie.cn/Tools/Debuggers/Cheat%20Engine%20v6.7.exe</a></p><p>在官方下载ce安装包，安装完成后，下载中文翻译包，解开，把ch_cn放在ce安装目录的languages子目录中，启动ce会提示你使用english还是 ch_cn，选好ch_cn语言重启ce就是中文界面了!<br>为了快速上手使用CE，CE自己提供了一个教学程序Tutorial.exe，这个教学程序有两个版本，一个是32位版Tutorial-i386.exe和64位版Tutorial-x86_64.exe</p><p>以下是CE6.7 Tutorial教学程序过步骤1到步骤9的教程，本教程每一步，都找出了基址，比其他的教程稍难，但在实践应用中，基本上都是需要找出修改内存地址的基址!</p><p>CE找基址是外挂最为关键的步骤，把基址找出来了，就可以做成外挂了，所以基址会找了就会制作外挂!就可以使用CE修改其他程序或游戏的数据了!</p><ol><li><p>ce6.7 Tutorial3.3教学步骤1  (密码:090453)<br>欢迎使用 Cheat Engine 训练教程。 (v3.3)本教程将尝试讲解在游戏中作弊的一些基本知识，并帮助你熟悉 Cheat Engine 的使用方法。首先要执行 Cheat Engine ，如果你还没有运行它的话。然后点击”选择进程”图标按钮（左上角那个带有电脑的图标）。当进程列表窗口打开后找到这个训练程序，如果你没有重新命名该程序的名称，那么进程名应该”tutorial.exe”，选择它，并点击”打开”。现在暂时不要理会其它的按钮，如果你有兴趣的话，以后再研究它们。没什么意外的话，进程列表窗口将会消失并且在 Cheat Engine 主界面的上方会显示选择的进程名称。好了，点击”下一步”按钮进入下一个步骤（或输入密码进入你要练习的步骤）。</p><img src="/images/1518190799-2.gif" alt=""></li><li><p>ce6.7 Tutorial3.3教学步骤2<br>步骤 2: 精确值扫描 (密码=090453)现在你已经在 Cheat Engine 中打开了训练程序，为我们下一步的练习做好了准备。本窗口的左下方显示的”健康:XXX”，在你每次点击”打我”按钮时，它的值便会减少。要进入下一关，你必须找到这个数值并把它改成 1000 。很多方法都可以找到这个数值的位置，但我将告诉你一个最简单的方法，”精确数值”扫描：首先确认数值类型设置为2字节或4字节，设置成1字节也可以的，不过最终修改数据的时候便会有点麻烦了（虽然说这是很容易解决的问题）。假如该地址后边的字节数值都为 0 ，那么你设置成 8 字节也未尝不可，在这我们就不必尝试了。单浮点数，双浮点数，以及其他的扫描方法在这里行不通的，因为它们储存数值的方式不同。当数值类型设置正确后，确认扫描类型设置了”精确数值”，把健康值填写在数值的输入框，并点击”首次扫描”，稍等一会儿（假设你的电脑非常的慢），扫描完毕，扫描的结果将会显示在主界面的左侧。<br>如果检索结果多于一个，你无法确定哪一个是正确的地址，那么继续点击”打我”，并将变更后的”健康值”填写在数值输入框中，点击”再次扫描”，重复这些步骤，直到你能确认已经找到了地址（在地址列表中只有一个地址）。好，双击左侧列表中的地址，该地址便会移动到下方的地址列表中并显示它的当前数值。双击下方地址列表中的数值（或者选择它，按下回车），填写你要修改的数值：1000 。如果操作正确，”下一步”按钮将变成可点击状态，本关就完成了。提示：如果你在扫描过程中出现了错误，可以点击”新的扫描”重新再来。当然，你也可以点击”打我”去查找一些更有价值的线索。<br>以下是CE找基址的步骤1到步骤9的视频教程</p><iframe style="width:100%" frameborder="0" height="600" src="http://player.youku.com/embed/XMzQwMDcxOTQzMg==" allowfullscreen=""></iframe></li><li><p>ce6.7 Tutorial3.3教学步骤3<br>步骤 3: 未知的初始值 (密码=419482)<br>OK, 看来你已经理解了如何利用”精确数值”扫描查找数值了，让我们进行下一步。在上一关中我们知道初始数值的大小，所以我们可以利用”精确数值”扫描，但本关中仅有一个状态栏，我们并不知道它的初始数值。我们只知道这个数值在0到500之间，并且每次点击”打我”之后便会减些健康值，每次减少的健康值会显示在进度条的上方。同样有好几种方法可以找这个数值，（例如使用”数值减少了…”扫描方式），但我只教你最简单的方法，”未知的初始值”和”减少的数值”。 由于不知道当前数值的大小，”精确数值”扫描便派不上了用场，所以选择扫描方式”未知初始数值”。数值类型仍然选择 4 字节（这是因为大多数WINDOWS应用程序都使用 4 字节存放数据）。点击”首次扫描”并等待扫描结束。扫描完成后，点击”打我”，你会减少一些健康值。（减少的健康值显示几秒便会消失，你并不需要刻意记下它）。回到 Cheat Engine，在扫描类型中选择”减少的数值”，然后点击”再次扫描”。扫描完毕后，再次点击”打我”，并重复上述步骤，直到检索出很少的几个地址。 我们已经知道这个数值在0到500之间，所以挑出那个最为相似的地址，并将它加到下方的地址列表。现在，更改健康值为 5000，以便我们进入到下一关。</p></li><li><p>ce6.7 Tutorial3.3教学步骤4<br>步骤 4: 浮点数 (密码=890124)<br>在前面的教程中我们使用字节的方式进行扫描，但有些游戏使用了”浮点数”来存储数值（这么做是为了给菜鸟制造一些麻烦，让他们没那么容易修改游戏）。浮点数是带有小数点的数值（如 5.12 或 11321.1）。正如本关中的健康和弹药，两者都以浮点方法储存数据，不同的是，健康值为单精度浮点数，而弹药值为双精度浮点数。点击”打我”将减少一些健康值，而点击”开火”则消耗掉 0.5 的弹药。你得把这两项都修改到 5000 或者更多才能过关。”精确数值”扫描的方式虽然也可以完成本关的工作，但你应该试试其它更简练的扫描方式。<br>提示: 扫描双浮点数类型建议禁用 “快速扫描”</p></li><li><p>ce6.7 Tutorial3.3教学步骤5<br>步骤 5: 代码查找 (密码=888899)某些游戏重新开始时，数据会存储在与上次不同的地方, 甚至游戏的过程中数据的存储位置也会变动。在这种情况下，你还是可以简单几步搞定它。这次我将尽量阐述如何运用”代码查找”功能。下方的数值每次启动教程的时候都会存放在内存不同的位置，所以地址列表中的固定地址是不起作用的。我们要先找到这个数值当前的存储地址（要如何去做，相信不用我再啰嗦了）。当你找到了地址就添加在下方的地址列表中，然后右健单击该地址，在弹出的菜单中选择”找出是什么改写了这个地址”，将弹出一个空白的窗口。接着点击本教程窗体上的”改变数值”按钮，并返回 Cheat Engine 。如果操作没问题 在刚才弹出的空白窗口中会出现一些汇编代码。选中代码并点击”替换”按钮，将它替换成什么也不做的代码（空指令），同时，修改后的代码也将放置在”高级选项”的代码列表中去（保存地址列表时会同时保存）。点击”停止”，游戏会以正常的方式继续运行下去，点击”关闭”按钮，关掉窗口。现在，再次点击教程窗口上的”改变数值”，没问题的话，”下一步”将变为可点击的状态。提示：如果你以足够快的速度锁定住该地址，”下一步”按钮也会变为可点击的。</p></li><li><p>ce6.7 Tutorial3.3教学步骤6<br>步骤 6: 指针: (密码=098712)上一步阐述了如何使用”代码查找”功能对付变化位置的数据地址，但这种方法往往不能达到预期的效果，所以我们需要学习如何利用指针。在本关的 Tutorial.exe 窗口下面有两个按钮，一个会改变数值，另一个不但能改变数值而且还会改变数值在内存中存储的位置。这一步，你不需要懂得汇编，但如果懂的话会很有帮助。首先找到数值的地址，然后再查找是什么改写了这个地址。再次改变数值，CE 便可以列出找到的汇编代码。 双击一行汇编代码（或选择它并点击”详细信息”）并打开”详细信息”窗口以显示详细的信息，用来告诉你当这个指令运行时发生了什么事情。如果在这条汇编指令中没看到方括号（[]）的存在，我们就应该查看下一条汇编代码的详细信息，如果看到了方括号，那很可能表示我们已经找到了需要的指针。返回到主 cheat engine 窗口 （只要你愿意，你可以保持这个额外的信息窗口为打开状态。如果你要关掉它，那么要记好方栝号中间的代码）并做一次 4 字节的扫描，扫描”详细信息”窗口中告诉你的一串十六进制数值。扫描完成时它可能返回一个或几百个地址。大多数时候你需要的地址将是最少的一个。现在点击”手工添加地址”按钮，并勾选”指针”选项。”添加地址”窗口将发生变化，多出了”Address of Pointer（指针地址）”和”Offset (Hex)（偏移量(16进制)）”的文本框，以便您键入一个指针的地址和偏移量。请尽量填入刚才扫描到的地址。如果汇编指令中的方栝号里存在计算（例如：[esi+12]）则把数值部分填在”Offset (Hex)”的文本框中，如果不存在，则让它保持为 0 。如果看上去是更复杂的计算指令的话（举例说明一下）：[EAX<em>2+EDX+00000310] eax=4C 并且 edx=00801234.这种情况下 EDX 便是数值的指针，而 EAX</em>2+00000310 则是它的偏移量, 所以你要填在”Offset (Hex)”的将是 2*4C+00000310=3A8。（这些都是在十六进制下计算的，你可以使用WINDOWS的计算器，在科学方式下用十六进制计算）。回到教程，点击”确定”这个地址便会加到 CE 主窗口下方的地址列表中，如果没做错，在地址栏将显示 P-&gt;xxxxxxxx，而 xxxxxxxx 和你扫描到的地址数值是一致的，如果不一致，那么可能是哪里出错了。现在, 改变那条指针地址的数值为 5000 并锁定它，然后点击 Tutorial.exe 窗口上的”改变指针”按钮，如果一切正确，”下一步”按钮将变为可点击状态。<br>备注:<br>你也可以使用”指针扫描”的方式来查找这个指针地址。</p></li><li><p>ce6.7 Tutorial3.3教学步骤7<br>步骤 7: 代码注入: (密码=013370)<br>代码注入是将一小段你写出的代码注入到目标进程中并执行它的技巧。在这一步教程中，你将有一个健康值和一个每按一次将减少 1 点健康值的按钮，你的任务是利用”代码注入”，使每按一次按钮增加2点的健康值。查找这个地址，然后看看是什么在改写它（”找出是什么改写了这个地址”）。当你看到那条减少数值的汇编代码后，选择”显示反汇编程序”，然后打开”自动汇编窗口”（菜单-工具-&gt;自动汇编 或 按下快捷键 Ctrl+a )，选择”模板”中的”代码注入”。CE 将自动生成一部分汇编代码并为你输入指令做好准备（如果 CE 没有给出正确的地址，你也可以手工输入它）。注意 alloc 这部分代码，它会为你的代码分配出一小块空白的内存，过去，在 Win2000 之前的系统，这种行为存在安全隐患，很可能导致系统崩溃，幸运的是，这种情况在 win2000 以后的操作系统得到改善。也要注意line newmem: 、originalcode: 以及用文本”此处放置你的代码”标示出的空白部分正如你猜测的， 在这儿可以写下每次增加2点健康值的代码。在这种情况下推荐你使用 “ADD” 汇编指令，下面是一些示例：”ADD [00901234],9″ 使 [00901234] 地址的值增加9 “ADD [ESP+4],9” 使地址指针 [ESP+4] 的值增加9 在本关的情况下，你可以使用相同的手法处理减少健康值的那条原代码方括号之间的部分。<br>提示 1：<br>推荐你从原代码中删除减少健康值的那行代码，否则你得加 3 点健康值（你增加了3点，原代码减去1点，最终结果才会增加2点），这样看上去很容易让人迷惑，但最终方案还是由你来决定好了。<br>提示 2:<br>某些游戏中，原代码可能在多条指令之外，有时候（并非一向如此），它可能由不同的地方跳转至你的指令中并结束运行，其结果可能引起未知的错误；如果出现了这种情况，通常应当查看附近的那些跳转指令，进行修改，或者尝试使用不同地址进行代码注入，确认无误后便可以将你修改的代码注入到原代码中了。</p></li><li><p>ce6.7 Tutorial3.3教学步骤8<br>步骤 8: 多级指针: (密码=525927)在这一步将解释如何使用多级指针。<br>在第 6 步，你已经清楚 1 级指针的概念和用途，并可以利用数值的首个地址找到存放数据真正的基址。在本关中，你将看到 4 级指针，它由第一个指针指向第二个指针，再由第二个指针指向第三个指针，由第三个指针指向第四个指针，最终指向健康值的真正地址。开始的几步与在第 6 步中的操作基本相同。找出是什么访问了这个地址，然后分析汇编指令，查找指针地址中的数值，以及它的偏移量，将它们记下来。但这次你按数值找出的仍然是一个指针，你得依据这些数值，使用同样的操作方法找出指向这个指针的指针。看看是什么访问了你发现的那个指针地址，分析汇编指令，留意可能的代码和偏移量，并加以利用。持续这种过程，直到不能更进一步查找为止（通常基址为静态时，地址将以绿色标示）。点击”改变数值”改变健康值，如果你发现列表中那些指针地址所指向的值发生同样的变化时，那表示你可以试着将基址中的值更改为 5000，并锁定它，以便完成本关的任务了。备注1: 本步骤也可以使用自动汇编程序脚本或者使用指针扫描器加以解决。<br>备注2: 在某些情况下，可以改变 CE 软件”代码查找”的相关设置。<br>当你遇到类似于 mov eax,[eax] 的指令时，调试程序将显示改变之后的寄存器中的值，也许利用它更容易找出指针的位置。<br>备注3: 你还在读？！当你查看汇编指令时你可能已经注意到，这些指针是在相同的代码块（相同的程序，如果你懂汇编，可以查看程序的起始代码）位置被读写。这种情况并不总会发生，但是当你在查找某个指针遇到问题的时候，没准能起到很大的用处。</p></li><li><p>ce6.7 Tutorial3.3教学步骤9<br>步骤 9: 注入++: (密码=31337157)这一步将会解释如何处理游戏中的共用代码, 这种代码是通用在除了自己以外的其他同类型对像上常常你在修改游戏的时候, 你找到了一个单位的健康, 或是你自己角色的健康, 你会发现一种情况: 如果你把健康相关代码移除的话，其结果是你的角色无敌, 但你的敌人也无敌了。<br>在这种情况下, 你必须想办法区分自己与敌人。有时候很简单, 你只要检查最前面的4个字节(函数指针表), 它通常指向一个独一无二的地址, 代表着游戏玩家角色，而有的时候它是一个团体号码, 或者也可能是一个指针, 它指向另一个指针, 该址针又指向下一个指针,搞不好还指向下下一个指针, 最后指向一个玩家名字。总之完全取决于游戏的复杂度, 以及你的运气最简单的方法是以”找出是什么改写了这个地址”去找出游戏代码，然后使用”分析(新/旧)数据/结构”的功能去比较两种结构。(你的单位和敌人的单位)然后看看是不是可以找到一个区分两者的方法。当你找到如何区分你和电脑单位的方法后，你可以注入一段自动汇编脚本来检查状态，然后看是要运行游戏的代码还是要做其他的修改。(例如一击必杀)另外, 你还可以用这个方法去创建一般所说的”字节数组”的字串, 它可以用来搜寻并产生一份所有你的单位或是敌人单位的列表 在这个教程中, 我已经实现了你将会玩到的最惊人的游戏.这个游戏有4个玩家。2个属于你的阵容, 另外两个属于电脑方。你的任务是找到改写健康的代码, 并且修改以至于你可以获得胜利，但”绝不能”使用锁定HP的方法.完成修改以后, 请按 “重新启动游戏并自动执行” 来测试你的修改是否正确<br>提示1: 健康是一个单浮点数<br>提示2: 解法不只一种<br>以下是ce6.7 Tutorial3.3教学各步骤基址CT文件(包括32位和64位两个文件)</p></li></ol><p>下载链接：<a href="https://pan.baidu.com/s/1smdbIHZ">https://pan.baidu.com/s/1smdbIHZ</a> 密码：3t8e</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 精品软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>动态逆向调试工具OllyDbg</title>
+      <link href="/2018/02/03/462.html"/>
+      <url>/2018/02/03/462.html</url>
+      
+        <content type="html"><![CDATA[<p>OllyDbg是一个32位汇编级分析调试器。对二进制代码分析功能使它在不知道可执行文件源码的情况下特别有用。OllyDbg是一个共享软件。功能特点：直观的用户界面，没有复杂的命令；代码分析-跟踪寄存器，识别过程，循环，API调用，开关，表，常量和字符串；直接加载和调试DLL；对象文件扫描——从对象文件和库中查找例程；允许用户定义的标签、注释和功能描述；理解在Borland®格式的调试信息；修改汇编代码后可直接保存为可执行文件；开放体系结构-许多第三方插件可用；纯绿色,没有安装-注册表或系统目录中没有垃圾；调试多线程应用程序;附加到运行的程序;可配置的反汇编程序，支持MASM和理想的格式；MMX，3dnow！和SSE数据类型和指令，包括Athlon扩展；完整的Unicode支持；动态识别ASCII和Unicode字符串-也用Delphi格式！识别复杂的代码结构，如调用跳转到过程。解码调用超过1900个标准API和400个C函数；从外部帮助文件对API函数提供上下文敏感帮助；设置条件、日志、内存和硬件断点；跟踪程序执行，记录已知函数的参数；还有很多，更多！总之OllyDbg就是Ring3级的调试器，将IDA与SoftICE结合起来的思想，非常容易上手!<br><img src="/images/1517667176-1.jpg" alt=""><br>OllyDbg英文官方网站：<a href="http://www.ollydbg.de/">http://www.ollydbg.de/</a> 中文站 <a href="http://www.ollydbg.net/">http://www.ollydbg.net/</a></p><p>OllyDbg1.10官网下载地址 <a href="http://www.ollydbg.de/odbg110.zip">http://www.ollydbg.de/odbg110.zip</a></p><p>OllyDbg 1.10看雪下载地址  <a href="https://tool.pediy.com/index-detail-1.htm">https://tool.pediy.com/index-detail-1.htm</a></p><p>吾爱破解专用版OllyDbg下载地址 <a href="http://down.52pojie.cn/Tools/Debuggers/%E5%90%BE%E7%88%B1%E7%A0%B4%E8%A7%A3%E4%B8%93%E7%94%A8%E7%89%88Ollydbg.rar">http://down.52pojie.cn/Tools/Debuggers/吾爱破解专用版Ollydbg.rar</a></p><p>吾爱破解专用版OllyDbg更新日志</p><p>2016年1月21日更新如下：<br>1、默认勾选“解码修饰符号名称（Demangle symbolic names）”，方便调试分析MFC类程序。<br>2、本次更新后压缩包：9413A89DE76D48B0D6F1807A6A42BAB7 吾爱破解专用版Ollydbg.rar</p><p>2015年12月14日更新如下：<br>1、删除ILLY.dll和ODbgScript_Win2k.dll插件，由于部分同学机器未装.NET会报错。<br>2、添加OllyDisasm201插件。（<a href="http://www.52pojie.cn/thread-443516-1-1.html%EF%BC%89">http://www.52pojie.cn/thread-443516-1-1.html）</a><br>3、将“路径修复工具”静态编译，方便没装运行库的xp机器也能运行。<br>4、本次更新后压缩包：E138F9543C5A0953DDBCA95AFDACF8FE 吾爱破解专用版Ollydbg.rar</p><p>2015年7月2日更新如下：<br>1、更新ILLY插件修复调试.NET程序异常的问题，感谢@凉游浅笔深画眉 反馈<a href="http://www.52pojie.cn/thread-366158-1-1.html%E3%80%82">http://www.52pojie.cn/thread-366158-1-1.html。</a><br>2、添加一个loadmap插件、更新字符串搜索插件、删除一些不必要的文件，完善一些细节。<br>3、添加白底黑字配置，需要请自行将”ollydbg_白底黑字配置.ini“替换成”ollydbg.ini“。<br>4、增加ollydbg.ini中的路径自动修复程序。<br>5、本次更新后压缩包：57CFF212D319E7A693D6F7D44465BF54 吾爱破解专用版Ollydbg.rar</p><p>2015年4月10日更新如下：<br>1、对Ollydbg的窗口签名进行了更改，从而避免被针对性检测。<br>2、对Ollydbg的菜单做出调整。<br>3、针对一些有可能被检测的插件进行了删减。<br>4、修改了一些可能被检测的内容。<br>5、更新ollydbg的插件为目前较新的版本。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 精品软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RemoteAdo数据库中间件爆破分析(RemoteAdo破解版)</title>
+      <link href="/2018/01/31/445.html"/>
+      <url>/2018/01/31/445.html</url>
+      
+        <content type="html"><![CDATA[<p>RemoteAdo是一款数据库中间件，官网为<a href="http://www.remoteado.cn/">http://www.remoteado.cn/</a> 本爆破教程基于RemoteAdo标准版4.2分析!</p><ol><li>下载RemoteAdo标准版4.2，使用die1.01分析，RemoteAdoServer.exe主程序加壳为ASPack(2.12)<img src="/images/1517410489-2.png" alt="">使用WASPACK脱掉<img src="/images/1517410946-1.png" alt=""></li><li>用OD载入，插件打开api常用断点下MessageBoxA断点，为什么下这个断点呢？因为点注册的时候会弹出序列号无效<img src="/images/1517411191-3.png" alt="">，断点下好后，按F9运行，按RemoteAdo软件界面中的其他选项卡中的“请注册”，在弹出的窗口中任意输入序列号然后点击注册按钮!这时在OD中已经断下了，按一次Ctrl+F9，再切换到RemoteAdo软件界面，这时提示“序列号无效”，点确定，然后切换为OD，再按一次Ctrl+F9，OD中返回到RemoteAdo的软件领空!<img src="/images/1517411573-4.png" alt="">我们看右边寄存器显示有“序列号无效”和“软件注册”等字样!</li><li>从此处（00483E18）往上看汇编代码，看是哪儿跳到这儿来的！找到00483E18看从哪儿跳来的，我不习惯使用od看，觉得不够清晰，我喜欢使用w32dasm看，在W32Dasm中shift+f12输入00483E18，往上看，一直到上面这儿（为什么到这儿，你可以从00483E18上面的多个跳转分别下断点测试，那些都是显示序列号无效的相关代码）<img src="/imeages/1517412141-5.png" alt="">在00483CC4开始到00483E18都是显示序列号无效的代码，(我们可以切换回OD在00483CC4处双击，写入汇编代码 retn，不执行直接返回，这时你可以重新运行点注册，会什么反应也没有!) 在00483CC4上方显示，调用此call的地址有7个，我们分别在以上7个调用地址前下断点，重新点击注册，看会不会断下!经过测试会在倒数第二个0056204E处断下!在W32Dasm中shift+F12，跳转到0056204E处!往上看代码，到底是谁调用了序列号无效的提示代码！</li><li>看到这段代码<img src="/images/1517412684-6.png" alt="">其中00561FC3处的call就是序列号算法函数，爆破只需要在OD中把00561FCA处填充NOP代码即可!NOP后，这时点软件中的注册会提示注册成功，但重启软件后，还是只有5个连接数!以下是去掉连接数及破解版内容在W32Dasm中我们在00561FC3处点击Call按钮，看哪些地方调用了这个注册算法函数，到这儿<img src="/images/1517412940-7.png" alt="">有两处，一处就是0055B9AB，这处是启动软件判断是否注册的，一处是00561FC3，就是我们点注册按钮判断是否注册的!在OD中我们跳到0055B9AB处，把下面的je代码NOP掉，然后保存修改的文件，就OK了!至于算法，分析太麻烦了，有兴趣自己折腾!爆破后没有5个用户连接数限制，以下是10个连接数图!<img src="/images/1517413324-8.png" alt="">后话：因为前面分析中看到有7处调用了，序列号无效的函数，我们这儿只修改了两处，所以如果你使用中存在提示序列号无效的问题，那就需要在另外5处也用相同的方法进行修改!只修改两处，使用中暂没发现有什么问题!</li></ol><p>按上面分析修改好两处的成品下载 链接：<a href="https://pan.baidu.com/s/1gg9jHa7">https://pan.baidu.com/s/1gg9jHa7</a> 密码：sbrw 解压密码 bnwin.com</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> remoteado </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>delphi在ring3阻止文件删除(8圈桌面广告图标生成原理)</title>
+      <link href="/2018/01/23/438.html"/>
+      <url>/2018/01/23/438.html</url>
+      
+        <content type="html"><![CDATA[<p>8圈网管计费系统，最近在桌面生成图标，直接删除会提示服务和应用管理程序已经打开，无法删除，8圈计费系统先生成url快捷图标，然后打开这个快捷方式取得句柄，再使用DuplicateHandle复制句柄丢给系统进程services.exe，达到占用文件，删除8圈桌面图标就不行了!8圈桌面图标阻止删除的方法关键地方就是使用了DuplicateHandle这个API，看看下面的代码!</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">EnabledDebugPrivilege</span><span class="params">(<span class="keyword">const</span> bEnabled: Boolean)</span>:</span> Boolean;<span class="comment">//提权</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">hToken: THandle;</span><br><span class="line">tp: TOKEN_PRIVILEGES;</span><br><span class="line">a: DWORD;</span><br><span class="line"><span class="keyword">const</span></span><br><span class="line">SE_DEBUG_NAME = <span class="string">&#x27;SeDebugPrivilege&#x27;</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">Result := False;</span><br><span class="line"><span class="keyword">if</span> (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, hToken)) <span class="keyword">then</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">tp.PrivilegeCount := <span class="number">1</span>;</span><br><span class="line">LookupPrivilegeValue(<span class="keyword">nil</span>, SE_DEBUG_NAME, tp.Privileges[<span class="number">0</span>].Luid);</span><br><span class="line"><span class="keyword">if</span> bEnabled <span class="keyword">then</span></span><br><span class="line">tp.Privileges[<span class="number">0</span>].Attributes := SE_PRIVILEGE_ENABLED</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">tp.Privileges[<span class="number">0</span>].Attributes := <span class="number">0</span>;</span><br><span class="line">a := <span class="number">0</span>;</span><br><span class="line">AdjustTokenPrivileges(hToken, False, tp, SizeOf(tp), <span class="keyword">nil</span>, a);</span><br><span class="line">Result := GetLastError = ERROR_SUCCESS;</span><br><span class="line">CloseHandle(hToken);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DupFile</span><span class="params">(FileName:<span class="keyword">String</span>;PID:Cardinal)</span>:</span>Boolean;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">hFile,hProcess,hTarget:THandle;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">Result := False;</span><br><span class="line">EnabledDebugPrivilege(True);</span><br><span class="line">hProcess := OpenProcess(PROCESS_DUP_HANDLE, False, PID);</span><br><span class="line"><span class="keyword">Try</span></span><br><span class="line"><span class="keyword">if</span> hProcess &lt;&gt; <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">hFile := CreateFile(PChar(FileName), GENERIC_READ, <span class="number">0</span>, <span class="keyword">nil</span>, Create_ALWAYS, FILE_ATTRIBUTE_NORMAL, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span> hFile = INVALID_HANDLE_VALUE <span class="keyword">then</span> <span class="keyword">Exit</span>;</span><br><span class="line">Result := DuplicateHandle(GetCurrentProcess(), hFile, hProcess, @hTarget,</span><br><span class="line"><span class="number">0</span>, False, DUPLICATE_SAME_ACCESS <span class="keyword">or</span> DUPLICATE_CLOSE_SOURCE);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">Finally</span></span><br><span class="line">CloseHandle(hProcess);</span><br><span class="line"><span class="keyword">End</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure><p>8圈在桌面生成图标就是利用上面的原理!实际改一下就是这样</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TForm1</span>.<span class="title">btn2Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">GetPid</span><span class="params">(ExeFileName: <span class="keyword">string</span>)</span>:</span> THandle;  <span class="comment">//根据进程名返回进程PID</span></span><br><span class="line">  <span class="keyword">const</span></span><br><span class="line">    PROCESS_TERMINATE = <span class="number">$0001</span>;</span><br><span class="line">  <span class="keyword">var</span></span><br><span class="line">    ContinueLoop: BOOL;</span><br><span class="line">    FSnapshotHandle: THandle;</span><br><span class="line">    FProcessEntry32: TProcessEntry32;</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    Result := <span class="number">0</span>;</span><br><span class="line">    FSnapshotHandle := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="number">0</span>);</span><br><span class="line">    FProcessEntry32.dwSize := SizeOf(FProcessEntry32);</span><br><span class="line">    ContinueLoop := Process32First(FSnapshotHandle, FProcessEntry32);</span><br><span class="line">    <span class="keyword">while</span> Integer(ContinueLoop) &lt;&gt; <span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      <span class="keyword">if</span> ((UpperCase(ExtractFileName(FProcessEntry32.szExeFile)) = UpperCase(ExeFileName)) <span class="keyword">or</span></span><br><span class="line">          (UpperCase(FProcessEntry32.szExeFile) = UpperCase(ExeFileName))) <span class="keyword">then</span></span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">              Result :=FProcessEntry32.th32ProcessID;</span><br><span class="line">              <span class="keyword">Break</span>;</span><br><span class="line">          <span class="keyword">end</span>;</span><br><span class="line">          ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);</span><br><span class="line">      <span class="keyword">end</span>;</span><br><span class="line">    CloseHandle(FSnapshotHandle);</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  fhand:THandle;</span><br><span class="line">  hProcess,hFile:THandle;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  fhand:=FileOpen(PWideChar(edt1.Text),GENERIC_READ);<span class="comment">//取得阻止删除的文件句柄</span></span><br><span class="line">  EnabledDebugPrivilege;</span><br><span class="line">  hProcess:=OpenProcess(PROCESS_ALL_ACCESS, FALSE, GetPid(<span class="string">&#x27;services.exe&#x27;</span>));</span><br><span class="line">  <span class="keyword">if</span> DuplicateHandle(GetCurrentProcess(), fhand,hProcess, @hFile,  <span class="number">0</span> ,FALSE, DUPLICATE_SAME_ACCESS) <span class="keyword">then</span>  </span><br><span class="line">    ShowMessage(<span class="string">&#x27;文件占坑成功!&#x27;</span>);</span><br><span class="line">  CloseHandle(hProcess);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> delphi </tag>
+            
+            <tag> 去广告 </tag>
+            
+            <tag> 8圈广告 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>形象宣传片专题片片头AE模板</title>
+      <link href="/2018/01/09/397.html"/>
+      <url>/2018/01/09/397.html</url>
+      
+        <content type="html"><![CDATA[<p>形象宣传片专题片片头AE模板 图片展示震撼大气模板 震撼消防片头AE模板<br>软件 ：AfterEffects CS6(.aep)</p><p>像素 ：宽1920 X 高1080 像素</p><p>肖像权 ：无人物</p><p>体积 ：140.17MB</p><p>音频 ：含音频<br>视频预览：<br><video style="width:100%;" src="http://tbm.alicdn.com/e7vGObQmrVPWurKaLEF/gAzilH2ciWca0fZnE2D%40%40hd.mp4" controls="" preload="">您的浏览器不支持HTML5的 video 标签，无法为您播放！</video><br>视频截图：<br><img class="islazy alignnone size-full" data-original="https://img.alicdn.com/imgextra/i4/2779855185/TB2CzVjfhhmpuFjSZFyXXcLdFXa_!!2779855185.jpg" src="https://img.alicdn.com/imgextra/i4/2779855185/TB2CzVjfhhmpuFjSZFyXXcLdFXa_!!2779855185.jpg" alt="AE宣传片头" width="750" height="1554" style="display: block;"><br>下载地址<a href="https://pan.baidu.com/s/1hrUOCCG">https://pan.baidu.com/s/1hrUOCCG</a> 密码：31cx</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 素材 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ae模板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>delphi如何根据句柄判断窗口的显示状态?</title>
+      <link href="/2018/01/09/402.html"/>
+      <url>/2018/01/09/402.html</url>
+      
+        <content type="html"><![CDATA[<p>有时我们取得一个窗口的句柄，需要知道这个窗口是隐藏还是显示状态？或者我们取得窗体的句柄，想隐藏这个窗体或显示这个窗体，该怎么办呢？这时我们需要用到API函数GetWindowLong或者GetWindowInfo,</p><p>GetWindowLong的函数原型LONG GetWindowLong( HWND hWnd,int nIndex )<br>参数：<br>hWnd：指定窗口的句柄<br>nIndex：需要获得的信息的类型<br>值 功能<br>nIndex取值如下:<br>GWL_EXSTYLE 得到扩展的窗口风格<br>GWL_STYLE 得到窗口风格<br>GWL_WNDPROC 得到窗口回调函数的地址，或者句柄。得到后必须使用CallWindowProc函数来调用<br>GWL_HINSTANCE 得到应用程序运行实例的句柄<br>GWL_HWNDPARENT 得到父窗口的句柄<br>GWL_ID 得到窗口的标识符<br>GWL_USERDATA 得到和窗口相关联的32位的值（每一个窗口都有一个有意留给创建窗口的应用程序是用的32位<br>的值）<br>当hWnd标识一个对话框时可以使用下面的值<br>Value Action<br>DWL_DLGPROC 得到对话框回调函数的地址，或者句柄。得到后必须使用CallWindowProc函数来调用<br>DWL_MSGRESULT 得到对话框回调函数中消息处理过程的返回值<br>DWL_USER 得到额外的应用程序私有信息，如一些句柄和指针等<br>返回值：<br>成功时，返回一个请求的32位的值<br>失败时，返回0，可以使用GetLastError来取得错误信息</p><p>示例1：</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">long nStyle = ::GetWindowLong(hWnd, GWL_STYLE); <span class="comment">// hWnd是一个编辑框的句柄</span></span><br><span class="line"><span class="keyword">if</span>(nStyle &amp; ES_PASSWORD)</span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">AfxMessageBox(“这是一个密码域”);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure><p>示例2：</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LONG GetWindowLong(</span><br><span class="line">HWND hWnd, <span class="comment">// handle of window</span></span><br><span class="line">int nIndex <span class="comment">// offset of value to retrieve</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure><p>第二个参数是0的话，就是指定GW_HWNDFIRST！！！<br>GW_HWNDFIRST = 0; {同级别 Z 序最上}<br>GW_HWNDLAST = 1; {同级别 Z 序最下}<br>GW_HWNDNEXT = 2; {同级别 Z 序之下}<br>GW_HWNDPREV = 3; {同级别 Z 序之上}<br>GW_OWNER = 4; {属主窗口}<br>GW_CHILD = 5; {子窗口中的最上}</p><p>GetWindowInfo函数原型</p><p>BOOL WINAPI GetWindowInfo(__in HWND hwnd,__inout PWINDOWINFO pwi);</p><p>参数<br>hwnd  要检索信息的窗口的句柄。<br>pwi  指向一个接收信息的 PWINDOWINFO 结构，注意，在调用该函数之前必须设置 cbSize 成员为sizeof(WINDOWINFO)。]</p><p>typedef struct tagWINDOWINFO {<br>DWORD cbSize;<br>RECT rcWindow;  //窗口区域<br>RECT rcClient;  //Client区域<br>DWORD dwStyle; //窗口样式<br>DWORD dwExStyle; //窗口扩展样式<br>DWORD dwWindowStatus; //WS_ACTIVECAPTION表示活动，否则为0<br>UINT cxWindowBorders;  //边框宽度<br>UINT cyWindowBorders;  //边框宽度<br>ATOM atomWindowType;<br>WORD wCreatorVersion;<br>} WINDOWINFO, *PWINDOWINFO, *LPWINDOWINFO;</p><p>Members<br>cbSize<br>Type: DWORD<br>The size of the structure, in bytes. The caller must set this member to sizeof(WINDOWINFO).<br>rcWindow<br>Type: RECT<br>The coordinates of the window.<br>rcClient<br>Type: RECT<br>The coordinates of the client area.<br>dwStyle<br>Type: DWORD<br>The window styles. For a table of window styles, see Window Styles.<br>dwExStyle<br>Type: DWORD<br>The extended window styles. For a table of extended window styles, see Extended Window Styles.<br>dwWindowStatus<br>Type: DWORD<br>The window status. If this member is WS_ACTIVECAPTION (0x0001), the window is active. Otherwise, this member is zero.<br>cxWindowBorders<br>Type: UINT<br>The width of the window border, in pixels.<br>cyWindowBorders<br>Type: UINT<br>The height of the window border, in pixels.<br>atomWindowType<br>Type: ATOM<br>The window class atom (see RegisterClass).<br>wCreatorVersion<br>Type: WORD<br>The Windows version of the application that created the window.</p><p>返回值<br>如果函数成功，则返回值为非零值。<br>如果该函数失败，则返回值为零。要获取扩展的错误的信息，请调用GetLastError .</p><p>delphi根据句柄判断窗口状态代码</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用GetWindowLong函数 </span></span><br><span class="line">style := GetWindowLong(MyHandle, GWL_STYLE);</span><br><span class="line"> <span class="keyword">if</span> (style <span class="keyword">and</span> WS_VISIBLE) &gt; <span class="number">0</span> <span class="keyword">then</span> <span class="comment">//此句柄窗口是显示的</span></span><br><span class="line">    ShowWindow(MyHandle, SW_HIDE)</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line">    ShowWindow(MyHandle, SW_SHOW);</span><br><span class="line">或用GetWindowInfo函数</span><br><span class="line"> GetWindowInfo(MyHandle, Pwi);</span><br><span class="line"> <span class="keyword">if</span> (Pwi.dwStyle <span class="keyword">and</span> WS_VISIBLE) &gt; <span class="number">0</span> <span class="keyword">then</span> <span class="comment">//此句柄窗口是显示的</span></span><br><span class="line">    ShowWindow(MyHandle, SW_HIDE)</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line">    ShowWindow(MyHandle, SW_SHOW);</span><br></pre></td></tr></table></figure><p>通过这两个函数，我们可以判断窗体的样式来确定窗体的一些我们所需要的信息!</p><p>取得窗体信息的函数还有</p><p>获取窗口大小（RECT）矩形<br>以下是使用方法：<br>RECT rct; //创建一个RECT变量，用于接收下面函数的出参。<br>BOOL GetWindowRect(hwd, &amp;rct);<br>//入参 窗口句柄<br>//出参 一个RECT变量的地址，于接收函数的获取的值<br>返回值：<br>如果成功：返回 非零；<br>失败：返回零；调用GetLastError（）获取错误原因。</p><p>获取窗口类名<br>wchar_t strClassName[30] = {0};<br>//如果当前程序使用的是unicode字符集，那么就使用wchar_t类型，否则使用char类型。int GetClassName(hwd, strClassName, 30)<br>入参：hwd，窗口句柄</p><p>缓冲区大小<br>出参：strClassName，缓冲区<br>返回值：<br>成功，返回写入到缓冲区的字符个数；<br>失败，返回 零，调用GetLastError（）获取错误原因。</p><p>获取DC<br>HDC GetDC(hwd);<br>入参：hwd，窗口句柄<br>返回值：<br>成功，返回，当前窗口的句柄<br>失败，返回，NULL</p><p>获取鼠标位置<br>POINT pt;<br>GetCursorPos（&amp;pt）</p><p>取窗口信息的相关代码</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetWindowTitle</span><span class="params">(hwnd: HWND)</span>:</span> <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  SetLength(Result, <span class="number">255</span>);</span><br><span class="line">  SetLength(Result, GetWindowText(hwnd, PChar(Result), <span class="number">255</span>));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetWindowClass</span><span class="params">(hwnd: HWND)</span>:</span> <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  SetLength(Result, <span class="number">255</span>);</span><br><span class="line">  SetLength(Result, GetClassName(hwnd, PChar(Result), <span class="number">255</span>));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetWindowInfo</span><span class="params">(hwnd: HWND)</span>:</span> <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Result := GetWindowTitle(hwnd) + <span class="string">&#x27; [&#x27;</span> + GetWindowClass(hwnd) +</span><br><span class="line">    <span class="string">&#x27;] (&#x27;</span> + IntToStr(hwnd) + <span class="string">&#x27;)&#x27;</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">EnumChildProc</span><span class="params">(hwnd: HWND; lParam: Integer)</span>:</span> BOOL; <span class="keyword">stdcall</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  NewNode, ParentNode: TTreeNode;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Result := True;</span><br><span class="line">  ParentNode := TTreeNode(lParam);</span><br><span class="line">  NewNode := ParentNode.Owner.AddChild(ParentNode,</span><br><span class="line">    GetWindowInfo(hwnd));</span><br><span class="line">  EnumChildWindows(hwnd, @EnumChildProc, Integer(NewNode));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">EnumWindowsProc</span><span class="params">(hwnd: HWND; lParam: Integer)</span>:</span> BOOL; <span class="keyword">stdcall</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  NewNode: TTreeNode;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Result := True;</span><br><span class="line">  NewNode := TTreeView(lParam).Items.Add(<span class="keyword">nil</span>, GetWindowInfo(hwnd));</span><br><span class="line">  EnumChildWindows(hwnd, @EnumChildProc, Integer(NewNode));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">EnumWindowsTree</span><span class="params">(Tree: TTreeView)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  EnumWindows(@EnumWindowsProc, Integer(Tree));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TForm1</span>.<span class="title">Button1Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  TreeView1.Items.Clear;</span><br><span class="line">  EnumWindowsTree(TreeView1);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> delphi </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何取得淘宝视频MP4文件下载地址?</title>
+      <link href="/2018/01/09/392.html"/>
+      <url>/2018/01/09/392.html</url>
+      
+        <content type="html"><![CDATA[<p>淘宝上的商品介绍视频，其他网站直接点击链接播放，很大机率会播放失败，或者你为了下载淘宝上的视频，很大机率直接下载会失败？如何取得淘宝视频MP4的下载地址呢？</p><ol><li>用chrome谷歌内核的浏览器打开淘宝有视频的网址，通过审查无素，在审查元素中搜索.swf字符，找到淘宝视频的播放链接!<img src="/images/1515454809-1.jpg" alt="">也可以直接在在淘宝视频界面，戳右下角分享，点击Flash地址完成复制<img src="/images/1515455046-0.gif" alt=""></li><li>链接象这种形式的 <a href="http://cloud.video.taobao.com/play/u/316952117/e/1/t/1/p/1/19950426.swf">http://cloud.video.taobao.com/play/u/316952117/e/1/t/1/p/1/19950426.swf</a> 直接把e/1改成e/6，swf改成mp4就可以下载了，修改结果<a href="http://cloud.video.taobao.com/play/u/316952117/e/6/t/1/p/1/19950426.mp4">http://cloud.video.taobao.com/play/u/316952117/e/6/t/1/p/1/19950426.mp4</a><img src="/images/1515454841-2.png" alt=""></li><li>链接象这种形式的 <a href="http://vodcdn.video.taobao.com/player/ugc/tb_ugc_bytes_core_player_loader.swf?version=1.0.20170327&amp;vid=50000874445&amp;uid=716884746&amp;p=1&amp;t=1&amp;rid=https://item.taobao.com/item.htm?spm=a230r.1.14.12.234d5249NdX2ye&id=541265983680&ns=1&abbucket=1&amp;random=6666">http://vodcdn.video.taobao.com/player/ugc/tb_ugc_bytes_core_player_loader.swf?version=1.0.20170327&amp;vid=50000874445&amp;uid=716884746&amp;p=1&amp;t=1&amp;rid=https%3A%2F%2Fitem.taobao.com%2Fitem.htm%3Fspm%3Da230r.1.14.12.234d5249NdX2ye%26id%3D541265983680%26ns%3D1%26abbucket%3D1&amp;random=6666</a>  进行拼接 这个链接中的 vid=50000874445&amp;uid=716884746 取uid修改<a href="http://cloud.video.taobao.com/play/u/716884746/e/6/t/1/p/1/50000874445.mp4%E5%90%8E%E9%9D%A2%E7%9A%84%E5%80%BC%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%B8%8B%E8%BD%BD%E6%B7%98%E5%AE%9D%E8%A7%86%E9%A2%91%E4%BA%86">http://cloud.video.taobao.com/play/u/716884746/e/6/t/1/p/1/50000874445.mp4后面的值，就可以下载淘宝视频了</a>!<img src="/images/1515454868-3.gif" alt=""></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 下载视频 </tag>
             
         </tags>
       
@@ -330,6 +766,33 @@
     
     
     <entry>
+      <title>delphi中如何设置dcef3的代理服务器setproxy?</title>
+      <link href="/2017/12/30/367.html"/>
+      <url>/2017/12/30/367.html</url>
+      
+        <content type="html"><![CDATA[<p>代理服务器（Proxy Server）是一种重要的服务器安全功能，它的工作主要在开放系统互联(OSI)模型的会话层，从而起到防火墙的作用。代理服务器大多被用来连接INTERNET（国际互联网）和Local Area Network（局域网）。delphi中的tChromium控件dcef3如何设置代理服务器呢？</p><ol><li>delphi中webbrowser设置代理服务器是这样的!<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#123;-------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">  过程名:    SetProcessProxy</span></span><br><span class="line"><span class="comment">  作者:      kelei</span></span><br><span class="line"><span class="comment">  日期:      2013.08.03</span></span><br><span class="line"><span class="comment">  参数:      aProxyServer代理服务器; aProxyPort代理服务器端口</span></span><br><span class="line"><span class="comment">  返回值:    True设置成功</span></span><br><span class="line"><span class="comment">  SetProcessProxy(&#x27;127.0.0.1&#x27;, 80);</span></span><br><span class="line"><span class="comment">-------------------------------------------------------------------------------&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SetProcessProxy</span><span class="params">(<span class="keyword">const</span> aProxyServer: <span class="keyword">string</span>; <span class="keyword">const</span> aProxyPort: Integer)</span>:</span> Boolean;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  vProxyInfo: TInternetProxyInfo;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  vProxyInfo.dwAccessType := INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line">  vProxyInfo.lpszProxy := PChar(Format(<span class="string">&#x27;http=%s:%d&#x27;</span>, [aProxyServer, aProxyPort]));</span><br><span class="line">  vProxyInfo.lpszProxyBypass := PChar(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">  Result := UrlMkSetSessionOption(INTERNET_OPTION_PROXY, @vProxyInfo, SizeOf(vProxyInfo, <span class="number">0</span>) = S_OK;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure></li><li>在dcef3中如何静态设置代理服务器呢？<br>静态设置方法在dpr中添加启动命令行参数，如果不添加命令行参数设置代理服务器，那么dcef3默认是使用的ie的代理服务器：<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">AppendCefCmdline</span><span class="params">(<span class="keyword">const</span> processType: ustring; <span class="keyword">const</span> cmd: ICefCommandLine)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  cmd.AppendSwitchWithValue(<span class="string">&#x27;proxy-server&#x27;</span>,<span class="string">&#x27;http://218.189.26.20:8080&#x27;</span>);<span class="comment">//设置http代理服务器</span></span><br><span class="line">  cmd.AppendSwitchWithValue(<span class="string">&#x27;proxy-server&#x27;</span>,<span class="string">&#x27;https://218.189.26.20:8082&#x27;</span>);<span class="comment">//设置https代理服务器</span></span><br><span class="line">  cmd.AppendSwitchWithValue(<span class="string">&#x27;proxy-server&#x27;</span>,<span class="string">&#x27;ftp://218.189.26.20:21&#x27;</span>);<span class="comment">//设置ftp代理服务器</span></span><br><span class="line">  cmd.AppendSwitchWithValue(<span class="string">&#x27;proxy-server&#x27;</span>,<span class="string">&#x27;socks://202.116.0.188:3128&#x27;</span>)<span class="comment">//设置SOCKS代理服务器</span></span><br><span class="line">  cmd.AppendSwitchWithValue(<span class="string">&#x27;proxy-server&#x27;</span>,<span class="string">&#x27;sock4://202.116.0.188:1080&#x27;</span>)<span class="comment">//设置sock4代理服务器 </span></span><br><span class="line">  cmd.AppendSwitchWithValue(<span class="string">&#x27;proxy-server&#x27;</span>,<span class="string">&#x27;sock5://202.116.0.188:1081&#x27;</span>)<span class="comment">//设置sock5代理服务器</span></span><br><span class="line"><span class="comment">//cmd.AppendSwitchWithValue(&#x27;proxy-server&#x27;,&#x27;direct://&#x27;)//所有连接不使用代理</span></span><br><span class="line"><span class="comment">//cmd.AppendSwitchWithValue(&#x27;proxy-server&#x27;,&#x27;https=127.0.0.1:80;http=socks4://bnwin.com:1080&#x27;)//同时设置https和sock4代理服务器</span></span><br><span class="line">  cmd.AppendSwitchWithValue(<span class="string">&#x27;proxy-bypass-list&#x27;</span>,<span class="string">&#x27;127.*,192.168.*,10.10.*,193.9.162.*&#x27;</span>);<span class="comment">//不使用代理服务器的地址</span></span><br><span class="line"><span class="comment">//cmd.AppendSwitch(&#x27;--no-proxy-server&#x27;);//禁止代理服务器</span></span><br><span class="line"><span class="comment">//cmd.AppendSwitch(&#x27;--proxy-auto-detect&#x27;);//自动检测代理配置</span></span><br><span class="line"><span class="comment">//cmd.AppendSwitchWithValue(&#x27;proxy-pac-url&#x27;,&#x27;http://www.bnwinn.com/proxy.pac&#x27;)//代理使用指定URL中的PAC文件</span></span><br><span class="line"><span class="comment">//cmd.AppendSwitch(&#x27;--winhttp-proxy-resolver&#x27;);//代理在IE中运行正常,但在chrome中失败，可以添加此flag</span></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  CefOnBeforeCommandLineProcessing :=AppendCefCmdline; <span class="comment">//指定dcef启动命令行</span></span><br><span class="line">  Application.Initialize;</span><br><span class="line">  Application.MainFormOnTaskbar := True;</span><br><span class="line">  Application.CreateForm(TMainForm, MainForm);</span><br><span class="line">  Application.Run;</span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure></li><li>在dcef3中如何动态设置代理服务器setproxy？<br>前面已经说过，如果不在命令行中设置代理服务器，那么dcef是默认使用的ie代理服务器，要想动态设置代理服务器，我们不在dcef的命令行参数设置代理，然后使用开头的动态设置ie代理服务器的代码，dcef3的代理服务器就是动态的了！</li></ol><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">System network settings</span><br><span class="line">The Chromium network stack uses the system network settings so that users and administrators can control the network settings of all applications easily. The network settings include:</span><br><span class="line">proxy settings</span><br><span class="line">SSL/TLS settings</span><br><span class="line">certificate revocation check settings</span><br><span class="line">certificate and private key stores</span><br><span class="line">So far this design decision has worked well. The only network settings that some users ask for an alternative to system settings are proxy settings. For this we recently added some command-line options that allow you to run Chromium with custom proxy settings.</span><br><span class="line">Preference service for network settings</span><br><span class="line"></span><br><span class="line">Although the system network settings have been sufficient for our network stack, eventually there will be some configuration settings specific to our network stack, so we need to have our own preference service for those settings. See also issue 266, in which some Firefox users demand that we not use the WinInet proxy settings (the de facto system proxy settings on Windows).</span><br><span class="line">Command-line options for proxy settings</span><br><span class="line"></span><br><span class="line">Chrome supports the following proxy-related command line arguments:</span><br><span class="line"></span><br><span class="line">–no-proxy-server</span><br><span class="line"></span><br><span class="line">This tells Chrome not to use a Proxy. It overrides any other proxy settings provided.</span><br><span class="line"></span><br><span class="line">–proxy-auto-detect</span><br><span class="line"></span><br><span class="line">This tells Chrome to try and automatically detect your proxy configuration. This flag is ignored if –proxy-server is also provided.</span><br><span class="line"></span><br><span class="line">–proxy-server==[:][;…] | [:] | “direct://”</span><br><span class="line"></span><br><span class="line">This tells Chrome to use a custom proxy configuration. You can specify a custom proxy configuration in three ways:</span><br><span class="line"></span><br><span class="line">1) By providing a semi-colon-separated mapping of list scheme to url/port pairs.</span><br><span class="line">For example, you can specify:</span><br><span class="line">–proxy-server=”http=foopy:80;ftp=foopy2″</span><br><span class="line">to use HTTP proxy “foopy:80” for http URLs and HTTP proxy “foopy2:80″ for ftp URLs.</span><br><span class="line"></span><br><span class="line">2) By providing a single uri with optional port to use for all URLs.</span><br><span class="line">For example:</span><br><span class="line">–proxy-server=”foopy:8080”</span><br><span class="line">will use the proxy at foopy:8080 for all traffic.</span><br><span class="line"></span><br><span class="line">3) By using the special “direct://” value.</span><br><span class="line">–proxy-server=”direct://” will cause all connections to not use a proxy.</span><br><span class="line"></span><br><span class="line">–proxy-bypass-list=(|)[:][;…]</span><br><span class="line"></span><br><span class="line">This tells chrome to bypass any specified proxy for the given semi-colon-separated list of hosts. This flag must be used (or rather, only has an effect) in tandem with –proxy-server.</span><br><span class="line">Note that trailing-domain matching doesn’t require “.” separators so “*google.com” will match “igoogle.com” for example.</span><br><span class="line"></span><br><span class="line">For example,</span><br><span class="line">–proxy-server=”foopy:8080″ –proxy-bypass-list=”*.google.com;*foo.com;127.0.0.1:8080″</span><br><span class="line">will use the proxy server “foopy” on port 8080 for all hosts except those pointing to *.google.com, those pointing to *foo.com and those pointing to localhost on port 8080.</span><br><span class="line">igoogle.com requests would still be proxied. ifoo.com requests would not be proxied since *foo, not *.foo was specified.</span><br><span class="line"></span><br><span class="line">–proxy-pac-url=</span><br><span class="line"></span><br><span class="line">This tells Chrome to use the PAC file at the specified URL.</span><br><span class="line"></span><br><span class="line">For example,</span><br><span class="line">–proxy-pac-url=”http://wpad/windows.pac”</span><br><span class="line">will tell Chrome to resolve proxy information for URL requests using the windows.pac file.</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> delphi </tag>
+            
+            <tag> dcef3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>不要小看自己的力量励志视频</title>
       <link href="/2017/12/29/364.html"/>
       <url>/2017/12/29/364.html</url>
@@ -357,6 +820,60 @@
     
     
     <entry>
+      <title>delphi中如何自定义dcef3的右键菜单？</title>
+      <link href="/2017/12/28/353.html"/>
+      <url>/2017/12/28/353.html</url>
+      
+        <content type="html"><![CDATA[<p>delphi中TChromium控件dcef3的右键菜单默认是这样的<br><img src="/images/1514424349-1.gif" alt=""><br>如何修改成自己的菜单呢？或者自定义dcef3的右键菜单呢？</p><ol><li>在dcef3窗体中添加TApplicationEvents控件aplctnvnts1!</li><li>添加TPopupMenu控件pm1，并设置好自定义的dcef3的右键菜单及功能.</li><li>在TApplicationEvents控件的OnMessage事件中添加如下代码。<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TMainForm</span>.<span class="title">aplctnvnts1Message</span><span class="params">(<span class="keyword">var</span> Msg: tagMSG; <span class="keyword">var</span> Handled: Boolean)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  mPoint: TPoint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">if</span> IsChild(chrm1.Handle, Msg.Hwnd) <span class="keyword">and</span> ((Msg.<span class="keyword">Message</span> = WM_RBUTTONDOWN) <span class="keyword">or</span> (Msg.<span class="keyword">Message</span> = WM_RBUTTONUP)) <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    GetCursorPos(mPoint); <span class="comment">//得到光标位置</span></span><br><span class="line">    pm1.Popup(mPoint.X, mPoint.Y); <span class="comment">//弹出popupmenu的菜单</span></span><br><span class="line">    Handled := True;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>这样你就不用让用户看TChromium的默认英文右键菜单了!对于TChromium默认右键菜单的功能，可以自己用代码很轻松的实现!</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> delphi </tag>
+            
+            <tag> dcef3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>delphi中如何删除dcef3的cookie和缓存？</title>
+      <link href="/2017/12/26/347.html"/>
+      <url>/2017/12/26/347.html</url>
+      
+        <content type="html"><![CDATA[<p>我们用以下代码打开网站</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span></span><br><span class="line">   Chromium: TChromium;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">   <span class="keyword">try</span></span><br><span class="line">     Chromium := TChromium.Create(<span class="keyword">nil</span>);</span><br><span class="line">     Chromium.SetParentComponent(Form1);</span><br><span class="line">     Chromium.Align := alClient;</span><br><span class="line">     chromium.Browser.MainFrame.LoadUrl(<span class="string">&#x27;www.bnwin.com&#x27;</span>);</span><br><span class="line">     FreeAndNil(Chromium)</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure><p>如何删除dcef3的cookie和缓存？请看以下代码</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span></span><br><span class="line">  <span class="title">CefTask</span> = <span class="keyword">class</span>(TCefTaskOwn)</span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">Execute</span>;</span> <span class="keyword">override</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    <span class="keyword">var</span> url,cookieName: ustring;</span><br><span class="line">    <span class="function"><span class="keyword">constructor</span> <span class="title">create</span>;</span> <span class="keyword">virtual</span>;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">constructor</span> <span class="title">CefTask</span>.<span class="title">create</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">inherited</span> create;</span><br><span class="line">  url := <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  cookieName := <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">CefTask</span>.<span class="title">Execute</span>;</span></span><br><span class="line"><span class="keyword">var</span> CookieManager: ICefCookieManager;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  CookieManager := TCefCookieManagerRef.Global;</span><br><span class="line">  CookieManager.DeleteCookies(url,cookieName);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">c_WB_ClearCookies</span>;</span></span><br><span class="line"><span class="keyword">var</span> Task: CefTask;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Task := CefTask.Create;</span><br><span class="line">  CefPostTask(TID_IO, Task);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// c_WB_Clear_url_Cookies(&#x27;http://google.com&#x27;,&#x27;cookie_name&#x27;);</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">c_WB_Clear_url_Cookies</span><span class="params">(c_url,c_cookieName: ustring)</span>;</span></span><br><span class="line"><span class="keyword">var</span> Task: CefTask;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Task := CefTask.Create;</span><br><span class="line">  Task.url := c_url;</span><br><span class="line">  Task.cookieName := c_cookieName;</span><br><span class="line">  CefPostTask(TID_IO, Task);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure><p>整理自网站 <a href="https://stackoverflow.com/questions/12269587/how-do-i-clear-the-cache-and-cookies-for-an-embedded-chromium-browser">https://stackoverflow.com/questions/12269587/how-do-i-clear-the-cache-and-cookies-for-an-embedded-chromium-browser</a></p><p>取得cookie并显示，如果需要删除cookie，把deleteCookie:= False改为deleteCookie:= True</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">VisitCookie</span> <span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">const</span> <span class="keyword">name</span>, value, domain, path: ustring; secure, httponly, hasExpires: Boolean;</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">const</span> creation, lastAccess, expires: TDateTime; count, total: Integer;</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">out</span> deleteCookie: Boolean)</span>:</span> Boolean;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  deleteCookie:= False;</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; cookie &#x27;</span> +inttostr (count) + <span class="string">&#x27; / &#x27;</span> + inttostr (total));</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; name &#x27;</span> +<span class="keyword">name</span>);</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; value &#x27;</span> +value);</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; domain &#x27;</span> +domain);</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; path &#x27;</span> +path);</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; secure &#x27;</span> +BoolToStr (secure));</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; httponly &#x27;</span> +BoolToStr (httponly));</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; hasExpires &#x27;</span> +BoolToStr (hasExpires));</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; creation &#x27;</span> +DateToStr (creation));</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; lastAccess &#x27;</span> +DateToStr (lastAccess));</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27; expires &#x27;</span> +DateToStr (expires));</span><br><span class="line">  MainForm.Memo1.Lines. Add (<span class="string">&#x27;--------------- &#x27;</span>);</span><br><span class="line">  Result:= True;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TMainForm</span>.<span class="title">btn2Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="keyword">var</span> CookieManager: ICefCookieManager;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">CookieManager:= TCefCookieManagerRef.Global(<span class="keyword">nil</span>);</span><br><span class="line">CookieManager.VisitAllCookiesProc (VisitCookie);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//这样写，我在delphi xe8中编译不过</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TMainForm</span>.<span class="title">Button1Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  CookieManager: ICefCookieManager;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  CookieManager := TCefCookieManagerRef.Global(<span class="keyword">nil</span>);</span><br><span class="line">  CookieManager.VisitAllCookiesProc(</span><br><span class="line">    <span class="function"><span class="keyword">function</span><span class="params">(<span class="keyword">const</span> <span class="keyword">name</span>, value, domain, path: ustring; secure, httponly,</span></span></span><br><span class="line"><span class="params"><span class="function">      hasExpires: Boolean; <span class="keyword">const</span> creation, lastAccess, expires: TDateTime;</span></span></span><br><span class="line"><span class="params"><span class="function">      count, total: Integer; <span class="keyword">out</span> deleteCookie: Boolean)</span>:</span> Boolean</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      deleteCookie := True;</span><br><span class="line">      ShowMessage(<span class="string">&#x27;A cookie from domain &#x27;</span> + domain + <span class="string">&#x27; will be unmercifully &#x27;</span> +</span><br><span class="line">        <span class="string">&#x27;deleted!&#x27;</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  );</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure><p>为网址设置单独的cookie文件</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CookieManager: ICefCookieManager;</span><br><span class="line"> </span><br><span class="line">FormCreate:</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">   CookiesPath := ExtractFilePath(Application.ExeName) + <span class="string">&#x27;cookies/bnwin&#x27;</span>;</span><br><span class="line">   CookieManager := TCefCookieManagerRef.Global(<span class="keyword">nil</span>);</span><br><span class="line">   CookieManager.SetStoragePath(CookiesPath, True, <span class="keyword">nil</span>);</span><br><span class="line">   Chromium1.Load（<span class="string">&#x27;bnwin.com&#x27;</span>）; </span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line">FormClose:   </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  CookieManager.FlushStore(<span class="keyword">nil</span>);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure><p>为指定的网站设置cookie</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Fsuccess: Boolean;</span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">SetCookieR</span><span class="params">(success: Boolean)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">   Fsuccess := success;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TMainForm</span>.<span class="title">btn1Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="keyword">var</span> CookieManager: ICefCookieManager;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  CookieManager := TCefCookieManagerRef.Global(<span class="keyword">nil</span>);</span><br><span class="line">  CookieManager.SetCookieProc(<span class="string">&#x27;http://bnwin.com&#x27;</span>, <span class="string">&#x27;TEST&#x27;</span>, <span class="string">&#x27;supertest&#x27;</span>, <span class="string">&#x27;.bnwin.com&#x27;</span>, <span class="string">&#x27;/&#x27;</span>, False,False, True, now, now, StrToDateTime(<span class="string">&#x27;2020-12-30&#x27;</span>),SetCookieR);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure><p>dcef中允许网站保存cookie会话</p><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CookieManager: ICefCookieManager;</span><br><span class="line"> </span><br><span class="line">FormCreate:</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">   CookiesPath := ExtractFilePath(Application.ExeName) + <span class="string">&#x27;cookies&#x27;</span>;</span><br><span class="line">   CookieManager := TCefCookieManagerRef.Global(<span class="keyword">nil</span>);</span><br><span class="line">   CookieManager.SetStoragePath(CookiesPath, True, <span class="keyword">nil</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line">FormClose:   </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  CookieManager.FlushStore(<span class="keyword">nil</span>);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> delphi </tag>
+            
+            <tag> dcef3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>delphi中dcef如何自定义referer信息？</title>
       <link href="/2017/12/26/346.html"/>
       <url>/2017/12/26/346.html</url>
@@ -376,6 +893,31 @@
             <tag> delphi </tag>
             
             <tag> dcef3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Procmon监视系统一举一动的利器!</title>
+      <link href="/2017/12/25/342.html"/>
+      <url>/2017/12/25/342.html</url>
+      
+        <content type="html"><![CDATA[<p>Procmon也被称为Process Monitor，是一款系统进程监视软件，总体来说，Process Monitor相当于Filemon+Regmon，其中的Filemon专门用来监视系统 中的任何文件操作过程，而Regmon用来监视注册表的读写操作过程。 有了Process Monitor，使用者就可以对系统中的任何文件和 注册表操作同时进行监视和记录，通过注册表和文件读写的变化， 对于帮助诊断系统故障或是发现恶意软件、病毒或木马来说，非常 有用。 这是一个高级的 Windows 系统和应用程序监视工具，由优秀的 Sysinternals 开发，并且目前已并入微软旗下，可靠性自不用说。</p><img src="/images/pmon.png" alt="">Process Monitor 不仅结合了 Filemon（文件监视器） 和 Regmon（注册表监视器） 两个工具的功能，还具有以下一些增强：<p>监视进程和线程的启动和退出，包括退出状态代码<br>监视映像 (DLL 和内核模式驱动程序) 加载<br>捕获更多输入输出参数操作<br>非破坏性的过滤器允许你自行定义而不会丢失任何捕获的数据<br>捕获每一个线程操作的堆栈，使得可以在许多情况下识别一个操作的根源<br>可靠捕获进程详细信息，包括映像路径、命令行、完整性、用户和会话ID等等<br>完全可以自定义任何事件的属性列<br>过滤器可以设置为任何数据条件，包括未在当前视图中显示的<br>高级的日志机制，可记录上千万的事件，数GB的日志数据<br>进程树工具显示所有进程的关系<br>原生的日志格式，可将所有数据信息保存，让另一个 Process Monitor 实例加载<br>进程悬停提示，可方便的查看进程信息<br>详细的悬停提示信息让你方便的查看列中不能完整显示的信息<br>搜索可取消<br>系统引导时记录所有操作</p><p>官方下载地址：  <a href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/procmon">https://docs.microsoft.com/zh-cn/sysinternals/downloads/procmon</a></p><p>百度网盘下载地址：链接: <a href="https://pan.baidu.com/s/1eSF9fAM">https://pan.baidu.com/s/1eSF9fAM</a> 密码: erib</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 精品软件 </tag>
             
         </tags>
       
@@ -534,6 +1076,56 @@
         <tags>
             
             <tag> 去广告 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何让手机控制电脑之TeamViewer</title>
+      <link href="/2017/11/22/310.html"/>
+      <url>/2017/11/22/310.html</url>
+      
+        <content type="html"><![CDATA[<p>TeamViewer是一个能在任何防火墙和NAT代理的后台用于远程控制，桌面共享和文件传输的简单且快速的解决方案。为了连接到另一台计算机，只需要在两台计算机上同时运行 TeamViewer 即可，而不需要进行安装（也可以选择安装，安装后可以设置开机运行）。该软件第一次启动在两台计算机上自动生成伙伴 ID。只需要输入你的伙伴的ID到TeamViewer，然后就会立即建立起连接。<br>TeamViewer官方网站:<a href="https://www.teamviewer.com/zhCN/">https://www.teamviewer.com/zhCN/</a></p><p>如何使用手机控制电脑呢？</p><ol><li>在TeamViewer官方网站下载相应的App,比如Android版TeamViewer下载地址为<a href="https://play.google.com/store/apps/details?id=com.teamviewer.teamviewer.market.mobile,%E4%B8%8D%E8%BF%87%E4%BD%A0%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%9C%A8%E4%BD%A0%E7%9A%84%E6%89%8B%E6%9C%BA%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA%E4%B8%AD%E6%90%9C%E7%B4%A2TeamViewer%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85TeamViewer%E7%9A%84app%E5%AE%89%E8%A3%85!Android%E6%89%8B%E6%9C%BA%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%E8%BF%90%E8%A1%8C%E7%9A%84%E7%95%8C%E9%9D%A2%E5%A6%82%E4%B8%8B">https://play.google.com/store/apps/details?id=com.teamviewer.teamviewer.market.mobile,不过你可以直接在你的手机应用市场中搜索TeamViewer，也可以下载安装TeamViewer的app安装!Android手机安装成功运行的界面如下</a><img src="/images/teamviewer1.png" alt=""></li><li>在电脑中运行TeamViewer，界面如下:<img src="/images/teamviewer4.png" alt="">只要在手机的伙伴ＩＤ处输入电脑端显示的ＩＤ，点击远程控制，输入电脑端的密码，就可以在手机中控制电脑了，连接成功后的界面如下<img src="/images/teamviewer3-576x1024.png" alt="">点继续后就可以操控电脑了<img src="/images/teamviewer2.png" alt=""></li><li>电脑端运行TeamViewer，每次运行，密码都不一样，为了便于控制，我们要设置一个固定的密码，实现无人值守！点击电脑端显示的密码，会弹出一个菜单，选择　设置预定义密码，界面如下<img src="/images/teamviewer5.png" alt=""></li><li>这样做了以后，只要在电脑中TeamViewer的其他菜单的选项点开，钩上随windows一同启动TeamViewer，就可以在手机上输入电脑端teamviewer的id和预设的固定密码，从手机控制电脑了!但这时你是不是觉得还不够方便？为了更自动化一些，我们需要注册一个TeamViewer的控制帐号!在手机端是不是有一个计算机选项卡，点击后有一个注册按钮，你只要注册了帐号，你第一次登录，teamviewer会发一封添加允许设备登录的邮件，也就是只有允许的设备才能使用，这样安全性就高了!允许的设备登录帐号后，就可以添加电脑端的ID和密码，以后在手机中，只要登录帐号，直接点击你预添加的计算机就可以控制了，不需要你记和输ＩＤ和密码!</li><li>TeamViewer最新版需要授权许可才能使用</li></ol><p>Teamviewer连接的原理主要分为三部分，分别是①如何根据ID找到要连接的电脑，②找到电脑之后如何内网间互联，③如何能操作对方的电脑。<br>一、先说TeamViewer如何根据ID连接到对方：</p><p>1、运行TeamViewer 之后，电脑会先连接到TV的服务器，然后服务器对这台电脑分配一个唯一的ID。这个ID主要是以网卡的MAC地址为依据生成的，所以如果想给电脑换一个Teamviewer ID，只要修改一下MAC地址就行了。</p><p>2、当一个TeamViewer 连接另一个的时候，会先连接到服务器，通过ID与电脑的对应关系找到这台要连接的电脑。</p><p>二、如何建立内网对内网的连接：</p><p>如果连接的其中任一方是有公网IP的网络环境，双方的连接就启用P2P连接。双方是内网的情况， TeamViewer数据就会通过TeamViewer 自己的服务器进行中转。这也是TeamViewer 内网互通会在网络高峰期比较慢的原因。</p><p>三、如何操作被控机的鼠标与键盘。</p><p>原理与远程控制木马是一样的。这里远端指被控制的电脑。连接建立之后，远端的电脑图像压缩后发回本地，这样本地就能看到画面，本地进行键盘鼠标的等操作的动作封装成数据包发送给远端解开后还原成动作进行远程的模拟操作。远端反馈的画面通过压缩后继续发回给控制端。就远控的图像传输来说，早年远控都是直接进行JPEG截图后传输，所以速度不太理想。之后各种大牛延伸出很多很腻害的基于截图的方式的屏幕传输的算法，传输效率进一步提高，通常是先加载一个虚拟屏幕驱动，然后对屏幕做逐行扫描，然后计算变化的部分，之后只传输变化的部分。TeamViewer(版本9.0)也是支持虚拟屏幕驱动的，但是需要到设置中手动进行安装。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 精品软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>手工杀毒恶意代码检测工具PCHunter</title>
+      <link href="/2017/11/20/306.html"/>
+      <url>/2017/11/20/306.html</url>
+      
+        <content type="html"><![CDATA[<p>PC Hunter是一个Windows系统信息查看软件，同时也是一个手工杀毒辅助软件。<br>支持xp~win10的所有32位操作系统，还支持64位的Win7、Win8、Win8.1和Win10系统。<br>看看界面<br><img src="/images/PC-Hunter.png" alt=""><br>主要功能:<br>1.进程、线程、进程模块、进程窗口、进程内存信息查看，杀进程、杀线程、卸载模块等功能</p><p>2.内核驱动模块查看，支持内核驱动模块的内存拷贝</p><p>3.SSDT、Shadow SSDT、FSD、KBD、TCPIP、Nsiproxy、Tdx、Classpnp、Atapi、Acpi、SCSI、IDT、GDT信息查看，并能检测和恢复ssdt hook和inline hook</p><p>4.CreateProcess、CreateThread、LoadImage、CmpCallback、BugCheckCallback、Shutdown、Lego等近20多种Notify Routine信息查看，并支持对这些Notify Routine的删除</p><p>5.端口信息查看，目前不支持2000系统</p><p>6.查看消息钩子</p><p>7.内核模块的iat、eat、inline hook、patches检测和恢复</p><p>8.磁盘、卷、键盘、网络层等过滤驱动检测，并支持删除</p><p>9.注册表编辑</p><p>10.进程iat、eat、inline hook、patches检测和恢复</p><p>11.文件系统查看，支持基本的文件操作</p><p>12.查看(编辑)IE插件、SPI、启动项、服务、Hosts文件、映像劫持、文件关联、系统防火墙规则、IME</p><p>13.ObjectType Hook检测和恢复</p><p>14.DPC定时器检测和删除</p><p>15.MBR Rootkit检测和修复</p><p>16.内核对象劫持检测</p><p>17.WorkerThread枚举</p><p>18.Ndis中一些回调信息枚举</p><p>19.硬件调试寄存器、调试相关API检测</p><p>20.枚举SFilter/Flgmgr的回调</p><p>21.系统用户名检测</p><p>官方网站：<a href="http://www.xuetr.com/">http://www.xuetr.com</a></p><p>免费版下载地址：<a href="http://www.xuetr.com/download/PCHunter_free.zip">http://www.xuetr.com/download/PCHunter_free.zip</a></p><p>Linxer大牛在XueTr源码基础上重新开发了PC Hunter，支持Win8.1和X64，本次更新新增了十几处检测。分为免费版和收费版。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 精品软件 </tag>
             
         </tags>
       
@@ -723,6 +1315,56 @@
     
     
     <entry>
+      <title>ae模板-央视级震撼大气纪念胜利片头</title>
+      <link href="/2017/11/04/206.html"/>
+      <url>/2017/11/04/206.html</url>
+      
+        <content type="html"><![CDATA[<p>Adobe After Effects简称“AE”是Adobe公司推出的一款图形视频处理软件，适用于从事设计和视频特技的机构，包括电视台、动画制作公司、个人后期制作工作室以及多媒体工作室。属于层类型后期软件。</p><p>模板，是指作图或设计方案的固定格式，有时也指DNA复制或转录时，用来产生互补链的核苷酸序列。模板是将一个事物的结构规律予以固定化、标准化的成果，它体现的是结构形式的标准化。</p><p>此模板为:ae模板-央视级震撼大气纪念片头</p><p>要求软件 :AfterEffects CS 6<br>【模板尺寸】1920*1080【时间长度】32秒<br>【文件大小】239M<br>视频预览:<br><video style="width:100%;" src="http://cloud.video.taobao.com/play/u/716884746/p/1/e/6/t/1/50000874445.mp4" controls="" preload="">您的浏览器不支持HTML5的 video 标签，无法为您播放！</video><br>ae模板-央视级震撼大气纪念片头，片头图片截图如下：<br><img class="islazy alignnone size-full" data-original="https://gsnapshot.alicdn.com/imgextra/imgextra/i4/1800366043/TB2bXvKeKJ8puFjy1XbXXagqVXa_!!1800366043.jpg" src="https://gsnapshot.alicdn.com/imgextra/imgextra/i4/1800366043/TB2bXvKeKJ8puFjy1XbXXagqVXa_!!1800366043.jpg" width="748" height="2116" style="display: block;"></p><p>下载地址:<a href="https://pan.baidu.com/s/1wjdPDQ9SQAlyboVr3CwvPw">https://pan.baidu.com/s/1wjdPDQ9SQAlyboVr3CwvPw</a> 密码：ch3a</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 素材 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ae模板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>句柄精灵ViewWizard获得窗口句柄等信息和属性</title>
+      <link href="/2017/11/03/202.html"/>
+      <url>/2017/11/03/202.html</url>
+      
+        <content type="html"><![CDATA[<img src="/images/ViewWizard.png" alt="">ViewWizard 3.5句柄精灵是一个窗口辅助工具，用于获得窗口或控件的句柄等各种信息和属性。其中包括窗口类，大小，样式，状态，字体等相关内容。此外，它可以控制一个窗口的状态，比如显示或隐藏，置顶，透明，更改样式等等。具体介绍：窗口样式编辑器：用于修改窗口样式和扩展样式。窗口创建监视器：监视顶层窗口的创建和销毁。系统窗口列表：查看系统所有窗口，其中包括不可见的Message窗口以及内核挂钩的隐藏窗口。自动显示隐藏控件：选择该项后，当前活动窗口中的隐藏的控件（子窗口）会全部显示出来。自动激活无效控件：选择该项后，当前活动窗口中的无效的控件（呈灰色）会变为有效。取色器：功能强大的屏幕取色器。屏幕抓图工具：可抓取桌面、窗口和区域图像。软件设置：搜索隐藏窗口：搜索隐藏的控件，不包括顶层窗口。搜索透明窗口：搜索穿透的窗口，这种窗口不接受鼠标点击。搜索挂起窗口：搜索被挂起线程的窗口，容易死锁，除非特殊情况，否则不要选择。暴力搜索窗口：强制遍历系统所有窗口透视搜索窗口：搜索前先把自己设为穿透，以便能够看到下面的窗口。Shift键搜索：按下Shift键自动捕获窗口。搜索模式：精确搜索将搜索最内层的可见的子窗口，标准Z序搜索将搜索最上层的窗口。其它选项：鼠标链接：关系一栏所列出的相关窗口以及文件路径栏，单击以便快速捕获窗口或定位文件。附加栏：列出基本控件的专项信息。窗口文本查看功能：该项会列出窗口的标题或控件的文字内容，对于特殊类型的窗口，比如ListView，则会列出它的列表项数据。窗口菜单查看功能：列出窗口包含的菜单内容。*内容：代表该项不可用或者获取失败。终极模式：拖动搜索屏幕上能看到的所有窗口3.5增加搜索挂起窗口增加暴力搜索窗口及暴力模式密码框判断不对加强总在最前问题通过数值编辑窗口样式3.4.8总在最前后不再被Win+D最小化3.4.6加强总在最前时右键菜单无法弹出3.4.5增加设置还原密码框字符增加加强总在最前密码掩码有时获取不对3.4：窗口列表图标换掉增加进程部分信息增加设置窗口视界修正系统窗口列表功能增加窗口最大化坐标/最小最大尺寸增加窗口透明度显示修正设置窗口透明/穿透功能光标和画刷描述3.3：增加ListView修改器，可编辑任意ListView控件内容增加部分热键样式窗口选定项高亮显示3.2：增加查看进程窗口功能win8以上无法获取消息窗口问题菜单布局等其它问题3.1.1：控件显示状态不正确问题，不再随父窗口的状态而改变3.1更新：1.增加窗口坐标功能2.修复窗口坐标显示不准确问题3.修复编辑窗口坐标窗口4.增加智能调整窗口大小5.增加直接复制句柄6.非标准类不能保存问题<p>下载地址：<br>链接: <a href="https://pan.baidu.com/s/1ChWSUHr-rAljhOR4cnXH0Q">https://pan.baidu.com/s/1ChWSUHr-rAljhOR4cnXH0Q</a> 提取码: hnkn 复制这段内容后打开百度网盘手机App，操作更方便哦</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 精品软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>“春宵一刻值千金”古代的优美情诗</title>
       <link href="/2017/10/30/135.html"/>
       <url>/2017/10/30/135.html</url>
@@ -767,6 +1409,31 @@
         <tags>
             
             <tag> 去广告 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>370safe安全管理软件</title>
+      <link href="/2017/10/26/15.html"/>
+      <url>/2017/10/26/15.html</url>
+      
+        <content type="html"><![CDATA[<p>网吧经常出现很多人投诉网吧，老是自动弹出广告，以前还只是游戏结束自动弹出游戏网页，现在直接小窗口带声音了。打开网页多了还要慢慢找。我想知道怎么屏蔽这一类的广告，因为现在已经有很多人投诉了，但是我们上面的合作公司竟然无力解决!</p><p>进程里面结束网吧系统的游戏管理软件就不会出现广告！网吧为了管理游戏方便，不可避免的需要这种管理软件，所以广告不可避免，这也是网吧系统管理方赚钱的一种手段。</p><p>这就是现在网吧广告的现状，网吧现在绝大部份采用无盘系统，无盘系统比如网维大师等，会不断投放广告，网吧采用实名制系统，比如pubwin等公安实名制系统，也会不断投放广告，文化监管软件，比如任子行等，也会不断投放广告!网吧使用的营销软件，比如网吧营销大师、领航等，同时会不断投放广告,只要看到网吧市场的，都会投放广告，广告这么多，网吧客户机不成了垃圾系统了吗？拖慢系统，游戏中弹出桌面，烦人的弹窗，还有烦人的挖矿，不断的消耗客户机软硬件资源，网吧体验怎么办？370safe等类软件应运而生，还你网吧桌面自由！</p><p>370Safe只是个安全防御工具, 提供防御功能, 不提供任何内置规则 . 在默认情况下, 软件安装后 , 不会拦截任何软件的任何操作.<br>用户应合理,合法,灵活使用软件提供的一切功能 . 因用户自行配置的规则导致的一切问题,用户自行承担相应的责任.<br>用户应仅将本工具用于防御病毒木马,不得破坏其他软件正常功能.</p><p>370服务端运行界面<br><img src="/images/370.png" alt=""><br>此下载地址包括370safe 2.0内网版和以前的370safe 1.02版 370safe 1.03版升级补丁等!</p><p>370safe 2.0内网版及1.02 1.03下载地址</p><p>链接: <a href="https://pan.baidu.com/s/1i4QE2TR">https://pan.baidu.com/s/1i4QE2TR</a> 密码: 6jvb</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 精品软件 </tag>
             
         </tags>
       
