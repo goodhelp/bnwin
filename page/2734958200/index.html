@@ -251,6 +251,81 @@
 <p>其中部份源码</p>
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">s3:^Integer;</span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> GSGW32_LoadDriver;</span><br><span class="line"> s1:=dname;</span><br><span class="line"> s2:=(dsize*<span class="number">1024</span>)*<span class="number">1024</span>;</span><br><span class="line"> s2:=s2*<span class="number">1024</span>;</span><br><span class="line"> <span class="keyword">asm</span></span><br><span class="line"> lea eax,s2;</span><br><span class="line"> mov edx,s1;</span><br><span class="line"> mov al,[edx];</span><br><span class="line"> mov s3,eax;</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> GSGW32_Mount(sn,s3,@s2,PChar(dimg));</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TService1</span>.<span class="title">diskgo</span><span class="params">(diskname:<span class="keyword">string</span>)</span>:</span>Boolean;</span><br><span class="line"> <span class="keyword">var</span></span><br><span class="line"> d2:<span class="keyword">string</span>;</span><br><span class="line"> n,i:Integer;</span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> d2:=UpperCase(Trim(diskname));</span><br><span class="line"> <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> Length(d2) <span class="keyword">do</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> n:=Ord(d2[i]);</span><br><span class="line"> GSGW32_Umount(n);</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> GSGW32_UnloadDriver;</span><br><span class="line"> <span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
         </div>
+		<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "锐起CGO2043服务端出盘源码",
+        "image": "https://goodhelp.gitee.io",
+        "keywords": "delphi 锐起",
+        "genre": "源码",
+        "datePublished": "2017-10-26",
+        "dateCreated": "2017-10-26",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.gitee.io/page/2734958200/",
+        "description": "曾经的锐起CGO2043是以IMG包的形式存放游戏的，但服务端又不能自动出盘进行更新，当时就写了这个工具，开机可以自动开IMG包，达到自动更新游戏的目的!源码为delphi，如果需要的可以下载!
+下载地址
+链接: https://pan.baidu.com/s/1nuNi8hr 密码: r7g6
+解压密码 bnwin.com
+其中部份源码
+12345678910111213141516171819",
+        "wordCount": 123
+    }
+</script>
+
+		<!-- 添加打赏功能 只在文章详情中显示-->
+		
+		
+		<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+		
+				
         <footer class="article-footer">
             
 
@@ -293,81 +368,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
         </footer>
     </div>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-            "@type": "Person",
-            "name": "百脑问"
-        },
-        "headline": "锐起CGO2043服务端出盘源码",
-        "image": "https://goodhelp.gitee.io",
-        "keywords": "delphi 锐起",
-        "genre": "源码",
-        "datePublished": "2017-10-26",
-        "dateCreated": "2017-10-26",
-        "dateModified": "2021-09-12",
-        "url": "https://goodhelp.gitee.io/page/2734958200/",
-        "description": "曾经的锐起CGO2043是以IMG包的形式存放游戏的，但服务端又不能自动出盘进行更新，当时就写了这个工具，开机可以自动开IMG包，达到自动更新游戏的目的!源码为delphi，如果需要的可以下载!
-下载地址
-链接: https://pan.baidu.com/s/1nuNi8hr 密码: r7g6
-解压密码 bnwin.com
-其中部份源码
-12345678910111213141516171819",
-        "wordCount": 123
-    }
-</script>
-
-	<!-- 添加打赏功能 只在文章详情中显示-->
-	
-	
-	<! -- 添加捐赠图标 -->
-<div class="hide_box outbox"></div>                           
-   <div class="shang_box animated flipInY">
-		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
-				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
-                           <div class="shang_tit">
-                               <p>感谢您的支持，我们会一直保持!</p>
-                           </div>
-                           <div class="shang_payimg">
-                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
-                           </div>
-                           <div class="pay_explain">请土豪扫码随意打赏</div>
-                           <div class="shang_payselect">
-                               <div class="pay_item checked" data-id="wechatl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
-                               </div>
-                               <div class="pay_item" data-id="alipayl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
-                               </div>
-                           </div>
-                           <div class="shang_info">
-                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
-							   <p />
-                               <p>分享从这里开始，精彩与您同在</p>
-                           </div>
-                       </div>
-<script>
-$(function() {
-	 $(".outbox").bind("click",function(){
-    		$(".hide_box").fadeToggle();
-   		$(".shang_box").fadeToggle();
-	  });
-	$(".pay_item").bind("click",function(){
-		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
-        	var dataid = $(this).attr("data-id");
-        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
-        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
-	  });
-});
-</script>
-<div class="jzpay"><a href="javascript:;" class="outbox action-rewards btn-danger" etap="rewards" alt="打赏作者"></a></div>
-<! -- 添加捐赠图标 -->
-	
-	
 </article>
 
     <section id="comments">

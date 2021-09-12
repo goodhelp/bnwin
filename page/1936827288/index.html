@@ -261,6 +261,78 @@
 <p>第一种hook方法是修改flash文件，但其实是采用动态方法改了汇编代码，处理不好容易蓝屏。第二种方法修改flash插件文件,原理是：flash执行cmd的逻辑是，先读取环境变量comspec(cmd.exe的全路径)，读取到就执行它，读取不到就不执行cmd.exe.只要把变量和cmd.exe名字修改，就执行不成功，就没有DOS黑框出来!第一种方法是在flash插件要运行cmd.exe的时候再进行拦截，是动态修改的，而第二种是直接让flash找不到变量和cmd.exe程序，flash自己判断不用执行，是静态修改!第三种是懒人方法!但几种方法实现的效果都是阻止cmd.exe的正常执行!同时你就可以这样思考了，为了让flash不出现闪黑框的问题，就变成了如何阻止cmd.exe的执行，比如你在你自己的程序中先修改一下comspec环境变量，也是可以阻止cmd.exe执行的，大家自由发挥!</p>
 
         </div>
+		<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "dcef3加载flash闪烁问题简单解决方法",
+        "image": "https://goodhelp.gitee.io/images/20171130235247.png",
+        "keywords": "delphi dcef3",
+        "genre": "文章",
+        "datePublished": "2017-12-01",
+        "dateCreated": "2017-12-01",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.gitee.io/page/1936827288/",
+        "description": "dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!
+
+一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码1234567891011",
+        "wordCount": 1213
+    }
+</script>
+
+		<!-- 添加打赏功能 只在文章详情中显示-->
+		
+		
+		<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+		
+				
         <footer class="article-footer">
             
 
@@ -303,78 +375,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
         </footer>
     </div>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-            "@type": "Person",
-            "name": "百脑问"
-        },
-        "headline": "dcef3加载flash闪烁问题简单解决方法",
-        "image": "https://goodhelp.gitee.io/images/20171130235247.png",
-        "keywords": "delphi dcef3",
-        "genre": "文章",
-        "datePublished": "2017-12-01",
-        "dateCreated": "2017-12-01",
-        "dateModified": "2021-09-12",
-        "url": "https://goodhelp.gitee.io/page/1936827288/",
-        "description": "dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!
-
-一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码1234567891011",
-        "wordCount": 1213
-    }
-</script>
-
-	<!-- 添加打赏功能 只在文章详情中显示-->
-	
-	
-	<! -- 添加捐赠图标 -->
-<div class="hide_box outbox"></div>                           
-   <div class="shang_box animated flipInY">
-		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
-				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
-                           <div class="shang_tit">
-                               <p>感谢您的支持，我们会一直保持!</p>
-                           </div>
-                           <div class="shang_payimg">
-                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
-                           </div>
-                           <div class="pay_explain">请土豪扫码随意打赏</div>
-                           <div class="shang_payselect">
-                               <div class="pay_item checked" data-id="wechatl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
-                               </div>
-                               <div class="pay_item" data-id="alipayl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
-                               </div>
-                           </div>
-                           <div class="shang_info">
-                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
-							   <p />
-                               <p>分享从这里开始，精彩与您同在</p>
-                           </div>
-                       </div>
-<script>
-$(function() {
-	 $(".outbox").bind("click",function(){
-    		$(".hide_box").fadeToggle();
-   		$(".shang_box").fadeToggle();
-	  });
-	$(".pay_item").bind("click",function(){
-		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
-        	var dataid = $(this).attr("data-id");
-        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
-        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
-	  });
-});
-</script>
-<div class="jzpay"><a href="javascript:;" class="outbox action-rewards btn-danger" etap="rewards" alt="打赏作者"></a></div>
-<! -- 添加捐赠图标 -->
-	
-	
 </article>
 
     <section id="comments">

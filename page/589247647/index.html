@@ -251,6 +251,81 @@
 <p>其中部份源码</p>
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">MutexHandle: Longword;</span><br><span class="line"> mainip,subip,mystr,syspath:<span class="keyword">string</span>;</span><br><span class="line"> reg:TRegistry;</span><br><span class="line"> thand:THandle;</span><br><span class="line"> RTGSGLogonEvent:TPluginName;</span><br><span class="line"> myini:TIniFile;</span><br><span class="line"> myname,cgoip:<span class="keyword">string</span>;</span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> syspath:=gtsyspath;</span><br><span class="line"> <span class="keyword">if</span> <span class="keyword">not</span> fileexists(syspath+<span class="string">&#x27;\system32\drivers\GAMESGXP.sys&#x27;</span>) <span class="keyword">then</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> ExtractRes(<span class="string">&#x27;exefile&#x27;</span>,<span class="string">&#x27;RNDINTER&#x27;</span>,syspath+<span class="string">&#x27;\system32\RNDINTER.dll&#x27;</span>);</span><br><span class="line"> ExtractRes(<span class="string">&#x27;exefile&#x27;</span>,<span class="string">&#x27;RTGSGENG&#x27;</span>,syspath+<span class="string">&#x27;\system32\RTGSGENG.dll&#x27;</span>);</span><br><span class="line"> ExtractRes(<span class="string">&#x27;exefile&#x27;</span>,<span class="string">&#x27;udt&#x27;</span>,syspath+<span class="string">&#x27;\system32\udt.dll&#x27;</span>);</span><br><span class="line"> ExtractRes(<span class="string">&#x27;exefile&#x27;</span>,<span class="string">&#x27;GAMESGXP&#x27;</span>,syspath+<span class="string">&#x27;\system32\drivers\GAMESGXP.sys&#x27;</span>);</span><br><span class="line"> ExtractRes(<span class="string">&#x27;exefile&#x27;</span>,<span class="string">&#x27;RTFLTDSK&#x27;</span>,syspath+<span class="string">&#x27;\system32\drivers\RTFLTDSK.sys&#x27;</span>);</span><br><span class="line"> ExtractRes(<span class="string">&#x27;exefile&#x27;</span>,<span class="string">&#x27;RTWRESXP&#x27;</span>,syspath+<span class="string">&#x27;\system32\drivers\RTWRESXP.sys&#x27;</span>);</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> myini:=TIniFile.Create(ExtractFilePath(ParamStr(<span class="number">0</span>))+<span class="string">&#x27;setup.ini&#x27;</span>);</span><br><span class="line"> mainip:= myini.ReadString(<span class="string">&#x27;配置&#x27;</span>,<span class="string">&#x27;主服务器&#x27;</span>,<span class="string">&#x27;&#x27;</span>);<span class="comment">//主服务器IP</span></span><br><span class="line"> subip:= myini.ReadString(<span class="string">&#x27;配置&#x27;</span>,<span class="string">&#x27;副服务器&#x27;</span>,<span class="string">&#x27;&#x27;</span>);<span class="comment">//副服务器IP</span></span><br><span class="line"> <span class="keyword">if</span> subip=<span class="string">&#x27;&#x27;</span> <span class="keyword">then</span> subip:=mainip;</span><br><span class="line"> mystr:= uppercase(myini.ReadString(<span class="string">&#x27;配置&#x27;</span>,<span class="string">&#x27;副分流机器&#x27;</span>,<span class="string">&#x27;&#x27;</span>));<span class="comment">//副服务器分流机器名</span></span><br><span class="line"> myini.Free;</span><br><span class="line"> myname:=gtcomputername;</span><br><span class="line"> <span class="keyword">if</span> Pos(myname,mystr)&gt;<span class="number">0</span> <span class="keyword">then</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> <span class="keyword">if</span> ScanTCPPort(subip,<span class="number">7499</span>) <span class="keyword">then</span></span><br><span class="line"> cgoip:=subip</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line"> cgoip:=mainip;</span><br><span class="line"> <span class="keyword">end</span></span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> <span class="keyword">if</span> ScanTCPPort(mainip,<span class="number">7499</span>) <span class="keyword">then</span></span><br><span class="line"> cgoip:=mainip</span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line"> <span class="keyword">if</span> ScanTCPPort(subip,<span class="number">7499</span>) <span class="keyword">then</span></span><br><span class="line"> cgoip:=subip</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line"> cgoip:=mainip;</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> <span class="keyword">if</span> cgoip&lt;&gt;<span class="string">&#x27;&#x27;</span> <span class="keyword">then</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> reg:=TRegistry.Create;</span><br><span class="line"> reg.RootKey:=HKEY_LOCAL_MACHINE;</span><br><span class="line"> <span class="keyword">if</span> reg.OpenKey(<span class="string">&#x27;SOFTWARE\Richtech\Cgo&#x27;</span>,true) <span class="keyword">then</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> reg.WriteInteger(<span class="string">&#x27;Version&#x27;</span>,<span class="number">$000007fb</span>);</span><br><span class="line"> reg.WriteString(<span class="string">&#x27;ServerIp&#x27;</span>,cgoip);</span><br><span class="line"> reg.WriteInteger(<span class="string">&#x27;NormalSD&#x27;</span>,<span class="number">1</span>);</span><br><span class="line"> reg.WriteInteger(<span class="string">&#x27;UserId&#x27;</span>,<span class="number">5821298</span>);</span><br><span class="line"> reg.WriteInteger(<span class="string">&#x27;KeyId&#x27;</span>,<span class="number">0</span>);</span><br><span class="line"> reg.WriteInteger(<span class="string">&#x27;RegDrive&#x27;</span>,<span class="number">81</span>);</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> reg.CloseKey;</span><br><span class="line"> reg.Destroy;</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> <span class="keyword">if</span> OpenMutex(MUTEX_ALL_ACCESS, FALSE, <span class="string">&#x27;RTGSGLogonEvent&#x27;</span>)&lt;&gt;<span class="number">0</span> <span class="keyword">then</span> <span class="keyword">Exit</span>;</span><br><span class="line"> MutexHandle := CreateMutex(<span class="keyword">nil</span>,TRUE,<span class="string">&#x27;RTGSGLogonEvent&#x27;</span>); <span class="comment">//.........BEGIN........//</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//寻找进程</span></span><br><span class="line"> Explorer_PID := FindProcess(<span class="string">&#x27;winlogon.exe&#x27;</span>);</span><br><span class="line"> <span class="keyword">if</span> (Explorer_PID=<span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> MessageBox(<span class="number">0</span>, <span class="string">&#x27;寻找winlogon进程出错 &#x27;</span>, <span class="keyword">nil</span>, <span class="number">0</span>); <span class="keyword">Exit</span>;</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> <span class="comment">//创建内存映射文件</span></span><br><span class="line"> FileMapH := CreateFileMapping(<span class="number">$FFFFFFFF</span>,<span class="keyword">nil</span>,PAGE_READWRITE,<span class="number">0</span>,SizeOf(node),<span class="string">&#x27;RTGSGLogonEventRich&#x27;</span>);</span><br><span class="line"> <span class="keyword">if</span> (FileMapH=<span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line"> <span class="keyword">begin</span></span><br></pre></td></tr></table></figure>
         </div>
+		<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "锐起CGO2043客户端绿色出盘源码",
+        "image": "https://goodhelp.gitee.io",
+        "keywords": "delphi 锐起",
+        "genre": "源码",
+        "datePublished": "2017-10-26",
+        "dateCreated": "2017-10-26",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.gitee.io/page/589247647/",
+        "description": "锐起CGO2043客户端绿色出盘源码,可以在服务端查看到客户端的状态
+源码为delphi,如果需要源码可以下载 
+下载地址链接: https://pan.baidu.com/s/1i5gn1i9 密码: nnhu 
+解压密码 bnwin.com
+其中部份源码
+1234567891011121314151617181920212223242526272829303132333435363738394",
+        "wordCount": 385
+    }
+</script>
+
+		<!-- 添加打赏功能 只在文章详情中显示-->
+		
+		
+		<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+		
+				
         <footer class="article-footer">
             
 
@@ -293,81 +368,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
         </footer>
     </div>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-            "@type": "Person",
-            "name": "百脑问"
-        },
-        "headline": "锐起CGO2043客户端绿色出盘源码",
-        "image": "https://goodhelp.gitee.io",
-        "keywords": "delphi 锐起",
-        "genre": "源码",
-        "datePublished": "2017-10-26",
-        "dateCreated": "2017-10-26",
-        "dateModified": "2021-09-12",
-        "url": "https://goodhelp.gitee.io/page/589247647/",
-        "description": "锐起CGO2043客户端绿色出盘源码,可以在服务端查看到客户端的状态
-源码为delphi,如果需要源码可以下载 
-下载地址链接: https://pan.baidu.com/s/1i5gn1i9 密码: nnhu 
-解压密码 bnwin.com
-其中部份源码
-1234567891011121314151617181920212223242526272829303132333435363738394",
-        "wordCount": 385
-    }
-</script>
-
-	<!-- 添加打赏功能 只在文章详情中显示-->
-	
-	
-	<! -- 添加捐赠图标 -->
-<div class="hide_box outbox"></div>                           
-   <div class="shang_box animated flipInY">
-		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
-				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
-                           <div class="shang_tit">
-                               <p>感谢您的支持，我们会一直保持!</p>
-                           </div>
-                           <div class="shang_payimg">
-                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
-                           </div>
-                           <div class="pay_explain">请土豪扫码随意打赏</div>
-                           <div class="shang_payselect">
-                               <div class="pay_item checked" data-id="wechatl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
-                               </div>
-                               <div class="pay_item" data-id="alipayl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
-                               </div>
-                           </div>
-                           <div class="shang_info">
-                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
-							   <p />
-                               <p>分享从这里开始，精彩与您同在</p>
-                           </div>
-                       </div>
-<script>
-$(function() {
-	 $(".outbox").bind("click",function(){
-    		$(".hide_box").fadeToggle();
-   		$(".shang_box").fadeToggle();
-	  });
-	$(".pay_item").bind("click",function(){
-		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
-        	var dataid = $(this).attr("data-id");
-        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
-        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
-	  });
-});
-</script>
-<div class="jzpay"><a href="javascript:;" class="outbox action-rewards btn-danger" etap="rewards" alt="打赏作者"></a></div>
-<! -- 添加捐赠图标 -->
-	
-	
 </article>
 
     <section id="comments">

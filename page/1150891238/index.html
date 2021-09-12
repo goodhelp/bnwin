@@ -261,6 +261,76 @@ StrAlloc和StrDispose这个函数也是一对，他们分配PChar加一个Cardin
 </ul>
 
         </div>
+		<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "Delphi中那些容易混淆的基础知识",
+        "image": "https://goodhelp.gitee.io",
+        "keywords": "delphi",
+        "genre": "文章",
+        "datePublished": "2018-02-28",
+        "dateCreated": "2018-02-28",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.gitee.io/page/1150891238/",
+        "description": "1. @、^、Addr、PointerDelphi(Pascal)中有几个特殊的符号，如@、^等，弄清楚这些符号的运行，首先要明白Delphi指针的一些基础知识：指针，是一个无符号整数（unsigned int），它是一个以当前系统寻址范围为取值范围的整数。指针对应着一个数据在内存中的地址，得到了指针就可以自由地修改该数据。指针的指针就是用来存放指针所在的内存地址的。明白了指针的基本含义，就容易理",
+        "wordCount": 464
+    }
+</script>
+
+		<!-- 添加打赏功能 只在文章详情中显示-->
+		
+		
+		<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+		
+				
         <footer class="article-footer">
             
 
@@ -303,76 +373,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
         </footer>
     </div>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-            "@type": "Person",
-            "name": "百脑问"
-        },
-        "headline": "Delphi中那些容易混淆的基础知识",
-        "image": "https://goodhelp.gitee.io",
-        "keywords": "delphi",
-        "genre": "文章",
-        "datePublished": "2018-02-28",
-        "dateCreated": "2018-02-28",
-        "dateModified": "2021-09-12",
-        "url": "https://goodhelp.gitee.io/page/1150891238/",
-        "description": "1. @、^、Addr、PointerDelphi(Pascal)中有几个特殊的符号，如@、^等，弄清楚这些符号的运行，首先要明白Delphi指针的一些基础知识：指针，是一个无符号整数（unsigned int），它是一个以当前系统寻址范围为取值范围的整数。指针对应着一个数据在内存中的地址，得到了指针就可以自由地修改该数据。指针的指针就是用来存放指针所在的内存地址的。明白了指针的基本含义，就容易理",
-        "wordCount": 464
-    }
-</script>
-
-	<!-- 添加打赏功能 只在文章详情中显示-->
-	
-	
-	<! -- 添加捐赠图标 -->
-<div class="hide_box outbox"></div>                           
-   <div class="shang_box animated flipInY">
-		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
-				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
-                           <div class="shang_tit">
-                               <p>感谢您的支持，我们会一直保持!</p>
-                           </div>
-                           <div class="shang_payimg">
-                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
-                           </div>
-                           <div class="pay_explain">请土豪扫码随意打赏</div>
-                           <div class="shang_payselect">
-                               <div class="pay_item checked" data-id="wechatl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
-                               </div>
-                               <div class="pay_item" data-id="alipayl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
-                               </div>
-                           </div>
-                           <div class="shang_info">
-                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
-							   <p />
-                               <p>分享从这里开始，精彩与您同在</p>
-                           </div>
-                       </div>
-<script>
-$(function() {
-	 $(".outbox").bind("click",function(){
-    		$(".hide_box").fadeToggle();
-   		$(".shang_box").fadeToggle();
-	  });
-	$(".pay_item").bind("click",function(){
-		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
-        	var dataid = $(this).attr("data-id");
-        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
-        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
-	  });
-});
-</script>
-<div class="jzpay"><a href="javascript:;" class="outbox action-rewards btn-danger" etap="rewards" alt="打赏作者"></a></div>
-<! -- 添加捐赠图标 -->
-	
-	
 </article>
 
     <section id="comments">

@@ -252,6 +252,78 @@
 </ol>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">System network settings</span><br><span class="line">The Chromium network stack uses the system network settings so that users and administrators can control the network settings of all applications easily. The network settings include:</span><br><span class="line">proxy settings</span><br><span class="line">SSL/TLS settings</span><br><span class="line">certificate revocation check settings</span><br><span class="line">certificate and private key stores</span><br><span class="line">So far this design decision has worked well. The only network settings that some users ask for an alternative to system settings are proxy settings. For this we recently added some command-line options that allow you to run Chromium with custom proxy settings.</span><br><span class="line">Preference service for network settings</span><br><span class="line"></span><br><span class="line">Although the system network settings have been sufficient for our network stack, eventually there will be some configuration settings specific to our network stack, so we need to have our own preference service for those settings. See also issue 266, in which some Firefox users demand that we not use the WinInet proxy settings (the de facto system proxy settings on Windows).</span><br><span class="line">Command-line options for proxy settings</span><br><span class="line"></span><br><span class="line">Chrome supports the following proxy-related command line arguments:</span><br><span class="line"></span><br><span class="line">–no-proxy-server</span><br><span class="line"></span><br><span class="line">This tells Chrome not to use a Proxy. It overrides any other proxy settings provided.</span><br><span class="line"></span><br><span class="line">–proxy-auto-detect</span><br><span class="line"></span><br><span class="line">This tells Chrome to try and automatically detect your proxy configuration. This flag is ignored if –proxy-server is also provided.</span><br><span class="line"></span><br><span class="line">–proxy-server==[:][;…] | [:] | “direct://”</span><br><span class="line"></span><br><span class="line">This tells Chrome to use a custom proxy configuration. You can specify a custom proxy configuration in three ways:</span><br><span class="line"></span><br><span class="line">1) By providing a semi-colon-separated mapping of list scheme to url/port pairs.</span><br><span class="line">For example, you can specify:</span><br><span class="line">–proxy-server=”http=foopy:80;ftp=foopy2″</span><br><span class="line">to use HTTP proxy “foopy:80” for http URLs and HTTP proxy “foopy2:80″ for ftp URLs.</span><br><span class="line"></span><br><span class="line">2) By providing a single uri with optional port to use for all URLs.</span><br><span class="line">For example:</span><br><span class="line">–proxy-server=”foopy:8080”</span><br><span class="line">will use the proxy at foopy:8080 for all traffic.</span><br><span class="line"></span><br><span class="line">3) By using the special “direct://” value.</span><br><span class="line">–proxy-server=”direct://” will cause all connections to not use a proxy.</span><br><span class="line"></span><br><span class="line">–proxy-bypass-list=(|)[:][;…]</span><br><span class="line"></span><br><span class="line">This tells chrome to bypass any specified proxy for the given semi-colon-separated list of hosts. This flag must be used (or rather, only has an effect) in tandem with –proxy-server.</span><br><span class="line">Note that trailing-domain matching doesn’t require “.” separators so “*google.com” will match “igoogle.com” for example.</span><br><span class="line"></span><br><span class="line">For example,</span><br><span class="line">–proxy-server=”foopy:8080″ –proxy-bypass-list=”*.google.com;*foo.com;127.0.0.1:8080″</span><br><span class="line">will use the proxy server “foopy” on port 8080 for all hosts except those pointing to *.google.com, those pointing to *foo.com and those pointing to localhost on port 8080.</span><br><span class="line">igoogle.com requests would still be proxied. ifoo.com requests would not be proxied since *foo, not *.foo was specified.</span><br><span class="line"></span><br><span class="line">–proxy-pac-url=</span><br><span class="line"></span><br><span class="line">This tells Chrome to use the PAC file at the specified URL.</span><br><span class="line"></span><br><span class="line">For example,</span><br><span class="line">–proxy-pac-url=”http://wpad/windows.pac”</span><br><span class="line">will tell Chrome to resolve proxy information for URL requests using the windows.pac file.</span><br></pre></td></tr></table></figure>
         </div>
+		<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "delphi中如何设置dcef3的代理服务器setproxy?",
+        "image": "https://goodhelp.gitee.io",
+        "keywords": "delphi dcef3",
+        "genre": "文章",
+        "datePublished": "2017-12-30",
+        "dateCreated": "2017-12-30",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.gitee.io/page/3680656161/",
+        "description": "代理服务器（Proxy Server）是一种重要的服务器安全功能，它的工作主要在开放系统互联(OSI)模型的会话层，从而起到防火墙的作用。代理服务器大多被用来连接INTERNET（国际互联网）和Local Area Network（局域网）。delphi中的tChromium控件dcef3如何设置代理服务器呢？
+
+delphi中webbrowser设置代理服务器是这样的!1234567891011",
+        "wordCount": 770
+    }
+</script>
+
+		<!-- 添加打赏功能 只在文章详情中显示-->
+		
+		
+		<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+		
+				
         <footer class="article-footer">
             
 
@@ -294,78 +366,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
         </footer>
     </div>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-            "@type": "Person",
-            "name": "百脑问"
-        },
-        "headline": "delphi中如何设置dcef3的代理服务器setproxy?",
-        "image": "https://goodhelp.gitee.io",
-        "keywords": "delphi dcef3",
-        "genre": "文章",
-        "datePublished": "2017-12-30",
-        "dateCreated": "2017-12-30",
-        "dateModified": "2021-09-12",
-        "url": "https://goodhelp.gitee.io/page/3680656161/",
-        "description": "代理服务器（Proxy Server）是一种重要的服务器安全功能，它的工作主要在开放系统互联(OSI)模型的会话层，从而起到防火墙的作用。代理服务器大多被用来连接INTERNET（国际互联网）和Local Area Network（局域网）。delphi中的tChromium控件dcef3如何设置代理服务器呢？
-
-delphi中webbrowser设置代理服务器是这样的!1234567891011",
-        "wordCount": 770
-    }
-</script>
-
-	<!-- 添加打赏功能 只在文章详情中显示-->
-	
-	
-	<! -- 添加捐赠图标 -->
-<div class="hide_box outbox"></div>                           
-   <div class="shang_box animated flipInY">
-		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
-				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
-                           <div class="shang_tit">
-                               <p>感谢您的支持，我们会一直保持!</p>
-                           </div>
-                           <div class="shang_payimg">
-                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
-                           </div>
-                           <div class="pay_explain">请土豪扫码随意打赏</div>
-                           <div class="shang_payselect">
-                               <div class="pay_item checked" data-id="wechatl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
-                               </div>
-                               <div class="pay_item" data-id="alipayl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
-                               </div>
-                           </div>
-                           <div class="shang_info">
-                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
-							   <p />
-                               <p>分享从这里开始，精彩与您同在</p>
-                           </div>
-                       </div>
-<script>
-$(function() {
-	 $(".outbox").bind("click",function(){
-    		$(".hide_box").fadeToggle();
-   		$(".shang_box").fadeToggle();
-	  });
-	$(".pay_item").bind("click",function(){
-		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
-        	var dataid = $(this).attr("data-id");
-        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
-        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
-	  });
-});
-</script>
-<div class="jzpay"><a href="javascript:;" class="outbox action-rewards btn-danger" etap="rewards" alt="打赏作者"></a></div>
-<! -- 添加捐赠图标 -->
-	
-	
 </article>
 
     <section id="comments">

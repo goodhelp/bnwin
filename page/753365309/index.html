@@ -246,6 +246,76 @@
             <p>汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对应的不同平台之间不可直接移植。下面是汇编指令<br>一、数据传输指令<br>───────────────────────────────────────<br>    它们在存贮器和寄存器、寄存器和输入输出端口之间传送数据.<br>    1. 通用数据传送指令.<br>        MOV    传送字或字节.<br>        MOVSX  先符号扩展,再传送.<br>        MOVZX  先零扩展,再传送.<br>        PUSH    把字压入堆栈.<br>        POP    把字弹出堆栈.<br>        PUSHA  把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.<br>        POPA    把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.<br>        PUSHAD  把EAX,ECX,EDX,EBX,ESP,EBP,ESI,EDI依次压入堆栈.<br>        POPAD  把EDI,ESI,EBP,ESP,EBX,EDX,ECX,EAX依次弹出堆栈.<br>        BSWAP  交换32位寄存器里字节的顺序<br>        XCHG    交换字或字节.( 至少有一个操作数为寄存器,段寄存器不可作为操作数)<br>        CMPXCHG 比较并交换操作数.( 第二个操作数必须为累加器AL/AX/EAX )<br>        XADD    先交换再累加.( 结果在第一个操作数里 )<br>        XLAT    字节查表转换.<br>                ── BX 指向一张 256 字节的表的起点, AL 为表的索引值 (0-255,即<br>                0-FFH); 返回 AL 为查表结果. ( [BX+AL]-&gt;AL )<br>    2. 输入输出端口传送指令.<br>        IN      I/O端口输入. ( 语法: IN 累加器, {端口号│DX} )<br>        OUT    I/O端口输出. ( 语法: OUT {端口号│DX},累加器 )<br>          输入输出端口由立即方式指定时, 其范围是 0-255; 由寄存器 DX 指定时,<br>          其范围是 0-65535.<br>    3. 目的地址传送指令.<br>        LEA    装入有效地址.<br>          例: LEA DX,string  ;把偏移地址存到DX.<br>        LDS    传送目标指针,把指针内容装入DS.<br>          例: LDS SI,string  ;把段地址:偏移地址存到DS:SI.<br>        LES    传送目标指针,把指针内容装入ES.<br>          例: LES DI,string  ;把段地址:偏移地址存到ES:DI.<br>        LFS    传送目标指针,把指针内容装入FS.<br>          例: LFS DI,string  ;把段地址:偏移地址存到FS:DI.<br>        LGS    传送目标指针,把指针内容装入GS.<br>          例: LGS DI,string  ;把段地址:偏移地址存到GS:DI.<br>        LSS    传送目标指针,把指针内容装入SS.<br>          例: LSS DI,string  ;把段地址:偏移地址存到SS:DI.<br>    4. 标志传送指令.<br>        LAHF    标志寄存器传送,把标志装入AH.<br>        SAHF    标志寄存器传送,把AH内容装入标志寄存器.<br>        PUSHF  标志入栈.<br>        POPF    标志出栈.<br>        PUSHD  32位标志入栈.<br>        POPD    32位标志出栈.<br>二、算术运算指令<br>───────────────────────────────────────<br>        　　ADD    加法.<br>        ADC    带进位加法.<br>        INC    加 1.<br>        AAA    加法的ASCII码调整.<br>        DAA    加法的十进制调整.<br>        SUB    减法.<br>        SBB    带借位减法.<br>        DEC    减 1.<br>        NEC    求反(以 0 减之).<br>        CMP    比较.(两操作数作减法,仅修改标志位,不回送结果).<br>        AAS    减法的ASCII码调整.<br>        DAS    减法的十进制调整.<br>        MUL    无符号乘法.<br>        IMUL    整数乘法.<br>          以上两条,结果回送AH和AL(字节运算),或DX和AX(字运算),<br>        AAM    乘法的ASCII码调整.<br>        DIV    无符号除法.<br>        IDIV    整数除法.<br>          以上两条,结果回送:<br>              商回送AL,余数回送AH, (字节运算);<br>          或  商回送AX,余数回送DX, (字运算).<br>        AAD    除法的ASCII码调整.<br>        CBW    字节转换为字. (把AL中字节的符号扩展到AH中去)<br>        CWD    字转换为双字. (把AX中的字的符号扩展到DX中去)<br>        CWDE    字转换为双字. (把AX中的字符号扩展到EAX中去)<br>        CDQ    双字扩展.    (把EAX中的字的符号扩展到EDX中去)<br>三、逻辑运算指令<br>───────────────────────────────────────<br>        　　AND    与运算.<br>        OR      或运算.<br>        XOR    异或运算.<br>        NOT    取反.<br>        TEST    测试.(两操作数作与运算,仅修改标志位,不回送结果).<br>        SHL    逻辑左移.<br>        SAL    算术左移.(=SHL)<br>        SHR    逻辑右移.<br>        SAR    算术右移.(=SHR)<br>        ROL    循环左移.<br>        ROR    循环右移.<br>        RCL    通过进位的循环左移.<br>        RCR    通过进位的循环右移.<br>          以上八种移位指令,其移位次数可达255次.<br>              移位一次时, 可直接用操作码.  如 SHL AX,1.<br>              移位&gt;1次时, 则由寄存器CL给出移位次数.<br>                如  MOV CL,04<br>                    SHL AX,CL<br>四、串指令<br>───────────────────────────────────────<br>            　DS:SI  源串段寄存器  :源串变址.<br>            ES:DI  目标串段寄存器:目标串变址.<br>            CX      重复次数计数器.<br>            AL/AX  扫描值.<br>            D标志  0表示重复操作中SI和DI应自动增量; 1表示应自动减量.<br>            Z标志  用来控制扫描或比较操作的结束.<br>        MOVS    串传送.<br>            ( MOVSB  传送字符.    MOVSW  传送字.    MOVSD  传送双字. )<br>        CMPS    串比较.<br>            ( CMPSB  比较字符.    CMPSW  比较字. )<br>        SCAS    串扫描.<br>            把AL或AX的内容与目标串作比较,比较结果反映在标志位.<br>        LODS    装入串.<br>            把源串中的元素(字或字节)逐一装入AL或AX中.<br>            ( LODSB  传送字符.    LODSW  传送字.    LODSD  传送双字. )<br>        STOS    保存串.<br>            是LODS的逆过程.<br>        REP            当CX/ECX&lt;&gt;0时重复.<br>        REPE/REPZ      当ZF=1或比较结果相等,且CX/ECX&lt;&gt;0时重复.<br>        REPNE/REPNZ    当ZF=0或比较结果不相等,且CX/ECX&lt;&gt;0时重复.<br>        REPC          当CF=1且CX/ECX&lt;&gt;0时重复.<br>        REPNC          当CF=0且CX/ECX&lt;&gt;0时重复.<br>五、程序转移指令<br>───────────────────────────────────────<br>    　1&gt;无条件转移指令 (长转移)<br>        JMP    无条件转移指令<br>        CALL    过程调用<br>        RET/RETF过程返回.<br>    2&gt;条件转移指令 (短转移,-128到+127的距离内)<br>        ( 当且仅当(SF XOR OF)=1时,OP1&lt;OP2 )<br>        JA/JNBE 不小于或不等于时转移.<br>        JAE/JNB 大于或等于转移.<br>        JB/JNAE 小于转移.<br>        JBE/JNA 小于或等于转移.<br>          以上四条,测试无符号整数运算的结果(标志C和Z).<br>        JG/JNLE 大于转移.<br>        JGE/JNL 大于或等于转移.<br>        JL/JNGE 小于转移.<br>        JLE/JNG 小于或等于转移.<br>          以上四条,测试带符号整数运算的结果(标志S,O和Z).<br>        JE/JZ  等于转移.<br>        JNE/JNZ 不等于时转移.<br>        JC      有进位时转移.<br>        JNC    无进位时转移.<br>        JNO    不溢出时转移.<br>        JNP/JPO 奇偶性为奇数时转移.<br>        JNS    符号位为 “0” 时转移.<br>        JO      溢出转移.<br>        JP/JPE  奇偶性为偶数时转移.<br>        JS      符号位为 “1” 时转移.<br>    3&gt;循环控制指令(短转移)<br>        LOOP            CX不为零时循环.<br>        LOOPE/LOOPZ    CX不为零且标志Z=1时循环.<br>        LOOPNE/LOOPNZ  CX不为零且标志Z=0时循环.<br>        JCXZ            CX为零时转移.<br>        JECXZ          ECX为零时转移.<br>    4&gt;中断指令<br>        INT    中断指令<br>        INTO    溢出中断<br>        IRET    中断返回<br>    5&gt;处理器控制指令<br>        HLT    处理器暂停, 直到出现中断或复位信号才继续.<br>        WAIT    当芯片引线TEST为高电平时使CPU进入等待状态.<br>        ESC    转换到外处理器.<br>        LOCK    封锁总线.<br>        NOP    空操作.<br>        STC    置进位标志位.<br>        CLC    清进位标志位.<br>        CMC    进位标志取反.<br>        STD    置方向标志位.<br>        CLD    清方向标志位.<br>        STI    置中断允许位.<br>        CLI    清中断允许位.<br>六、伪指令<br>───────────────────────────────────────<br>        　　DW      定义字(2字节).<br>        PROC    定义过程.<br>        ENDP    过程结束.<br>        SEGMENT 定义段.<br>        ASSUME  建立段寄存器寻址.<br>        ENDS    段结束.<br>        END    程序结束.</p>
 
         </div>
+		<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "8088汇编速查手册",
+        "image": "https://goodhelp.gitee.io",
+        "keywords": "汇编",
+        "genre": "文章",
+        "datePublished": "2017-11-07",
+        "dateCreated": "2017-11-07",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.gitee.io/page/753365309/",
+        "description": "汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对",
+        "wordCount": 2048
+    }
+</script>
+
+		<!-- 添加打赏功能 只在文章详情中显示-->
+		
+		
+		<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+		
+				
         <footer class="article-footer">
             
 
@@ -288,76 +358,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
         </footer>
     </div>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-            "@type": "Person",
-            "name": "百脑问"
-        },
-        "headline": "8088汇编速查手册",
-        "image": "https://goodhelp.gitee.io",
-        "keywords": "汇编",
-        "genre": "文章",
-        "datePublished": "2017-11-07",
-        "dateCreated": "2017-11-07",
-        "dateModified": "2021-09-12",
-        "url": "https://goodhelp.gitee.io/page/753365309/",
-        "description": "汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对",
-        "wordCount": 2048
-    }
-</script>
-
-	<!-- 添加打赏功能 只在文章详情中显示-->
-	
-	
-	<! -- 添加捐赠图标 -->
-<div class="hide_box outbox"></div>                           
-   <div class="shang_box animated flipInY">
-		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
-				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
-                           <div class="shang_tit">
-                               <p>感谢您的支持，我们会一直保持!</p>
-                           </div>
-                           <div class="shang_payimg">
-                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
-                           </div>
-                           <div class="pay_explain">请土豪扫码随意打赏</div>
-                           <div class="shang_payselect">
-                               <div class="pay_item checked" data-id="wechatl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
-                               </div>
-                               <div class="pay_item" data-id="alipayl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
-                               </div>
-                           </div>
-                           <div class="shang_info">
-                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
-							   <p />
-                               <p>分享从这里开始，精彩与您同在</p>
-                           </div>
-                       </div>
-<script>
-$(function() {
-	 $(".outbox").bind("click",function(){
-    		$(".hide_box").fadeToggle();
-   		$(".shang_box").fadeToggle();
-	  });
-	$(".pay_item").bind("click",function(){
-		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
-        	var dataid = $(this).attr("data-id");
-        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
-        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
-	  });
-});
-</script>
-<div class="jzpay"><a href="javascript:;" class="outbox action-rewards btn-danger" etap="rewards" alt="打赏作者"></a></div>
-<! -- 添加捐赠图标 -->
-	
-	
 </article>
 
     <section id="comments">

@@ -257,6 +257,78 @@
 <h2 id="当前实现功能"><a href="#当前实现功能" class="headerlink" title="当前实现功能"></a>当前实现功能</h2><p>‘call myfun.MakeLink(“罗技鼠标设置”,”G:\常用软件\罗技鼠标游戏驱动\Rungame.exe”,””,”G:\常用软件\罗技鼠标游戏驱动\48731.ico”) ‘创建桌面快捷方式<br>‘call myfun.MakeUrl(“<a target="_blank" rel="noopener" href="http://www.bnwin.com&quot;,&quot;百脑问&quot;,true/">http://www.bnwin.com&quot;,&quot;百脑问&quot;,true</a>) ‘收藏夹栏添加网址<br>‘call myfun.SetHomepage(“<a target="_blank" rel="noopener" href="https://www.baidu.com&quot;/">https://www.baidu.com&quot;</a>) ‘设置ie主页<br>‘msgbox myfun.GetExePath(“C:\Program Files\Internet Explorer\iexplore.exe”) ‘根据路径取目录<br>‘msgbox myfun.IsExitFile(“c:\abc.txt”) ‘判断文件是否存在<br>‘msgbox myfun.IsExitDir(“c:\abc”,true) ‘判断目录是否存在<br>‘call myfun.MyCreateFolder(“c:\abc\1233\dd”)  ‘创建目录可多级<br>‘call myfun.XCopy(“D:\dump”,”d:\456”,true) ‘拷目录 多级<br>‘call myfun.CopyFile(“C:\Windows\win.ini”,”d:\323\aaa.txt”,true)  ‘拷贝文件<br>‘call myfun.DelFile(“c:\abd\123.txt”)  ‘删除文件<br>‘call myfun.DelDir(“c:\abd&quot;)  ‘删除目录<br>‘Call myfun.Run(“””C:\Program Files (x86)\Internet Explorer\iexplore.exe””  <a target="_blank" rel="noopener" href="http://www.bnwin.com&quot;,false/">http://www.bnwin.com&quot;,false</a>)  ‘路径带有空格，要用引号把空格路径括起，会检测文件是否存在，不能用于执行dos命令<br>‘msgbox myfun.ping(“192.168.0.1”)  ‘ping是否在线<br>‘MsgBox myfun.GetMac   ‘取得网卡mac地址<br>‘MsgBox myfun.GetIP   ‘取得本机ip地址<br>‘MsgBox myfun.GetComputerName   ‘取得机器名<br>‘MsgBox myfun.GetOS  ‘取得操作系统是win7还是win10<br>‘MsgBox myfun.X86orX64  ‘系统是64位还是32位<br>‘call myfun.ReadBinary(“c:\windows\notepad.exe”,”d:\123.txt”) ‘把文件生成16进制字符串文本文件<br>‘call myfun.WriteBinary(“d:\123.exe”,”d:\123.txt”,true)  ‘把16进制文本文件还原为可执行文件<br>‘call myfun.Sleep(5)  ‘延时5秒<br>‘call myfun.ImportReg(“.\reg.reg”)  ‘导入注册表<br>‘call myfun.RunBat(“.\test.bat”)  ‘运行批处理文件<br>‘myfun.Runcmd “dir c:\ &gt;c:\1.txt” ‘运行dos命令<br>‘call myfun.import(“d:\abc.vbs”)  ‘导入vbs文件<br>‘call myfun.CloseProcess(“SunloginRemote.exe”)  ‘关闭指定进程<br>‘call myfun.IsProcess(“qq.exe”)     ‘检查指定进程是否存在<br>‘call myfun.IsProcessEx(“qq.exe|notepad.exe”)  ‘指定指定列表进程是否存在<br>‘call myfun.CloseProcessEx(“qq.exe|wechat.exe”)  ‘结束进程列表<br>‘call myfun.RegExpTest(“sdf|456”,”123456789”)  ‘正则判断是否存在指定内容<br>‘call myfun.KillWindow(“”,”计算机”)  ‘关闭指定类名或标题的窗口<br>‘call myfun.WriteReg(“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\Start Page”,”<a target="_blank" rel="noopener" href="https://www.baidu.com&quot;,&quot;&quot;/">https://www.baidu.com&quot;,&quot;&quot;</a>)  ‘写注册表值<br>‘MsgBox myfun.ReadReg(“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\MAIN\Start Page”) ‘读注册表值<br>‘call myfun.HideWindow(“Notepad”,””) ‘按类名或标题隐藏窗口 未关闭<br>‘call myfun.KillThread(“Notepad”,””)  ‘按类名或标题中止显示此窗口的线程 如果是单线程，程序则会退出 可用于关闭广告窗口<br>‘call myfun.DownFile(“<a target="_blank" rel="noopener" href="http://gh.api.99988866.xyz/github.com/Chuyu-Team/Dism-Multi-language/releases/download/v10.1.1001.10/Dism++10.1.1001.10_d4ba4eb035254b3326d6adc6638bc9c8daea7018.zip&quot;,&quot;d:/dism.zip&quot;">http://gh.api.99988866.xyz/github.com/Chuyu-Team/Dism-Multi-language/releases/download/v10.1.1001.10/Dism++10.1.1001.10_d4ba4eb035254b3326d6adc6638bc9c8daea7018.zip&quot;,&quot;d:\dism.zip&quot;</a>)  ‘下载远程文件<br>‘call myfun.SyncTime  ‘同步时间<br>‘MsgBox myfun.GetSysRunTime() ‘取得系统开机时间 关机时间 返回时间较长，可用于学习查询系统日志<br>‘call myfun.log(“测试”)   ‘写日志文件 日志文件在当前脚本下，以日期命名<br>‘MsgBox myfun.IsSuperAdmin() ‘判断无盘是否有超级用户<br>‘MsgBox myfun.FromUnixTime(“1630211522”,8) ‘unix时间转北京时间<br>‘msgbox myfun.ToUnixTime(now, 8)  ‘把当前时间转成unix时间<br>‘myfun.WriteIni “节点”,”键名”,”值”,”d:\123.ini”   ‘写INI文件<br>‘msgbox myfun.ReadIni(“节点”,”键名”,”默认值”,”d:\123.ini”) ‘读ini文件<br>‘call myfun.CreatLink(“d:\pg”,”C:\Program Files (x86)”)  ‘’把C盘程序目录映射到D盘pg目录,访问D:\pg相当于访问C:\Program Files (x86)内容<br>‘msgbox “系统运行了：”&amp;myfun.GetOsRunTime&amp;”分钟”<br>‘call myfun.SysVolme  ‘把系统音量调到最大<br>‘call myfun.Depolicy(“禁止常用端口”)  ‘创建本机安全策略禁止135 137 139 445 3389端口<br>‘call myfun.CloseMonitor(2) ‘2关闭显示 -1打开显示器<br>‘call myfun.RunAu3(“E:\软件工程\vbs\demo\monitor.au3”,false) ‘恢复显示器所有设置<br>‘call myfun.RestMonitor() ‘恢复显示器所有设置</p>
 <h2 id="开源地址：https-gitee-com-goodhelp-vbs-code"><a href="#开源地址：https-gitee-com-goodhelp-vbs-code" class="headerlink" title="开源地址：https://gitee.com/goodhelp/vbs-code"></a>开源地址：<a target="_blank" rel="noopener" href="https://gitee.com/goodhelp/vbs-code">https://gitee.com/goodhelp/vbs-code</a></h2>
         </div>
+		<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "可实现维护通道的vbs脚本类",
+        "image": "https://goodhelp.gitee.io/images/2354883490,3989130937.jpg",
+        "keywords": "原创软件 开源项目",
+        "genre": "软件",
+        "datePublished": "2021-09-11",
+        "dateCreated": "2021-09-11",
+        "dateModified": "2021-09-12",
+        "url": "https://goodhelp.gitee.io/page/2434381964/",
+        "description": "
+
+前言闲来无事，为了方便，用vbs写了一个类！ 别瞧不上vbs脚本语言，其实当你学习的语言越多，发现所有编程语言都是那么一回事，最终的目的都是完成某项功能，vbs的 好处就是可以使用系统的计事本直接编辑，不需要任何语言安装环境，python开源库是多，但却必须安装python的语言环境， c++等语言生成的程序功能是可以足够强大，但要立即增加修改功能却很麻烦(因为需要安装编程环境)！ vbs特别",
+        "wordCount": 216
+    }
+</script>
+
+		<!-- 添加打赏功能 只在文章详情中显示-->
+		
+		
+		<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+		
+				
         <footer class="article-footer">
             
 
@@ -299,78 +371,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
         </footer>
     </div>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-            "@type": "Person",
-            "name": "百脑问"
-        },
-        "headline": "可实现维护通道的vbs脚本类",
-        "image": "https://goodhelp.gitee.io/images/2354883490,3989130937.jpg",
-        "keywords": "原创软件 开源项目",
-        "genre": "软件",
-        "datePublished": "2021-09-11",
-        "dateCreated": "2021-09-11",
-        "dateModified": "2021-09-12",
-        "url": "https://goodhelp.gitee.io/page/2434381964/",
-        "description": "
-
-前言闲来无事，为了方便，用vbs写了一个类！ 别瞧不上vbs脚本语言，其实当你学习的语言越多，发现所有编程语言都是那么一回事，最终的目的都是完成某项功能，vbs的 好处就是可以使用系统的计事本直接编辑，不需要任何语言安装环境，python开源库是多，但却必须安装python的语言环境， c++等语言生成的程序功能是可以足够强大，但要立即增加修改功能却很麻烦(因为需要安装编程环境)！ vbs特别",
-        "wordCount": 216
-    }
-</script>
-
-	<!-- 添加打赏功能 只在文章详情中显示-->
-	
-	
-	<! -- 添加捐赠图标 -->
-<div class="hide_box outbox"></div>                           
-   <div class="shang_box animated flipInY">
-		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
-				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
-                           <div class="shang_tit">
-                               <p>感谢您的支持，我们会一直保持!</p>
-                           </div>
-                           <div class="shang_payimg">
-                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
-                           </div>
-                           <div class="pay_explain">请土豪扫码随意打赏</div>
-                           <div class="shang_payselect">
-                               <div class="pay_item checked" data-id="wechatl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
-                               </div>
-                               <div class="pay_item" data-id="alipayl">
-                                   <span class="radiobox"></span><span class="pay_logo">
-				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
-                               </div>
-                           </div>
-                           <div class="shang_info">
-                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
-							   <p />
-                               <p>分享从这里开始，精彩与您同在</p>
-                           </div>
-                       </div>
-<script>
-$(function() {
-	 $(".outbox").bind("click",function(){
-    		$(".hide_box").fadeToggle();
-   		$(".shang_box").fadeToggle();
-	  });
-	$(".pay_item").bind("click",function(){
-		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
-        	var dataid = $(this).attr("data-id");
-        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
-        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
-	  });
-});
-</script>
-<div class="jzpay"><a href="javascript:;" class="outbox action-rewards btn-danger" etap="rewards" alt="打赏作者"></a></div>
-<! -- 添加捐赠图标 -->
-	
-	
 </article>
 
     <section id="comments">
