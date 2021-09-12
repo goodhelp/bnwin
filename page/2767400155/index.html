@@ -220,7 +220,7 @@
                 
    <span id="/page/2767400155/" class="leancloud-visitors" data-flag-title="unigui管理系统源码">
    <i class="fa fa-eye"></i>
-   <span class="post-meta-item-text">阅读次数: </span>
+   <span class="post-meta-item-text">热度: </span>
    <i class="leancloud-visitors-count">1000000</i>
    </span>
 
@@ -319,6 +319,55 @@ uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供�
     }
 </script>
 
+	<!-- 添加打赏功能 只在文章详情中显示-->
+	
+	
+	<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay"><a href="javascript:;" class="outbox action-rewards btn-danger" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+	
+	
 </article>
 
     <section id="comments">
