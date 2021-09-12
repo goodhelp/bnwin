@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>百脑问+ | 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得</title>
+  <title>百脑问+ | 知止而后有定,定而后能静,静而后能安,安而后能虑,虑而后能得</title>
   
   <subtitle>人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!</subtitle>
   <link href="https://goodhelp.gitee.io/atom.xml" rel="self"/>
@@ -92,9 +92,9 @@
     <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
     
     
-    <category term="八圈" scheme="https://goodhelp.gitee.io/tags/%E5%85%AB%E5%9C%88/"/>
-    
     <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    
+    <category term="八圈" scheme="https://goodhelp.gitee.io/tags/%E5%85%AB%E5%9C%88/"/>
     
   </entry>
   
@@ -174,9 +174,9 @@
     <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
     
     
-    <category term="八圈" scheme="https://goodhelp.gitee.io/tags/%E5%85%AB%E5%9C%88/"/>
-    
     <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    
+    <category term="八圈" scheme="https://goodhelp.gitee.io/tags/%E5%85%AB%E5%9C%88/"/>
     
   </entry>
   
@@ -406,9 +406,9 @@ aardio的listview自绘源代码，在aardio新建一代码文件，复制下面
     <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
     
     
-    <category term="八圈" scheme="https://goodhelp.gitee.io/tags/%E5%85%AB%E5%9C%88/"/>
-    
     <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    
+    <category term="八圈" scheme="https://goodhelp.gitee.io/tags/%E5%85%AB%E5%9C%88/"/>
     
   </entry>
   

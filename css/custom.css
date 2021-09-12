@@ -14,3 +14,93 @@ body {
   background-position: center !important;
   opacity: 1 !important;
 }
+#header-title .logo-wrap {
+  position: relative;
+  float: left;
+  overflow: hidden;
+}
+#header-title .logo-wrap:before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 18px;
+  background-color: rgba(236,250,255,0.5);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: searchLights 1s ease-in 1s infinite;
+  -o-animation: searchLights 1s ease-in 1s infinite;
+  animation: searchLights 1s ease-in 1s infinite;
+}
+@-webkit-keyframes searchLights {
+  0% {
+    left: -100px;
+    top: 0;
+  }
+  to {
+    left: 120px;
+    top: 100px;
+  }
+}
+@-o-keyframes searchLights {
+  0% {
+    left: -100px;
+    top: 0;
+  }
+  to {
+    left: 120px;
+    top: 100px;
+  }
+}
+@-moz-keyframes searchLights {
+  0% {
+    left: -100px;
+    top: 0;
+  }
+  to {
+    left: 120px;
+    top: 100px;
+  }
+}
+@-moz-keyframes searchLights {
+  0% {
+    left: -100px;
+    top: 0;
+  }
+  to {
+    left: 120px;
+    top: 100px;
+  }
+}
+@-webkit-keyframes searchLights {
+  0% {
+    left: -100px;
+    top: 0;
+  }
+  to {
+    left: 120px;
+    top: 100px;
+  }
+}
+@-o-keyframes searchLights {
+  0% {
+    left: -100px;
+    top: 0;
+  }
+  to {
+    left: 120px;
+    top: 100px;
+  }
+}
+@keyframes searchLights {
+  0% {
+    left: -100px;
+    top: 0;
+  }
+  to {
+    left: 120px;
+    top: 100px;
+  }
+}
