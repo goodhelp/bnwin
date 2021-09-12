@@ -2243,7 +2243,7 @@ i.icon:before {
   height: 82px;
   margin-left: auto;
   margin-right: auto;
-  background: url("/images/btn_reward.gif") no-repeat;
+  background: url("/images/btn_reward.png") no-repeat;
   -webkit-transition: background 0s;
   -moz-transition: background 0s;
   -o-transition: background 0s;
