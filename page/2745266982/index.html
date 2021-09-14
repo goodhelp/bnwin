@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Delphi实现类似Android锁屏的密码锁控件 | 百脑问+ 知止而后有定</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="delphi,密码锁" />
+    
+    <meta name="description" content="手机锁屏之后，开屏的时候，要求咱们输入密码的那个滑动效果输入的控件。  Android的那个锁屏的效果，用过的人应该都知道是个什么效果，也就是横竖各3行，排列成九宫格的效果，然后由用户在上面滑动以此来达到密码输入进而进行解锁和加密的效果。那么首先，俺们可以分析一下，他的具体形成思路，实际上是很简单的，就是一个排列，然后根据滑动产生的内容形成密码来达到解密的目的，那么最主要的就是这个密码和他本身的密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Delphi实现类似Android锁屏的密码锁控件">
+<meta property="og:url" content="https://goodhelp.gitee.io/page/2745266982/">
+<meta property="og:site_name" content="百脑问+ 知止而后有定">
+<meta property="og:description" content="手机锁屏之后，开屏的时候，要求咱们输入密码的那个滑动效果输入的控件。  Android的那个锁屏的效果，用过的人应该都知道是个什么效果，也就是横竖各3行，排列成九宫格的效果，然后由用户在上面滑动以此来达到密码输入进而进行解锁和加密的效果。那么首先，俺们可以分析一下，他的具体形成思路，实际上是很简单的，就是一个排列，然后根据滑动产生的内容形成密码来达到解密的目的，那么最主要的就是这个密码和他本身的密">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://goodhelp.gitee.io/images/2012072314370919.png">
+<meta property="article:published_time" content="2021-09-14T04:07:15.000Z">
+<meta property="article:modified_time" content="2021-09-14T04:11:45.096Z">
+<meta property="article:author" content="百脑问">
+<meta property="article:tag" content="delphi">
+<meta property="article:tag" content="密码锁">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodhelp.gitee.io/images/2012072314370919.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="百脑问+ 知止而后有定" type="application/atom+xml" />
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7f7fd69cfca05fa4f5032f19f6ef614d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+	<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/soft/">软件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/code/">源码</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/material/">素材</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/article/">文章</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories/other/">其他</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/article/">文章</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-article/Delphi实现类似Android锁屏的密码锁控件" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Delphi实现类似Android锁屏的密码锁控件
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar-plus-o"></i>
+    <a href="/page/2745266982/" class="article-date">
+       <time datetime="2021-09-14T04:07:15.000Z" itemprop="datePublished">2021-09-14</time>
+    </a>
+  </div>
+
+<span class="article-date"><i class="fa fa-qrcode"></i> <a style="cursor : pointer;" onMouseOver="document.all.qr.style.visibility=''" onMouseOut="document.all.qr.style.visibility='hidden'">本页二维码</a>
+<span id="qr" style="visibility: hidden;position:absolute;z-index:99999;"></span>
+</span>
+<script src="//static.runoob.com/assets/qrcode/qrcode.min.js"></script>
+<script>
+var qrcode = new QRCode(document.getElementById("qr"), {
+    text: "https://goodhelp.gitee.io/page/2745266982/",
+    width: 128,
+    height: 128,
+	colorDark : "#00a0f0",
+	colorLight : "#ffffff"
+});
+</script>
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/delphi/" rel="tag">delphi</a>, <a class="tag-link-link" href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" rel="tag">密码锁</a>
+    </div>
+
+                
+   <span id="/page/2745266982/" class="leancloud-visitors" data-flag-title="Delphi实现类似Android锁屏的密码锁控件">
+   <i class="fa fa-eye"></i>
+   <span class="post-meta-item-text">热度: </span>
+   <i class="leancloud-visitors-count">1000000</i>
+   </span>
+
+
+                
+   <div class="article-counter">
+      <i class="fa fa-file-word-o"></i>
+      <span class="post-count-item-text">本文字数: </span>
+      <span class="post-count">1.7k</span>
+      <i class="fa fa-clock-o"></i>
+      <span class="post-time-item-text">阅读时长: </span>
+      <span class="post-count">8 分钟 </span>
+   </div>
+
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <p>手机锁屏之后，开屏的时候，要求咱们输入密码的那个滑动效果输入的控件。<br>  Android的那个锁屏的效果，用过的人应该都知道是个什么效果，也就是横竖各3行，排列成九宫格的效果，然后由用户在上面滑动以此来达到密码输入进而进行解锁和加密的效果。那么首先，俺们可以分析一下，他的具体形成思路，实际上是很简单的，就是一个排列，然后根据滑动产生的内容形成密码来达到解密的目的，那么最主要的就是这个密码和他本身的密码是如何对应解密的，实际上很简单，咱们给他排列的九宫格，都固定好位置</p>
+<p>1 2 3<br>4 5 6<br>7 8 9 </p>
+<p>就像这样，排列的给他的位置固定好，然后每一个格子表示一个字符或者说字符串，进而用户滑动的时候，将对应的位置序列进入到一个列表中去保存，然后鼠标放开的时候，那么入队的选择位置进行组合，那么就是对应的密码了，比如<img src="/images/2012072314370919.png" alt=""></p>
+<p>这样的输入就是表示123，如此顺序记录，就可以形成密码了，然后用户进行滑屏录入之后和以前的进行比较就可以知道密码是否正确了，当然我这个组合是相当简单的，如果想要整的复杂，可以给每个顺序位置给定复杂的字符串，这样形成的密码就足够的复杂了！给一般人去看，也是看不明白的。</p>
+<p>那么分析清楚了，思路也就简单了，鼠标按下的时候，开始可以滑动形成密码，鼠标按下的第一个点，作为队列的第一个，然后再滑过的就顺序的一一的记录到队列中，鼠标放开的时候，从队列中获取各个顺序位置，组合形成密码然后和原密码比对，判断密码是否正确！源码如下：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  Delphi实现的类似Android鼠标锁屏效果的控件</span></span><br><span class="line"><span class="comment">  作者：不得闲</span></span><br><span class="line"><span class="comment">  2012-7-23</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="keyword">unit</span> AndroidLockControl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span></span><br><span class="line"><span class="keyword">uses</span> Windows,Classes,SysUtils,Graphics,Controls;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span></span><br><span class="line">  TDxLockItem = <span class="keyword">class</span></span><br><span class="line">  <span class="keyword">private</span></span><br><span class="line">    r: TRect;</span><br><span class="line">    IsEnter: Boolean;</span><br><span class="line">    IsChecked: Boolean;</span><br><span class="line">    Value: AnsiChar;</span><br><span class="line">    FRadio: TPoint;</span><br><span class="line">  <span class="keyword">public</span></span><br><span class="line">    <span class="function"><span class="keyword">constructor</span> <span class="title">Create</span>;</span></span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">  TInPutPwdEvent = <span class="function"><span class="keyword">procedure</span><span class="params">(Sender: TObject;InputPwd: <span class="keyword">string</span>)</span> <span class="title">of</span> <span class="title">object</span>;</span></span><br><span class="line">  <span class="title">TDxAndroidLock</span> = <span class="keyword">class</span>(TGraphicControl)</span><br><span class="line">  <span class="keyword">private</span></span><br><span class="line">    FItemSpace: Integer;</span><br><span class="line">    FRowCount: Integer;</span><br><span class="line">    FColCount: Integer;</span><br><span class="line">    FItemRaidio: Integer;</span><br><span class="line">    Items: TList;</span><br><span class="line">    FUseNum: Boolean;</span><br><span class="line">    FPassword: <span class="keyword">string</span>;</span><br><span class="line">    IsDown: Boolean;</span><br><span class="line">    LastInItem: TDxLockItem;</span><br><span class="line">    PwdItems: TList;</span><br><span class="line">    FOnInputPwd: TInPutPwdEvent;</span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">SetItemSpace</span><span class="params">(<span class="keyword">const</span> Value: Integer)</span>;</span></span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">SetItemRaidio</span><span class="params">(<span class="keyword">const</span> Value: Integer)</span>;</span></span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">SetUseNum</span><span class="params">(<span class="keyword">const</span> Value: Boolean)</span>;</span></span><br><span class="line">  <span class="keyword">protected</span></span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">paint</span>;</span><span class="keyword">override</span>;</span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">MouseDown</span><span class="params">(Button: TMouseButton; Shift: TShiftState;</span></span></span><br><span class="line"><span class="params"><span class="function">      X, Y: Integer)</span>;</span> <span class="keyword">override</span>;</span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">MouseMove</span><span class="params">(Shift: TShiftState; X, Y: Integer)</span>;</span> <span class="keyword">override</span>;</span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">MouseUp</span><span class="params">(Button: TMouseButton; Shift: TShiftState;</span></span></span><br><span class="line"><span class="params"><span class="function">      X, Y: Integer)</span>;</span> <span class="keyword">override</span>;</span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">CalcItemRects</span>;</span></span><br><span class="line">  <span class="keyword">public</span></span><br><span class="line">    <span class="function"><span class="keyword">constructor</span> <span class="title">Create</span><span class="params">(AOwner: TComponent)</span>;</span><span class="keyword">override</span>;</span><br><span class="line">    <span class="function"><span class="keyword">destructor</span> <span class="title">Destroy</span>;</span><span class="keyword">override</span>;</span><br><span class="line">    <span class="keyword">property</span> Password: <span class="keyword">string</span> <span class="keyword">read</span> FPassword <span class="keyword">write</span> FPassWord;</span><br><span class="line">  <span class="keyword">published</span></span><br><span class="line">    <span class="keyword">property</span> ItemSpace: Integer <span class="keyword">read</span> FItemSpace <span class="keyword">write</span> SetItemSpace <span class="keyword">default</span> <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">property</span> OnInputPwd: TInPutPwdEvent <span class="keyword">read</span> FOnInputPwd <span class="keyword">write</span> FOnInputPwd;</span><br><span class="line">    <span class="keyword">property</span> ItemRaidio: Integer <span class="keyword">read</span> FItemRaidio <span class="keyword">write</span> SetItemRaidio <span class="keyword">default</span> <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">property</span> UseNum: Boolean <span class="keyword">read</span> FUseNum <span class="keyword">write</span> SetUseNum;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">implementation</span></span><br><span class="line"><span class="keyword">uses</span> pngimage;</span><br><span class="line"><span class="meta">&#123;$R LockRc.RES&#125;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  PngIn,PngOut: TPngImage;</span><br><span class="line"><span class="comment">&#123; TDxAndroidLock &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TDxAndroidLock</span>.<span class="title">CalcItemRects</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  i,j: Integer;</span><br><span class="line">  p: TPoint;</span><br><span class="line">  r: TRect;</span><br><span class="line">  item: TDxLockItem;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  p.Y := FItemRaidio;</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">1</span> <span class="keyword">to</span> <span class="number">3</span> <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    p.X := FItemRaidio;</span><br><span class="line">    r.Left := p.X - FItemRaidio;r.Top := p.Y - FItemRaidio;</span><br><span class="line">    r.Right := p.x + FItemRaidio;r.Bottom := p.Y + FItemRaidio;</span><br><span class="line">    <span class="keyword">for</span> j := <span class="number">1</span> <span class="keyword">to</span> <span class="number">3</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      item := Items[<span class="number">3</span>*(i-<span class="number">1</span>)+j - <span class="number">1</span>];</span><br><span class="line">      item.Value := AnsiChar(<span class="number">3</span>*(i-<span class="number">1</span>)+j+<span class="number">48</span>);</span><br><span class="line">      item.FRadio := p;</span><br><span class="line">      item.r := r;</span><br><span class="line">      p.X := p.X + FItemRaidio * <span class="number">2</span> + FItemSpace;</span><br><span class="line">      r.Left := p.X - FItemRaidio;r.Right := p.X + FItemRaidio;</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line">    p.Y := p.Y + FItemRaidio * <span class="number">2</span> + FItemSpace;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">constructor</span> <span class="title">TDxAndroidLock</span>.<span class="title">create</span><span class="params">(AOwner: TComponent)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  i: Integer;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">inherited</span>;</span><br><span class="line">  LastInItem := <span class="keyword">nil</span>;</span><br><span class="line">  PwdItems := TList.Create;</span><br><span class="line">  FPassWord := <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  Items := TList.Create;</span><br><span class="line">  FItemSpace := <span class="number">10</span>;</span><br><span class="line">  FRowCount := <span class="number">3</span>;</span><br><span class="line">  FColCount := <span class="number">3</span>;</span><br><span class="line">  FItemRaidio := <span class="number">20</span>;</span><br><span class="line">  Width := FItemRaidio * <span class="number">2</span> * <span class="number">3</span> + FItemSpace * <span class="number">2</span>;</span><br><span class="line">  Height := FItemRaidio * <span class="number">2</span> * <span class="number">3</span> + FItemSpace * <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span> <span class="keyword">to</span> <span class="number">8</span> <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    Items.Add(TDxLockItem.Create);</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line">  CalcItemRects;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">destructor</span> <span class="title">TDxAndroidLock</span>.<span class="title">Destroy</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">while</span> Items.Count &gt; <span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    TDxLockItem(Items[Items.Count - <span class="number">1</span>]).Free;</span><br><span class="line">    Items.Delete(Items.Count - <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line">  PwdItems.Free;</span><br><span class="line">  <span class="keyword">inherited</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TDxAndroidLock</span>.<span class="title">MouseDown</span><span class="params">(Button: TMouseButton; Shift: TShiftState; X,</span></span></span><br><span class="line"><span class="params"><span class="function">  Y: Integer)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  IsDown := Button = mbLeft;</span><br><span class="line">  <span class="keyword">if</span> IsDown <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> LastInItem &lt;&gt; <span class="keyword">nil</span> <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      LastInItem.IsChecked := IsDown;</span><br><span class="line">      PwdItems.Add(LastInItem);</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line">    Invalidate;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TDxAndroidLock</span>.<span class="title">MouseMove</span><span class="params">(Shift: TShiftState; X, Y: Integer)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  i: Integer;</span><br><span class="line">  p: TPoint;</span><br><span class="line">  OldInItem,Item: TDxLockItem;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  OldInItem := LastInItem;</span><br><span class="line">  p := Point(x,y);</span><br><span class="line">  LastInItem := <span class="keyword">nil</span>;</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span> <span class="keyword">to</span> items.Count - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    item := Items[i];</span><br><span class="line">    <span class="keyword">if</span> PtInRect(Item.r,p) <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      LastInItem := Item;</span><br><span class="line">      LastInItem.IsEnter := True;</span><br><span class="line">      LastInItem.IsChecked := IsDown;</span><br><span class="line">      <span class="keyword">Break</span>;</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line">  <span class="keyword">if</span> LastInItem &lt;&gt; OldInItem <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> OldInItem &lt;&gt; <span class="keyword">nil</span> <span class="keyword">then</span></span><br><span class="line">      OldInItem.IsEnter := False;</span><br><span class="line">    <span class="keyword">if</span> IsDown <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      <span class="keyword">if</span> LastInItem &lt;&gt; <span class="keyword">nil</span> <span class="keyword">then</span></span><br><span class="line">      <span class="keyword">begin</span></span><br><span class="line">        PwdItems.Add(LastInItem);</span><br><span class="line">      <span class="keyword">end</span>;</span><br><span class="line">      Invalidate;</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TDxAndroidLock</span>.<span class="title">MouseUp</span><span class="params">(Button: TMouseButton; Shift: TShiftState; X,</span></span></span><br><span class="line"><span class="params"><span class="function">  Y: Integer)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  i: Integer;</span><br><span class="line">  item: TDxLockItem;</span><br><span class="line">  Np: <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  IsDown := False;</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span> <span class="keyword">to</span> items.Count - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    item := Items[i];</span><br><span class="line">    item.IsChecked := False;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span> <span class="keyword">to</span> PwdItems.Count - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">    Np := Np + TDxLockItem(PwdItems[i]).Value;</span><br><span class="line">  PwdItems.Clear;</span><br><span class="line">  Invalidate;</span><br><span class="line">  <span class="keyword">if</span> Assigned(FOnInputPwd) <span class="keyword">then</span></span><br><span class="line">    FOnInputPwd(self,Np);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">DrawLineArrow</span><span class="params">(canvas: TCanvas; p1, p2: TPoint)</span>;</span></span><br><span class="line"><span class="keyword">const</span></span><br><span class="line">  l = <span class="number">6</span>; <span class="comment">//箭头长度</span></span><br><span class="line">  w = <span class="number">4</span>; <span class="comment">//箭头宽度</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  slope, angle: Double;</span><br><span class="line">  points: <span class="keyword">array</span>[<span class="number">0</span>..<span class="number">2</span>] <span class="keyword">of</span> TPoint;</span><br><span class="line">  Xl,b: Single;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  canvas.Brush.Color := canvas.Pen.Color;</span><br><span class="line">  canvas.Brush.Style := bsSolid;</span><br><span class="line">  canvas.MoveTo(p1.X,p1.Y);</span><br><span class="line">  canvas.LineTo(p2.X,p2.Y);</span><br><span class="line">  <span class="keyword">if</span> (p2.Y &lt;&gt; p1.Y) <span class="keyword">and</span> (P2.X &lt;&gt; p1.X) <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    xl := (P2.Y - p1.Y) / (P2.X - p1.X);</span><br><span class="line">    b := p2.Y - xl * p2.X;</span><br><span class="line">    p2.X := (p2.X - p1.X) <span class="keyword">div</span> <span class="number">2</span> + p1.X;</span><br><span class="line">    p2.Y := Trunc(p2.X * xl + b);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> p2.Y = p1.Y <span class="keyword">then</span></span><br><span class="line">    p2.X := (p2.X - p1.X) <span class="keyword">div</span> <span class="number">2</span> + p1.X</span><br><span class="line">  <span class="keyword">else</span> P2.Y := (p2.Y - p1.Y) <span class="keyword">div</span> <span class="number">2</span> + p1.Y;</span><br><span class="line"><span class="comment">//画箭头</span></span><br><span class="line">  points[<span class="number">0</span>] := Point(p2.x, p2.y);<span class="comment">//箭头顶点</span></span><br><span class="line">  <span class="keyword">if</span> (p2.x - p1.x = <span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">begin</span> <span class="comment">//垂直</span></span><br><span class="line">    <span class="keyword">if</span> (p2.y - p1.y &gt; <span class="number">0</span>) <span class="keyword">then</span> slope := -<span class="number">1</span> <span class="keyword">else</span> slope := <span class="number">1</span>;</span><br><span class="line">    points[<span class="number">1</span>] := Point(p2.x - w, p2.y + Trunc(l * slope));</span><br><span class="line">    points[<span class="number">2</span>] := Point(p2.x + w, p2.y + Trunc(l * slope));</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">else</span></span><br><span class="line">  <span class="keyword">begin</span> <span class="comment">//倾斜</span></span><br><span class="line">    slope := (p2.y - p1.y) / (p2.x - p1.x);</span><br><span class="line">    angle := ArcTan(slope);</span><br><span class="line">    <span class="keyword">if</span> (p2.x - p1.x &gt; <span class="number">0</span>) <span class="keyword">then</span> angle := angle - PI;</span><br><span class="line">    points[<span class="number">1</span>] := Point(p2.x + trunc(l * cos(angle) - w * sin(angle)),</span><br><span class="line">      p2.y + trunc(l * sin(angle) + w * cos(angle)));</span><br><span class="line">    points[<span class="number">2</span>] := Point(p2.x + Trunc(l * cos(angle) + w * sin(angle)),</span><br><span class="line">      p2.y + Trunc(l * sin(angle) - w * cos(angle)));</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line">  canvas.Polygon(points);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TDxAndroidLock</span>.<span class="title">paint</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  i: Integer;</span><br><span class="line">  item,item1: TDxLockItem;</span><br><span class="line">  r: TRect;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> IsDown <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span> <span class="keyword">to</span> Items.Count - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      item := items[i];</span><br><span class="line">      r.Left := item.FRadio.X - <span class="number">5</span>;r.Right := item.FRadio.X + <span class="number">5</span>;</span><br><span class="line">      r.Top := item.FRadio.Y - <span class="number">5</span>;r.Bottom := item.FRadio.Y + <span class="number">5</span>;</span><br><span class="line">      Canvas.Draw(r.Left,r.Top,pngIn);</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">//绘制指向线条</span></span><br><span class="line">    Canvas.Pen.Width := <span class="number">2</span>;</span><br><span class="line">    Canvas.Pen.Color := clGreen;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span> <span class="keyword">to</span> PwdItems.Count - <span class="number">2</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      item := PwdItems[i];</span><br><span class="line">      item1 := PwdItems[i + <span class="number">1</span>];</span><br><span class="line">      Canvas.MoveTo(item.FRadio.X,item.FRadio.Y);</span><br><span class="line">      Canvas.LineTo(item1.FRadio.X,item1.FRadio.Y);</span><br><span class="line">      DrawLineArrow(Canvas,item.FRadio,item1.FRadio);</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span> <span class="keyword">to</span> Items.Count - <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      item := items[i];</span><br><span class="line">      <span class="keyword">if</span> item.IsChecked <span class="keyword">then</span></span><br><span class="line">      <span class="keyword">begin</span></span><br><span class="line">        Canvas.Draw(item.r.Left,item.r.Top,pngOut);</span><br><span class="line">      <span class="keyword">end</span>;</span><br><span class="line">      r.Left := item.FRadio.X - <span class="number">5</span>;r.Right := item.FRadio.X + <span class="number">5</span>;</span><br><span class="line">      r.Top := item.FRadio.Y - <span class="number">5</span>;r.Bottom := item.FRadio.Y + <span class="number">5</span>;</span><br><span class="line">      Canvas.Draw(r.Left,r.Top,pngIn);</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TDxAndroidLock</span>.<span class="title">SetItemRaidio</span><span class="params">(<span class="keyword">const</span> Value: Integer)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  FItemRaidio := Value;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TDxAndroidLock</span>.<span class="title">SetItemSpace</span><span class="params">(<span class="keyword">const</span> Value: Integer)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  FItemSpace := Value;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TDxAndroidLock</span>.<span class="title">SetUseNum</span><span class="params">(<span class="keyword">const</span> Value: Boolean)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  FUseNum := Value;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">&#123; TDxLockItem &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">constructor</span> <span class="title">TDxLockItem</span>.<span class="title">Create</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  r := Rect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">  IsEnter := False;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">initialization</span></span><br><span class="line"> PngIn := TPngImage.Create;</span><br><span class="line"> PngIn.LoadFromResourceName(Hinstance,<span class="string">&#x27;InnerGra&#x27;</span>);</span><br><span class="line"> PngOut := TPngImage.Create;</span><br><span class="line"> PngOut.LoadFromResourceName(Hinstance,<span class="string">&#x27;Outer&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">finalization</span></span><br><span class="line">  PngIn.Free;</span><br><span class="line">  PngOut.Free;</span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+<p>运行之后的效果就是<br><img src="/images/2012072314434974.jpg" alt=""><br>转载自: <a target="_blank" rel="noopener" href="https://www.cnblogs.com/DxSoft/archive/2012/07/23/2604941.html">https://www.cnblogs.com/DxSoft/archive/2012/07/23/2604941.html</a></p>
+
+        </div>
+		<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "百脑问"
+        },
+        "headline": "Delphi实现类似Android锁屏的密码锁控件",
+        "image": "https://goodhelp.gitee.io/images/2012072314370919.png",
+        "keywords": "delphi 密码锁",
+        "genre": "文章",
+        "datePublished": "2021-09-14",
+        "dateCreated": "2021-09-14",
+        "dateModified": "2021-09-14",
+        "url": "https://goodhelp.gitee.io/page/2745266982/",
+        "description": "手机锁屏之后，开屏的时候，要求咱们输入密码的那个滑动效果输入的控件。  Android的那个锁屏的效果，用过的人应该都知道是个什么效果，也就是横竖各3行，排列成九宫格的效果，然后由用户在上面滑动以此来达到密码输入进而进行解锁和加密的效果。那么首先，俺们可以分析一下，他的具体形成思路，实际上是很简单的，就是一个排列，然后根据滑动产生的内容形成密码来达到解密的目的，那么最主要的就是这个密码和他本身的密",
+        "wordCount": 2458
+    }
+</script>
+
+		<!-- 添加打赏功能 只在文章详情中显示-->
+		
+		
+		<! -- 添加捐赠图标 -->
+<div class="hide_box outbox"></div>                           
+   <div class="shang_box animated flipInY">
+		<i class="shang_close outbox animated fadeInUpBig" title="关闭">&times;</i>
+				<img class="shang_logo animated fadeInUpBig" src="/images/logo.png" alt="andkwok">
+                           <div class="shang_tit">
+                               <p>感谢您的支持，我们会一直保持!</p>
+                           </div>
+                           <div class="shang_payimg">
+                               <img src="/images/wechatl.png" class="animated zoomIn" alt="扫码支持" title="扫一扫" />
+                           </div>
+                           <div class="pay_explain">请土豪扫码随意打赏</div>
+                           <div class="shang_payselect">
+                               <div class="pay_item checked" data-id="wechatl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+			<img src="/images/wechat.png" class="animated fadeInDown" alt="微信" /></span>
+                               </div>
+                               <div class="pay_item" data-id="alipayl">
+                                   <span class="radiobox"></span><span class="pay_logo">
+				<img src="/images/alipay.png" class="animated fadeInUp" alt="支付宝" /></span>
+                               </div>
+                           </div>
+                           <div class="shang_info">
+                               <p>打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦</p>
+							   <p />
+                               <p>分享从这里开始，精彩与您同在</p>
+                           </div>
+                       </div>
+<script>
+$(function() {
+	 $(".outbox").bind("click",function(){
+    		$(".hide_box").fadeToggle();
+   		$(".shang_box").fadeToggle();
+	  });
+	$(".pay_item").bind("click",function(){
+		$(this).addClass("checked").siblings(".pay_item").removeClass("checked");
+        	var dataid = $(this).attr("data-id");
+        	$(".shang_payimg img").attr("src", "/images/" + dataid + ".png");
+        	$("#shang_pay_txt").text(dataid == "alipayl" ? "支付宝" : "微信");
+	  });
+});
+</script>
+<div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards" etap="rewards" alt="打赏作者"></a></div>
+<! -- 添加捐赠图标 -->
+		
+				
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <!-- Valine -->
+    <div class="vcomments"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+            
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="tiktok" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-tiktok"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=603981&site=qq&menu=yes" target="_blank" rel="noopener">
+                        <i class="icon fa fa-qq"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://gitee.com/goodhelp" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+		  <p>国内镜像：<a href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/page/1999908472/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">softether的安装及使用</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2745266982/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/2012072314370919.png)" alt="Delphi实现类似Android锁屏的密码锁控件" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/article/">文章</a></p>
+                            <p class="item-title"><a href="/page/2745266982/" class="title">Delphi实现类似Android锁屏的密码锁控件</a></p>
+                            <p class="item-date"><time datetime="2021-09-14T04:07:15.000Z" itemprop="datePublished">2021-09-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/1999908472/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/article/">文章</a></p>
+                            <p class="item-title"><a href="/page/1999908472/" class="title">softether的安装及使用</a></p>
+                            <p class="item-date"><time datetime="2021-09-14T03:05:04.000Z" itemprop="datePublished">2021-09-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2848625591/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/182944wc66ia5wz61ce6ap.jpg)" alt="实现进程被结束就蓝屏的函数" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/article/">文章</a></p>
+                            <p class="item-title"><a href="/page/2848625591/" class="title">实现进程被结束就蓝屏的函数</a></p>
+                            <p class="item-date"><time datetime="2021-09-14T03:04:04.000Z" itemprop="datePublished">2021-09-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/2434381964/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/2354883490,3989130937.jpg)" alt="可实现维护通道的vbs脚本类" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/2434381964/" class="title">可实现维护通道的vbs脚本类</a></p>
+                            <p class="item-date"><time datetime="2021-09-11T14:19:22.000Z" itemprop="datePublished">2021-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/1082310208/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/1621350706-111.jpg)" alt="让电源键关机变重启" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/1082310208/" class="title">让电源键关机变重启</a></p>
+                            <p class="item-date"><time datetime="2021-05-18T13:37:03.000Z" itemprop="datePublished">2021-05-18</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/other/">其他</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">23</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi/" rel="tag">delphi</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3/" rel="tag">dcef3</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AB%E5%9C%88/" rel="tag">八圈</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" rel="tag">去广告</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui/" rel="tag">unigui</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ae%E6%A8%A1%E6%9D%BF/" rel="tag">ae模板</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" rel="tag">励志视频</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2008%E5%A5%A5%E8%BF%90%E4%BC%9A/" style="font-size: 10px;">2008奥运会</a> <a href="/tags/aardio/" style="font-size: 11.11px;">aardio</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">ae模板</a> <a href="/tags/autoit/" style="font-size: 11.11px;">autoit</a> <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/ce/" style="font-size: 10px;">ce</a> <a href="/tags/dcef3/" style="font-size: 17.78px;">dcef3</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a> <a href="/tags/delphi/" style="font-size: 20px;">delphi</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview/" style="font-size: 10px;">listview</a> <a href="/tags/php/" style="font-size: 15.56px;">php</a> <a href="/tags/remoteado/" style="font-size: 10px;">remoteado</a> <a href="/tags/softether/" style="font-size: 10px;">softether</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui/" style="font-size: 13.33px;">unigui</a> <a href="/tags/vbs/" style="font-size: 10px;">vbs</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%98%A5%E8%8A%82/" style="font-size: 10px;">中国春节</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 16.67px;">八圈</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9/" style="font-size: 10px;">内存修改</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.22px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 18.89px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A/" style="font-size: 15.56px;">去广告</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 10px;">密码锁</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.11px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 13.33px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 10px;">汇编</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.78px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F/" style="font-size: 10px;">蓝屏</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 14.44px;">视频</a> <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">逆向工程</a> <a href="/tags/%E9%94%90%E8%B5%B7/" style="font-size: 11.11px;">锐起</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+                <div class="widget-wrap widget-float">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- huemen sidebar -->
+    <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-4388315872936350"
+            data-ad-slot="437578506"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 百脑问</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+    
+    
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "false",
+            appId: "jMSxmHAw9NqD0eJ9vLdM0oBN-gzGzoHsz",
+            appKey: "UC5hUmLTn6CnDrPuQLRXHX4y",
+            placeholder: "必须吐槽一下!",
+            avatar:"mp",
+            recordIP:"true",
+            visitor: "true"
+        });
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+      <script data-ad-client="ca-pub-4388315872936350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    
+    
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>	
+</body>
+</html>
