@@ -12,20 +12,20 @@
     
     <meta name="keywords" content="精品软件" />
     
-    <meta name="description" content="故事背景网吧A和网吧B之间经常有这样的事情发生:网吧A更新游戏，如pubg，更新量很大，比如40G，网吧A速度很快，已经更新完成，但网吧B速度慢，到游戏开服也只更新了20G。如果把网吧A的游戏同步更新到网吧B呢？一般的做法是用U盘从网吧A拷到网吧B但网吧使用无盘服务器，需要在服务器上插U盘，风险较高！并且比较麻烦，从网吧A拷了游戏还要跑网吧B操作。如果在网吧A开通ftp，再从网吧B下载，速度不敢保">
+    <meta name="description" content="# 故事背景 网吧A和网吧B之间经常有这样的事情发生:网吧A更新游戏，如pubg，更新量很大，比如40G，网吧A速度很快，已经更新完成，但网吧B速度慢，到游戏开服也只更新了20G。如果把网吧A的游戏同步更新到网吧B呢？一般的做法是用U盘从网吧A拷到网吧B 但网吧使用无盘服务器，需要在服务器上插U盘，风险较高！并且比较麻烦，从网吧A拷了游戏还要跑网吧B操作。如果在网吧A开通ftp，再从网吧B下载，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用croc两网吧之间同步互传文件">
 <meta property="og:url" content="https://goodhelp.gitee.io/page/1934957637/">
 <meta property="og:site_name" content="百脑问+ 知止而后有定">
-<meta property="og:description" content="故事背景网吧A和网吧B之间经常有这样的事情发生:网吧A更新游戏，如pubg，更新量很大，比如40G，网吧A速度很快，已经更新完成，但网吧B速度慢，到游戏开服也只更新了20G。如果把网吧A的游戏同步更新到网吧B呢？一般的做法是用U盘从网吧A拷到网吧B但网吧使用无盘服务器，需要在服务器上插U盘，风险较高！并且比较麻烦，从网吧A拷了游戏还要跑网吧B操作。如果在网吧A开通ftp，再从网吧B下载，速度不敢保">
+<meta property="og:description" content="# 故事背景 网吧A和网吧B之间经常有这样的事情发生:网吧A更新游戏，如pubg，更新量很大，比如40G，网吧A速度很快，已经更新完成，但网吧B速度慢，到游戏开服也只更新了20G。如果把网吧A的游戏同步更新到网吧B呢？一般的做法是用U盘从网吧A拷到网吧B 但网吧使用无盘服务器，需要在服务器上插U盘，风险较高！并且比较麻烦，从网吧A拷了游戏还要跑网吧B操作。如果在网吧A开通ftp，再从网吧B下载，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://goodhelp.gitee.io/images/16f5fa106ffe738b_600_0.gif">
+<meta property="og:image" content="https://goodhelp.gitee.io/images/46709024-9b23ad00-cbf6-11e8-9fb2-ca8b20b7dbec.jpg">
 <meta property="article:published_time" content="2021-09-15T04:15:29.000Z">
-<meta property="article:modified_time" content="2021-09-15T04:51:35.720Z">
+<meta property="article:modified_time" content="2021-09-15T04:53:19.532Z">
 <meta property="article:author" content="百脑问">
 <meta property="article:tag" content="精品软件">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://goodhelp.gitee.io/images/16f5fa106ffe738b_600_0.gif">
+<meta name="twitter:image" content="https://goodhelp.gitee.io/images/46709024-9b23ad00-cbf6-11e8-9fb2-ca8b20b7dbec.jpg">
     
 
     
@@ -274,9 +274,26 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 
             
 
-            <h1 id="故事背景"><a href="#故事背景" class="headerlink" title="故事背景"></a>故事背景</h1><p>网吧A和网吧B之间经常有这样的事情发生:网吧A更新游戏，如pubg，更新量很大，比如40G，网吧A速度很快，已经更新完成，但网吧B速度慢，到游戏开服也只更新了20G。如果把网吧A的游戏同步更新到网吧B呢？一般的做法是用U盘从网吧A拷到网吧B<br>但网吧使用无盘服务器，需要在服务器上插U盘，风险较高！并且比较麻烦，从网吧A拷了游戏还要跑网吧B操作。如果在网吧A开通ftp，再从网吧B下载，速度不敢保证，并且还得映射端口，各种复杂的操作!普通小白做不到！<br>其中直接同步，可以采用syncthing实现两网吧P2P文件同步，syncthing需要双方安装，总之操作不够简单！<br>croc是使用golang 编写的工具，允许任何两台计算机简单和安全地传输文件和文件夹。据我所知，croc 是唯一的 CLI 文件传输工具。<br>对，你没听错，只需要一个文件croc.exe，分别拷到网吧A和网吧B的游戏目录，同时运行就可以互传文件或文件夹!<br>如果网吧A和网吧B的带宽均不高，网吧间互传文件很慢，那么你也可以从网吧A用U盘拷游戏到网吧B，从客户机使用croc和网吧B的服务器同步文件，局域网传文件相当快，比在服务器插U盘相比，中毒风险直接排除！</p>
-<h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>　　croc 的特性：允许任意两台计算机传输数据（使用一个中继）<br>　　提供端到端加密（使用 PAKE）<br>　　支持方便的跨平台传输，支持 Windows、Linux、Mac<br>　　允许多文件传输<br>　　允许恢复被中断的传输<br>　　不需要本地服务器或端口转发<br>　　通过压缩和多路复用比虫洞、rsync、scp 更快（加速 1.5x 到 4x）<br>　　支持IPv6和IPv4；<br>　　支持使用Tor之类的代理；</p>
-<h1 id="简单使用方法"><a href="#简单使用方法" class="headerlink" title="简单使用方法"></a>简单使用方法</h1><img src="/images/16f5fa106ffe738b_600_0.gif" alt="">
+            <img src="/images/46709024-9b23ad00-cbf6-11e8-9fb2-ca8b20b7dbec.jpg" alt="">
+# 故事背景
+网吧A和网吧B之间经常有这样的事情发生:网吧A更新游戏，如pubg，更新量很大，比如40G，网吧A速度很快，已经更新完成，但网吧B速度慢，到游戏开服也只更新了20G。如果把网吧A的游戏同步更新到网吧B呢？一般的做法是用U盘从网吧A拷到网吧B
+但网吧使用无盘服务器，需要在服务器上插U盘，风险较高！并且比较麻烦，从网吧A拷了游戏还要跑网吧B操作。如果在网吧A开通ftp，再从网吧B下载，速度不敢保证，并且还得映射端口，各种复杂的操作!普通小白做不到！
+其中直接同步，可以采用syncthing实现两网吧P2P文件同步，syncthing需要双方安装，总之操作不够简单！
+croc是使用golang 编写的工具，允许任何两台计算机简单和安全地传输文件和文件夹。据我所知，croc 是唯一的 CLI 文件传输工具。
+对，你没听错，只需要一个文件croc.exe，分别拷到网吧A和网吧B的游戏目录，同时运行就可以互传文件或文件夹!
+如果网吧A和网吧B的带宽均不高，网吧间互传文件很慢，那么你也可以从网吧A用U盘拷游戏到网吧B，从客户机使用croc和网吧B的服务器同步文件，局域网传文件相当快，比在服务器插U盘相比，中毒风险直接排除！
+# 功能介绍
+　　croc 的特性：允许任意两台计算机传输数据（使用一个中继）
+　　提供端到端加密（使用 PAKE）
+　　支持方便的跨平台传输，支持 Windows、Linux、Mac
+　　允许多文件传输
+　　允许恢复被中断的传输
+　　不需要本地服务器或端口转发
+　　通过压缩和多路复用比虫洞、rsync、scp 更快（加速 1.5x 到 4x）
+　　支持IPv6和IPv4；
+　　支持使用Tor之类的代理；
+# 简单使用方法
+<img src="/images/16f5fa106ffe738b_600_0.gif" alt="">
 如需发送文件，可以直接运行下列命令：
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ croc send [file(s)-or-folder]</span><br><span class="line">Sending &#x27;file-or-folder&#x27; (X MB)</span><br><span class="line">Code is: code-phrase</span><br></pre></td></tr></table></figure>
 接下来，在另一台电脑上使用下列命令来进行文件或目录接收：
@@ -313,15 +330,18 @@ var qrcode = new QRCode(document.getElementById("qr"), {
             "name": "百脑问"
         },
         "headline": "使用croc两网吧之间同步互传文件",
-        "image": "https://goodhelp.gitee.io/images/16f5fa106ffe738b_600_0.gif",
+        "image": "https://goodhelp.gitee.io/images/46709024-9b23ad00-cbf6-11e8-9fb2-ca8b20b7dbec.jpg",
         "keywords": "精品软件",
         "genre": "软件",
         "datePublished": "2021-09-15",
         "dateCreated": "2021-09-15",
         "dateModified": "2021-09-15",
         "url": "https://goodhelp.gitee.io/page/1934957637/",
-        "description": "故事背景网吧A和网吧B之间经常有这样的事情发生:网吧A更新游戏，如pubg，更新量很大，比如40G，网吧A速度很快，已经更新完成，但网吧B速度慢，到游戏开服也只更新了20G。如果把网吧A的游戏同步更新到网吧B呢？一般的做法是用U盘从网吧A拷到网吧B但网吧使用无盘服务器，需要在服务器上插U盘，风险较高！并且比较麻烦，从网吧A拷了游戏还要跑网吧B操作。如果在网吧A开通ftp，再从网吧B下载，速度不敢保",
-        "wordCount": 177
+        "description": "
+# 故事背景
+网吧A和网吧B之间经常有这样的事情发生:网吧A更新游戏，如pubg，更新量很大，比如40G，网吧A速度很快，已经更新完成，但网吧B速度慢，到游戏开服也只更新了20G。如果把网吧A的游戏同步更新到网吧B呢？一般的做法是用U盘从网吧A拷到网吧B
+但网吧使用无盘服务器，需要在服务器上插U盘，风险较高！并且比较麻烦，从网吧A拷了游戏还要跑网吧B操作。如果在网吧A开通ftp，再从网吧B下载，",
+        "wordCount": 170
     }
 </script>
 
@@ -477,7 +497,7 @@ $(function() {
                             <a href="/page/1934957637/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/16f5fa106ffe738b_600_0.gif)" alt="使用croc两网吧之间同步互传文件" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/46709024-9b23ad00-cbf6-11e8-9fb2-ca8b20b7dbec.jpg)" alt="使用croc两网吧之间同步互传文件" class="thumbnail-image"></span>
     
     
 </a>
