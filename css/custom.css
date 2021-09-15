@@ -1,5 +1,6 @@
 body {
   background: url("../images/bg.jpg") !important;
+  cursor: url("../images/blue.cur"), auto;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-attachment: fixed !important;
