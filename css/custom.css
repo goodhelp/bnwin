@@ -65,6 +65,64 @@ body {
     top: 100px;
   }
 }
+.logos {
+  display: block;
+  padding: 10px 0;
+  width: 98px;
+  height: 98px;
+  background-image: url("/images/logos.png");
+  background-position: 0px 10px;
+  background-repeat: no-repeat;
+  background-size: 98 98;
+}
+.logos-wrap {
+  width: 118px;
+  height: 138px;
+  float: left;
+}
+@media only screen and (max-width: 479px) {
+  #footer .logos-wrap {
+    float: none;
+    margin: 0 auto;
+  }
+}
+#rocket-to-top div {
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 149px;
+}
+#rocket-to-top .level-2 {
+  background: url("../images/rocket_button_up.png") no-repeat scroll -149px 0 transparent;
+  display: none;
+  height: 250px;
+  opacity: 0;
+  z-index: 1;
+}
+#rocket-to-top .level-3 {
+  background: none repeat scroll 0 0 transparent;
+  cursor: pointer;
+  display: block;
+  height: 150px;
+  z-index: 2;
+}
+#rocket-to-top {
+  background: url("../images/rocket_button_up.png") no-repeat scroll 0 0 transparent;
+  cursor: default;
+  display: block;
+  height: 250px;
+  margin: -125px 0 0;
+  overflow: hidden;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: 80%;
+  width: 149px;
+  z-index: 11;
+}
 @-moz-keyframes searchLights {
   0% {
     left: -100px;
