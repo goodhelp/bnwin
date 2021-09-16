@@ -319,15 +319,7 @@ exit();
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/415747762/",
         "description": "DESTOON B2B是一套基于PHP+MySQL的开源B2B电子商务行业门户网站解决方案。官方网站为http://www.destoon.com，下载，演示及使用请查看官方网站。实际就是仿阿里巴巴的php系统。—本接口提供时destoon版本为 最新版本：V4.0 更新时间：2012-04-28
-phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具体方法和提供接口文件!
-至于为什么phpcms需要整合destoon,因为phpcms的黄页功能不全，destoon功能全！
-主域名为www.bnwin.com destoon域名为b2b.bnwin.com均采用utf-8编码,phpcms v9域名和destoon域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
-1.在phpcms v9后台的phpsso中添加应用应用名:destoonB2B应用地址:http://b2b.bnwin.com/member/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
-添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
-2.打开接口文件中的memeber/phpssoconfig.php文件，修改define(‘APPID’, 2);中的2为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
-phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
-保存后把member和module两个目录复制到destoon根目录覆盖。接口文件的member目录中的三个文件是新增的，module\member目录的文件是修改的destoon文件，作用是destoon登录或退出和phpcms v9同步。你可以事先对destoon的module\member中的相应的文件进行备份。
-覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。",
+phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具体方法和提供",
         "wordCount": 32
     }
 </script>

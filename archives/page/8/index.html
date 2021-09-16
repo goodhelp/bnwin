@@ -247,16 +247,7 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            DEBUG是DOS中的一个外部命令，从DOS 1.0起就带有此命令，因此可见此命令的重要性了。虽然此命令的功能非常强大，可以解决许多问题，可是对许多人来说，尤其是初学者来说，却非常不易掌握。因此，现将DEBUG的命令详细介绍一番，以让大家知道它的使用。Debug:A（汇编）直接将 8086/8087/8088 记忆码合并到内存。该命令从汇编语言语句创建可执行的机器码。所有数值都是十六进制格式，必须按一到四个字符输入这些数值。在引用的操作代码（操作码）前指定前缀记忆码。a [address]参数address指定键入汇编语言指令的位置。对 address 使用十六进制值，并键入不以“h”字符结尾的每个值。如果不指定地址，a 将在它上次停止处开始汇编。有关将数据输入到指定字节中的信息，请单击“相关主题”列表中的 Debug E（键入）。有关反汇编字节的信息，请单击“相关主题”列表中的 Debug U（反汇编）。说明使用记忆码段的替代记忆码为 cs:、ds:、es: 和 ss:。远程返回的记忆码是 retf。字符串处理的记忆码必须明确声明字符串大小。例如，使用 movsw 可以移动 16 位的字串，使用 movsb 可以移动 8 位字节串。汇编跳转和调用汇编程序根据字节替换自动将短、近和远的跳转及调用汇编到目标地址。通过使用 near 或 far 前缀可以替代这样的跳转或调用，如下例所示：
-1234-a0100:05000100:0500 jmp 502 ; a 2-byte short jump0100:0502 jmp near 505 ; a 3-byte near jump0100:0505 jmp far 50a ; a 5-byte far jump
-可以将 near 前缀缩写为 ne。区分字和字节内存位置当某个操作数可以引用某个字内存位置或者字节内存位置时，必须用前缀 word ptr 或者前缀 byte ptr 指定数据类型。可接受的缩写分别是 wo 和 by。以下范例显示两种格式：
-12dec wo [si]neg byte ptr [128]
-指定操作数Debug 使用包括在中括号 ([ ]) 的操作数引用内存地址的习惯用法。这是因为另一方面 Debug 不能区分立即操作数和内存地址的操作数。以下范例显示两种格式：
-1234mov ax,21 ; load AX with 21hmov ax,[21] ; load AX with the; contents of; memory location 21h
-使用伪指令使用 a 命令提供两个常用的伪指令：db 操作码，将字节值直接汇编到内存，dw 操作码，将字值直接汇编到内存。以下是两个伪指令的范例：
-1234db 1,2,3,4,”THIS IS AN EXAMPLE”db ‘THIS IS A QUOTATION MARK:”‘db “THIS IS A QUOTATION MARK:&#x27;”dw 1000,2000,3000,”BACH”
-范例a 命令支持所有形式的间接注册命令，如下例所示：
-123add bx,34[bp+2].[si-1]pop [bp+di]push [si] )
+            DEBUG是DOS中的一个外部命令，从DOS 1.0起就带有此命令，因此可见此命令的重要性了。虽然此命令的功能非常强大，可以解决许多问题，可是对许多人来说，尤其是初学者来说，却非常不易掌握。因此，现将DEBUG的命令详细介绍一番，以让大家知道它的使用。Debug:A（汇编）直接将 8086/8087/8088 记忆码合并到内存。该命令从汇编语言语句创建可执行的机器码。所有数值都是十六进制格式，必须
         </p>
     </div>
 </article>
@@ -303,13 +294,7 @@ daovoice('update');
 
         <p class="article-excerpt">
             当您在运行Microsoft Windows 2000/XP/Server 2003、Microsoft Windows Vista/Server 2008、Microsoft Windows 7操作系统时，Windows可能会突然停止正常运行，并显示一副含有下述字样的蓝色背景错误信息画面：
-1234A problem has been detected and Windows has been shut down to prevent damage to your computer.……
-此蓝色背景错误信息画面一般简称为“蓝屏（Blue Screen）”或“停止屏（Stop Error Screen）”，它可能会长时间停留在显示屏；也可能会在短时间显示之后自动重新启动计算机。windows蓝屏分析的方法是什么，遇到windows蓝屏如何查找原因，下面就进行说明!
-一.原因分析：如果Windows因系统设置故障、软件故障、硬件故障、驱动程序故障、网络故障等各种类型的故障产生了严重的错误，引起Windows无法继续维持正常运行，Windows出于避免用户数据丢失及损坏计算机的考虑，将自动停止运行并显示“蓝屏”错误信息。
-在默认的系统设置中，Windows 2000遇到“蓝屏”故障后“蓝屏”错误信息将长时间停留在显示屏，直到您关闭或重新启动计算机；Windows XP及后续版本的Windows遇到“蓝屏”故障后“蓝屏”错误信息将在短时间显示之后自动重新启动计算机。“蓝屏”故障发生后是否自动重新启动计算机取决于“启动与故障恢复”设置。您可以在“控制面板”中打开“系统”属性，切换至“高级”选项卡（如果是Windows Vista及以上版本的Windows请在“系统”属性左上方的工具栏中选择“高级系统设置”，确认用户帐户控制（UAC）安全提示，然后再切换至“高级”选项卡），在“高级”选项卡中打开“启动与故障恢复”。您可以在“启动与故障恢复”的选项中找到“自动重新启动”复选框，如果此复选框没有选中，Windows遇到“蓝屏”故障后“蓝屏”错误信息就将长时间停留在显示屏（Windows 2000的默认设置）；如果此复选框被选中，“蓝屏”错误信息就将在短时间显示之后自动重新启动计算机（Windows XP及后续版本的Windows的默认设置）。
-二.蓝屏DMP故障文件在哪儿？有盘环境，如上图所示，蓝屏dmp就存放在%SystemRoot%\Minidump 目录中 即 c:\windows\Minidump 如果上图中的设置为%SystemRoot%\Minidump.dmp，那么蓝屏故障dmp文件就在c:\windows中的Minidump.dmp文件.
-无盘环境，dmp文件就在无盘服务端软件的相关目录中！根据无盘系统不同，存放位置不同，一般就在无盘软件的dmp目录中!
-WINdbg是什么，我们需要它做什么？
+1234A problem has been detected and Windows has been 
         </p>
     </div>
 </article>
@@ -359,16 +344,7 @@ WINdbg是什么，我们需要它做什么？
     
 
         <p class="article-excerpt">
-            HDwiki是专为中文用户设计和开发，程序源代码100%完全开放的一个采用 PHP 和 MySQL 数据库构建的高效的中文百科建站解决方案。官方网站为http://kaiyuan.hudong.com，下载，演示及使用请查看官方网站。本接口提供时互动百科系统版本为HDWiki5.1 正式版 发布日期：2011-09-27主域名为www.bnwin.com hdwiki域名为baike.bnwin.com均采用utf-8编码,phpcms v9域名和hdwiki域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
-1.在phpcms v9后台的phpsso中添加应用应用名:hdwiki应用地址:http://baike.bnwin.com/api/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
-添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
-2.打开接口文件中的phpssoconfig.php文件，修改define(‘APPID’, 3);中的3为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
-phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
-保存后把phpssoconfig.php phpsso.php client.class.php复制到hdwiki的api目录下，这三个文件是新增，没有修改hdwiki任何文件。
-覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
-3.修改hdwiki的wiki_user表(安装时采用的默认前缀wiki)，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
-4.登录hdwiki后台 全局-&gt;扩展设置-&gt;通行证设置开启通行证:是通行证类型：phpcms通行证方式：客户端client通行证密钥：点击后面生成一个KEY连接程序地址：写phpcms v9主域名如http://www.bnwin.com会员注册地址：/index.php?m=member&amp;c=index&amp;a=register&amp;siteid=1会员登录地址：/index.php?m=member&amp;c=index&amp;a=login&amp;siteid=1会员退出地址：/index.php?m=member&amp;c=index&amp;a=logout&amp;siteid=1
-hdwiki的后台对通行证的整合已经做了预置，只要把hdwiki做为客户端，那么hdwiki中的注册，登录，退出链接都会自动跳到你设置的主域名的注册,登录,退出链接地址。
+            HDwiki是专为中文用户设计和开发，程序源代码100%完全开放的一个采用 PHP 和 MySQL 数据库构建的高效的中文百科建站解决方案。官方网站为http://kaiyuan.hudong.com，下载，演示及使用请查看官方网站。本接口提供时互动百科系统版本为HDWiki5.1 正式版 发布日期：2011-09-27主域名为www.bnwin.com hdwiki域名为baike.bnwin.
         </p>
     </div>
 </article>
@@ -415,15 +391,7 @@ hdwiki的后台对通行证的整合已经做了预置，只要把hdwiki做为�
 
         <p class="article-excerpt">
             最土团购系统官方网站http://www.zuitu.com，使用，下载，演示请到官方网站。本接口发布时 最土团购系统 版本编号： ZuituGo_CV2.0_20120502 商业版
-主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
-1.在phpcms v9后台的phpsso中添加应用应用名:最土团购应用地址:http://zuitu.bnwin.com/account/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
-添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
-2.打开接口文件中的account/phpssoconfig.php文件，修改define(‘APPID’, 4);中的7为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
-phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
-保存后把account目录复制到最土团购根目录覆盖。接口文件的login.php logout.php对原系统有所修改，你可以事先对团购系统account目录中的这两个文件进行备份,目录中的其他三个文件是新增的。
-覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
-3.修改团购系统的user表，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
-建议去掉直接在团购系统注册，因为团购系统注册的密码不能直接保存在phpcms v9中，会出现以phpcmsv9登录时，不能同步登录团购系统。
+主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨
         </p>
     </div>
 </article>
@@ -475,10 +443,7 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
         <p class="article-excerpt">
             Adobe After Effects简称“AE”是Adobe公司推出的一款图形视频处理软件，适用于从事设计和视频特技的机构，包括电视台、动画制作公司、个人后期制作工作室以及多媒体工作室。属于层类型后期软件。
 模板，是指作图或设计方案的固定格式，有时也指DNA复制或转录时，用来产生互补链的核苷酸序列。模板是将一个事物的结构规律予以固定化、标准化的成果，它体现的是结构形式的标准化。
-此模板为:ae模板-央视级震撼大气纪念片头
-要求软件 :AfterEffects CS 6【模板尺寸】1920*1080【时间长度】32秒【文件大小】239M视频预览:您的浏览器不支持HTML5的 video 标签，无法为您播放！ae模板-央视级震撼大气纪念片头，片头图片截图如下：
-下载地址:https://pan.baidu.com/s/1wjdPDQ9SQAlyboVr3CwvPw 密码：ch3a
-
+此模板为:ae模
         </p>
     </div>
 </article>
@@ -525,15 +490,7 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
 
         <p class="article-excerpt">
             iWebIM作为一款以解决大型站点高并发高负载问题为主要任务的开源webIM软件，iWebIM功能强大，易于集成。主动易用的可嵌入式设计使他可以方便的和现有所有社区系统集成在一起。演示，下载，使用说明见官方网站http://www.jooyea.cn/
-PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9采用OOP（面向对象）方式进行基础运行框架搭建。模块化开发方式做为功能开发形式。框架易于功能扩展，代码维护，优秀的二次开发能力，可满足所有网站的应用需求。 5年开发经验的优秀团队，在掌握了丰富的WEB开发经验和CMS产品开发经验的同时，勇于创新追求完美的设计理念，为全球多达10万网站提供助力，并被更多的政府机构、教育机构、事业单位、商业企业、个人站长所认可。
-本接口提供时iWebIM版本为 iweb IM v1.0 Beta2，phpcms整合iwebim，让phpcms也有类似于QQ的有在线聊天功能!
-1.下载iWebIM，在phpcms v9的根目录下建立im目录，把iWebIM解压后的全部文件复制到im目录。
-2.在phpcms v9的数据库上执行iWebIM的install.sql，添加iWebIM需要的数据表到phpcm v9的数据库中。
-3.用Notepad++修改接口文件中的iweb_mini_lib/conf/dbconf.php中的数据库名，密码和phpcms v9的数据库名。
-4.用notepad++修改接口文件中的configuration.php文件，$siteDomain值改为你的phpcms v9域名末尾加/
-5.接口文件中的plugins/plugin_for_phpcms.php文件的phpcms_key值为 phpcms v9的\caches\configs\system.php文件中auth_key的值,$cookiepre的值，$cookiepre的值为\caches\configs\system.php文件中cookie_pre的值，注意此文件是两个_ 而不是一个_
-6.把修改好的接口文件全部复制到phpcms v9根目录建的im目录中覆盖。
-7.在需要phpcms v9需要显示iwebim的网页中加入
+PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9采用OOP（面向对象）方式进行基础运行框架搭建。模块化开发方式
         </p>
     </div>
 </article>
@@ -587,23 +544,7 @@ PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9
 ViewWizard 3.5
 句柄精灵是一个窗口辅助工具，用于获得窗口或控件的句柄等各种信息和属性。其中包括窗口类，大小，样式，状态，字体等相关内容。此外，它可以控制一个窗口的状态，比如显示或隐藏，置顶，透明，更改样式等等。
 具体介绍：
-窗口样式编辑器：用于修改窗口样式和扩展样式。窗口创建监视器：监视顶层窗口的创建和销毁。系统窗口列表：查看系统所有窗口，其中包括不可见的Message窗口以及内核挂钩的隐藏窗口。自动显示隐藏控件：选择该项后，当前活动窗口中的隐藏的控件（子窗口）会全部显示出来。自动激活无效控件：选择该项后，当前活动窗口中的无效的控件（呈灰色）会变为有效。取色器：功能强大的屏幕取色器。屏幕抓图工具：可抓取桌面、窗口和区域图像。
-软件设置：
-搜索隐藏窗口：搜索隐藏的控件，不包括顶层窗口。搜索透明窗口：搜索穿透的窗口，这种窗口不接受鼠标点击。搜索挂起窗口：搜索被挂起线程的窗口，容易死锁，除非特殊情况，否则不要选择。暴力搜索窗口：强制遍历系统所有窗口透视搜索窗口：搜索前先把自己设为穿透，以便能够看到下面的窗口。Shift键搜索：按下Shift键自动捕获窗口。搜索模式：精确搜索将搜索最内层的可见的子窗口，标准Z序搜索将搜索最上层的窗口。
-其它选项：
-鼠标链接：关系一栏所列出的相关窗口以及文件路径栏，单击以便快速捕获窗口或定位文件。附加栏：列出基本控件的专项信息。窗口文本查看功能：该项会列出窗口的标题或控件的文字内容，对于特殊类型的窗口，比如ListView，则会列出它的列表项数据。窗口菜单查看功能：列出窗口包含的菜单内容。*内容：代表该项不可用或者获取失败。终极模式：拖动搜索屏幕上能看到的所有窗口
-3.5增加搜索挂起窗口增加暴力搜索窗口及暴力模式密码框判断不对加强总在最前问题通过数值编辑窗口样式
-3.4.8总在最前后不再被Win+D最小化
-3.4.6加强总在最前时右键菜单无法弹出
-3.4.5增加设置还原密码框字符增加加强总在最前密码掩码有时获取不对
-3.4：窗口列表图标换掉增加进程部分信息增加设置窗口视界修正系统窗口列表功能增加窗口最大化坐标/最小最大尺寸增加窗口透明度显示修正设置窗口透明/穿透功能光标和画刷描述
-3.3：增加ListView修改器，可编辑任意ListView控件内容增加部分热键样式窗口选定项高亮显示
-3.2：增加查看进程窗口功能win8以上无法获取消息窗口问题菜单布局等其它问题
-3.1.1：控件显示状态不正确问题，不再随父窗口的状态而改变
-3.1更新：1.增加窗口坐标功能2.修复窗口坐标显示不准确问题3.修复编辑窗口坐标窗口4.增加智能调整窗口大小5.增加直接复制句柄6.非标准类不能保存问题
-
-下载地址：链接: https://pan.baidu.com/s/1ChWSUHr-rAljhOR4cnXH0Q 提取码: hnkn 复制这段内容后打开百度网盘手机App，操作更方便哦
-
+窗口样式编辑器：用于修改窗口样式和扩展样式。窗口创建监视器：监视顶层窗口的创建和销毁。系统窗口列表：查看系统所有窗口，其中包括不可见的Message窗口以及内核
         </p>
     </div>
 </article>
@@ -650,15 +591,7 @@ ViewWizard 3.5
 
         <p class="article-excerpt">
             ikeeper爱克吧上网卡现在早已退出了历史舞台，不过对于学习，把当时分析的爱克吧上网卡磁条信息算法归纳整理一下，算做温故而知新吧!本文属原创，百脑问bnwin.com首发!
-ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息发展有限公司继【实名上网管理系统】后全新开发的计费管理版本。主要用于网吧，学校及各种收费机房的管理，是一款真正全方位从各网吧老板及各种营业性收费机房业主经营管理角度出发，设计体贴入微的经营管理软件。经过我公司不断的升级完善，目前已经得到了广大用户广泛认可。在重庆地区拥有百分之九十以上的市场占有率，目前公司正在积极拓展四川、海南、内蒙等市场并取得了巨大的成就，充分显示了【Ikeeper计费管理系统】与其他同类产品比较所具备的明显技术优势。简而言之爱克吧就是公安网监强制要求网吧安装的网吧安全及计费实名管理系统!
-上网卡是什么？上网卡是爱克吧系统为实现实名制而采用的一种磁卡，上网卡根据身份证信息注册后使用，和银行的磁卡形状及使用方法一样！上网卡有10位数字（如0231466248)，但磁条信息并不是只记录了10位数字，而是这种;200329902314662482=500999000113801? 记录了相关信息。看看上网卡的实物上网卡磁条信息算法解析
-本文本着学习的思想，当前已经不能使用上网卡，所以发布上网卡磁条信息算法，仅供学习使用，费话不多说，下面入正题，正式分析上网卡磁条信息内容：
-先设置一个常量
-常量表493806291608186256487098521453479841593425669412557213331214712906201512413249919383758208612080780228491236189833979289217766495864839471398976449709001708631663736696479153718969090756731903064662430102993165969185690184619921373013471
-然后我们举一个例，如上网卡号 7474747474磁条信息为;200391774747474742=500999000151993?
-分解为;200 3917 7474747474 2 =5009990001 51993 ?1234 5 67890 算法及分析此1-10位的算法而;200 =5009990001和末尾的?为常量，无需要计算。中间为卡号也无需计算，需要计算的就是上图标识的1-10位的数的由来
-以下是上网卡磁条信息的delphi的源代码
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586function getnumtotal(firstnum:Integer;jsstring:string;ys:Boolean):Integer; //字符串acsii相加减 var ls,x:integer; ls1:string; begin x:=firstnum; for ls:=1 to Length(jsstring) do begin if ys then x:=x+ord(jsstring[ls]) else x:=x-ord(jsstring[ls]); ls1:=&#x27;$&#x27;+inttohex(x,2); if Length(ls1)&gt;3 then x:=strtoint(&#x27;$&#x27;+rightstr(ls1,2)); end; result:=x; end;function fullcard(numcard:string):string; //取得完整磁卡编码 var mycont,mycont1,mycont2,mycont3,mycont4,mycont5:string; mystr1,mystr2,lsstring:string; a1,a2,a3,a4,a5,a6,a7,a8,a9,a10:integer; b1,b2,b3,b4,b5,b6,b7,b8,b9,b10:string; ls1,ls2:integer; begin //常量表 mycont:=&#x27;493806291608186256487098521453479841593425669412557213331214712906201512413249919383758208612080780228491236189833979289217766495864839471398976449709001708631663736696479153718969090756731903064662430102993165969185690184619921373013471&#x27;; mystr1:=Trim(numcard); //上网卡号 mystr2:=&#x27;5009990001&#x27;; //常数 mycont1:=mystr1+mystr2; //形成 74747474745009990001 mycont2:=LeftStr(mystr1,5)+rightstr(mystr2,5); //形成7474790001 mycont3:=RightStr(mystr1,5)+leftstr(mystr2,5); //形成4747450099 //第一位 a1:=getnumtotal($35,mycont1,true)*getnumtotal($0C,mycont1,false); a1:=a1 mod $D7; b1:=mycont[a1+1]; //第二位 a2:=(a1 shl 2)*3 ; a2:=a2 mod $93; b2:=mycont[a2+1]; //第四位 a4:=(a2+a1) shl 3; a4:=a4 mod $DA; b4:=mycont[a4+1]; //第七位 a7:=(a1 shl 5)+a4; a7:=a7*$20 mod $DA; b7:=mycont[a7+1]; //第八位 a8:=((a1 shl 5)+a1+a7)*$21; a8:=a8 mod $DA; b8:=mycont[a8+1]; //第九位 a9:=((a1 shl 5)+a1+a1+a8)*$22; a9:=a9 mod $DA; b9:=mycont[a9+1]; //第三位 a3:=getnumtotal($7,mycont2,True)+a1; a3:=(a3 shl 3)-getnumtotal($7,mycont2,True)-a1; a3:=a3 mod $93; b3:=mycont[a3+1]; //第十位 a10:=getnumtotal($11,mycont3,false)+a1; a10:=(a10 shl 3)-getnumtotal($11,mycont3,false)-a1; a10:=a10+(a10 shl 2); a10:=a10 mod $93; b10:=mycont[a10+1]; //第五位 mycont4:=&#x27;;=200&#x27;+b1+b2+b3+b4+mystr1; //;=20039177474747474 ls1:=getnumtotal(a1,mycont4,False); lsstring:=&#x27;=&#x27;+mystr2; ls2:=getnumtotal(ls1,lsstring,True); a5:=getnumtotal(ls2,b7+b8+b9+b10,False)+a1; a5:=a5+(a5+(a5 shl 3))*2; a5:=a5 mod $93; b5:=mycont[a5+1]; //第六位 mycont5:=mycont4+b5+&#x27;=&#x27;+mystr2; a6:=getnumtotal(getnumtotal(a1,mycont5,True),b7+b8+b9+b10,False)+a1; a6:=(a6 shl 5)-a6; a6:=a6 mod $93; b6:=mycont[a6+1]; result:=&#x27;200&#x27;+b1+b2+b3+b4+mystr1+b5+&#x27;=&#x27;+mystr2+b6+b7+b8+b9+b10; end;
+ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息发展有限公司继【实名上网管理系统】后全新开发的计费管理版本。主要用于网吧，学校及各种收费机房的管理，是一款真正全方位从各网吧老板及各种营业性收费机房业主
         </p>
     </div>
 </article>
@@ -709,15 +642,7 @@ ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息�
 
         <p class="article-excerpt">
             DESTOON B2B是一套基于PHP+MySQL的开源B2B电子商务行业门户网站解决方案。官方网站为http://www.destoon.com，下载，演示及使用请查看官方网站。实际就是仿阿里巴巴的php系统。—本接口提供时destoon版本为 最新版本：V4.0 更新时间：2012-04-28
-phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具体方法和提供接口文件!
-至于为什么phpcms需要整合destoon,因为phpcms的黄页功能不全，destoon功能全！
-主域名为www.bnwin.com destoon域名为b2b.bnwin.com均采用utf-8编码,phpcms v9域名和destoon域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
-1.在phpcms v9后台的phpsso中添加应用应用名:destoonB2B应用地址:http://b2b.bnwin.com/member/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
-添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
-2.打开接口文件中的memeber/phpssoconfig.php文件，修改define(‘APPID’, 2);中的2为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
-phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
-保存后把member和module两个目录复制到destoon根目录覆盖。接口文件的member目录中的三个文件是新增的，module\member目录的文件是修改的destoon文件，作用是destoon登录或退出和phpcms v9同步。你可以事先对destoon的module\member中的相应的文件进行备份。
-覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
+phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具体方法和提供
         </p>
     </div>
 </article>
@@ -770,9 +695,7 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
 骊山语罢清宵半，泪雨霖铃终不怨；
 何如薄幸锦衣郎，比翼连枝当日愿。
 ——《花月痕》
-多情自古空余恨，好梦由来最易醒。
-岂是拈花难解脱，可怜飞絮太飘零。
-——元稹《遣悲怀•其二》
+多情自古空余恨
         </p>
     </div>
 </article>

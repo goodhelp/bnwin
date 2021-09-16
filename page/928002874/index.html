@@ -310,15 +310,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/928002874/",
         "description": "最土团购系统官方网站http://www.zuitu.com，使用，下载，演示请到官方网站。本接口发布时 最土团购系统 版本编号： ZuituGo_CV2.0_20120502 商业版
-主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
-1.在phpcms v9后台的phpsso中添加应用应用名:最土团购应用地址:http://zuitu.bnwin.com/account/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
-添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
-2.打开接口文件中的account/phpssoconfig.php文件，修改define(‘APPID’, 4);中的7为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
-phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
-保存后把account目录复制到最土团购根目录覆盖。接口文件的login.php logout.php对原系统有所修改，你可以事先对团购系统account目录中的这两个文件进行备份,目录中的其他三个文件是新增的。
-覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
-3.修改团购系统的user表，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
-建议去掉直接在团购系统注册，因为团购系统注册的密码不能直接保存在phpcms v9中，会出现以phpcmsv9登录时，不能同步登录团购系统。",
+主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨",
         "wordCount": 244
     }
 </script>

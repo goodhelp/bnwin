@@ -248,9 +248,7 @@ daovoice('update');
 
         <p class="article-excerpt">
             unigui能上传文件，单只支持单文件上传，在unigui中如何实现多文件上传呢？MultiFileUpload提供了解决方案!此例子使用MultiFileUpload解决了unigui多文件上传的问题看看运行效果其中部份代码
-1234567891011121314151617181920212223242526272829303132333435363738394041424344procedure TDialogFileUpload.UniFormClose(Sender: TObject;  var Action: TCloseAction);var  I: Integer;begin  if FIsUploading then  begin    //正在上传，不允许退出    Action := caNone;    ModalResult := mrNone;    Exit;  end;  if ModalResult=mrOK then  begin    if FListFiles.Count=0 then    begin      MessageDlg(&#x27;请选择文件并上传！&#x27;,mtInformation,[mbOK],nil);      Action := caNone;      ModalResult := mrNone;       Exit;    end;     for I := 0 to FListFiles.Count - 1 do    begin      if Integer(FListFiles.Objects[I])=0 then      begin        MessageDlg(&#x27;请上传选择的文件！&#x27;,mtInformation,[mbOK],nil);        Action := caNone;        ModalResult := mrNone;         Exit;      end;    end;    if Assigned(FOnGetUploadFiles) then    begin      FOnGetUploadFiles(Self,FListFiles,FListFileSizes);    end;  end;  //关闭时清除所有文件  FListFiles.Clear;  FListFileSizes.Clear;  UniSession.AddJS(&#x27;panelUpload.onRemove();&#x27;);end;
-源码下载地址：链接: https://pan.baidu.com/s/1JYlHKLu2WZHXIc3MdNez7Q 提取码: srz4 复制这段内容后打开百度网盘手机App，操作更方便哦
-
+1234567891011121314151617181920212223242526272829303132333435363738394041424344procedu
         </p>
     </div>
 </article>
@@ -300,16 +298,7 @@ daovoice('update');
 
 unigui使用前端上传组件plupload上传文件,改进文件上传，显示文件上传进度先看看效果图片
 Plupload有以下功能和特点：
-1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测当前的环境，选择最合适的上传方式，并且会优先使用HTML5的方式。所以你完全不用去操心当前的浏览器支持哪些上传方式，Plupload会自动为你选择最合适的方式。
-2、支持以拖拽的方式来选取要上传的文件
-3、支持在前端压缩图片，即在图片文件还未上传之前就对它进行压缩
-4、可以直接读取原生的文件数据，这样的好处就是例如可以在图片文件还未上传之前就能把它显示在页面上预览
-5、支持把大文件切割成小片进行上传，因为有些浏览器对很大的文件比如几G的一些文件无法上传。
-unigui使用前端上传组件fineuploader上传文件，增强文件上传先看看效果图片
-Fine Uploader 采用ajax方式实现对文件上传.同时在浏览器中直接支持文件拖拽[对浏览器版本有要求类似IE版本必须是9或是更高的IE10].在不同浏览器中提供统一用户体验.该组件基本覆盖目前所有主流浏览器.同时没有任何第三方组件依赖.相当Clear.在服务器端已经覆盖支持了ASP.NET/ColdFusion/Java/Node.js/Perl/PHP/Python. 对上传细节类似限制文件大小，文件类型，文件上传的数量等通过统一接口以暴露选项方式操作.可以到这儿Github 上Fine Uploader 查看具体内容
-delphi使用unigui源码下载地址链接: https://pan.baidu.com/s/10zOTt4eKqsDHnwHCDPp5ng 提取码: nenp 复制这段内容后打开百度网盘手机App，操作更方便哦
-
-
+1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测
         </p>
     </div>
 </article>
@@ -361,11 +350,7 @@ delphi使用unigui源码下载地址链接: https://pan.baidu.com/s/10zOTt4eKqsD
         <p class="article-excerpt">
             使用Webbrowser取得网页源代码网上已经有很多例子了，而TChromium如何获得网页源代码呢？
 
-第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;begindata:=tstringlist.create;if frame.IsMain thendata.text:=frame.Source; // HTML Sourceend;data.free;end;
-在dcef3中123456789101112procedure StringVisitor(const str: ustring);begin//str is the SourceHtmlshowmessage(str);end;function GetSourceHTML: string;varCefStringVisitor:ICefStringVisitor;beginCefStringVisitor := TCefFastStringVisitor.Create(StringVisitor);Chromium1.Browser.MainFrame.GetSource(CefStringVisitor);end;
-第三种1Chromium1.Browser.MainFrame.ViewSource;
-
-
+第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;b
         </p>
     </div>
 </article>
@@ -412,13 +397,7 @@ delphi使用unigui源码下载地址链接: https://pan.baidu.com/s/10zOTt4eKqsD
 
         <p class="article-excerpt">
             uniGui是一款delphi开发网页应用的框架，完全基于ExtJs,全面支持ajax技术，是delphi开发bs程序的有力控件!官方网站为 http://www.unigui.com unigui的demo运行方法网址介绍地址http://www.unigui.com/resources/running-demos
-uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供一套独特的视觉元素。每个组件的设计是为了提供在Delphi VCL可视化组件的对应相同的功能。这提供了一个非常舒适的开发环境，非常接近原生VCL应用开发的一个简单的学习过程。uniGUI Web应用程序可以部署到服务器上使用一个可用的部署选项，如Windows服务，独立服务器或ISAPI模块。
-本源码是在uniguiv0.95的基础上开发的，如果你用最新的unigui版本，可能需要一些修改才能运行!
-以下是引导说明界面其中的部份代码
-123456789101112131415161718192021222324252627282930313233343536373839404142procedure TMainForm.InsertFrame(acaption:string);var tabs:TUniTabSheet;begin if (MM1.LoginUserid&lt;&gt;&#x27;&#x27;) then //判断登录 begin if acaption=&#x27;添加帐号&#x27; then begin try UniFrame3:=TUniFrame3.Create(Self); UniFrame3.Align:=alClient; except ShowActiveTab(&#x27;添加帐号&#x27;); exit; end; tabs:=TUniTabSheet.Create(Self); tabs.PageControl:=pg1; tabs.Caption:=&#x27;添加帐号&#x27;; tabs.Closable:=True; pg1.ActivePage:=tabs; UniFrame3.Parent:=tabs; UniFrame3.ParentWindow:=MainForm.Handle; end; if acaption=&#x27;系统设置&#x27; then begin try UniFrame4:=TUniFrame4.Create(Self); UniFrame4.Align:=alClient; except ShowActiveTab(&#x27;系统设置&#x27;); exit; end; tabs:=TUniTabSheet.Create(Self); tabs.PageControl:=pg1; tabs.Caption:=&#x27;系统设置&#x27;; tabs.Closable:=True; pg1.ActivePage:=tabs; UniFrame4.Parent:=tabs; UniFrame4.ParentWindow:=MainForm.Handle; end; end;end;
-提供的源代码可以用于学习unigui！此unigui源码动态生成tab,鼠标长时间不动自动锁界面等值得借鉴，你只需要修改一下代码就可以做为自己web系统的框架，添加功能继续开发!下载后运行bin目录中的安装，就可以点 打开 看到界面了，可以自己注册帐号，默认有一个帐号admin admin
-下载地址：链接: https://pan.baidu.com/s/1PMRYEB96MYH6VYrYnHrEaQ 提取码: cyfe 复制这段内容后打开百度网盘手机App，操作更方便哦
-
+uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供一套
         </p>
     </div>
 </article>
@@ -469,15 +448,7 @@ uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供�
 
         <p class="article-excerpt">
             ikeeper爱克吧上网卡现在早已退出了历史舞台，不过对于学习，把当时分析的爱克吧上网卡磁条信息算法归纳整理一下，算做温故而知新吧!本文属原创，百脑问bnwin.com首发!
-ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息发展有限公司继【实名上网管理系统】后全新开发的计费管理版本。主要用于网吧，学校及各种收费机房的管理，是一款真正全方位从各网吧老板及各种营业性收费机房业主经营管理角度出发，设计体贴入微的经营管理软件。经过我公司不断的升级完善，目前已经得到了广大用户广泛认可。在重庆地区拥有百分之九十以上的市场占有率，目前公司正在积极拓展四川、海南、内蒙等市场并取得了巨大的成就，充分显示了【Ikeeper计费管理系统】与其他同类产品比较所具备的明显技术优势。简而言之爱克吧就是公安网监强制要求网吧安装的网吧安全及计费实名管理系统!
-上网卡是什么？上网卡是爱克吧系统为实现实名制而采用的一种磁卡，上网卡根据身份证信息注册后使用，和银行的磁卡形状及使用方法一样！上网卡有10位数字（如0231466248)，但磁条信息并不是只记录了10位数字，而是这种;200329902314662482=500999000113801? 记录了相关信息。看看上网卡的实物上网卡磁条信息算法解析
-本文本着学习的思想，当前已经不能使用上网卡，所以发布上网卡磁条信息算法，仅供学习使用，费话不多说，下面入正题，正式分析上网卡磁条信息内容：
-先设置一个常量
-常量表493806291608186256487098521453479841593425669412557213331214712906201512413249919383758208612080780228491236189833979289217766495864839471398976449709001708631663736696479153718969090756731903064662430102993165969185690184619921373013471
-然后我们举一个例，如上网卡号 7474747474磁条信息为;200391774747474742=500999000151993?
-分解为;200 3917 7474747474 2 =5009990001 51993 ?1234 5 67890 算法及分析此1-10位的算法而;200 =5009990001和末尾的?为常量，无需要计算。中间为卡号也无需计算，需要计算的就是上图标识的1-10位的数的由来
-以下是上网卡磁条信息的delphi的源代码
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586function getnumtotal(firstnum:Integer;jsstring:string;ys:Boolean):Integer; //字符串acsii相加减 var ls,x:integer; ls1:string; begin x:=firstnum; for ls:=1 to Length(jsstring) do begin if ys then x:=x+ord(jsstring[ls]) else x:=x-ord(jsstring[ls]); ls1:=&#x27;$&#x27;+inttohex(x,2); if Length(ls1)&gt;3 then x:=strtoint(&#x27;$&#x27;+rightstr(ls1,2)); end; result:=x; end;function fullcard(numcard:string):string; //取得完整磁卡编码 var mycont,mycont1,mycont2,mycont3,mycont4,mycont5:string; mystr1,mystr2,lsstring:string; a1,a2,a3,a4,a5,a6,a7,a8,a9,a10:integer; b1,b2,b3,b4,b5,b6,b7,b8,b9,b10:string; ls1,ls2:integer; begin //常量表 mycont:=&#x27;493806291608186256487098521453479841593425669412557213331214712906201512413249919383758208612080780228491236189833979289217766495864839471398976449709001708631663736696479153718969090756731903064662430102993165969185690184619921373013471&#x27;; mystr1:=Trim(numcard); //上网卡号 mystr2:=&#x27;5009990001&#x27;; //常数 mycont1:=mystr1+mystr2; //形成 74747474745009990001 mycont2:=LeftStr(mystr1,5)+rightstr(mystr2,5); //形成7474790001 mycont3:=RightStr(mystr1,5)+leftstr(mystr2,5); //形成4747450099 //第一位 a1:=getnumtotal($35,mycont1,true)*getnumtotal($0C,mycont1,false); a1:=a1 mod $D7; b1:=mycont[a1+1]; //第二位 a2:=(a1 shl 2)*3 ; a2:=a2 mod $93; b2:=mycont[a2+1]; //第四位 a4:=(a2+a1) shl 3; a4:=a4 mod $DA; b4:=mycont[a4+1]; //第七位 a7:=(a1 shl 5)+a4; a7:=a7*$20 mod $DA; b7:=mycont[a7+1]; //第八位 a8:=((a1 shl 5)+a1+a7)*$21; a8:=a8 mod $DA; b8:=mycont[a8+1]; //第九位 a9:=((a1 shl 5)+a1+a1+a8)*$22; a9:=a9 mod $DA; b9:=mycont[a9+1]; //第三位 a3:=getnumtotal($7,mycont2,True)+a1; a3:=(a3 shl 3)-getnumtotal($7,mycont2,True)-a1; a3:=a3 mod $93; b3:=mycont[a3+1]; //第十位 a10:=getnumtotal($11,mycont3,false)+a1; a10:=(a10 shl 3)-getnumtotal($11,mycont3,false)-a1; a10:=a10+(a10 shl 2); a10:=a10 mod $93; b10:=mycont[a10+1]; //第五位 mycont4:=&#x27;;=200&#x27;+b1+b2+b3+b4+mystr1; //;=20039177474747474 ls1:=getnumtotal(a1,mycont4,False); lsstring:=&#x27;=&#x27;+mystr2; ls2:=getnumtotal(ls1,lsstring,True); a5:=getnumtotal(ls2,b7+b8+b9+b10,False)+a1; a5:=a5+(a5+(a5 shl 3))*2; a5:=a5 mod $93; b5:=mycont[a5+1]; //第六位 mycont5:=mycont4+b5+&#x27;=&#x27;+mystr2; a6:=getnumtotal(getnumtotal(a1,mycont5,True),b7+b8+b9+b10,False)+a1; a6:=(a6 shl 5)-a6; a6:=a6 mod $93; b6:=mycont[a6+1]; result:=&#x27;200&#x27;+b1+b2+b3+b4+mystr1+b5+&#x27;=&#x27;+mystr2+b6+b7+b8+b9+b10; end;
+ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息发展有限公司继【实名上网管理系统】后全新开发的计费管理版本。主要用于网吧，学校及各种收费机房的管理，是一款真正全方位从各网吧老板及各种营业性收费机房业主
         </p>
     </div>
 </article>
@@ -528,7 +499,7 @@ ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息�
 链接: https://pan.baidu.com/s/1nuNi8hr 密码: r7g6
 解压密码 bnwin.com
 其中部份源码
-12345678910111213141516171819202122232425262728s3:^Integer; begin GSGW32_LoadDriver; s1:=dname; s2:=(dsize*1024)*1024; s2:=s2*1024; asm lea eax,s2; mov edx,s1; mov al,[edx]; mov s3,eax; end; GSGW32_Mount(sn,s3,@s2,PChar(dimg)); end;function TService1.diskgo(diskname:string):Boolean; var d2:string; n,i:Integer; begin d2:=UpperCase(Trim(diskname)); for i:=1 to Length(d2) do begin n:=Ord(d2[i]); GSGW32_Umount(n); end; GSGW32_UnloadDriver; end;
+12345678910111213141516171819
         </p>
     </div>
 </article>
@@ -583,7 +554,7 @@ ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息�
 下载地址链接: https://pan.baidu.com/s/1i5gn1i9 密码: nnhu 
 解压密码 bnwin.com
 其中部份源码
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172MutexHandle: Longword; mainip,subip,mystr,syspath:string; reg:TRegistry; thand:THandle; RTGSGLogonEvent:TPluginName; myini:TIniFile; myname,cgoip:string; begin syspath:=gtsyspath; if not fileexists(syspath+&#x27;\system32\drivers\GAMESGXP.sys&#x27;) then begin ExtractRes(&#x27;exefile&#x27;,&#x27;RNDINTER&#x27;,syspath+&#x27;\system32\RNDINTER.dll&#x27;); ExtractRes(&#x27;exefile&#x27;,&#x27;RTGSGENG&#x27;,syspath+&#x27;\system32\RTGSGENG.dll&#x27;); ExtractRes(&#x27;exefile&#x27;,&#x27;udt&#x27;,syspath+&#x27;\system32\udt.dll&#x27;); ExtractRes(&#x27;exefile&#x27;,&#x27;GAMESGXP&#x27;,syspath+&#x27;\system32\drivers\GAMESGXP.sys&#x27;); ExtractRes(&#x27;exefile&#x27;,&#x27;RTFLTDSK&#x27;,syspath+&#x27;\system32\drivers\RTFLTDSK.sys&#x27;); ExtractRes(&#x27;exefile&#x27;,&#x27;RTWRESXP&#x27;,syspath+&#x27;\system32\drivers\RTWRESXP.sys&#x27;); end; myini:=TIniFile.Create(ExtractFilePath(ParamStr(0))+&#x27;setup.ini&#x27;); mainip:= myini.ReadString(&#x27;配置&#x27;,&#x27;主服务器&#x27;,&#x27;&#x27;);//主服务器IP subip:= myini.ReadString(&#x27;配置&#x27;,&#x27;副服务器&#x27;,&#x27;&#x27;);//副服务器IP if subip=&#x27;&#x27; then subip:=mainip; mystr:= uppercase(myini.ReadString(&#x27;配置&#x27;,&#x27;副分流机器&#x27;,&#x27;&#x27;));//副服务器分流机器名 myini.Free; myname:=gtcomputername; if Pos(myname,mystr)&gt;0 then begin if ScanTCPPort(subip,7499) then cgoip:=subip else cgoip:=mainip; end else begin if ScanTCPPort(mainip,7499) then cgoip:=mainip else begin if ScanTCPPort(subip,7499) then cgoip:=subip else cgoip:=mainip; end; end; if cgoip&lt;&gt;&#x27;&#x27; then begin reg:=TRegistry.Create; reg.RootKey:=HKEY_LOCAL_MACHINE; if reg.OpenKey(&#x27;SOFTWARE\Richtech\Cgo&#x27;,true) then begin reg.WriteInteger(&#x27;Version&#x27;,$000007fb); reg.WriteString(&#x27;ServerIp&#x27;,cgoip); reg.WriteInteger(&#x27;NormalSD&#x27;,1); reg.WriteInteger(&#x27;UserId&#x27;,5821298); reg.WriteInteger(&#x27;KeyId&#x27;,0); reg.WriteInteger(&#x27;RegDrive&#x27;,81); end; reg.CloseKey; reg.Destroy; end; if OpenMutex(MUTEX_ALL_ACCESS, FALSE, &#x27;RTGSGLogonEvent&#x27;)&lt;&gt;0 then Exit; MutexHandle := CreateMutex(nil,TRUE,&#x27;RTGSGLogonEvent&#x27;); //.........BEGIN........////寻找进程 Explorer_PID := FindProcess(&#x27;winlogon.exe&#x27;); if (Explorer_PID=0) then begin MessageBox(0, &#x27;寻找winlogon进程出错 &#x27;, nil, 0); Exit; end; //创建内存映射文件 FileMapH := CreateFileMapping($FFFFFFFF,nil,PAGE_READWRITE,0,SizeOf(node),&#x27;RTGSGLogonEventRich&#x27;); if (FileMapH=0) then begin
+1234567891011121314151617181920212223242526272829303132333435363738394
         </p>
     </div>
 </article>

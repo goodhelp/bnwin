@@ -303,11 +303,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "url": "https://goodhelp.gitee.io/page/2301859295/",
         "description": "使用Webbrowser取得网页源代码网上已经有很多例子了，而TChromium如何获得网页源代码呢？
 
-第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;begindata:=tstringlist.create;if frame.IsMain thendata.text:=frame.Source; // HTML Sourceend;data.free;end;
-在dcef3中123456789101112procedure StringVisitor(const str: ustring);begin//str is the SourceHtmlshowmessage(str);end;function GetSourceHTML: string;varCefStringVisitor:ICefStringVisitor;beginCefStringVisitor := TCefFastStringVisitor.Create(StringVisitor);Chromium1.Browser.MainFrame.GetSource(CefStringVisitor);end;
-第三种1Chromium1.Browser.MainFrame.ViewSource;
-
-",
+第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;b",
         "wordCount": 114
     }
 </script>
@@ -377,13 +373,13 @@ $(function() {
   
     <li class="popular-posts-item">
       
-      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      <p class="popular-posts-title"><a href="\page\1150891238\" rel="bookmark"><i class="fa fa-file"></i> Delphi中那些容易混淆的基础知识</a></p>
       
     </li>
   
     <li class="popular-posts-item">
       
-      <p class="popular-posts-title"><a href="\page\1936827288\" rel="bookmark"><i class="fa fa-file"></i> dcef3加载flash闪烁问题简单解决方法</a></p>
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
       
     </li>
   

@@ -301,9 +301,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/1586233474/",
         "description": "音悦Tai，主要提供MTV在线播放功能,官网http://www.yinyuetai.com/ ，有时我们需要下载音悦台的MTV的时候，按照官方的下载很多限制，这儿使用PHP直接解析出音悦台的MTV源地址，可以直接下载！音悦台MTV视频真实地址PHP解析源码如下:
-12345678910111213141516171819202122232425262728@header(&#x27;Content-type: text/html;charset=UTF-8&#x27;);$url=isset($_GET[&#x27;url&#x27;])?trim($_GET[&#x27;url&#x27;]):&#x27;&#x27;;//http://v.yinyuetai.com/video/2185713$time=$_SERVER[&#x27;REQUEST_TIME&#x27;];$content = file_get_contents($url);//获取标题preg_match(&#x27;/property=&quot;og:title&quot;[\s]+content=&quot;([^&quot;]*)&quot;.*?&gt;/i&#x27;,$content,$title);//获取封面preg_match(&#x27;/property=&quot;og:image&quot; content=&quot;([^&quot;]*)&quot;.*?&gt;/&#x27;,$content,$images);//获取MV的IDpreg_match(&#x27;/[\d]+/&#x27;,$url,$song_id);$title=$title[1];$images=$images[1];$song_id=$song_id[0];//解析json$songurl = &quot;http://www.yinyuetai.com/api/info/get-video-urls?callback=callback&amp;videoId=&quot;.$song_id.&quot;&amp;_=&quot;.$time;$data = file_get_contents($songurl);if (strpos($data, &quot;callback&quot;) !== false)&#123; $lpos = strpos($data, &quot;(&quot;); $rpos = strrpos($data, &quot;)&quot;); $data = substr($data, $lpos + 1, $rpos - $lpos -1);&#125;$json= json_decode($data,true);echo $title.&quot;&lt;br/&gt;&quot;;echo &quot;流畅地址：&quot;.$json[&#x27;hcVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;高清地址：&quot;.$json[&#x27;hdVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;超清地址：&quot;.$json[&#x27;heVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;&lt;img src=\&quot;&quot;.$images.&quot;\&quot;/&gt;&quot;;
-看看解析效果
-",
+12345678910111213141516171819202122232425262728@header(&#x27;Conten",
         "wordCount": 187
     }
 </script>

@@ -309,15 +309,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/3468945668/",
         "description": "我们用以下代码打开网站
-12345678910var   Chromium: TChromium;begin   try     Chromium := TChromium.Create(nil);     Chromium.SetParentComponent(Form1);     Chromium.Align := alClient;     chromium.Browser.MainFrame.LoadUrl(&#x27;www.bnwin.com&#x27;);     FreeAndNil(Chromium)end;
-如何删除dcef3的cookie和缓存？请看以下代码
-123456789101112131415161718192021222324252627282930313233343536373839type  CefTask = class(TCefTaskOwn)    procedure Execute; override;     public    var url,cookieName: ustring;    constructor create; virtual;  end; constructor CefTask.create;begin  inherited create;  url := &#x27;&#x27;;  cookieName := &#x27;&#x27;;end; procedure CefTask.Execute;var CookieManager: ICefCookieManager;begin  CookieManager := TCefCookieManagerRef.Global;  CookieManager.DeleteCookies(url,cookieName);end; procedure c_WB_ClearCookies;var Task: CefTask;begin  Task := CefTask.Create;  CefPostTask(TID_IO, Task);end; // c_WB_Clear_url_Cookies(&#x27;http://google.com&#x27;,&#x27;cookie_name&#x27;);procedure c_WB_Clear_url_Cookies(c_url,c_cookieName: ustring);var Task: CefTask;begin  Task := CefTask.Create;  Task.url := c_url;  Task.cookieName := c_cookieName;  CefPostTask(TID_IO, Task);end;
-整理自网站 https://stackoverflow.com/questions/12269587/how-do-i-clear-the-cache-and-cookies-for-an-embedded-chromium-browser
-取得cookie并显示，如果需要删除cookie，把deleteCookie:= False改为deleteCookie:= True
-123456789101112131415161718192021222324252627282930313233343536373839404142434445function VisitCookie (const name, value, domain, path: ustring; secure, httponly, hasExpires: Boolean;const creation, lastAccess, expires: TDateTime; count, total: Integer;out deleteCookie: Boolean): Boolean;begin  deleteCookie:= False;  MainForm.Memo1.Lines. Add (&#x27; cookie &#x27; +inttostr (count) + &#x27; / &#x27; + inttostr (total));  MainForm.Memo1.Lines. Add (&#x27; name &#x27; +name);  MainForm.Memo1.Lines. Add (&#x27; value &#x27; +value);  MainForm.Memo1.Lines. Add (&#x27; domain &#x27; +domain);  MainForm.Memo1.Lines. Add (&#x27; path &#x27; +path);  MainForm.Memo1.Lines. Add (&#x27; secure &#x27; +BoolToStr (secure));  MainForm.Memo1.Lines. Add (&#x27; httponly &#x27; +BoolToStr (httponly));  MainForm.Memo1.Lines. Add (&#x27; hasExpires &#x27; +BoolToStr (hasExpires));  MainForm.Memo1.Lines. Add (&#x27; creation &#x27; +DateToStr (creation));  MainForm.Memo1.Lines. Add (&#x27; lastAccess &#x27; +DateToStr (lastAccess));  MainForm.Memo1.Lines. Add (&#x27; expires &#x27; +DateToStr (expires));  MainForm.Memo1.Lines. Add (&#x27;--------------- &#x27;);  Result:= True;end; procedure TMainForm.btn2Click(Sender: TObject);var CookieManager: ICefCookieManager;beginCookieManager:= TCefCookieManagerRef.Global(nil);CookieManager.VisitAllCookiesProc (VisitCookie);end; //这样写，我在delphi xe8中编译不过procedure TMainForm.Button1Click(Sender: TObject);var  CookieManager: ICefCookieManager;begin  CookieManager := TCefCookieManagerRef.Global(nil);  CookieManager.VisitAllCookiesProc(    function(const name, value, domain, path: ustring; secure, httponly,      hasExpires: Boolean; const creation, lastAccess, expires: TDateTime;      count, total: Integer; out deleteCookie: Boolean): Boolean    begin      deleteCookie := True;      ShowMessage(&#x27;A cookie from domain &#x27; + domain + &#x27; will be unmercifully &#x27; +        &#x27;deleted!&#x27;);    end  );end;
-为网址设置单独的cookie文件
-1234567891011121314CookieManager: ICefCookieManager; FormCreate:begin   CookiesPath := ExtractFilePath(Application.ExeName) + &#x27;cookies/bnwin&#x27;;   CookieManager := TCefCookieManagerRef.Global(nil);   CookieManager.SetStoragePath(CookiesPath, True, nil);   Chromium1.Load（&#x27;bnwin.com&#x27;）; end; FormClose:   begin  CookieManager.FlushStore(nil);end
-为指定的网站设置cookie",
+12345678910var   Chromium: TChromium;begin   try     Chromium := TChromium.Create(nil);     Chromium.SetParentComponent(Form1);     Chromium.Align := alClient;     chromium.Browser.MainFra",
         "wordCount": 872
     }
 </script>
@@ -405,7 +397,7 @@ $(function() {
   
     <li class="popular-posts-item">
       
-      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      <p class="popular-posts-title"><a href="\page\1150891238\" rel="bookmark"><i class="fa fa-file"></i> Delphi中那些容易混淆的基础知识</a></p>
       
     </li>
   

@@ -247,15 +247,7 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            uniGUI is a Web Application Framework for Delphi，unigui使delphi使用extjs快速的开发web程序,unigui符合delphi开发者的习惯，开发web就象开发桌面程序一样。但unigui中打印没有好的办法，因为是web，所以要么是直接打印html代码，要么是生成pdf，然后打印，这儿我们介绍的是unigui中使用Grid++Report锐浪报表打印方法，使用Grid++Report锐浪报表需要事先安装Grid++Report锐浪报表插件，如果你不喜欢喜欢插件，就只有使用生成pdf文件再打印了，可以不必看下面的内容!
-
-先在ServerModule模块的Customfiles中加入grinstall/CreateControl.js  grinstall/GRInstall.js 这两个Grid++Report锐浪报表的JS，如果浏览器没有安装Grid++Report锐浪报表插件会提示安装!
-引用UntGridppReportCommon.pas单元，该单元就是处理Grid++Report锐浪报表所需要的数据格式的!
-在主窗口中加入TUniHTMLFrame控件!用来显示最终的html数据!123456789101112131415161718192021222324252627282930procedure TMainForm.unbtbtn1Click(Sender: TObject);begin //预览报表  SetReportPrintViewerHTML(UniHTMLFrame1, &#x27;files/1a.grf&#x27;, &#x27;files/ff.txt&#x27;);end; procedure TMainForm.UniBitBtn1Click(Sender: TObject);begin //创建报表  CreateReport(UniHTMLFrame1, &#x27;PlunID&#x27;, &#x27;&#x27;);  UniSession.JSCode(&#x27;PlunID.LoadFromURL(&quot;files/1a.grf&quot;);&#x27; +      &#x27;PlunID.LoadDataFromURL(&quot;files/ff.txt&quot;);&#x27; + &#x27;PlunID.PrintPreview(true);&#x27;);end; procedure TMainForm.UniBitBtn2Click(Sender: TObject);begin //查询报表  SetReportDisplayViewerHTML(UniHTMLFrame1, &#x27;files/1a.grf&#x27;, &#x27;files/ff.txt&#x27;);end; procedure TMainForm.UniBitBtn3Click(Sender: TObject);begin //设计报表  SetReportDesignHTML(UniHTMLFrame1, &#x27;files/1a.grf&#x27;, &#x27;files/ff.txt&#x27;, self);end; procedure TMainForm.UniBitBtn4Click(Sender: TObject);begin//打印报表  UniSession.JSCode(&#x27;ReportViewer.Print(true);&#x27;);   Exit;  UniHTMLFrame1.HTML.Text := &#x27;  &#x27;;end;
-虽然安装插件不是太理想，但安装插件后就可以实现和桌面打印一样的功能，为什么不安装呢？为什么使用Grid++Report锐浪报表呢？因为Grid++Report锐浪报表可以免费使用，付费就是去掉打印右下角的标志，免费使用有一个标志，不过不影响使用!最重要的是锐浪报表支持Web的打印，官网有详细教程，Grid++Report锐浪报表官网 http://www.rubylong.cn/
-
-delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3myg 提取码: 2hzk 复制这段内容后打开百度网盘手机App，操作更方便哦
-
+            uniGUI is a Web Application Framework for Delphi，unigui使delphi使用extjs快速的开发web程序,unigui符合delphi开发者的习惯，开发web就象开发桌面程序一样。但unigui中打印没有好的办法，因为是web，所以要么是直接打印html代码，要么是生成pdf，然后打印，这儿我们介绍的是unigui中使用Grid++Report
         </p>
     </div>
 </article>
@@ -314,9 +306,7 @@ delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3m
 
         <p class="article-excerpt">
             unigui能上传文件，单只支持单文件上传，在unigui中如何实现多文件上传呢？MultiFileUpload提供了解决方案!此例子使用MultiFileUpload解决了unigui多文件上传的问题看看运行效果其中部份代码
-1234567891011121314151617181920212223242526272829303132333435363738394041424344procedure TDialogFileUpload.UniFormClose(Sender: TObject;  var Action: TCloseAction);var  I: Integer;begin  if FIsUploading then  begin    //正在上传，不允许退出    Action := caNone;    ModalResult := mrNone;    Exit;  end;  if ModalResult=mrOK then  begin    if FListFiles.Count=0 then    begin      MessageDlg(&#x27;请选择文件并上传！&#x27;,mtInformation,[mbOK],nil);      Action := caNone;      ModalResult := mrNone;       Exit;    end;     for I := 0 to FListFiles.Count - 1 do    begin      if Integer(FListFiles.Objects[I])=0 then      begin        MessageDlg(&#x27;请上传选择的文件！&#x27;,mtInformation,[mbOK],nil);        Action := caNone;        ModalResult := mrNone;         Exit;      end;    end;    if Assigned(FOnGetUploadFiles) then    begin      FOnGetUploadFiles(Self,FListFiles,FListFileSizes);    end;  end;  //关闭时清除所有文件  FListFiles.Clear;  FListFileSizes.Clear;  UniSession.AddJS(&#x27;panelUpload.onRemove();&#x27;);end;
-源码下载地址：链接: https://pan.baidu.com/s/1JYlHKLu2WZHXIc3MdNez7Q 提取码: srz4 复制这段内容后打开百度网盘手机App，操作更方便哦
-
+1234567891011121314151617181920212223242526272829303132333435363738394041424344procedu
         </p>
     </div>
 </article>
@@ -366,16 +356,7 @@ delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3m
 
 unigui使用前端上传组件plupload上传文件,改进文件上传，显示文件上传进度先看看效果图片
 Plupload有以下功能和特点：
-1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测当前的环境，选择最合适的上传方式，并且会优先使用HTML5的方式。所以你完全不用去操心当前的浏览器支持哪些上传方式，Plupload会自动为你选择最合适的方式。
-2、支持以拖拽的方式来选取要上传的文件
-3、支持在前端压缩图片，即在图片文件还未上传之前就对它进行压缩
-4、可以直接读取原生的文件数据，这样的好处就是例如可以在图片文件还未上传之前就能把它显示在页面上预览
-5、支持把大文件切割成小片进行上传，因为有些浏览器对很大的文件比如几G的一些文件无法上传。
-unigui使用前端上传组件fineuploader上传文件，增强文件上传先看看效果图片
-Fine Uploader 采用ajax方式实现对文件上传.同时在浏览器中直接支持文件拖拽[对浏览器版本有要求类似IE版本必须是9或是更高的IE10].在不同浏览器中提供统一用户体验.该组件基本覆盖目前所有主流浏览器.同时没有任何第三方组件依赖.相当Clear.在服务器端已经覆盖支持了ASP.NET/ColdFusion/Java/Node.js/Perl/PHP/Python. 对上传细节类似限制文件大小，文件类型，文件上传的数量等通过统一接口以暴露选项方式操作.可以到这儿Github 上Fine Uploader 查看具体内容
-delphi使用unigui源码下载地址链接: https://pan.baidu.com/s/10zOTt4eKqsDHnwHCDPp5ng 提取码: nenp 复制这段内容后打开百度网盘手机App，操作更方便哦
-
-
+1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测
         </p>
     </div>
 </article>
@@ -426,13 +407,7 @@ delphi使用unigui源码下载地址链接: https://pan.baidu.com/s/10zOTt4eKqsD
 
         <p class="article-excerpt">
             uniGui是一款delphi开发网页应用的框架，完全基于ExtJs,全面支持ajax技术，是delphi开发bs程序的有力控件!官方网站为 http://www.unigui.com unigui的demo运行方法网址介绍地址http://www.unigui.com/resources/running-demos
-uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供一套独特的视觉元素。每个组件的设计是为了提供在Delphi VCL可视化组件的对应相同的功能。这提供了一个非常舒适的开发环境，非常接近原生VCL应用开发的一个简单的学习过程。uniGUI Web应用程序可以部署到服务器上使用一个可用的部署选项，如Windows服务，独立服务器或ISAPI模块。
-本源码是在uniguiv0.95的基础上开发的，如果你用最新的unigui版本，可能需要一些修改才能运行!
-以下是引导说明界面其中的部份代码
-123456789101112131415161718192021222324252627282930313233343536373839404142procedure TMainForm.InsertFrame(acaption:string);var tabs:TUniTabSheet;begin if (MM1.LoginUserid&lt;&gt;&#x27;&#x27;) then //判断登录 begin if acaption=&#x27;添加帐号&#x27; then begin try UniFrame3:=TUniFrame3.Create(Self); UniFrame3.Align:=alClient; except ShowActiveTab(&#x27;添加帐号&#x27;); exit; end; tabs:=TUniTabSheet.Create(Self); tabs.PageControl:=pg1; tabs.Caption:=&#x27;添加帐号&#x27;; tabs.Closable:=True; pg1.ActivePage:=tabs; UniFrame3.Parent:=tabs; UniFrame3.ParentWindow:=MainForm.Handle; end; if acaption=&#x27;系统设置&#x27; then begin try UniFrame4:=TUniFrame4.Create(Self); UniFrame4.Align:=alClient; except ShowActiveTab(&#x27;系统设置&#x27;); exit; end; tabs:=TUniTabSheet.Create(Self); tabs.PageControl:=pg1; tabs.Caption:=&#x27;系统设置&#x27;; tabs.Closable:=True; pg1.ActivePage:=tabs; UniFrame4.Parent:=tabs; UniFrame4.ParentWindow:=MainForm.Handle; end; end;end;
-提供的源代码可以用于学习unigui！此unigui源码动态生成tab,鼠标长时间不动自动锁界面等值得借鉴，你只需要修改一下代码就可以做为自己web系统的框架，添加功能继续开发!下载后运行bin目录中的安装，就可以点 打开 看到界面了，可以自己注册帐号，默认有一个帐号admin admin
-下载地址：链接: https://pan.baidu.com/s/1PMRYEB96MYH6VYrYnHrEaQ 提取码: cyfe 复制这段内容后打开百度网盘手机App，操作更方便哦
-
+uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供一套
         </p>
     </div>
 </article>

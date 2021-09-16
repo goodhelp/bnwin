@@ -297,9 +297,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateCreated": "2017-12-17",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/807774960/",
-        "description": "1234567//声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &#123;窗口句柄&#125;  crKey: COLORREF; &#123;透明色&#125;  bAlpha: Byte;    &#123;Alpha 值&#125;  dwFlags: DWORD   &#123;LWA_COLORKEY(=1)表示使用透明色; LWA_ALPHA(=2)表示使用 Alpha 值&#125;): Boolean;        &#123;是否成功设置&#125;
-举例(控制外部程序的透明度, 用计算器举了个例子):
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748unit Unit1; interface uses  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,  Dialogs, StdCtrls; type  TForm1 = class(TForm)    Button1: TButton;    Button2: TButton;    procedure Button1Click(Sender: TObject);    procedure Button2Click(Sender: TObject);  end; var  Form1: TForm1; implementation &#123;$R *.dfm&#125; &#123;设定计算器的 Alpha 透明&#125;procedure TForm1.Button1Click(Sender: TObject);var  h: HWND;  FormStyle: Integer;begin  h := FindWindow(&#x27;CalcFrame&#x27;,&#x27;计算器&#x27;);  FormStyle := GetWindowLong(h, GWL_EXSTYLE);  SetWindowLong(h, GWL_EXSTYLE, FormStyle or WS_EX_LAYERED);  SetLayeredWindowAttributes(h, 0, 128, LWA_ALPHA);end; &#123;设定计算器中的白色透明&#125;procedure TForm1.Button2Click(Sender: TObject);var  h: HWND;  FormStyle: Integer;begin  h := FindWindow(&#x27;SciCalc&#x27;, nil);  FormStyle := GetWindowLong(h, GWL_EXSTYLE);  SetWindowLong(h, GWL_EXSTYLE, FormStyle or WS_EX_LAYERED);  SetLayeredWindowAttributes(h, clWhite, 255, LWA_COLORKEY);end; end.",
+        "description": "1234567//声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &#123;窗口句柄&#125;  crKey: COLORREF; &#123;透明色&#125;  bAlpha: Byte;    &#123;Alpha 值&#125;  dwFlags: DWORD   &#123;LWA_COLORKEY(=1)表示使用透明色; LWA_",
         "wordCount": 321
     }
 </script>
@@ -369,13 +367,13 @@ $(function() {
   
     <li class="popular-posts-item">
       
-      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      <p class="popular-posts-title"><a href="\page\1150891238\" rel="bookmark"><i class="fa fa-file"></i> Delphi中那些容易混淆的基础知识</a></p>
       
     </li>
   
     <li class="popular-posts-item">
       
-      <p class="popular-posts-title"><a href="\page\2301859295\" rel="bookmark"><i class="fa fa-file"></i> TChromium获取网页源代码delphi代码</a></p>
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
       
     </li>
   

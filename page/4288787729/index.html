@@ -301,10 +301,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/4288787729/",
         "description": "TChromium自定义referer，在早期的dcef版本中，这样Append(‘Referer’,’http://www.bnwin.com’)就可以了，详细看下面代码，如果append不行，启用这句request.SetReferrer(request.url, REFERRER_POLICY_ALWAYS);
-123456789101112131415161718192021procedure TMainForm.chrm1BeforeResourceLoad(Sender: TObject;  const browser: ICefBrowser; const frame: ICefFrame;  const request: ICefRequest; const callback: ICefRequestCallback;  out Result: TCefReturnValue);var  map: ICefStringMultimap;  sAccept,sUserAgent:string;begin          sAccept:= &#x27;application/x-shockwave-flash, image/gif, image/jpeg, image/pjpeg, application/x-ms-application, application/x-ms-xbap,&#x27;+    &#x27; application/vnd.ms-xpsdocument, application/xaml+xml,text/html,application/octet-stream, */*&#x27;;    sUserAgent:=&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36 QIHU 360EE&#x27;;  map := TCefStringMultimapOwn.Create;  request.GetHeaderMap(map);  map.Append(&#x27;Referer&#x27;,request.url);  map.Append(&#x27;Accept&#x27;,sAccept);  map.Append(&#x27;User-Agent&#x27;,sUserAgent); // ShowMessage(map.getvalue(1)+&#x27;  &#x27;+map.getkey(1));  request.SetHeaderMap(map);  //map:=nil; //request.SetReferrer(request.url, REFERRER_POLICY_ALWAYS);end;
-在高版本的dcef中自定义referer，可以直接定义request.
-12345678910111213141516171819procedure TMainForm.ShowUrl(hurl,AllUrl:string);var Request: ICefRequest; Data: ICefPostData; Header: ICefStringMultimap; sUserAgent:string;begin    if chrm1.Browser.IsLoading then chrm1.Browser.StopLoad;    sUserAgent:=&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36 QIHU 360EE&#x27;;    Request := TCefRequestRef.New;    Request.SetReferrer(hurl,REFERRER_POLICY_ORIGIN);//定义referer    Data := TCefPostDataRef.New;    Header := TCefStringMultimapOwn.Create;    Header.Append(&#x27;Accept-Language&#x27;, &#x27;zh-CN&#x27;);    Header.Append(&#x27;User-Agent&#x27;,sUserAgent);    Request.Assign(AllUrl,&#x27;POST&#x27;,Data,header);     chrm1.Browser.MainFrame.LoadRequest(Request);end;
-",
+123456789101112131415161718192021procedu",
         "wordCount": 295
     }
 </script>
@@ -392,7 +389,7 @@ $(function() {
   
     <li class="popular-posts-item">
       
-      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      <p class="popular-posts-title"><a href="\page\1150891238\" rel="bookmark"><i class="fa fa-file"></i> Delphi中那些容易混淆的基础知识</a></p>
       
     </li>
   

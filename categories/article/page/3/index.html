@@ -249,18 +249,7 @@ daovoice('update');
         <p class="article-excerpt">
             dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!
 
-一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100unit HookExt;  interfaceuses   uhook,Windows,SysUtils; type  TFuncCreateProcessA = function(lpApplicationName: LPCSTR; lpCommandLine: LPSTR;    lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;    lpEnvironment: Pointer; lpCurrentDirectory: LPCSTR; const lpStartupInfo: TStartupInfoA;    var lpProcessInformation: TProcessInformation): BOOL; stdcall;  TFuncCreateProcessW = function(lpApplicationName: LPCWSTR; lpCommandLine: LPWSTR;    lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;    lpEnvironment: Pointer; lpCurrentDirectory: LPCWSTR; const lpStartupInfo: TStartupInfoW;    var lpProcessInformation: TProcessInformation): BOOL; stdcall; implementation var  hhk: HHook;  MapFile: THandle;  startPID: PDWORD;  Hook: array [0 .. 1] of TNtHookClass; function NewCreateProcessA(lpApplicationName: LPCSTR; lpCommandLine: LPSTR;  lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;  lpEnvironment: Pointer; lpCurrentDirectory: LPCSTR; const lpStartupInfo: TStartupInfoA;  var lpProcessInformation: TProcessInformation): BOOL; stdcall;var  strCommandLine: AnsiString;begin  strCommandLine := StrPas(lpCommandLine);  if (Pos(&#x27;echo NOT SANDBOXED&#x27;,strCommandLine)&gt;0) or  (Pos(&#x27;no-sandbox&#x27;,strCommandLine)&gt;0) then    Result := True  else  begin    Hook[0].UnHook;    Result := TFuncCreateProcessA(Hook[0].BaseAddr)(lpApplicationName, lpCommandLine, lpProcessAttributes,      lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo,      lpProcessInformation);    Hook[0].Hook;  end;end; function NewCreateProcessW(lpApplicationName: LPCWSTR; lpCommandLine: LPWSTR;  lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;  lpEnvironment: Pointer; lpCurrentDirectory: LPCWSTR; const lpStartupInfo: TStartupInfoW;  var lpProcessInformation: TProcessInformation): BOOL; stdcall;var  strCommandLine: string;begin  strCommandLine := StrPas(lpCommandLine);   if (Pos(&#x27;echo NOT SANDBOXED&#x27;,strCommandLine)&gt;0) or  (Pos(&#x27;no-sandbox&#x27;,strCommandLine)&gt;0) then    Result := True  else  begin    Hook[1].UnHook;    Result := TFuncCreateProcessW(Hook[1].BaseAddr)(lpApplicationName, lpCommandLine, lpProcessAttributes,      lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo,      lpProcessInformation);    Hook[1].Hook;  end;end; // 安装API Hookprocedure InitHook;begin  Hook[0] := TNtHookClass.Create(&#x27;kernel32.dll&#x27;, &#x27;CreateProcessA&#x27;, @NewCreateProcessA);  Hook[1] := TNtHookClass.Create(&#x27;kernel32.dll&#x27;, &#x27;CreateProcessW&#x27;, @NewCreateProcessW);  // Hook[2] := TNtHookClass.Create( &#x27;user32.dll&#x27;, &#x27;MessageBoxA&#x27;, @NewMessageBoxA );end; // 删除API Hookprocedure UnInitHook;var  i: Integer;begin  for i := 0 to High(Hook) do    FreeAndNil(Hook[i]);end; // 环境处理procedure DllEntry(dwReason: DWORD);begin  case dwReason of    DLL_PROCESS_ATTACH:      InitHook;    DLL_PROCESS_DETACH:      UnInitHook;  end;end; initialization   InitHook; finalization  UnInitHook;end.
-其中的uHook.pas源码:12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788unit uHook; interface usesWindows, Messages, SysUtils;type  TNtJmpCode = packed record    MovEax: Byte;    Addr: DWORD;    JmpCode: Word;    dwReserved: Byte;  end;   TNtHookClass = class(TObject)  private    hProcess: THandle;    NewAddr: TNtJmpCode;    OldAddr: array [0 .. 7] of Byte;    ReadOk: Boolean;  public    BaseAddr: Pointer;    constructor Create(const ADllName, AFuncName: string; ANewFunc: Pointer);    destructor Destroy; override;    procedure Hook;    procedure UnHook;  end; implementation &#123; TNtHookClass &#125; constructor TNtHookClass.Create(const ADllName, AFuncName: string; ANewFunc: Pointer);var  dllModule: HMODULE;  lpNumberOfBytesReacd: DWORD; //NativeUInt;  i:Integer;begin  // 获取模块句柄  dllModule := GetModuleHandle(PWideChar(ADllName));  if dllModule = 0 then    dllModule := LoadLibrary(PWideChar(ADllName));  // 得到模块入口地址  BaseAddr := Pointer(GetProcAddress(dllModule, PWideChar(AFuncName)));  // 获取当前进程句柄  hProcess := GetCurrentProcess;  // 指向新地址的指针  NewAddr.MovEax := $B8;  NewAddr.Addr := DWORD(ANewFunc);  NewAddr.JmpCode := $E0FF;  // 保存原始地址   ReadOk:=ReadProcessMemory(hProcess, BaseAddr, Pointer(@OldAddr), 8, lpNumberOfBytesReacd);  // 开始拦截  Hook; end; destructor TNtHookClass.Destroy;begin  UnHook;  CloseHandle(hProcess);   inherited;end; procedure TNtHookClass.Hook;var  lpNumberOfBytesRead: DWORD;begin  if not ReadOk then    exit;  // 写入新的地址  WriteProcessMemory(hProcess, BaseAddr, @NewAddr, 8, lpNumberOfBytesRead);end; procedure TNtHookClass.UnHook;var  lpNumberOfBytesRead: DWORD;begin  if not ReadOk then    exit;  // 恢复地址  WriteProcessMemory(hProcess, BaseAddr, @OldAddr, 8, lpNumberOfBytesRead); end; end.
-这种hook处理不好就容易蓝屏，更简单的方法如下：用二进制编辑软件，比如winhex,我这儿采用UltraEdit,用UltraEdit打开flash插件dll文件 pepflashplayer.dll
-搜索comspec修改为somspec,(修改的名字只要和comspec不相同即可)修改cmd.exe为cm1.exe (修改的名字只要和cmd.exe不相同即可)
-
-修改后为
-
-然后保存即可，这时打开flash就不会有dos黑框闪一下了！
-第三种方法，更简单，什么都不用修改，只要在你的程序目录下新建一个文本文件，然后改名为cmd.exe，因为弹出黑框需要使用cmd程序，而系统搜索程序是从进程当前的工作目录开始查找，所以直接这样建一个不能执行的cmd.exe文件可以拦截cmd的调用。这个方法最简单！
-
-第一种hook方法是修改flash文件，但其实是采用动态方法改了汇编代码，处理不好容易蓝屏。第二种方法修改flash插件文件,原理是：flash执行cmd的逻辑是，先读取环境变量comspec(cmd.exe的全路径)，读取到就执行它，读取不到就不执行cmd.exe.只要把变量和cmd.exe名字修改，就执行不成功，就没有DOS黑框出来!第一种方法是在flash插件要运行cmd.exe的时候再进行拦截，是动态修改的，而第二种是直接让flash找不到变量和cmd.exe程序，flash自己判断不用执行，是静态修改!第三种是懒人方法!但几种方法实现的效果都是阻止cmd.exe的正常执行!同时你就可以这样思考了，为了让flash不出现闪黑框的问题，就变成了如何阻止cmd.exe的执行，比如你在你自己的程序中先修改一下comspec环境变量，也是可以阻止cmd.exe执行的，大家自由发挥!
-
+一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码1234567891011
         </p>
     </div>
 </article>
@@ -307,11 +296,7 @@ daovoice('update');
 
         <p class="article-excerpt">
             
-TChromium自定义post的header信息提交数据1234567891011121314151617181920212223242526272829uses  ceflib; function CreateField(const AValue: AnsiString): ICefPostDataElement;begin  Result := TCefPostDataElementRef.New;  Result.SetToBytes(Length(AValue), PAnsiChar(AValue));end; procedure TForm1.Button1Click(Sender: TObject);var  Header: ICefStringMultimap;  Data: ICefPostData;  Request: ICefRequest;begin  Header := TCefStringMultimapOwn.Create;  Header.Append(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);   Data := TCefPostDataRef.New;  Data.AddElement(CreateField(&#x27;Data.id=27&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.title=title&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.body=body&#x27;));   Request := TCefRequestRef.New;  Request.Flags := WUR_FLAG_NONE;  Request.Assign(&#x27;http://example.com/&#x27;, &#x27;POST&#x27;, Data, Header);   Chromium1.Browser.MainFrame.LoadRequest(Request);end;
-在另一版本中的代码1234567891011121314151617181920212223procedure TForm1.Button1Click(Sender: TObject);var  Header: ICefStringMultimap;  Data: ICefPostData;  Request: ICefRequest;begin  Request := TCefRequestRef.New;  Request.Url := &#x27;http://example.com/&#x27;;  Request.Method := &#x27;POST&#x27;;  Request.Flags := WUR_FLAG_NONE;   Header := TCefStringMultimapOwn.Create;  Header.Append(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);  Request.SetHeaderMap(Header);   Data := TCefPostDataRef.New;  Data.AddElement(CreateField(&#x27;Data.id=27&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.title=title&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.body=body&#x27;));  Request.PostData := Data;   Chromium1.Browser.MainFrame.LoadRequest(Request);end;
-TChromium自定义post数据123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051function CreateField(const AValue: AnsiString): ICefPostDataElement;begin Result := TCefPostDataElementRef.New; Result.SetToBytes(Length(AValue), PAnsiChar(AValue));end; //***************************************** procedure POST(total, fee: integer);var Header: ICefStringMultimap; Data: ICefPostData; Request: ICefRequest; Cook: ICefCookieManager;begin Request := TCefRequestRef.New; Request.Url := &#x27;&#x27;; Request.Method := &#x27;POST&#x27;; Request.Flags:=[UR_FLAG_ALLOW_CACHED_CREDENTIALS,UR_FLAG_ALLOW_COOKIES];  Header := TCefStringMultimapOwn.Create; Header.Append(&#x27;Host&#x27;, &#x27;&#x27;); Header.Append(&#x27;User-Agent&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept-Language&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept-Encoding&#x27;, &#x27;&#x27;); Header.Append(&#x27;Content-Type&#x27;, &#x27;&#x27;); Header.Append(&#x27;Referer&#x27;, &#x27;&#x27;); Header.Append(&#x27;Content-Length&#x27;, &#x27;&#x27;); Header.Append(&#x27;Origin&#x27;, &#x27;&#x27;); Header.Append(&#x27;Connection&#x27;, &#x27;&#x27;); Header.Append(&#x27;Pragma&#x27;, &#x27;&#x27;); Header.Append(&#x27;Cache-Control&#x27;, &#x27;&#x27;);  Header.Append(&#x27;Cookie&#x27;,&#x27;...&#x27;); ... Header.Append(&#x27;Cookie&#x27;,&#x27;...&#x27;);  Request.SetHeaderMap(Header);  Data := TCefPostDataRef.New; Data.AddElement(CreateField(&#x27;sessionid=&#x27;+SessionID)); Data.AddElement(CreateField(&#x27;¤cy=5&#x27;)); Data.AddElement(CreateField(&#x27;&amp;subtotal=&#x27;+inttostr(total-fee))); Data.AddElement(CreateField(&#x27;&amp;fee=&#x27;+IntToStr(fee))); Data.AddElement(CreateField(&#x27;&amp;total=&#x27;+IntToStr(total)));  Request.PostData := Data;  form1.Chromium1.Browser.MainFrame.LoadRequest(Request);end;
-
-
+TChromium自定义post的header信息提交数据1234567891011121314151617181920212223242526272829uses  ceflib; function CreateField(const AValue: AnsiString): ICefPostDataElement;begin  Result := TCefPostDataElementRef
         </p>
     </div>
 </article>
@@ -361,18 +346,7 @@ TChromium自定义post数据1234567891011121314151617181920212223242526272829303
     
 
         <p class="article-excerpt">
-            嵌入式Chromium框架(简称CEF) 是一个由Marshall Greenblatt在2008建立的开源项目，它主要目的是开发一个基于Google Chromium的Webbrowser控件。CEF支持一系列的编程语言和操作系统，并且能很容易地整合到新的或已有的工程中去。它的设计思想政治就是易用且兼顾性能。CEF基本的框架包含C/C++程序接口，通过本地库的接口来实现，而这个库则会隔离宿主程序和Chromium&amp;Webkit的操作细节。它在浏览器控件和宿主程序之间提供紧密的整合，它支持用户插件，协议，javascript对象以及javascript扩展，宿主程序可以随意地控件资源下载，导航，下下文内容和打印等，并且可以跟Google Chrome浏览器一起，支持高性能和Html5 技术
-
-为什么chromium不支持mp3和h.264的mp4音视频解码，因为h.264编码并非开源，是需要付费的!所以就存在谷歌自己的浏览器chrome能支持mp4和tchromium不支持mp4!如何查看你的tchromium是否支持mp4呢？你用tchromium写一个简单浏览器，然后打开http://html5test.com 支持是这样显示的
-而不支持是这样显示的
-
-也就是支持h.264 support mp3 support和aac support应该是钩!
-要让cef支持mp3和mp4，需要自己编译，如果你对自己如何编辑有兴趣可以看这篇文件  在Windows下编译Cef3.2623并加入mp3、mp4支持
-对于delphi用户，如何让在delphi中dcef3支持mp3和mp4呢？先到这儿下载dcef3 3.2623.1401  http://download.csdn.net/download/cyu/9917747  (如果没有积分就到这儿下载 链接：https://pan.baidu.com/s/1dFETI0L 密码：gult  ) 你也可以安装dcefbrowser，封装后的dcef3 这儿下载dcefbrowser3.2623.1401 https://github.com/bccsafe/DcefBrowser  (你也可以到这儿下载dcefbrowser 链接：https://pan.baidu.com/s/1dFB5Zv7 密码：fljs  )不管你是下载的dcef3 3.2623.1401 还是下载的dcefbrowser 3.2623.1401都可以，安装控件后，运行示例程序，这时你的dcef是不支持mp3和mp4的，为什么呢？因为h.264等编码问题，作者打包的dll库文件是默认不支持mp3和mp4的!
-如何让delphi中dcef3支持mp3和mp4呢？你只需要到这儿下载  链接：https://pan.baidu.com/s/1c1DZ1DY 密码：sqir  已经编译好支持mp3和mp4的dll库，覆盖到前面安装的控件中，就OK了，因为这个dll库是对应于dcef3.2623.1401，所以dcef必须也要安装3.26.23.1401。如何让delphi中dcef3支持mp3和mp4呢?因为非开源问题，所以自己编译dcef3的dll库的不多，提供下载的也不多，为了让你的dcef3支持mp3和mp4，我们只要找对应的版本就可以使用了!为什么非要指定dcef3为3.2623.1401，这是因为编译cef的dll需要开启mp3和mp4支持，网上提供其他版本的cef的dll库，并且加入了支持mp3和mp4的没有，如果你会C++，会自己编译cef的库，那什么版本都一样，都可以支持mp3和mp4
-
-附dcef3另一版本及库文件：dcef3.2454 下载http://download.csdn.net/download/bigcoolfish/9616325  相对应已添加支持mp3和mp4的 dcef3.2454 dll库文件下载  https://pan.baidu.com/s/1pKHbeY3 密码: mxr2
-
+            嵌入式Chromium框架(简称CEF) 是一个由Marshall Greenblatt在2008建立的开源项目，它主要目的是开发一个基于Google Chromium的Webbrowser控件。CEF支持一系列的编程语言和操作系统，并且能很容易地整合到新的或已有的工程中去。它的设计思想政治就是易用且兼顾性能。CEF基本的框架包含C/C++程序接口，通过本地库的接口来实现，而这个库则会隔离宿主程序
         </p>
     </div>
 </article>
@@ -420,20 +394,7 @@ TChromium自定义post数据1234567891011121314151617181920212223242526272829303
         <p class="article-excerpt">
             做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!来看看桌面出现的这个弹出窗口在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！
 
-打开 句柄精灵ViewWizard (下载句柄精灵请到 http://www.bnwin.com/2017/11/03/202.html)  界面如下
-鼠标按住 句柄精灵的 十字图标拖到这个弹出的窗口上！
-这时句柄精灵就显示出来这个程序的所有信息
-这个窗口的模块是 C:\Users\Administrator\AppData\Local\Temp\QXREPAIR1.DLL 往下面拉，看看进程是谁
-
-exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe 是由谁创建的呢？父进程是 916 [svchost.exe] 找到了是谁创建的，是什么进程，就可以相应的进行控制了!你可以禁止XFIXER.exe的运行，或者禁止svchost.exe在temp目录创建xfixer.exe文件等！
-你也可以根据句柄精灵提供的窗口信息进行自动关闭!对于这种有独立进程的弹出窗口你可能通过任务管理器也能查找到，虽然没有使用句柄精灵方便，但通过其他程序加载dll库文件弹出的窗口，通过任务管理器就无能为力了!
-我们来看看英雄联盟选择英雄时左边的窗口是谁创建的
-
-打开句柄精灵，拖动十字图标到这个窗口上，看看句柄精灵中的信息
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121属性 数据基本&gt;句柄 67140 [0x00010644]文本长度 0类名 TWINCONTROL基类 Generic描述 通用窗口ID *数据 0x130B9478字节 *实例 *模块 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe父窗&gt;句柄 [65552]文本 [Desktop]类名 [#32769]基类 [Generic]显示&gt;状态 常规&gt;可视 yes有效 yes置顶 yes分层 no透明 no重叠 no不活动 noUnicode yes密码框 no掩码不透明度 *Z序 3大小&gt;窗口矩形 (1508,415)-(1810,798) 302×383还原矩形 (1508,415)-(1810,798) 302×383客户矩形(屏幕) (1508,415)-(1810,798) 302×383客户矩形(窗口) (0,0)-(302,383) 302×383最大化坐标 (0,0) 1920×1050最小最大尺寸 0x0 1930×1057当前窗口坐标当前客户坐标关系&gt;父窗口 65552 [0x00010010] #32769 “Desktop”根窗口 *所有者窗口 *首个子窗口 *首兄弟窗口 394540 [0x0006052C] MSCTFIME UI “MSCTFIME UI”上一个窗口 918714 [0x000E04BA] IME “Default IME”下一个窗口 198612 [0x000307D4] Auto-Suggest Dropdown “”尾兄弟窗口 65812 [0x00010114] Progman “Program Manager”样式&gt;标准样式 0x96020000 (2516713472)描述 WS_POPUP|WS_VISIBLE|WS_CLIPSIBLINGS|WS_CLIPCHILDREN|WS_GROUP控件扩展样式 0x00000088 (136)描述 WS_EX_TOPMOST|WS_EX_TOOLWINDOW控件类&gt;类名 TWINCONTROL类原子 0xC2CC (49868)类字节 *窗口字节 *类样式 0x00000008 (8)描述 CS_DBLCLKS图标 *小图标 *光标 0x00010003 IDC_ARROW画刷 *菜单 *过程 0x55C1AD90 (1438756240) [Unicode]模块 0x00400000 (4194304)模块路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe菜单&gt;句柄 *子菜单所有子菜单菜单项菜单矩形字体&gt;句柄 *名称大小粗体斜体删除线下划线字符集进程&gt;进程ID 7060 [0x00001B94]线程ID 2560 [0x00000A00]进程启动 2017-11-26 16:32:06线程启动 2017-11-26 16:32:06内存使用 32,248 KB内存峰值 91,252 KB虚拟内存 82,008 KB线程计数 17句柄计数 324GUI对象 GDI:52, User:40映像名称 pallas.exeEXE路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe物理路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe命令行父进程 6444 [tgp_daemon.exe]文件&gt;名称 pallas.exe大小 7390408版本 4.1.1.123版权 Copyright (C) 2015 Tencent.All Rights Reserved产品 WeGame公司 腾讯计算机系统有限公司描述 Tencent.WeGame.Pallas创建时间 2015-12-31 21:14:44统计&gt;子窗口所有子窗口无效子窗口隐藏子窗口线程窗口 12进程窗口 12附加&gt;基本类型 Generic (通用)
-正确使用句柄精灵，可以找出广告程序等弹出窗口的幕后黑手！
-
-
+打开 句柄精灵ViewWizard (下载句柄精灵请到 
         </p>
     </div>
 </article>
@@ -485,11 +446,7 @@ exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe
         <p class="article-excerpt">
             使用Webbrowser取得网页源代码网上已经有很多例子了，而TChromium如何获得网页源代码呢？
 
-第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;begindata:=tstringlist.create;if frame.IsMain thendata.text:=frame.Source; // HTML Sourceend;data.free;end;
-在dcef3中123456789101112procedure StringVisitor(const str: ustring);begin//str is the SourceHtmlshowmessage(str);end;function GetSourceHTML: string;varCefStringVisitor:ICefStringVisitor;beginCefStringVisitor := TCefFastStringVisitor.Create(StringVisitor);Chromium1.Browser.MainFrame.GetSource(CefStringVisitor);end;
-第三种1Chromium1.Browser.MainFrame.ViewSource;
-
-
+第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;b
         </p>
     </div>
 </article>
@@ -535,8 +492,7 @@ exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe
     
 
         <p class="article-excerpt">
-            汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对应的不同平台之间不可直接移植。下面是汇编指令一、数据传输指令───────────────────────────────────────    它们在存贮器和寄存器、寄存器和输入输出端口之间传送数据.    1. 通用数据传送指令.        MOV    传送字或字节.        MOVSX  先符号扩展,再传送.        MOVZX  先零扩展,再传送.        PUSH    把字压入堆栈.        POP    把字弹出堆栈.        PUSHA  把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.        POPA    把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.        PUSHAD  把EAX,ECX,EDX,EBX,ESP,EBP,ESI,EDI依次压入堆栈.        POPAD  把EDI,ESI,EBP,ESP,EBX,EDX,ECX,EAX依次弹出堆栈.        BSWAP  交换32位寄存器里字节的顺序        XCHG    交换字或字节.( 至少有一个操作数为寄存器,段寄存器不可作为操作数)        CMPXCHG 比较并交换操作数.( 第二个操作数必须为累加器AL/AX/EAX )        XADD    先交换再累加.( 结果在第一个操作数里 )        XLAT    字节查表转换.                ── BX 指向一张 256 字节的表的起点, AL 为表的索引值 (0-255,即                0-FFH); 返回 AL 为查表结果. ( [BX+AL]-&gt;AL )    2. 输入输出端口传送指令.        IN      I/O端口输入. ( 语法: IN 累加器, {端口号│DX} )        OUT    I/O端口输出. ( 语法: OUT {端口号│DX},累加器 )          输入输出端口由立即方式指定时, 其范围是 0-255; 由寄存器 DX 指定时,          其范围是 0-65535.    3. 目的地址传送指令.        LEA    装入有效地址.          例: LEA DX,string  ;把偏移地址存到DX.        LDS    传送目标指针,把指针内容装入DS.          例: LDS SI,string  ;把段地址:偏移地址存到DS:SI.        LES    传送目标指针,把指针内容装入ES.          例: LES DI,string  ;把段地址:偏移地址存到ES:DI.        LFS    传送目标指针,把指针内容装入FS.          例: LFS DI,string  ;把段地址:偏移地址存到FS:DI.        LGS    传送目标指针,把指针内容装入GS.          例: LGS DI,string  ;把段地址:偏移地址存到GS:DI.        LSS    传送目标指针,把指针内容装入SS.          例: LSS DI,string  ;把段地址:偏移地址存到SS:DI.    4. 标志传送指令.        LAHF    标志寄存器传送,把标志装入AH.        SAHF    标志寄存器传送,把AH内容装入标志寄存器.        PUSHF  标志入栈.        POPF    标志出栈.        PUSHD  32位标志入栈.        POPD    32位标志出栈.二、算术运算指令───────────────────────────────────────        　　ADD    加法.        ADC    带进位加法.        INC    加 1.        AAA    加法的ASCII码调整.        DAA    加法的十进制调整.        SUB    减法.        SBB    带借位减法.        DEC    减 1.        NEC    求反(以 0 减之).        CMP    比较.(两操作数作减法,仅修改标志位,不回送结果).        AAS    减法的ASCII码调整.        DAS    减法的十进制调整.        MUL    无符号乘法.        IMUL    整数乘法.          以上两条,结果回送AH和AL(字节运算),或DX和AX(字运算),        AAM    乘法的ASCII码调整.        DIV    无符号除法.        IDIV    整数除法.          以上两条,结果回送:              商回送AL,余数回送AH, (字节运算);          或  商回送AX,余数回送DX, (字运算).        AAD    除法的ASCII码调整.        CBW    字节转换为字. (把AL中字节的符号扩展到AH中去)        CWD    字转换为双字. (把AX中的字的符号扩展到DX中去)        CWDE    字转换为双字. (把AX中的字符号扩展到EAX中去)        CDQ    双字扩展.    (把EAX中的字的符号扩展到EDX中去)三、逻辑运算指令───────────────────────────────────────        　　AND    与运算.        OR      或运算.        XOR    异或运算.        NOT    取反.        TEST    测试.(两操作数作与运算,仅修改标志位,不回送结果).        SHL    逻辑左移.        SAL    算术左移.(=SHL)        SHR    逻辑右移.        SAR    算术右移.(=SHR)        ROL    循环左移.        ROR    循环右移.        RCL    通过进位的循环左移.        RCR    通过进位的循环右移.          以上八种移位指令,其移位次数可达255次.              移位一次时, 可直接用操作码.  如 SHL AX,1.              移位&gt;1次时, 则由寄存器CL给出移位次数.                如  MOV CL,04                    SHL AX,CL四、串指令───────────────────────────────────────            　DS:SI  源串段寄存器  :源串变址.            ES:DI  目标串段寄存器:目标串变址.            CX      重复次数计数器.            AL/AX  扫描值.            D标志  0表示重复操作中SI和DI应自动增量; 1表示应自动减量.            Z标志  用来控制扫描或比较操作的结束.        MOVS    串传送.            ( MOVSB  传送字符.    MOVSW  传送字.    MOVSD  传送双字. )        CMPS    串比较.            ( CMPSB  比较字符.    CMPSW  比较字. )        SCAS    串扫描.            把AL或AX的内容与目标串作比较,比较结果反映在标志位.        LODS    装入串.            把源串中的元素(字或字节)逐一装入AL或AX中.            ( LODSB  传送字符.    LODSW  传送字.    LODSD  传送双字. )        STOS    保存串.            是LODS的逆过程.        REP            当CX/ECX&lt;&gt;0时重复.        REPE/REPZ      当ZF=1或比较结果相等,且CX/ECX&lt;&gt;0时重复.        REPNE/REPNZ    当ZF=0或比较结果不相等,且CX/ECX&lt;&gt;0时重复.        REPC          当CF=1且CX/ECX&lt;&gt;0时重复.        REPNC          当CF=0且CX/ECX&lt;&gt;0时重复.五、程序转移指令───────────────────────────────────────    　1&gt;无条件转移指令 (长转移)        JMP    无条件转移指令        CALL    过程调用        RET/RETF过程返回.    2&gt;条件转移指令 (短转移,-128到+127的距离内)        ( 当且仅当(SF XOR OF)=1时,OP1&lt;OP2 )        JA/JNBE 不小于或不等于时转移.        JAE/JNB 大于或等于转移.        JB/JNAE 小于转移.        JBE/JNA 小于或等于转移.          以上四条,测试无符号整数运算的结果(标志C和Z).        JG/JNLE 大于转移.        JGE/JNL 大于或等于转移.        JL/JNGE 小于转移.        JLE/JNG 小于或等于转移.          以上四条,测试带符号整数运算的结果(标志S,O和Z).        JE/JZ  等于转移.        JNE/JNZ 不等于时转移.        JC      有进位时转移.        JNC    无进位时转移.        JNO    不溢出时转移.        JNP/JPO 奇偶性为奇数时转移.        JNS    符号位为 “0” 时转移.        JO      溢出转移.        JP/JPE  奇偶性为偶数时转移.        JS      符号位为 “1” 时转移.    3&gt;循环控制指令(短转移)        LOOP            CX不为零时循环.        LOOPE/LOOPZ    CX不为零且标志Z=1时循环.        LOOPNE/LOOPNZ  CX不为零且标志Z=0时循环.        JCXZ            CX为零时转移.        JECXZ          ECX为零时转移.    4&gt;中断指令        INT    中断指令        INTO    溢出中断        IRET    中断返回    5&gt;处理器控制指令        HLT    处理器暂停, 直到出现中断或复位信号才继续.        WAIT    当芯片引线TEST为高电平时使CPU进入等待状态.        ESC    转换到外处理器.        LOCK    封锁总线.        NOP    空操作.        STC    置进位标志位.        CLC    清进位标志位.        CMC    进位标志取反.        STD    置方向标志位.        CLD    清方向标志位.        STI    置中断允许位.        CLI    清中断允许位.六、伪指令───────────────────────────────────────        　　DW      定义字(2字节).        PROC    定义过程.        ENDP    过程结束.        SEGMENT 定义段.        ASSUME  建立段寄存器寻址.        ENDS    段结束.        END    程序结束.
-
+            汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对
         </p>
     </div>
 </article>
@@ -586,16 +542,7 @@ exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe
     
 
         <p class="article-excerpt">
-            DEBUG是DOS中的一个外部命令，从DOS 1.0起就带有此命令，因此可见此命令的重要性了。虽然此命令的功能非常强大，可以解决许多问题，可是对许多人来说，尤其是初学者来说，却非常不易掌握。因此，现将DEBUG的命令详细介绍一番，以让大家知道它的使用。Debug:A（汇编）直接将 8086/8087/8088 记忆码合并到内存。该命令从汇编语言语句创建可执行的机器码。所有数值都是十六进制格式，必须按一到四个字符输入这些数值。在引用的操作代码（操作码）前指定前缀记忆码。a [address]参数address指定键入汇编语言指令的位置。对 address 使用十六进制值，并键入不以“h”字符结尾的每个值。如果不指定地址，a 将在它上次停止处开始汇编。有关将数据输入到指定字节中的信息，请单击“相关主题”列表中的 Debug E（键入）。有关反汇编字节的信息，请单击“相关主题”列表中的 Debug U（反汇编）。说明使用记忆码段的替代记忆码为 cs:、ds:、es: 和 ss:。远程返回的记忆码是 retf。字符串处理的记忆码必须明确声明字符串大小。例如，使用 movsw 可以移动 16 位的字串，使用 movsb 可以移动 8 位字节串。汇编跳转和调用汇编程序根据字节替换自动将短、近和远的跳转及调用汇编到目标地址。通过使用 near 或 far 前缀可以替代这样的跳转或调用，如下例所示：
-1234-a0100:05000100:0500 jmp 502 ; a 2-byte short jump0100:0502 jmp near 505 ; a 3-byte near jump0100:0505 jmp far 50a ; a 5-byte far jump
-可以将 near 前缀缩写为 ne。区分字和字节内存位置当某个操作数可以引用某个字内存位置或者字节内存位置时，必须用前缀 word ptr 或者前缀 byte ptr 指定数据类型。可接受的缩写分别是 wo 和 by。以下范例显示两种格式：
-12dec wo [si]neg byte ptr [128]
-指定操作数Debug 使用包括在中括号 ([ ]) 的操作数引用内存地址的习惯用法。这是因为另一方面 Debug 不能区分立即操作数和内存地址的操作数。以下范例显示两种格式：
-1234mov ax,21 ; load AX with 21hmov ax,[21] ; load AX with the; contents of; memory location 21h
-使用伪指令使用 a 命令提供两个常用的伪指令：db 操作码，将字节值直接汇编到内存，dw 操作码，将字值直接汇编到内存。以下是两个伪指令的范例：
-1234db 1,2,3,4,”THIS IS AN EXAMPLE”db ‘THIS IS A QUOTATION MARK:”‘db “THIS IS A QUOTATION MARK:&#x27;”dw 1000,2000,3000,”BACH”
-范例a 命令支持所有形式的间接注册命令，如下例所示：
-123add bx,34[bp+2].[si-1]pop [bp+di]push [si] )
+            DEBUG是DOS中的一个外部命令，从DOS 1.0起就带有此命令，因此可见此命令的重要性了。虽然此命令的功能非常强大，可以解决许多问题，可是对许多人来说，尤其是初学者来说，却非常不易掌握。因此，现将DEBUG的命令详细介绍一番，以让大家知道它的使用。Debug:A（汇编）直接将 8086/8087/8088 记忆码合并到内存。该命令从汇编语言语句创建可执行的机器码。所有数值都是十六进制格式，必须
         </p>
     </div>
 </article>
@@ -642,13 +589,7 @@ exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe
 
         <p class="article-excerpt">
             当您在运行Microsoft Windows 2000/XP/Server 2003、Microsoft Windows Vista/Server 2008、Microsoft Windows 7操作系统时，Windows可能会突然停止正常运行，并显示一副含有下述字样的蓝色背景错误信息画面：
-1234A problem has been detected and Windows has been shut down to prevent damage to your computer.……
-此蓝色背景错误信息画面一般简称为“蓝屏（Blue Screen）”或“停止屏（Stop Error Screen）”，它可能会长时间停留在显示屏；也可能会在短时间显示之后自动重新启动计算机。windows蓝屏分析的方法是什么，遇到windows蓝屏如何查找原因，下面就进行说明!
-一.原因分析：如果Windows因系统设置故障、软件故障、硬件故障、驱动程序故障、网络故障等各种类型的故障产生了严重的错误，引起Windows无法继续维持正常运行，Windows出于避免用户数据丢失及损坏计算机的考虑，将自动停止运行并显示“蓝屏”错误信息。
-在默认的系统设置中，Windows 2000遇到“蓝屏”故障后“蓝屏”错误信息将长时间停留在显示屏，直到您关闭或重新启动计算机；Windows XP及后续版本的Windows遇到“蓝屏”故障后“蓝屏”错误信息将在短时间显示之后自动重新启动计算机。“蓝屏”故障发生后是否自动重新启动计算机取决于“启动与故障恢复”设置。您可以在“控制面板”中打开“系统”属性，切换至“高级”选项卡（如果是Windows Vista及以上版本的Windows请在“系统”属性左上方的工具栏中选择“高级系统设置”，确认用户帐户控制（UAC）安全提示，然后再切换至“高级”选项卡），在“高级”选项卡中打开“启动与故障恢复”。您可以在“启动与故障恢复”的选项中找到“自动重新启动”复选框，如果此复选框没有选中，Windows遇到“蓝屏”故障后“蓝屏”错误信息就将长时间停留在显示屏（Windows 2000的默认设置）；如果此复选框被选中，“蓝屏”错误信息就将在短时间显示之后自动重新启动计算机（Windows XP及后续版本的Windows的默认设置）。
-二.蓝屏DMP故障文件在哪儿？有盘环境，如上图所示，蓝屏dmp就存放在%SystemRoot%\Minidump 目录中 即 c:\windows\Minidump 如果上图中的设置为%SystemRoot%\Minidump.dmp，那么蓝屏故障dmp文件就在c:\windows中的Minidump.dmp文件.
-无盘环境，dmp文件就在无盘服务端软件的相关目录中！根据无盘系统不同，存放位置不同，一般就在无盘软件的dmp目录中!
-WINdbg是什么，我们需要它做什么？
+1234A problem has been detected and Windows has been 
         </p>
     </div>
 </article>
@@ -698,16 +639,7 @@ WINdbg是什么，我们需要它做什么？
     
 
         <p class="article-excerpt">
-            ikeeper爱克吧为网吧实名管理系统 官网http://www.echina110.com如何去掉ikeeper爱克吧的桌面广告呢？这儿介绍两种方种，虽然ikeeper爱克吧已经开始下线，开始使用ikeeper 8圈管理系统，在这儿仍然记录一下如何去掉ikeeper爱克吧广告的方法，至于ikeeper 8圈去广告方法，后续我们会放上相应的文章，8圈去广告已经没有爱克吧简单了!方法一自定义广告使用说明
-爱克吧的广告地址为
-http://activedesktop.echina110.com/advertises/desktopx.asp?id=5001030050
-desktopx.asp的内容为:
-Http://你的站点的IP/advertises/adv/ad.cab  123
-只要把activedesktop.echina110.com域名屏蔽，就可以去广告，只要把这个域名重定向，然后自定义cab的内容就可以显示自定义的广告!至于怎么屏蔽，可以使用路由器中的域名过滤和重定向就ＯＫ了。
-其中desktopx.asp的内容说明如下：第一项指向你的站点中的ad.cab（文件可以为任何，但必须是cab压缩包，不能是zip或rar或7z等其他压缩包，制作cab压缩包，可以使用xp自带的IEXPRESS.EXE)
-路径不一定是在advertises/adv可以改为其他路径,但该路径下必须有ad.cab,这个文件名不能变
-其后的123可以为任意数字!
-同时请注意desktopx.asp的路径不能变,只能在http://你的站点IP/advertises/desktopx.asp确保打开此 asp页面在浏览器中返回的应该为Http://你的ad.cab路径/ad.cab 123
+            ikeeper爱克吧为网吧实名管理系统 官网http://www.echina110.com如何去掉ikeeper爱克吧的桌面广告呢？这儿介绍两种方种，虽然ikeeper爱克吧已经开始下线，开始使用ikeeper 8圈管理系统，在这儿仍然记录一下如何去掉ikeeper爱克吧广告的方法，至于ikeeper 8圈去广告方法，后续我们会放上相应的文章，8圈去广告已经没有爱克吧简单了!方法一自定义广告使用
         </p>
     </div>
 </article>

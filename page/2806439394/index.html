@@ -314,20 +314,7 @@ exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe
         "url": "https://goodhelp.gitee.io/page/2806439394/",
         "description": "做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!来看看桌面出现的这个弹出窗口在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！
 
-打开 句柄精灵ViewWizard (下载句柄精灵请到 http://www.bnwin.com/2017/11/03/202.html)  界面如下
-鼠标按住 句柄精灵的 十字图标拖到这个弹出的窗口上！
-这时句柄精灵就显示出来这个程序的所有信息
-这个窗口的模块是 C:\Users\Administrator\AppData\Local\Temp\QXREPAIR1.DLL 往下面拉，看看进程是谁
-
-exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe 是由谁创建的呢？父进程是 916 [svchost.exe] 找到了是谁创建的，是什么进程，就可以相应的进行控制了!你可以禁止XFIXER.exe的运行，或者禁止svchost.exe在temp目录创建xfixer.exe文件等！
-你也可以根据句柄精灵提供的窗口信息进行自动关闭!对于这种有独立进程的弹出窗口你可能通过任务管理器也能查找到，虽然没有使用句柄精灵方便，但通过其他程序加载dll库文件弹出的窗口，通过任务管理器就无能为力了!
-我们来看看英雄联盟选择英雄时左边的窗口是谁创建的
-
-打开句柄精灵，拖动十字图标到这个窗口上，看看句柄精灵中的信息
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121属性 数据基本&gt;句柄 67140 [0x00010644]文本长度 0类名 TWINCONTROL基类 Generic描述 通用窗口ID *数据 0x130B9478字节 *实例 *模块 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe父窗&gt;句柄 [65552]文本 [Desktop]类名 [#32769]基类 [Generic]显示&gt;状态 常规&gt;可视 yes有效 yes置顶 yes分层 no透明 no重叠 no不活动 noUnicode yes密码框 no掩码不透明度 *Z序 3大小&gt;窗口矩形 (1508,415)-(1810,798) 302×383还原矩形 (1508,415)-(1810,798) 302×383客户矩形(屏幕) (1508,415)-(1810,798) 302×383客户矩形(窗口) (0,0)-(302,383) 302×383最大化坐标 (0,0) 1920×1050最小最大尺寸 0x0 1930×1057当前窗口坐标当前客户坐标关系&gt;父窗口 65552 [0x00010010] #32769 “Desktop”根窗口 *所有者窗口 *首个子窗口 *首兄弟窗口 394540 [0x0006052C] MSCTFIME UI “MSCTFIME UI”上一个窗口 918714 [0x000E04BA] IME “Default IME”下一个窗口 198612 [0x000307D4] Auto-Suggest Dropdown “”尾兄弟窗口 65812 [0x00010114] Progman “Program Manager”样式&gt;标准样式 0x96020000 (2516713472)描述 WS_POPUP|WS_VISIBLE|WS_CLIPSIBLINGS|WS_CLIPCHILDREN|WS_GROUP控件扩展样式 0x00000088 (136)描述 WS_EX_TOPMOST|WS_EX_TOOLWINDOW控件类&gt;类名 TWINCONTROL类原子 0xC2CC (49868)类字节 *窗口字节 *类样式 0x00000008 (8)描述 CS_DBLCLKS图标 *小图标 *光标 0x00010003 IDC_ARROW画刷 *菜单 *过程 0x55C1AD90 (1438756240) [Unicode]模块 0x00400000 (4194304)模块路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe菜单&gt;句柄 *子菜单所有子菜单菜单项菜单矩形字体&gt;句柄 *名称大小粗体斜体删除线下划线字符集进程&gt;进程ID 7060 [0x00001B94]线程ID 2560 [0x00000A00]进程启动 2017-11-26 16:32:06线程启动 2017-11-26 16:32:06内存使用 32,248 KB内存峰值 91,252 KB虚拟内存 82,008 KB线程计数 17句柄计数 324GUI对象 GDI:52, User:40映像名称 pallas.exeEXE路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe物理路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe命令行父进程 6444 [tgp_daemon.exe]文件&gt;名称 pallas.exe大小 7390408版本 4.1.1.123版权 Copyright (C) 2015 Tencent.All Rights Reserved产品 WeGame公司 腾讯计算机系统有限公司描述 Tencent.WeGame.Pallas创建时间 2015-12-31 21:14:44统计&gt;子窗口所有子窗口无效子窗口隐藏子窗口线程窗口 12进程窗口 12附加&gt;基本类型 Generic (通用)
-正确使用句柄精灵，可以找出广告程序等弹出窗口的幕后黑手！
-
-",
+打开 句柄精灵ViewWizard (下载句柄精灵请到 ",
         "wordCount": 411
     }
 </script>
@@ -415,7 +402,7 @@ $(function() {
   
     <li class="popular-posts-item">
       
-      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      <p class="popular-posts-title"><a href="\page\1150891238\" rel="bookmark"><i class="fa fa-file"></i> Delphi中那些容易混淆的基础知识</a></p>
       
     </li>
   

@@ -310,19 +310,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateCreated": "2017-12-25",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/2193927687/",
-        "description": "Chromium Embedded Framework (CEF)是个基于Google Chromium项目的开源Web browser控件，支持Windows, Linux, Mac平台。除了提供C/C++接口外，也有其他语言的移植版。因为基于Chromium，所以CEF支持Webkit &amp; Chrome中实现的HTML5的特性，并且在性能上面，也比较接近Chrome。CEF还提供的如下特性：自定义插件、自定义协议、自定义JavaScript对象和扩展；可控制的resource loading, navigation, context menus等等。dcef是指的cef在delphi中的版本
-cef在前期版本中是自带支持flash插件的,后来Chromium不再默认支持flash控件!下面看看我的程序的dcef命令行参数
-
-如何让dcef支持flash呢？
-
-
-安装好dcef，不管哪个版本都行!
-安装360极速浏览器或QQ浏览器，打开其安装目录，找到ppflash目录和npflash目录(360极速浏览器是这两个目录，而QQ浏览器略有不同)！
-在你的工程目录中建NativeFlash目录和PepperFlash目录,然后360的npflash目录下的NPSWF开头的dll文件和同目录下的vch文件复制到自己工程的NativeFlash中，把360的ppflash目录中的pepflash开头的dll文件和同目录下的json文件复制到工程的PepperFlash目录中!这一步就是用360浏览器的flash文件，不需要你手工去下载安装插件!至少你应该发现即使你的系统没有安装flash插件，但360浏览器安装后一样可以正常播放flash，这就是因为他的目录中自带了这几个flash文件，为了让你的程序的dcef支持flash，所以我们直接复制360极速浏览器的flash文件过来，简单方便!
-编辑你的delphi工程文件（即dpr文件），在{$R *.res}后面添加如下代码123456789101112131415161718192021procedure AppendCefCmdline(const processType: ustring; const cmd: ICefCommandLine);begin  //cmd.AppendSwitch(&#x27;--enable-gpu-plugin&#x27;);//允许gpu  //cmd.AppendSwitch(&#x27;disable-gpu&#x27;);//禁止gpu  cmd.AppendSwitch(&#x27;enable-npapi&#x27;); //允许NativeFlash  //cmd.AppendSwitch(&#x27;enable-tab-audio-muting&#x27;);//允许tab页禁音  //cmd.AppendSwitch(&#x27;--enable-media-stream&#x27;); //允许视频流  cmd.AppendSwitchwithvalue(&#x27;load-plugin&#x27;, &#x27;NativeFlash\NPSWF32.dll&#x27;);//指定NativeFlash插件文件位置，注意文件名要和你的一致    //cmd.AppendSwitchWithValue(&#x27;ppapi-flash-version&#x27;,&#x27;20.0.0.267&#x27;);//指定PepperFlash版本号  cmd.AppendSwitchWithValue(&#x27;ppapi-flash-path&#x27;,&#x27;PepperFlash\pepflashplayer.dll&#x27;);//指定PepperFlash插件文件位置,注意文件名要和你的一致  cmd.AppendSwitch(&#x27;--enable-system-flash&#x27;);//允许PepperFlash  //cmd.AppendSwitch(&#x27;--enable-usermedia-screen-capturing&#x27;);end; begin  CefOnBeforeCommandLineProcessing :=AppendCefCmdline; //这一句就是指定了dcef启动的命令行  Application.Initialize;  Application.MainFormOnTaskbar := True;  Application.CreateForm(TMainForm, MainForm);  Application.Run;end.
-
-很多人用delphi的dcef写的程序，不支持flash，是只在命令行中添加了允许flash，而没有指定flash插件文件的位置，这时dcef会去调用系统安装的flash插件，一旦系统插件有问题，你的程序就无法播放flash了，本文写的方法就是360极速浏览器的方法，不管你的系统安装不安装flash，一样播放flash!而要让dcefbrowser支持flash也一样，dcefbrowser中只是把CefOnBeforeCommandLineProcessing改为DcefBApp.OnBeforeCommandLineProcessing即可，至于播放flash会有dos窗口弹一下的问题，请看本站的这篇文章http://www.bnwin.com/2017/12/01/328.html
-",
+        "description": "Chromium Embedded Framework (CEF)是个基于Google Chromium项目的开源Web browser控件，支持Windows, Linux, Mac平台。除了提供C/C++接口外，也有其他语言的移植版。因为基于Chromium，所以CEF支持Webkit &amp; Chrome中实现的HTML5的特性，并且在性能上面，也比较接近Chrome。CEF还提供的如下",
         "wordCount": 138
     }
 </script>
@@ -410,7 +398,7 @@ $(function() {
   
     <li class="popular-posts-item">
       
-      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      <p class="popular-posts-title"><a href="\page\1150891238\" rel="bookmark"><i class="fa fa-file"></i> Delphi中那些容易混淆的基础知识</a></p>
       
     </li>
   

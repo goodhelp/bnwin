@@ -249,13 +249,7 @@ daovoice('update');
         <p class="article-excerpt">
             1. 保护进程，结束就蓝屏RtlSetProcessIsCritical函数可以启用或关闭开启之后变得和系统进程一样被杀系统直接蓝屏系统进程也是此函数实现的上图可以用于进程保护设置自己为保护进程，这样结束掉就会蓝屏，蓝屏信息翻译就是 重点保护进程。
 设置为保护进程：RtlSetProcessIsCritical(True,Null(或Nothing),False)
-取消（关闭时记得加上去。）：RtlSetProcessIsCritical(False,Null,False)把进程做crss中止就蓝屏，防止进程被杀这是最不占用CPU的方式了
-以下为C代码
-1234567891011121314151617181920212223#include&lt;stdio.h&gt;#include&lt;Windows.h&gt;typedef (NTAPI*Rtl)(ULONG,BOOL,BOOL,PBOOL);typedef (NTAPI*PT1)(BOOL, PBOOLEAN, BOOL);typedef (NTAPI*PT2)(BOOL,PBOOLEAN,BOOL);void Protect()&#123;	BOOL B;	ULONG SE_DEBUG_PRIVILEGE = 20;	Rtl RtlAdjustPrivilege=(Rtl)GetProcAddress(GetModuleHandleW(L&quot;ntdll&quot;),&quot;RtlAdjustPrivilege&quot;);	PT1 RtlSetProcessIsCritical=(PT1)GetProcAddress(GetModuleHandleW(L&quot;ntdll&quot;), &quot;RtlSetProcessIsCritical&quot;);	PT2 RtlSetThreadIsCritical=(PT2)GetProcAddress(GetModuleHandleW(L&quot;ntdll&quot;), &quot;RtlSetThreadIsCritical&quot;);	RtlAdjustPrivilege(SE_DEBUG_PRIVILEGE,TRUE,FALSE,&amp;B);	RtlSetProcessIsCritical(TRUE,NULL,FALSE);	RtlSetThreadIsCritical(TRUE, NULL, FALSE);	//BY 1361784102&#125;void main()&#123;	Protect();	getchar();	//BY 1361784102&#125;
-
-vb代码如下：
-12345678910Option ExplicitPublic Declare Function RtlAdjustPrivilege Lib &quot;ntdll.dll&quot; (ByVal Privilege As Long, ByVal Enable As Boolean, ByVal Client As Boolean, WasEnabled As Long) As LongPublic Declare Function RtlSetProcessIsCritical Lib &quot;ntdll&quot; (Optional ByVal NewValue As Boolean, Optional ByVal Value As Boolean, Optional ByVal WinLogon As Boolean = True)Sub Main()    RtlAdjustPrivilege 20, True, False, 0    RtlSetProcessIsCritical False, False, True    EndEnd Sub
-2. RtlAdjustPrivilege提权后NtRaiseHardError制造系统蓝屏VB代码如下：
+取消（关闭时记得加上去。）：Rt
         </p>
     </div>
 </article>
