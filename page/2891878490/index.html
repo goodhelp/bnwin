@@ -134,7 +134,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -284,6 +284,11 @@ aardio是专用于桌面软件快速开发的新一代混合型编程语言 – 
 <p>其中的基址0x82B0BC，及偏移量为什么是这个数据，就需要你使用ce自己分析了! 对aardio不熟悉可以查看在线手机 aardio使用手册</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -301,7 +306,13 @@ aardio是专用于桌面软件快速开发的新一代混合型编程语言 – 
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/2891878490/",
         "description": "
-aardio是专用于桌面软件快速开发的新一代混合型编程语言 – 具有动态语言轻便、灵活的特性，而且又可以同时支持静态类型开发，象静态语言那样使用。aardio可以直接支持原生DLL，即使是外部EXE进程中的函数，也可以使用一句代码声明为普通的aardio函数对象( 原生call支持 )，aardio支持非常多的标准调用约定，例如 stdcall，cdecl，thiscall，fastcall，r",
+aardio是专用于桌面软件快速开发的新一代混合型编程语言 – 具有动态语言轻便、灵活的特性，而且又可以同时支持静态类型开发，象静态语言那样使用。aardio可以直接支持原生DLL，即使是外部EXE进程中的函数，也可以使用一句代码声明为普通的aardio函数对象( 原生call支持 )，aardio支持非常多的标准调用约定，例如 stdcall，cdecl，thiscall，fastcall，regparm(n) 等调用约定都可以支持。aardio虽然小，但支持的接口很丰富、可以支持com静态动态双接口，象VBS一样原生支持com对象。
+
+以下是使用aardio写的修改单机游戏死亡阴影3的游戏数据源码，仅供学习aardio使用!新建一个aardio代码文件，把下面代码复制到代码文件中，就可直接运行!
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849import win.ui;import process; //声明变量hero3,jzvar hero3,jz;hero3=process.find(&quot;Heroes3.exe&quot;)if(hero3)&#123;    //把基址赋值给jz变量    jz=hero3.readNumber(0x82B0BC)        &#125;else &#123;    win.msgbox(&quot;请您先运行游戏&quot;)&#125;/*DSG&#123;&#123;*/var winform = win.form(text=&quot;死亡阴影修改器&quot;;left=300;right=440;bottom=247;max=false;parent=...)winform.add(button=&#123;cls=&quot;button&quot;;text=&quot;修改&quot;;left=33;top=202;right=105;bottom=237;z=1&#125;)/*&#125;&#125;*/ bqm = &#123; &quot;水晶：&quot;;&quot;水银：&quot;;&quot;石头：&quot;;&quot;金钱：&quot;;&quot;木材：&quot;;&quot;宝石：&quot;;&quot;硫磺：&quot; &#125;py  = &#123; sj=Oxac;sy=Oxa0;st=Oxa4;jq=0xb4;mc=Ox9c;bs=0xb0;lh=Oxa8 &#125;bjk = &#123; &quot;sj&quot;;&quot;sy&quot;;&quot;st&quot;;&quot;jq&quot;;&quot;mc&quot;;&quot;bs&quot;;&quot;lh&quot; &#125;tab = &#123; &#125; winform.button.oncommand = function(id,event)&#123;     for(i=1;#bjk;1)&#123;        if(winform[&quot;edit_&quot;+bjk[ i ]].text != 0&amp;&amp;winform[&quot;edit_&quot;+bjk[ i ]].text !=&quot;&quot;)&#123;            table.push(tab,bjk[ i ])        &#125;    &#125;    for(i=1;#tab;1)&#123;         //win.msgbox(winform[&quot;edit_&quot;+tab[ i ]].text,&quot;死亡阴影修改器&quot;)        hero3.writeNumber(jz+py[tab[ i ]],winform[&quot;edit_&quot;+tab[ i ]].text)    &#125;    tab=&#123;&#125;&#125; var topp = 5var bott = 25for(i=1;#bqm;1)&#123;    winform.add( [&quot;edit_&quot;+bjk[ i ]]=&#123;num=1;bottom=bott;text=&quot;999&quot;;left=50;top=topp;z=3;right=114;edge=1;cls=&quot;edit&quot; &#125;)    winform.add( [&quot;static&quot;+i]=&#123; bottom=bott;right=52;left=16;text=bqm[ i ];top=topp;z=1;transparent=1;cls=&quot;static&quot;&#125;)    topp+=24    bott+=24&#125; winform.show() win.loopMessage();
+
+其中的基址0x82B0BC，及偏移量为什么是这个数据，就需要你使用ce自己分析了! 对aardio不熟悉可以查看在线手机 aardio使用手册
+",
         "wordCount": 349
     }
 </script>
@@ -354,7 +365,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -363,7 +374,33 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3910524000\" rel="bookmark"><i class="fa fa-file"></i> delphi如何在Ring3下跨进程获取DLL信息</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

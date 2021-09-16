@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -276,6 +276,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>举例(控制外部程序的透明度, 用计算器举了个例子):</p>
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unit</span> Unit1;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">interface</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">uses</span></span><br><span class="line">  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,</span><br><span class="line">  Dialogs, StdCtrls;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">type</span></span><br><span class="line">  <span class="title">TForm1</span> = <span class="keyword">class</span>(TForm)</span><br><span class="line">    Button1: TButton;</span><br><span class="line">    Button2: TButton;</span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">Button1Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line">    <span class="function"><span class="keyword">procedure</span> <span class="title">Button2Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  Form1: TForm1;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">implementation</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">&#123;$R *.dfm&#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&#123;设定计算器的 Alpha 透明&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TForm1</span>.<span class="title">Button1Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  h: HWND;</span><br><span class="line">  FormStyle: Integer;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  h := FindWindow(<span class="string">&#x27;CalcFrame&#x27;</span>,<span class="string">&#x27;计算器&#x27;</span>);</span><br><span class="line">  FormStyle := GetWindowLong(h, GWL_EXSTYLE);</span><br><span class="line">  SetWindowLong(h, GWL_EXSTYLE, FormStyle <span class="keyword">or</span> WS_EX_LAYERED);</span><br><span class="line">  SetLayeredWindowAttributes(h, <span class="number">0</span>, <span class="number">128</span>, LWA_ALPHA);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">&#123;设定计算器中的白色透明&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TForm1</span>.<span class="title">Button2Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  h: HWND;</span><br><span class="line">  FormStyle: Integer;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  h := FindWindow(<span class="string">&#x27;SciCalc&#x27;</span>, <span class="keyword">nil</span>);</span><br><span class="line">  FormStyle := GetWindowLong(h, GWL_EXSTYLE);</span><br><span class="line">  SetWindowLong(h, GWL_EXSTYLE, FormStyle <span class="keyword">or</span> WS_EX_LAYERED);</span><br><span class="line">  SetLayeredWindowAttributes(h, clWhite, <span class="number">255</span>, LWA_COLORKEY);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -292,7 +297,9 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateCreated": "2017-12-17",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/807774960/",
-        "description": "1234567//声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &#123;窗口句柄&#125;  crKey: COLORREF; &#123;透明色&#125;  bAlpha: Byte;    &#123;Alpha 值&#125;  dwFlags: DWORD   &#123;LWA_COLORKEY(=1)表示使用透明色; LWA_",
+        "description": "1234567//声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &#123;窗口句柄&#125;  crKey: COLORREF; &#123;透明色&#125;  bAlpha: Byte;    &#123;Alpha 值&#125;  dwFlags: DWORD   &#123;LWA_COLORKEY(=1)表示使用透明色; LWA_ALPHA(=2)表示使用 Alpha 值&#125;): Boolean;        &#123;是否成功设置&#125;
+举例(控制外部程序的透明度, 用计算器举了个例子):
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748unit Unit1; interface uses  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,  Dialogs, StdCtrls; type  TForm1 = class(TForm)    Button1: TButton;    Button2: TButton;    procedure Button1Click(Sender: TObject);    procedure Button2Click(Sender: TObject);  end; var  Form1: TForm1; implementation &#123;$R *.dfm&#125; &#123;设定计算器的 Alpha 透明&#125;procedure TForm1.Button1Click(Sender: TObject);var  h: HWND;  FormStyle: Integer;begin  h := FindWindow(&#x27;CalcFrame&#x27;,&#x27;计算器&#x27;);  FormStyle := GetWindowLong(h, GWL_EXSTYLE);  SetWindowLong(h, GWL_EXSTYLE, FormStyle or WS_EX_LAYERED);  SetLayeredWindowAttributes(h, 0, 128, LWA_ALPHA);end; &#123;设定计算器中的白色透明&#125;procedure TForm1.Button2Click(Sender: TObject);var  h: HWND;  FormStyle: Integer;begin  h := FindWindow(&#x27;SciCalc&#x27;, nil);  FormStyle := GetWindowLong(h, GWL_EXSTYLE);  SetWindowLong(h, GWL_EXSTYLE, FormStyle or WS_EX_LAYERED);  SetLayeredWindowAttributes(h, clWhite, 255, LWA_COLORKEY);end; end.",
         "wordCount": 321
     }
 </script>
@@ -345,7 +352,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -354,7 +361,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2301859295\" rel="bookmark"><i class="fa fa-file"></i> TChromium获取网页源代码delphi代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\407779666\" rel="bookmark"><i class="fa fa-file"></i> RemoteAdo数据库中间件爆破分析(RemoteAdo破解版)</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

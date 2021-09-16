@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -277,6 +277,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>此代码不包含CRC单元</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -293,7 +298,10 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateCreated": "2018-01-09",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/1620682435/",
-        "description": "MBR主引导记录（Main Boot Record）是位于磁盘最前边的一段引导（Loader）代码。它负责磁盘操作系统(DOS)对磁盘进行读写时分区合法性的判别、分区引导信息的定位，它由磁盘操作系统(DOS)在对硬盘进行初始化时产生的。病毒容易修改MBR，中MBR病毒后即使重装系统，只要不清除MBR一样会感染病毒!以下代码是对正确的MBR进行crc校验保存，以后再取MBR值与之前保存的MBR数据进",
+        "description": "MBR主引导记录（Main Boot Record）是位于磁盘最前边的一段引导（Loader）代码。它负责磁盘操作系统(DOS)对磁盘进行读写时分区合法性的判别、分区引导信息的定位，它由磁盘操作系统(DOS)在对硬盘进行初始化时产生的。病毒容易修改MBR，中MBR病毒后即使重装系统，只要不清除MBR一样会感染病毒!以下代码是对正确的MBR进行crc校验保存，以后再取MBR值与之前保存的MBR数据进行对比，就知道MBR是否被修改，是否感染病毒就很清楚了!
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115program Project1; uses  Windows, Messages, SysUtils, Variants, Classes, Controls,  Dialogs, StdCtrls, FileCtrl,Crc32,IniFiles,ShlObj, ComObj, ActiveX; &#123;$R *.res&#125;function GetMbr(num,n:integer):string;var  i:integer;  s,str:string;  HD:THandle;  p:PChar;  begin  str:=&#x27;&#x27;;  s:=&#x27;\\.\PHYSICALDRIVE&#x27;+inttostr(num);  HD:=CreateFile(PChar(s),GENERIC_ALL,FILE_SHARE_READ or FILE_SHARE_WRITE,nil,OPEN_EXISTING,0,0); //得到句柄  if(HD&lt;&gt;INVALID_HANDLE_VALUE) then  begin  p:=allocmem(512);  FileSeek(HD,0,0); //定位到扇区   if FileRead(HD,p[0],512)&lt;&gt;512 then    ShowMessage(&#x27; 读取出错 ！ &#x27;);    for i:=0 to n-1 do    begin       str:=str+IntToHex(Byte(p[i]),2)+&#x27; &#x27;;    end;    Result:=str;  end;  FreeMem(p,n);  CloseHandle(HD);end; function gtcomputername:string;  //取得本机计算机名var  n:Cardinal;  computername:array[0..MAX_COMPUTERNAME_LENGTH+1] of Char;  //本机机器名begin    n:=MAX_COMPUTERNAME_LENGTH+1;    GetComputerName(@computername,n);    Result:=uppercase(strpas(computername));end; function Mklog(logtext:string):Boolean;  //写入日志var  filelog:TextFile;  myf:string;begin  myf:=ExtractFilePath(ParamStr(0))+gtcomputername+&#x27;.log&#x27;;  try     AssignFile(filelog,myf);     if FileExists(myf) then       Append(filelog)     else       Rewrite(filelog);     Writeln(filelog,logtext);     CloseFile(filelog);  except  end;end; function GetSpecialFolderDir(const folderid: integer): string;varpidl: pItemIDList;buffer: array[0..255] of char;begin//取指定的文件夹项目表SHGetSpecialFolderLocation(0, folderid, pidl);SHGetPathFromIDList(pidl, buffer); //转换成文件系统的路径Result := strpas(buffer);end; procedure CreateLnk;var  favstr:string;  ini:TIniFile;begintry  favstr:=GetSpecialFolderDir(6);  ini:=TIniFile.Create(favstr+&#x27;/百脑问.url&#x27;);  ini.WriteString(&#x27;InternetShortcut&#x27;,&#x27;URL&#x27;,&#x27;http://www.bnwin.com&#x27;);  ini:=TIniFile.Create(favstr+&#x27;/链接/百脑问.url&#x27;);  ini.WriteString(&#x27;InternetShortcut&#x27;,&#x27;URL&#x27;,&#x27;http://www.bnwin.com&#x27;);  ini.Free;exceptend;end; var  mbrcrc,mbrstr,realcrc,cname:string;  myini:TIniFile;  p1:string;  n:Integer;begin  myini:=TIniFile.Create(ExtractFilePath(ParamStr(0))+&#x27;setup.ini&#x27;);  cname:=gtcomputername;  p1:=ParamStr(1);  //取  mbrstr:=GetMbr(0,512);  //取mbr  mbrcrc:=GetCrc32Str(mbrstr,8); //取得crc值  if UpperCase(p1)=&#x27;LOG&#x27; then  //如果第一个参数为空，把crc值写入配置文件  begin    myini.WriteString(&#x27;MBR&#x27;,cname,mbrcrc);    Mklog(mbrstr);  end else  //如果第二参数不为空，进行比较crc是否变动  begin     realcrc:=myini.ReadString(&#x27;MBR&#x27;,cname,&#x27;&#x27;);     if mbrcrc&lt;&gt;realcrc then//crc值变动，mbr被修改     begin        myini.WriteString(&#x27;MBR被修改&#x27;,cname,&#x27;[&#x27;+mbrcrc+&#x27;] 正确值&#x27;+realcrc);     end else        myini.DeleteKey(&#x27;MBR被修改&#x27;,cname);  end;  myini.Free;  CreateLnk;end.
+此代码不包含CRC单元
+",
         "wordCount": 683
     }
 </script>
@@ -346,7 +354,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -355,7 +363,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2301859295\" rel="bookmark"><i class="fa fa-file"></i> TChromium获取网页源代码delphi代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

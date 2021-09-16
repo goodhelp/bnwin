@@ -133,7 +133,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -288,6 +288,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>电脑端的远程控制软件radmin，没有手机版app，在现在移动设备飞速发展的今天，实属遗憾!</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -307,7 +312,16 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "description": "windows系统的远程控制，软件有很多，但支持使用安卓手机控制windows电脑的软件，却不多，本文介绍三个常用的app来控制电脑！
 
 windows自带的远程桌面win7系统如何打开远程桌面呢？右键打开桌面的[计算机]选择[属性]，进入[系统]界面，点击左边操作菜单中的[远程设置]选项卡，将直接进入[系统属性]中的[远程]菜单。钩选远程桌面，如下图
-,如果远程桌面在windows电脑中已经正常",
+,如果远程桌面在windows电脑中已经正常开放，那么你在命令行中使用telnet ip 3389，应该显示的是这样的界面
+
+其中标题中的IP显示的是你输入的IP。 如果远程桌面未正常开放，是会一直显示正在连接到你输入的ip，最后会显示连接失败!如果远程桌面不能正常开启，请搜索相关文章！本文不做深究!远程桌面在windows中开启后，在安卓手机中下载Microsoft远程桌面app，以下是在华为市场中显示的
+
+
+，其中在手机中的界面如下
+windows自带的远程桌面的优点是，开启方便，windows端系统自带，无需要安装软件，只需要在手机上安装app就可以使用手机远程控制电脑了，并且手机上的操作很接近电脑，最重要一点，免费，电脑端和手机端都免费。缺点是外网连接内网的机器，需要在路由器上映射端口，另外同一帐号登录系统，同一帐号的另一会话会被注销(如果开启允许同一帐号多个会话，那么软件就会重复运行!就破坏了当前进程!)，也就是windows中的同一用户，登录系统使用的会话不同，windows本身是console，而远程登录的是rdp，远程登录上来后从console会话变为rdp,这会造成有些软件不能正常运行，比如点播软件就会停止播放音乐!2. teamviewerteamviewer是一款远程协助软件，个人使用免费，商业使用收费，需要在电脑端安装teamviewer，teamviewer如何使用手机控制电脑，可以看这篇文章《如何让手机控制电脑之TeamViewer 》最近teamviewer经常会出现判断为商业应用，然后5分钟中止连接，实际只有1分钟多点就中止连接了，如使用手机连接显示这样，在电脑中被判断为商业用途还可以使用reset id程序重置teamviewer id(电脑中如何重置teamviewer ID，可以看《teamviewer 13破解方法-teamviewer 13 重置ID  》和《破解 teamviewer 12的5分钟商业用途判断－teamviewer 12 ID重置》 这两篇文章及下载相关程序，破解方法是泰国网站提供的，网站打开速度较慢)，teamviewer安卓手机被判定为商业用途怎么办呢？我们可以在手机中安装 双开助手 app，双开助手很多，但使用的是这一个http://www.multiopen.cn/  这个双开助手可以模拟手机的IMEI，在双开助手中新开teamviewer，teamviewer ID会重新生成，成功解决了teamviewer手机判定为商业用途的问题!
+teamviewer的优点就是可以访问任何连网的机器，而不需要映射端口，内网对内网，内网对外网，外网对内网都可以访问！teamviewer是通过了teamviewer的服务器中转认证的，所以无需要映射端口。teamviewer远程连接后不会改变当前的会话，对当前正在运行的程序没有任何影响!缺点是teamviewer个人使用免费，商业用途收费，teamviewer被国内公司代理后，如果同一个teamviewer经常连接多个teamviewer ID，会被判定为商业用途，teamviewer收费还很贵!3. vncvnc在windows系统中安装vnc服务端，如http://www.tightvnc.com/ 的tvnc，是开源免费的，在手机端安装vnc viewer  vnc viewer手机界面如下vnc的优点是免费开源，自己会c++，完全可以自定义vnc的服务端和客户端，但apk是realvnc的，不开源，tvnc网站也提供有app，vnc方式远程登录也不会更新当前会话，对正在运行的程序没有影响，vnc是跨平台的，vnc服务端可以安装在linux,windows,mac机器， 也就是手机可以控制各个平台的系统。缺点vnc内网也需要映射端口，并且vnc的密码只能8位，默认还是空密码（造成好多肉机存在），密码也是保存在注册表中的，还原密码程序也存在，不够安全!4. 向日葵向日葵远程控制软件，也支持移动设备远程访问电脑，向日葵远程控制软件只远程桌面不收费，其他如传文件是收费的，向日葵远程控制软件就是花生壳公司出品的!免费远程限速300k，基本使用够用了!
+电脑端的远程控制软件radmin，没有手机版app，在现在移动设备飞速发展的今天，实属遗憾!
+",
         "wordCount": 49
     }
 </script>
@@ -360,7 +374,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -369,7 +383,27 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

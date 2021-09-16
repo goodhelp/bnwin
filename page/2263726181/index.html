@@ -134,7 +134,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -280,6 +280,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>源码下载地址：<br>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1JYlHKLu2WZHXIc3MdNez7Q">https://pan.baidu.com/s/1JYlHKLu2WZHXIc3MdNez7Q</a> 提取码: srz4 复制这段内容后打开百度网盘手机App，操作更方便哦</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -297,7 +302,9 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/2263726181/",
         "description": "unigui能上传文件，单只支持单文件上传，在unigui中如何实现多文件上传呢？MultiFileUpload提供了解决方案!此例子使用MultiFileUpload解决了unigui多文件上传的问题看看运行效果其中部份代码
-1234567891011121314151617181920212223242526272829303132333435363738394041424344procedu",
+1234567891011121314151617181920212223242526272829303132333435363738394041424344procedure TDialogFileUpload.UniFormClose(Sender: TObject;  var Action: TCloseAction);var  I: Integer;begin  if FIsUploading then  begin    //正在上传，不允许退出    Action := caNone;    ModalResult := mrNone;    Exit;  end;  if ModalResult=mrOK then  begin    if FListFiles.Count=0 then    begin      MessageDlg(&#x27;请选择文件并上传！&#x27;,mtInformation,[mbOK],nil);      Action := caNone;      ModalResult := mrNone;       Exit;    end;     for I := 0 to FListFiles.Count - 1 do    begin      if Integer(FListFiles.Objects[I])=0 then      begin        MessageDlg(&#x27;请上传选择的文件！&#x27;,mtInformation,[mbOK],nil);        Action := caNone;        ModalResult := mrNone;         Exit;      end;    end;    if Assigned(FOnGetUploadFiles) then    begin      FOnGetUploadFiles(Self,FListFiles,FListFileSizes);    end;  end;  //关闭时清除所有文件  FListFiles.Clear;  FListFileSizes.Clear;  UniSession.AddJS(&#x27;panelUpload.onRemove();&#x27;);end;
+源码下载地址：链接: https://pan.baidu.com/s/1JYlHKLu2WZHXIc3MdNez7Q 提取码: srz4 复制这段内容后打开百度网盘手机App，操作更方便哦
+",
         "wordCount": 344
     }
 </script>
@@ -350,7 +357,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -359,7 +366,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2767400155\" rel="bookmark"><i class="fa fa-file"></i> unigui管理系统源码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3910524000\" rel="bookmark"><i class="fa fa-file"></i> delphi如何在Ring3下跨进程获取DLL信息</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

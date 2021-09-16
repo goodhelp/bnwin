@@ -127,7 +127,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -250,7 +250,16 @@ daovoice('update');
             windows系统的远程控制，软件有很多，但支持使用安卓手机控制windows电脑的软件，却不多，本文介绍三个常用的app来控制电脑！
 
 windows自带的远程桌面win7系统如何打开远程桌面呢？右键打开桌面的[计算机]选择[属性]，进入[系统]界面，点击左边操作菜单中的[远程设置]选项卡，将直接进入[系统属性]中的[远程]菜单。钩选远程桌面，如下图
-,如果远程桌面在windows电脑中已经正常
+,如果远程桌面在windows电脑中已经正常开放，那么你在命令行中使用telnet ip 3389，应该显示的是这样的界面
+
+其中标题中的IP显示的是你输入的IP。 如果远程桌面未正常开放，是会一直显示正在连接到你输入的ip，最后会显示连接失败!如果远程桌面不能正常开启，请搜索相关文章！本文不做深究!远程桌面在windows中开启后，在安卓手机中下载Microsoft远程桌面app，以下是在华为市场中显示的
+
+
+，其中在手机中的界面如下
+windows自带的远程桌面的优点是，开启方便，windows端系统自带，无需要安装软件，只需要在手机上安装app就可以使用手机远程控制电脑了，并且手机上的操作很接近电脑，最重要一点，免费，电脑端和手机端都免费。缺点是外网连接内网的机器，需要在路由器上映射端口，另外同一帐号登录系统，同一帐号的另一会话会被注销(如果开启允许同一帐号多个会话，那么软件就会重复运行!就破坏了当前进程!)，也就是windows中的同一用户，登录系统使用的会话不同，windows本身是console，而远程登录的是rdp，远程登录上来后从console会话变为rdp,这会造成有些软件不能正常运行，比如点播软件就会停止播放音乐!2. teamviewerteamviewer是一款远程协助软件，个人使用免费，商业使用收费，需要在电脑端安装teamviewer，teamviewer如何使用手机控制电脑，可以看这篇文章《如何让手机控制电脑之TeamViewer 》最近teamviewer经常会出现判断为商业应用，然后5分钟中止连接，实际只有1分钟多点就中止连接了，如使用手机连接显示这样，在电脑中被判断为商业用途还可以使用reset id程序重置teamviewer id(电脑中如何重置teamviewer ID，可以看《teamviewer 13破解方法-teamviewer 13 重置ID  》和《破解 teamviewer 12的5分钟商业用途判断－teamviewer 12 ID重置》 这两篇文章及下载相关程序，破解方法是泰国网站提供的，网站打开速度较慢)，teamviewer安卓手机被判定为商业用途怎么办呢？我们可以在手机中安装 双开助手 app，双开助手很多，但使用的是这一个http://www.multiopen.cn/  这个双开助手可以模拟手机的IMEI，在双开助手中新开teamviewer，teamviewer ID会重新生成，成功解决了teamviewer手机判定为商业用途的问题!
+teamviewer的优点就是可以访问任何连网的机器，而不需要映射端口，内网对内网，内网对外网，外网对内网都可以访问！teamviewer是通过了teamviewer的服务器中转认证的，所以无需要映射端口。teamviewer远程连接后不会改变当前的会话，对当前正在运行的程序没有任何影响!缺点是teamviewer个人使用免费，商业用途收费，teamviewer被国内公司代理后，如果同一个teamviewer经常连接多个teamviewer ID，会被判定为商业用途，teamviewer收费还很贵!3. vncvnc在windows系统中安装vnc服务端，如http://www.tightvnc.com/ 的tvnc，是开源免费的，在手机端安装vnc viewer  vnc viewer手机界面如下vnc的优点是免费开源，自己会c++，完全可以自定义vnc的服务端和客户端，但apk是realvnc的，不开源，tvnc网站也提供有app，vnc方式远程登录也不会更新当前会话，对正在运行的程序没有影响，vnc是跨平台的，vnc服务端可以安装在linux,windows,mac机器， 也就是手机可以控制各个平台的系统。缺点vnc内网也需要映射端口，并且vnc的密码只能8位，默认还是空密码（造成好多肉机存在），密码也是保存在注册表中的，还原密码程序也存在，不够安全!4. 向日葵向日葵远程控制软件，也支持移动设备远程访问电脑，向日葵远程控制软件只远程桌面不收费，其他如传文件是收费的，向日葵远程控制软件就是花生壳公司出品的!免费远程限速300k，基本使用够用了!
+电脑端的远程控制软件radmin，没有手机版app，在现在移动设备飞速发展的今天，实属遗憾!
+
         </p>
     </div>
 </article>
@@ -296,7 +305,21 @@ windows自带的远程桌面win7系统如何打开远程桌面呢？右键打开
     
 
         <p class="article-excerpt">
-            如何自定义编译Cheat Engine6.7(打造自己的CE6.7修改器，避免部分游戏的检测)Cheat Engine(作弊引擎ce) 是一款内存修改编辑工具 ，它允许你修改你的游戏或软件内存数据，以得到一些其他功能。它包括16进制编辑，反汇编程序，内存查找工具。与同类修改工具相比，它具有强大的反汇编功能，且自身附带了外挂制作工具，可以用它直接生成外挂。Cheat Engine的开发语言是pasc
+            如何自定义编译Cheat Engine6.7(打造自己的CE6.7修改器，避免部分游戏的检测)Cheat Engine(作弊引擎ce) 是一款内存修改编辑工具 ，它允许你修改你的游戏或软件内存数据，以得到一些其他功能。它包括16进制编辑，反汇编程序，内存查找工具。与同类修改工具相比，它具有强大的反汇编功能，且自身附带了外挂制作工具，可以用它直接生成外挂。Cheat Engine的开发语言是pascal,采用Lazarus IDE开发!Cheat Engine是一个开源软件！Cheat Engine开源地址： https://github.com/cheat-engine/cheat-engineCheat Engine 官方网站：http://cheatengine.org/
+官方有编译好的版本，如果没有专门检测CE的程序，那么使用官方的CE就足够了，直接下载就可以运行!但现在很多游戏或程序对CE有检测，直接下载官方的CE会无法运行。这时我们可以自己编译Cheat Engine，当前官方最新版本为6.7，所以我们这儿介绍Cheat Engine6.7的修改及编译，避免部份游戏检测CE!
+前期工作：
+需要使用到的软件及ce源码等下载地址：
+
+
+lazarus-1.6.4-fpc-3.0.2-win64.exe下载地址(Cheat Engine6.7是使用的lazarus1.6.4编译，所以必须下载1.6.4，此文件是64位的lazarus1.6.4的主安装文件)官方推荐第三方下载链接：https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/百脑问提供的百度云下载链接：https://pan.baidu.com/s/1VIRTU57RikwSMk1X15RP2w 密码：mbwj
+lazarus-1.6.4-fpc-3.0.2-cross-i386-win32-win64.exe(此文件是lazarus1.6.4编译为32位程序的补丁包)官方推荐第三方下载链接：https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/百脑问提供的百度云下载链接：https://pan.baidu.com/s/1iGnpHnOor2ygiz4TaY3OJw 密码：bt8s
+cheat-engine-6.7.zip(Cheat Engine6.7的源码包，你可以直接到https://github.com/cheat-engine/cheat-engine 下载)百脑问提供的百度云下载链接：https://pan.baidu.com/s/1bXTJkn6lHCFmOKc2AoJjEw 密码：68×2
+
+
+安装好 lazarus-1.6.4-fpc-3.0.2-win64.exe和lazarus-1.6.4-fpc-3.0.2-cross-i386-win32-win64.exe 解开cheat-engine-6.7.zip源码包! 进入CE源码包的Cheat Engine目录，找到cheatengine.lpi，双击打开!
+
+自定义cheatengine6.7如果你熟悉lazarus的使用就可以轻松的修改Cheat Engine的源文件了，以下是假如你不了解lazarus的使用，仅仅是为了不让程序检测到ce而自定义ce！
+前面的源码中双击cheatengine.lpi打开后的界面，象这样第一步，我们修改ce的标题，按Shift+F12(也可以点击上面所示图中的第二行的第二个图标)打开窗口管理器，找到MainForm，双击打开，然后在Object Inspector窗口(如果没有显示Object Inspector窗口，可以在view菜单中点击Object Inspector打开，或者按F11打开)中单击MainForm:TMainForm 在下面的Properties选项卡中，找到Caption，修改后面的Cheat Engine 6.8为自己的标题，比如这儿修改为C_BnWin.Com_E6.7，然后Ctrl+O找到MainUnit2.pas打开，修改第16行的Cheat Engine 6.8 Beta 1为自己的标题，如这儿修改为C_BnWin.Com_E6.7
         </p>
     </div>
 </article>
@@ -347,7 +370,14 @@ windows自带的远程桌面win7系统如何打开远程桌面呢？右键打开
 
         <p class="article-excerpt">
             如何快速让cef、wke、blink等支持mp4和mp3(支持html5的video和audio标签)?在cef中，默认是不支持mp3和mp4的，使用cef控件写的软件打开带有video或audio标签的视频或音频是会播放失败的!一种方法就是自己重新编译cef的库，加入支持mp3和mp4的支持。如何编译看这篇文章 如何让dcef3支持mp3和h.264 mp4解码播放(有源码及dll)!
-这是从文
+这是从文件的本身出发，修改后支持mp3和mp4，从另一方面来说，采用cef的精简版控件，比如wke,blink或低版本的ie等，修改文件重新编译支持mp3和mp4的方法就不可行了!能不能不修改文件直接支持mp3和mp4的video和audio标签呢？这儿介绍一种修改html本身而不动浏览器控件文件的解决方法，当然你得有修改html文件的权限。
+使用html5media让浏览器兼容&lt;Video&gt;&lt;Audio&gt;标签。html5media是一个开源项目html5media 官网：https://html5media.info/html5media 项目：https://github.com/etianen/html5mediahtml5media Wiki：https://github.com/etianen/html5media/wiki
+html5media 官网CDN:http://api.html5media.info/1.2.2/html5media.min.jshtml5media 国内CDN:http://www.bootcdn.cn/html5media/
+如何使用html5media？它只需要一行代码就可以使HTML5的video和audio标签在所有主流浏览器中都能正常工作。只需要在html的head文档中添加如下代码
+1&lt; script src = “ http://api.html5media.info/1.1.8/html5media.min.js ” &gt; &lt;/ script &gt;
+然后按照html5的video标签添加的视频
+1&lt; video src=&quot;video.mp4&quot; preload=&quot;&quot; controls=&quot;controls&quot; width=&quot;320&quot; height=&quot;200&quot;&gt;
+按照html5的audio标签添加的音频
         </p>
     </div>
 </article>

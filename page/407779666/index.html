@@ -133,7 +133,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -297,6 +297,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>按上面分析修改好两处的成品下载 链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1gg9jHa7">https://pan.baidu.com/s/1gg9jHa7</a> 密码：sbrw 解压密码 bnwin.com</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -318,7 +323,23 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 下载RemoteAdo标准版4.2，使用die1.01分析，RemoteAdoServer.exe主程序加壳为ASPack(2.12)
 使用WASPACK脱掉
 
-用OD载入，插件打开api常用断点下MessageBoxA断点，为什么下这个断点呢？因为点",
+用OD载入，插件打开api常用断点下MessageBoxA断点，为什么下这个断点呢？因为点注册的时候会弹出序列号无效
+，断点下好后，按F9运行，按RemoteAdo软件界面中的其他选项卡中的“请注册”，在弹出的窗口中任意输入序列号然后点击注册按钮!这时在OD中已经断下了，按一次Ctrl+F9，再切换到RemoteAdo软件界面，这时提示“序列号无效”，点确定，然后切换为OD，再按一次Ctrl+F9，OD中返回到RemoteAdo的软件领空!
+
+我们看右边寄存器显示有“序列号无效”和“软件注册”等字样!
+从此处（00483E18）往上看汇编代码，看是哪儿跳到这儿来的！找到00483E18看从哪儿跳来的，我不习惯使用od看，觉得不够清晰，我喜欢使用w32dasm看，在W32Dasm中shift+f12输入00483E18，往上看，一直到上面这儿（为什么到这儿，你可以从00483E18上面的多个跳转分别下断点测试，那些都是显示序列号无效的相关代码）
+在00483CC4开始到00483E18都是显示序列号无效的代码，(我们可以切换回OD在00483CC4处双击，写入汇编代码 retn，不执行直接返回，这时你可以重新运行点注册，会什么反应也没有!) 在00483CC4上方显示，调用此call的地址有7个，我们分别在以上7个调用地址前下断点，重新点击注册，看会不会断下!经过测试会在倒数第二个0056204E处断下!在W32Dasm中shift+F12，跳转到0056204E处!往上看代码，到底是谁调用了序列号无效的提示代码！
+看到这段代码
+其中00561FC3处的call就是序列号算法函数，爆破只需要在OD中把00561FCA处填充NOP代码即可!NOP后，这时点软件中的注册会提示注册成功，但重启软件后，还是只有5个连接数!
+以下是去掉连接数及破解版内容
+在W32Dasm中我们在00561FC3处点击Call按钮，看哪些地方调用了这个注册算法函数，到这儿
+
+有两处，一处就是0055B9AB，这处是启动软件判断是否注册的，一处是00561FC3，就是我们点注册按钮判断是否注册的!在OD中我们跳到0055B9AB处，把下面的je代码NOP掉，然后保存修改的文件，就OK了!至于算法，分析太麻烦了，有兴趣自己折腾!爆破后没有5个用户连接数限制，以下是10个连接数图!
+
+后话：因为前面分析中看到有7处调用了，序列号无效的函数，我们这儿只修改了两处，所以如果你使用中存在提示序列号无效的问题，那就需要在另外5处也用相同的方法进行修改!只修改两处，使用中暂没发现有什么问题!
+
+按上面分析修改好两处的成品下载 链接：https://pan.baidu.com/s/1gg9jHa7 密码：sbrw 解压密码 bnwin.com
+",
         "wordCount": 26
     }
 </script>
@@ -371,7 +392,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -380,7 +401,27 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

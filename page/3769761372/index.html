@@ -134,7 +134,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -284,6 +284,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 </ol>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -304,7 +309,10 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 
 在dcef3窗体中添加TApplicationEvents控件aplctnvnts1!
 添加TPopupMenu控件pm1，并设置好自定义的dcef3的右键菜单及功能.
-在TApplicationEvents控件的OnMessage事件中添加如下代码。123456789",
+在TApplicationEvents控件的OnMessage事件中添加如下代码。1234567891011procedure TMainForm.aplctnvnts1Message(var Msg: tagMSG; var Handled: Boolean);var  mPoint: TPoint;begin  if IsChild(chrm1.Handle, Msg.Hwnd) and ((Msg.Message = WM_RBUTTONDOWN) or (Msg.Message = WM_RBUTTONUP)) then  begin    GetCursorPos(mPoint); //得到光标位置    pm1.Popup(mPoint.X, mPoint.Y); //弹出popupmenu的菜单    Handled := True;  end;end;
+这样你就不用让用户看TChromium的默认英文右键菜单了!对于TChromium默认右键菜单的功能，可以自己用代码很轻松的实现!
+
+",
         "wordCount": 92
     }
 </script>
@@ -357,7 +365,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -366,7 +374,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1936827288\" rel="bookmark"><i class="fa fa-file"></i> dcef3加载flash闪烁问题简单解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\4288787729\" rel="bookmark"><i class="fa fa-file"></i> delphi中dcef如何自定义referer信息？</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

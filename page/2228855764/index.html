@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -297,6 +297,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>取窗口信息的相关代码</p>
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetWindowTitle</span><span class="params">(hwnd: HWND)</span>:</span> <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  SetLength(Result, <span class="number">255</span>);</span><br><span class="line">  SetLength(Result, GetWindowText(hwnd, PChar(Result), <span class="number">255</span>));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetWindowClass</span><span class="params">(hwnd: HWND)</span>:</span> <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  SetLength(Result, <span class="number">255</span>);</span><br><span class="line">  SetLength(Result, GetClassName(hwnd, PChar(Result), <span class="number">255</span>));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetWindowInfo</span><span class="params">(hwnd: HWND)</span>:</span> <span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Result := GetWindowTitle(hwnd) + <span class="string">&#x27; [&#x27;</span> + GetWindowClass(hwnd) +</span><br><span class="line">    <span class="string">&#x27;] (&#x27;</span> + IntToStr(hwnd) + <span class="string">&#x27;)&#x27;</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">EnumChildProc</span><span class="params">(hwnd: HWND; lParam: Integer)</span>:</span> BOOL; <span class="keyword">stdcall</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  NewNode, ParentNode: TTreeNode;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Result := True;</span><br><span class="line">  ParentNode := TTreeNode(lParam);</span><br><span class="line">  NewNode := ParentNode.Owner.AddChild(ParentNode,</span><br><span class="line">    GetWindowInfo(hwnd));</span><br><span class="line">  EnumChildWindows(hwnd, @EnumChildProc, Integer(NewNode));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">EnumWindowsProc</span><span class="params">(hwnd: HWND; lParam: Integer)</span>:</span> BOOL; <span class="keyword">stdcall</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  NewNode: TTreeNode;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  Result := True;</span><br><span class="line">  NewNode := TTreeView(lParam).Items.Add(<span class="keyword">nil</span>, GetWindowInfo(hwnd));</span><br><span class="line">  EnumChildWindows(hwnd, @EnumChildProc, Integer(NewNode));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">EnumWindowsTree</span><span class="params">(Tree: TTreeView)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  EnumWindows(@EnumWindowsProc, Integer(Tree));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TForm1</span>.<span class="title">Button1Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  TreeView1.Items.Clear;</span><br><span class="line">  EnumWindowsTree(TreeView1);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -314,7 +319,15 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/2228855764/",
         "description": "有时我们取得一个窗口的句柄，需要知道这个窗口是隐藏还是显示状态？或者我们取得窗体的句柄，想隐藏这个窗体或显示这个窗体，该怎么办呢？这时我们需要用到API函数GetWindowLong或者GetWindowInfo,
-GetWindowLong的函数原型LONG GetWindowLong( HWND hWnd,int nIndex )参数：hWnd：指定窗口的句柄nIndex：需要获得的信息的类型",
+GetWindowLong的函数原型LONG GetWindowLong( HWND hWnd,int nIndex )参数：hWnd：指定窗口的句柄nIndex：需要获得的信息的类型值 功能nIndex取值如下:GWL_EXSTYLE 得到扩展的窗口风格GWL_STYLE 得到窗口风格GWL_WNDPROC 得到窗口回调函数的地址，或者句柄。得到后必须使用CallWindowProc函数来调用GWL_HINSTANCE 得到应用程序运行实例的句柄GWL_HWNDPARENT 得到父窗口的句柄GWL_ID 得到窗口的标识符GWL_USERDATA 得到和窗口相关联的32位的值（每一个窗口都有一个有意留给创建窗口的应用程序是用的32位的值）当hWnd标识一个对话框时可以使用下面的值Value ActionDWL_DLGPROC 得到对话框回调函数的地址，或者句柄。得到后必须使用CallWindowProc函数来调用DWL_MSGRESULT 得到对话框回调函数中消息处理过程的返回值DWL_USER 得到额外的应用程序私有信息，如一些句柄和指针等返回值：成功时，返回一个请求的32位的值失败时，返回0，可以使用GetLastError来取得错误信息
+示例1：
+12345long nStyle = ::GetWindowLong(hWnd, GWL_STYLE); // hWnd是一个编辑框的句柄if(nStyle &amp; ES_PASSWORD)&#123;AfxMessageBox(“这是一个密码域”);&#125;
+示例2：
+1234LONG GetWindowLong(HWND hWnd, // handle of windowint nIndex // offset of value to retrieve);
+第二个参数是0的话，就是指定GW_HWNDFIRST！！！GW_HWNDFIRST = 0; {同级别 Z 序最上}GW_HWNDLAST = 1; {同级别 Z 序最下}GW_HWNDNEXT = 2; {同级别 Z 序之下}GW_HWNDPREV = 3; {同级别 Z 序之上}GW_OWNER = 4; {属主窗口}GW_CHILD = 5; {子窗口中的最上}
+GetWindowInfo函数原型
+BOOL WINAPI GetWindowInfo(__in HWND hwnd,__inout PWINDOWINFO pwi);
+参数hwnd  要检索信息的窗口的句柄。pwi  指向一个接收信息的 PWINDOWINFO 结构，注意，在调用该函数之前必须设置 cbSize 成员为sizeof(WINDOWINFO)。]",
         "wordCount": 615
     }
 </script>
@@ -367,7 +380,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -376,7 +389,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2301859295\" rel="bookmark"><i class="fa fa-file"></i> TChromium获取网页源代码delphi代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\407779666\" rel="bookmark"><i class="fa fa-file"></i> RemoteAdo数据库中间件爆破分析(RemoteAdo破解版)</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

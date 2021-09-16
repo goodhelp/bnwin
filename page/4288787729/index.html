@@ -132,7 +132,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -279,6 +279,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TMainForm</span>.<span class="title">ShowUrl</span><span class="params">(hurl,AllUrl:<span class="keyword">string</span>)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line"> Request: ICefRequest;</span><br><span class="line"> Data: ICefPostData;</span><br><span class="line"> Header: ICefStringMultimap;</span><br><span class="line"> sUserAgent:<span class="keyword">string</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> chrm1.Browser.IsLoading <span class="keyword">then</span> chrm1.Browser.StopLoad;</span><br><span class="line">    sUserAgent:=<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36 QIHU 360EE&#x27;</span>;</span><br><span class="line">    Request := TCefRequestRef.New;</span><br><span class="line">    Request.SetReferrer(hurl,REFERRER_POLICY_ORIGIN);<span class="comment">//定义referer</span></span><br><span class="line">    Data := TCefPostDataRef.New;</span><br><span class="line">    Header := TCefStringMultimapOwn.Create;</span><br><span class="line">    Header.Append(<span class="string">&#x27;Accept-Language&#x27;</span>, <span class="string">&#x27;zh-CN&#x27;</span>);</span><br><span class="line">    Header.Append(<span class="string">&#x27;User-Agent&#x27;</span>,sUserAgent);</span><br><span class="line">    Request.Assign(AllUrl,<span class="string">&#x27;POST&#x27;</span>,Data,header);</span><br><span class="line"> </span><br><span class="line">    chrm1.Browser.MainFrame.LoadRequest(Request);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -296,7 +301,10 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/4288787729/",
         "description": "TChromium自定义referer，在早期的dcef版本中，这样Append(‘Referer’,’http://www.bnwin.com’)就可以了，详细看下面代码，如果append不行，启用这句request.SetReferrer(request.url, REFERRER_POLICY_ALWAYS);
-123456789101112131415161718192021procedu",
+123456789101112131415161718192021procedure TMainForm.chrm1BeforeResourceLoad(Sender: TObject;  const browser: ICefBrowser; const frame: ICefFrame;  const request: ICefRequest; const callback: ICefRequestCallback;  out Result: TCefReturnValue);var  map: ICefStringMultimap;  sAccept,sUserAgent:string;begin          sAccept:= &#x27;application/x-shockwave-flash, image/gif, image/jpeg, image/pjpeg, application/x-ms-application, application/x-ms-xbap,&#x27;+    &#x27; application/vnd.ms-xpsdocument, application/xaml+xml,text/html,application/octet-stream, */*&#x27;;    sUserAgent:=&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36 QIHU 360EE&#x27;;  map := TCefStringMultimapOwn.Create;  request.GetHeaderMap(map);  map.Append(&#x27;Referer&#x27;,request.url);  map.Append(&#x27;Accept&#x27;,sAccept);  map.Append(&#x27;User-Agent&#x27;,sUserAgent); // ShowMessage(map.getvalue(1)+&#x27;  &#x27;+map.getkey(1));  request.SetHeaderMap(map);  //map:=nil; //request.SetReferrer(request.url, REFERRER_POLICY_ALWAYS);end;
+在高版本的dcef中自定义referer，可以直接定义request.
+12345678910111213141516171819procedure TMainForm.ShowUrl(hurl,AllUrl:string);var Request: ICefRequest; Data: ICefPostData; Header: ICefStringMultimap; sUserAgent:string;begin    if chrm1.Browser.IsLoading then chrm1.Browser.StopLoad;    sUserAgent:=&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36 QIHU 360EE&#x27;;    Request := TCefRequestRef.New;    Request.SetReferrer(hurl,REFERRER_POLICY_ORIGIN);//定义referer    Data := TCefPostDataRef.New;    Header := TCefStringMultimapOwn.Create;    Header.Append(&#x27;Accept-Language&#x27;, &#x27;zh-CN&#x27;);    Header.Append(&#x27;User-Agent&#x27;,sUserAgent);    Request.Assign(AllUrl,&#x27;POST&#x27;,Data,header);     chrm1.Browser.MainFrame.LoadRequest(Request);end;
+",
         "wordCount": 295
     }
 </script>
@@ -349,7 +357,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -358,7 +366,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1936827288\" rel="bookmark"><i class="fa fa-file"></i> dcef3加载flash闪烁问题简单解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3468945668\" rel="bookmark"><i class="fa fa-file"></i> delphi中如何删除dcef3的cookie和缓存？</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

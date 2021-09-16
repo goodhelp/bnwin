@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -288,6 +288,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">require_once</span>(dirname(dirname(<span class="keyword">__FILE__</span>)) . <span class="string">&#x27;/app.php&#x27;</span>); <span class="keyword">require</span> (<span class="string">&#x27;phpssoconfig.php&#x27;</span>); </span><br><span class="line"> <span class="variable">$code</span> = <span class="variable">$_REQUEST</span>[<span class="string">&#x27;code&#x27;</span>]; parse_str(<span class="variable">$client</span>-&gt;sys_auth(<span class="variable">$code</span>, <span class="string">&#x27;DECODE&#x27;</span>), <span class="variable">$arr</span>); <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$arr</span>[<span class="string">&#x27;action&#x27;</span>])) &#123; <span class="variable">$action</span> = <span class="variable">$arr</span>[<span class="string">&#x27;action&#x27;</span>]; &#125; <span class="keyword">else</span> &#123; <span class="keyword">exit</span>(<span class="string">&#x27;0&#x27;</span>); &#125; <span class="keyword">switch</span>(<span class="variable">$action</span>) &#123; <span class="keyword">case</span> <span class="string">&#x27;check_status&#x27;</span>: <span class="keyword">exit</span>(<span class="string">&#x27;1&#x27;</span>); <span class="keyword">break</span>; <span class="keyword">case</span> <span class="string">&#x27;member_add&#x27;</span>: <span class="variable">$username</span> = <span class="keyword">isset</span>(<span class="variable">$arr</span>[<span class="string">&#x27;username&#x27;</span>]) ? <span class="variable">$arr</span>[<span class="string">&#x27;username&#x27;</span>] : <span class="keyword">exit</span>(<span class="string">&#x27;0&#x27;</span>); <span class="variable">$password</span> = <span class="keyword">isset</span>(<span class="variable">$arr</span>[<span class="string">&#x27;password&#x27;</span>]) ? <span class="variable">$arr</span>[<span class="string">&#x27;password&#x27;</span>] : <span class="keyword">exit</span>(<span class="string">&#x27;0&#x27;</span>); <span class="variable">$email</span> = <span class="keyword">isset</span>(<span class="variable">$arr</span>[<span class="string">&#x27;email&#x27;</span>]) ? <span class="variable">$arr</span>[<span class="string">&#x27;email&#x27;</span>] : <span class="keyword">exit</span>(<span class="string">&#x27;0&#x27;</span>); <span class="variable">$uid</span> = <span class="keyword">isset</span>(<span class="variable">$arr</span>[<span class="string">&#x27;uid&#x27;</span>]) ? <span class="variable">$arr</span>[<span class="string">&#x27;uid&#x27;</span>] : <span class="keyword">exit</span>(<span class="string">&#x27;0&#x27;</span>); <span class="variable">$u</span> = <span class="keyword">array</span>(); <span class="variable">$u</span>[<span class="string">&#x27;username&#x27;</span>] = <span class="variable">$username</span>; <span class="variable">$u</span>[<span class="string">&#x27;password&#x27;</span>] = <span class="variable">$password</span>; <span class="variable">$u</span>[<span class="string">&#x27;email&#x27;</span>] = <span class="variable">$email</span>; <span class="variable">$u</span>[<span class="string">&#x27;city_id&#x27;</span>]=<span class="number">0</span>; <span class="variable">$u</span>[<span class="string">&#x27;phpssouid&#x27;</span>]=<span class="variable">$uid</span>; <span class="keyword">if</span>(<span class="variable">$user_id</span> = ZUser::Create(<span class="variable">$u</span>))&#123;  ZCredit::Register(<span class="variable">$user_id</span>);  <span class="keyword">exit</span>(<span class="string">&#x27;1&#x27;</span>); &#125; <span class="keyword">else</span> &#123;  <span class="keyword">exit</span>(<span class="string">&#x27;0&#x27;</span>); &#125; <span class="keyword">break</span>; <span class="keyword">case</span> <span class="string">&#x27;member_delete&#x27;</span>: <span class="variable">$uidarr</span> = <span class="variable">$arr</span>[<span class="string">&#x27;uids&#x27;</span>]; <span class="keyword">foreach</span>(<span class="variable">$uidarr</span> <span class="keyword">as</span> <span class="variable">$k</span>=&gt;<span class="variable">$v</span>)&#123; <span class="variable">$uid</span>=<span class="variable">$v</span>; <span class="variable">$ids</span> = Table::Fetch(<span class="string">&#x27;user&#x27;</span>, <span class="variable">$uid</span>,<span class="string">&#x27;phpssouid&#x27;</span>); <span class="variable">$id</span>=<span class="variable">$ids</span>[<span class="string">&#x27;id&#x27;</span>];</span><br></pre></td></tr></table></figure>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -305,7 +310,15 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/928002874/",
         "description": "最土团购系统官方网站http://www.zuitu.com，使用，下载，演示请到官方网站。本接口发布时 最土团购系统 版本编号： ZuituGo_CV2.0_20120502 商业版
-主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨",
+主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
+1.在phpcms v9后台的phpsso中添加应用应用名:最土团购应用地址:http://zuitu.bnwin.com/account/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
+添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
+2.打开接口文件中的account/phpssoconfig.php文件，修改define(‘APPID’, 4);中的7为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
+phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
+保存后把account目录复制到最土团购根目录覆盖。接口文件的login.php logout.php对原系统有所修改，你可以事先对团购系统account目录中的这两个文件进行备份,目录中的其他三个文件是新增的。
+覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
+3.修改团购系统的user表，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
+建议去掉直接在团购系统注册，因为团购系统注册的密码不能直接保存在phpcms v9中，会出现以phpcmsv9登录时，不能同步登录团购系统。",
         "wordCount": 244
     }
 </script>
@@ -358,7 +371,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -367,7 +380,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3056921327\" rel="bookmark"><i class="fa fa-file"></i> delphi如何实现php中的parse_url网址拆分函数?</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\415747762\" rel="bookmark"><i class="fa fa-file"></i> phpcms整合DESTOONB2B接口文件及使用说明</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

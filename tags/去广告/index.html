@@ -127,7 +127,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -248,7 +248,9 @@ daovoice('update');
 
         <p class="article-excerpt">
             8圈网管计费系统，最近在桌面生成图标，直接删除会提示服务和应用管理程序已经打开，无法删除，8圈计费系统先生成url快捷图标，然后打开这个快捷方式取得句柄，再使用DuplicateHandle复制句柄丢给系统进程services.exe，达到占用文件，删除8圈桌面图标就不行了!8圈桌面图标阻止删除的方法关键地方就是使用了DuplicateHandle这个API，看看下面的代码!
-1234567891
+12345678910111213141516171819202122232425262728293031323334353637383940414243function EnabledDebugPrivilege(const bEnabled: Boolean): Boolean;//提权varhToken: THandle;tp: TOKEN_PRIVILEGES;a: DWORD;constSE_DEBUG_NAME = &#x27;SeDebugPrivilege&#x27;;beginResult := False;if (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, hToken)) thenbegintp.PrivilegeCount := 1;LookupPrivilegeValue(nil, SE_DEBUG_NAME, tp.Privileges[0].Luid);if bEnabled thentp.Privileges[0].Attributes := SE_PRIVILEGE_ENABLEDelsetp.Privileges[0].Attributes := 0;a := 0;AdjustTokenPrivileges(hToken, False, tp, SizeOf(tp), nil, a);Result := GetLastError = ERROR_SUCCESS;CloseHandle(hToken);end;end; function DupFile(FileName:String;PID:Cardinal):Boolean;varhFile,hProcess,hTarget:THandle;beginResult := False;EnabledDebugPrivilege(True);hProcess := OpenProcess(PROCESS_DUP_HANDLE, False, PID);Tryif hProcess &lt;&gt; 0 thenbeginhFile := CreateFile(PChar(FileName), GENERIC_READ, 0, nil, Create_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);if hFile = INVALID_HANDLE_VALUE then Exit;Result := DuplicateHandle(GetCurrentProcess(), hFile, hProcess, @hTarget,0, False, DUPLICATE_SAME_ACCESS or DUPLICATE_CLOSE_SOURCE);end;FinallyCloseHandle(hProcess);End;end;
+8圈在桌面生成图标就是利用上面的原理!实际改一下就是这样
+123456789101112131415161718192021222324252627282930313233343536procedure TForm1.btn2Click(Sender: TObject);  function GetPid(ExeFileName: string): THandle;  //根据进程名返回进程PID  const    PROCESS_TERMINATE = $0001;  var    ContinueLoop: BOOL;    FSnapshotHandle: THandle;    FProcessEntry32: TProcessEntry32;  begin    Result := 0;    FSnapshotHandle := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);    FProcessEntry32.dwSize := SizeOf(FProcessEntry32);    ContinueLoop := Process32First(FSnapshotHandle, FProcessEntry32);    while Integer(ContinueLoop) &lt;&gt; 0 do    begin      if ((UpperCase(ExtractFileName(FProcessEntry32.szExeFile)) = UpperCase(ExeFileName)) or          (UpperCase(FProcessEntry32.szExeFile) = UpperCase(ExeFileName))) then          begin              Result :=FProcessEntry32.th32ProcessID;              Break;          end;          ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);      end;    CloseHandle(FSnapshotHandle);  end;var  fhand:THandle;  hProcess,hFile:THandle;begin  fhand:=FileOpen(PWideChar(edt1.Text),GENERIC_READ);//取得阻止删除的文件句柄  EnabledDebugPrivilege;  hProcess:=OpenProcess(PROCESS_ALL_ACCESS, FALSE, GetPid(&#x27;services.exe&#x27;));  if DuplicateHandle(GetCurrentProcess(), fhand,hProcess, @hFile,  0 ,FALSE, DUPLICATE_SAME_ACCESS) then      ShowMessage(&#x27;文件占坑成功!&#x27;);  CloseHandle(hProcess);end;
         </p>
     </div>
 </article>
@@ -306,7 +308,14 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            Procmon也被称为Process Monitor，是一款系统进程监视软件，总体来说，Process Monitor相当于Filemon+Regmon，其中的Filemon专门用来监视系统 中的任何文件操作过程，而Regmon用来监视注册表的读写操作过程。 有了Process Monitor，使用者就可以对系统中的任何文件和 注册表操作同时进行监视和记录，通过注册表和文件读写的变化， 对于帮助诊
+            Procmon也被称为Process Monitor，是一款系统进程监视软件，总体来说，Process Monitor相当于Filemon+Regmon，其中的Filemon专门用来监视系统 中的任何文件操作过程，而Regmon用来监视注册表的读写操作过程。 有了Process Monitor，使用者就可以对系统中的任何文件和 注册表操作同时进行监视和记录，通过注册表和文件读写的变化， 对于帮助诊断系统故障或是发现恶意软件、病毒或木马来说，非常 有用。 这是一个高级的 Windows 系统和应用程序监视工具，由优秀的 Sysinternals 开发，并且目前已并入微软旗下，可靠性自不用说。
+
+Process Monitor 不仅结合了 Filemon（文件监视器） 和 Regmon（注册表监视器） 两个工具的功能，还具有以下一些增强：
+
+监视进程和线程的启动和退出，包括退出状态代码监视映像 (DLL 和内核模式驱动程序) 加载捕获更多输入输出参数操作非破坏性的过滤器允许你自行定义而不会丢失任何捕获的数据捕获每一个线程操作的堆栈，使得可以在许多情况下识别一个操作的根源可靠捕获进程详细信息，包括映像路径、命令行、完整性、用户和会话ID等等完全可以自定义任何事件的属性列过滤器可以设置为任何数据条件，包括未在当前视图中显示的高级的日志机制，可记录上千万的事件，数GB的日志数据进程树工具显示所有进程的关系原生的日志格式，可将所有数据信息保存，让另一个 Process Monitor 实例加载进程悬停提示，可方便的查看进程信息详细的悬停提示信息让你方便的查看列中不能完整显示的信息搜索可取消系统引导时记录所有操作
+官方下载地址：  https://docs.microsoft.com/zh-cn/sysinternals/downloads/procmon
+百度网盘下载地址：链接: https://pan.baidu.com/s/1eSF9fAM 密码: erib
+
         </p>
     </div>
 </article>
@@ -354,7 +363,20 @@ daovoice('update');
         <p class="article-excerpt">
             做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!来看看桌面出现的这个弹出窗口在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！
 
-打开 句柄精灵ViewWizard (下载句柄精灵请到 
+打开 句柄精灵ViewWizard (下载句柄精灵请到 http://www.bnwin.com/2017/11/03/202.html)  界面如下
+鼠标按住 句柄精灵的 十字图标拖到这个弹出的窗口上！
+这时句柄精灵就显示出来这个程序的所有信息
+这个窗口的模块是 C:\Users\Administrator\AppData\Local\Temp\QXREPAIR1.DLL 往下面拉，看看进程是谁
+
+exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe 是由谁创建的呢？父进程是 916 [svchost.exe] 找到了是谁创建的，是什么进程，就可以相应的进行控制了!你可以禁止XFIXER.exe的运行，或者禁止svchost.exe在temp目录创建xfixer.exe文件等！
+你也可以根据句柄精灵提供的窗口信息进行自动关闭!对于这种有独立进程的弹出窗口你可能通过任务管理器也能查找到，虽然没有使用句柄精灵方便，但通过其他程序加载dll库文件弹出的窗口，通过任务管理器就无能为力了!
+我们来看看英雄联盟选择英雄时左边的窗口是谁创建的
+
+打开句柄精灵，拖动十字图标到这个窗口上，看看句柄精灵中的信息
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121属性 数据基本&gt;句柄 67140 [0x00010644]文本长度 0类名 TWINCONTROL基类 Generic描述 通用窗口ID *数据 0x130B9478字节 *实例 *模块 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe父窗&gt;句柄 [65552]文本 [Desktop]类名 [#32769]基类 [Generic]显示&gt;状态 常规&gt;可视 yes有效 yes置顶 yes分层 no透明 no重叠 no不活动 noUnicode yes密码框 no掩码不透明度 *Z序 3大小&gt;窗口矩形 (1508,415)-(1810,798) 302×383还原矩形 (1508,415)-(1810,798) 302×383客户矩形(屏幕) (1508,415)-(1810,798) 302×383客户矩形(窗口) (0,0)-(302,383) 302×383最大化坐标 (0,0) 1920×1050最小最大尺寸 0x0 1930×1057当前窗口坐标当前客户坐标关系&gt;父窗口 65552 [0x00010010] #32769 “Desktop”根窗口 *所有者窗口 *首个子窗口 *首兄弟窗口 394540 [0x0006052C] MSCTFIME UI “MSCTFIME UI”上一个窗口 918714 [0x000E04BA] IME “Default IME”下一个窗口 198612 [0x000307D4] Auto-Suggest Dropdown “”尾兄弟窗口 65812 [0x00010114] Progman “Program Manager”样式&gt;标准样式 0x96020000 (2516713472)描述 WS_POPUP|WS_VISIBLE|WS_CLIPSIBLINGS|WS_CLIPCHILDREN|WS_GROUP控件扩展样式 0x00000088 (136)描述 WS_EX_TOPMOST|WS_EX_TOOLWINDOW控件类&gt;类名 TWINCONTROL类原子 0xC2CC (49868)类字节 *窗口字节 *类样式 0x00000008 (8)描述 CS_DBLCLKS图标 *小图标 *光标 0x00010003 IDC_ARROW画刷 *菜单 *过程 0x55C1AD90 (1438756240) [Unicode]模块 0x00400000 (4194304)模块路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe菜单&gt;句柄 *子菜单所有子菜单菜单项菜单矩形字体&gt;句柄 *名称大小粗体斜体删除线下划线字符集进程&gt;进程ID 7060 [0x00001B94]线程ID 2560 [0x00000A00]进程启动 2017-11-26 16:32:06线程启动 2017-11-26 16:32:06内存使用 32,248 KB内存峰值 91,252 KB虚拟内存 82,008 KB线程计数 17句柄计数 324GUI对象 GDI:52, User:40映像名称 pallas.exeEXE路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe物理路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe命令行父进程 6444 [tgp_daemon.exe]文件&gt;名称 pallas.exe大小 7390408版本 4.1.1.123版权 Copyright (C) 2015 Tencent.All Rights Reserved产品 WeGame公司 腾讯计算机系统有限公司描述 Tencent.WeGame.Pallas创建时间 2015-12-31 21:14:44统计&gt;子窗口所有子窗口无效子窗口隐藏子窗口线程窗口 12进程窗口 12附加&gt;基本类型 Generic (通用)
+正确使用句柄精灵，可以找出广告程序等弹出窗口的幕后黑手！
+
+
         </p>
     </div>
 </article>
@@ -406,7 +428,14 @@ daovoice('update');
         <p class="article-excerpt">
             PC Hunter是一个Windows系统信息查看软件，同时也是一个手工杀毒辅助软件。支持xp~win10的所有32位操作系统，还支持64位的Win7、Win8、Win8.1和Win10系统。看看界面主要功能:1.进程、线程、进程模块、进程窗口、进程内存信息查看，杀进程、杀线程、卸载模块等功能
 2.内核驱动模块查看，支持内核驱动模块的内存拷贝
-3.SSDT、Shadow SSDT、FSD、KBD、
+3.SSDT、Shadow SSDT、FSD、KBD、TCPIP、Nsiproxy、Tdx、Classpnp、Atapi、Acpi、SCSI、IDT、GDT信息查看，并能检测和恢复ssdt hook和inline hook
+4.CreateProcess、CreateThread、LoadImage、CmpCallback、BugCheckCallback、Shutdown、Lego等近20多种Notify Routine信息查看，并支持对这些Notify Routine的删除
+5.端口信息查看，目前不支持2000系统
+6.查看消息钩子
+7.内核模块的iat、eat、inline hook、patches检测和恢复
+8.磁盘、卷、键盘、网络层等过滤驱动检测，并支持删除
+9.注册表编辑
+10.进程iat、eat、inline hook、patches检测和恢复
         </p>
     </div>
 </article>
@@ -452,7 +481,16 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            ikeeper爱克吧为网吧实名管理系统 官网http://www.echina110.com如何去掉ikeeper爱克吧的桌面广告呢？这儿介绍两种方种，虽然ikeeper爱克吧已经开始下线，开始使用ikeeper 8圈管理系统，在这儿仍然记录一下如何去掉ikeeper爱克吧广告的方法，至于ikeeper 8圈去广告方法，后续我们会放上相应的文章，8圈去广告已经没有爱克吧简单了!方法一自定义广告使用
+            ikeeper爱克吧为网吧实名管理系统 官网http://www.echina110.com如何去掉ikeeper爱克吧的桌面广告呢？这儿介绍两种方种，虽然ikeeper爱克吧已经开始下线，开始使用ikeeper 8圈管理系统，在这儿仍然记录一下如何去掉ikeeper爱克吧广告的方法，至于ikeeper 8圈去广告方法，后续我们会放上相应的文章，8圈去广告已经没有爱克吧简单了!方法一自定义广告使用说明
+爱克吧的广告地址为
+http://activedesktop.echina110.com/advertises/desktopx.asp?id=5001030050
+desktopx.asp的内容为:
+Http://你的站点的IP/advertises/adv/ad.cab  123
+只要把activedesktop.echina110.com域名屏蔽，就可以去广告，只要把这个域名重定向，然后自定义cab的内容就可以显示自定义的广告!至于怎么屏蔽，可以使用路由器中的域名过滤和重定向就ＯＫ了。
+其中desktopx.asp的内容说明如下：第一项指向你的站点中的ad.cab（文件可以为任何，但必须是cab压缩包，不能是zip或rar或7z等其他压缩包，制作cab压缩包，可以使用xp自带的IEXPRESS.EXE)
+路径不一定是在advertises/adv可以改为其他路径,但该路径下必须有ad.cab,这个文件名不能变
+其后的123可以为任意数字!
+同时请注意desktopx.asp的路径不能变,只能在http://你的站点IP/advertises/desktopx.asp确保打开此 asp页面在浏览器中返回的应该为Http://你的ad.cab路径/ad.cab 123
         </p>
     </div>
 </article>
@@ -504,7 +542,12 @@ daovoice('update');
         <p class="article-excerpt">
             网吧经常出现很多人投诉网吧，老是自动弹出广告，以前还只是游戏结束自动弹出游戏网页，现在直接小窗口带声音了。打开网页多了还要慢慢找。我想知道怎么屏蔽这一类的广告，因为现在已经有很多人投诉了，但是我们上面的合作公司竟然无力解决!
 进程里面结束网吧系统的游戏管理软件就不会出现广告！网吧为了管理游戏方便，不可避免的需要这种管理软件，所以广告不可避免，这也是网吧系统管理方赚钱的一种手段。
-这就是现在网吧广告
+这就是现在网吧广告的现状，网吧现在绝大部份采用无盘系统，无盘系统比如网维大师等，会不断投放广告，网吧采用实名制系统，比如pubwin等公安实名制系统，也会不断投放广告，文化监管软件，比如任子行等，也会不断投放广告!网吧使用的营销软件，比如网吧营销大师、领航等，同时会不断投放广告,只要看到网吧市场的，都会投放广告，广告这么多，网吧客户机不成了垃圾系统了吗？拖慢系统，游戏中弹出桌面，烦人的弹窗，还有烦人的挖矿，不断的消耗客户机软硬件资源，网吧体验怎么办？370safe等类软件应运而生，还你网吧桌面自由！
+370Safe只是个安全防御工具, 提供防御功能, 不提供任何内置规则 . 在默认情况下, 软件安装后 , 不会拦截任何软件的任何操作.用户应合理,合法,灵活使用软件提供的一切功能 . 因用户自行配置的规则导致的一切问题,用户自行承担相应的责任.用户应仅将本工具用于防御病毒木马,不得破坏其他软件正常功能.
+370服务端运行界面此下载地址包括370safe 2.0内网版和以前的370safe 1.02版 370safe 1.03版升级补丁等!
+370safe 2.0内网版及1.02 1.03下载地址
+链接: https://pan.baidu.com/s/1i4QE2TR 密码: 6jvb
+
         </p>
     </div>
 </article>

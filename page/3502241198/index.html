@@ -133,7 +133,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -296,6 +296,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>原理与远程控制木马是一样的。这里远端指被控制的电脑。连接建立之后，远端的电脑图像压缩后发回本地，这样本地就能看到画面，本地进行键盘鼠标的等操作的动作封装成数据包发送给远端解开后还原成动作进行远程的模拟操作。远端反馈的画面通过压缩后继续发回给控制端。就远控的图像传输来说，早年远控都是直接进行JPEG截图后传输，所以速度不太理想。之后各种大牛延伸出很多很腻害的基于截图的方式的屏幕传输的算法，传输效率进一步提高，通常是先加载一个虚拟屏幕驱动，然后对屏幕做逐行扫描，然后计算变化的部分，之后只传输变化的部分。TeamViewer(版本9.0)也是支持虚拟屏幕驱动的，但是需要到设置中手动进行安装。</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -312,7 +317,26 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateCreated": "2017-11-22",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/3502241198/",
-        "description": "TeamViewer是一个能在任何防火墙和NAT代理的后台用于远程控制，桌面共享和文件传输的简单且快速的解决方案。为了连接到另一台计算机，只需要在两台计算机上同时运行 TeamViewer 即可，而不需要进行安装（也可以选择安装，安装后可以设置开机运行）。该软件第一次启动在两台计算机上自动生成伙伴 ID。只需要输入你的伙伴的ID到TeamViewer，然后就会立即建立起连接。TeamViewer官",
+        "description": "TeamViewer是一个能在任何防火墙和NAT代理的后台用于远程控制，桌面共享和文件传输的简单且快速的解决方案。为了连接到另一台计算机，只需要在两台计算机上同时运行 TeamViewer 即可，而不需要进行安装（也可以选择安装，安装后可以设置开机运行）。该软件第一次启动在两台计算机上自动生成伙伴 ID。只需要输入你的伙伴的ID到TeamViewer，然后就会立即建立起连接。TeamViewer官方网站:https://www.teamviewer.com/zhCN/
+如何使用手机控制电脑呢？
+
+在TeamViewer官方网站下载相应的App,比如Android版TeamViewer下载地址为https://play.google.com/store/apps/details?id=com.teamviewer.teamviewer.market.mobile,不过你可以直接在你的手机应用市场中搜索TeamViewer，也可以下载安装TeamViewer的app安装!Android手机安装成功运行的界面如下
+在电脑中运行TeamViewer，界面如下:
+只要在手机的伙伴ＩＤ处输入电脑端显示的ＩＤ，点击远程控制，输入电脑端的密码，就可以在手机中控制电脑了，连接成功后的界面如下
+
+点继续后就可以操控电脑了
+
+电脑端运行TeamViewer，每次运行，密码都不一样，为了便于控制，我们要设置一个固定的密码，实现无人值守！点击电脑端显示的密码，会弹出一个菜单，选择　设置预定义密码，界面如下
+这样做了以后，只要在电脑中TeamViewer的其他菜单的选项点开，钩上随windows一同启动TeamViewer，就可以在手机上输入电脑端teamviewer的id和预设的固定密码，从手机控制电脑了!但这时你是不是觉得还不够方便？为了更自动化一些，我们需要注册一个TeamViewer的控制帐号!在手机端是不是有一个计算机选项卡，点击后有一个注册按钮，你只要注册了帐号，你第一次登录，teamviewer会发一封添加允许设备登录的邮件，也就是只有允许的设备才能使用，这样安全性就高了!允许的设备登录帐号后，就可以添加电脑端的ID和密码，以后在手机中，只要登录帐号，直接点击你预添加的计算机就可以控制了，不需要你记和输ＩＤ和密码!
+TeamViewer最新版需要授权许可才能使用
+
+Teamviewer连接的原理主要分为三部分，分别是①如何根据ID找到要连接的电脑，②找到电脑之后如何内网间互联，③如何能操作对方的电脑。一、先说TeamViewer如何根据ID连接到对方：
+1、运行TeamViewer 之后，电脑会先连接到TV的服务器，然后服务器对这台电脑分配一个唯一的ID。这个ID主要是以网卡的MAC地址为依据生成的，所以如果想给电脑换一个Teamviewer ID，只要修改一下MAC地址就行了。
+2、当一个TeamViewer 连接另一个的时候，会先连接到服务器，通过ID与电脑的对应关系找到这台要连接的电脑。
+二、如何建立内网对内网的连接：
+如果连接的其中任一方是有公网IP的网络环境，双方的连接就启用P2P连接。双方是内网的情况， TeamViewer数据就会通过TeamViewer 自己的服务器进行中转。这也是TeamViewer 内网互通会在网络高峰期比较慢的原因。
+三、如何操作被控机的鼠标与键盘。
+原理与远程控制木马是一样的。这里远端指被控制的电脑。连接建立之后，远端的电脑图像压缩后发回本地，这样本地就能看到画面，本地进行键盘鼠标的等操作的动作封装成数据包发送给远端解开后还原成动作进行远程的模拟操作。远端反馈的画面通过压缩后继续发回给控制端。就远控的图像传输来说，早年远控都是直接进行JPEG截图后传输，所以速度不太理想。之后各种大牛延伸出很多很腻害的基于截图的方式的屏幕传输的算法，传输效率进一步提高，通常是先加载一个虚拟屏幕驱动，然后对屏幕做逐行扫描，然后计算变化的部分，之后只传输变化的部分。TeamViewer(版本9.0)也是支持虚拟屏幕驱动的，但是需要到设置中手动进行安装。",
         "wordCount": 22
     }
 </script>
@@ -365,7 +389,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -374,7 +398,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\278292559\" rel="bookmark"><i class="fa fa-file"></i> 370safe安全管理软件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2797625853\" rel="bookmark"><i class="fa fa-file"></i> ApacheBench(ab)服务器负载压力测试软件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1816476569\" rel="bookmark"><i class="fa fa-file"></i> 8圈计费系统9.5独立挂机_充值_换机_下机等功能工具</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\446633678\" rel="bookmark"><i class="fa fa-file"></i> Procmon监视系统一举一动的利器!</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

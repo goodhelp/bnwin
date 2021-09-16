@@ -133,7 +133,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -314,6 +314,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>电影VIP浏览器和电影云播放器发布<br>可以免费解析各大视频网站的VIP电影，可以去掉解析网站加的广告，可以自定义解析特征串等!</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -334,7 +339,25 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 
 如何添加一个新电影网站
 
-打开setup.ini　在[blist]中添加　网站名=网址　然后再在[bz]中添加播放页面网址标志 即可如在[blist]中添加 ACFUN=http://www.acfun.cn/ 然后在[bz]中添加 acfun.",
+打开setup.ini　在[blist]中添加　网站名=网址　然后再在[bz]中添加播放页面网址标志 即可如在[blist]中添加 ACFUN=http://www.acfun.cn/ 然后在[bz]中添加 acfun.cn/v/ac=ACFUN因为acfun.cn网站的播放页网址一般为http://www.acfun.cn/v/ac3523372 网址中包含acfun.cn/v/ac就会自动解析播放!
+
+如果电影网站的播放页网址无规律，怎么办？如果一个电影网址的播放页无规律性标志，可以不在[bz]中添加，打开播放页后，点击鼠标右键，选择播放此页　一样可以正常播放! 如果iqiyi绝大部份播放页网址都包括iqiyi.com/v_　但金刚狼的播放页网址为http://vip.iqiyi.com/20111230/14 … fc=87bbded392d221f5 这时只能看6分钟但只要在该页面点右键，播放此页，即就可免费看完此影片!
+
+点击电影弹出后无法播放，怎么办？
+
+
+我们没有提供vip电影解析，所有解析网址均收集自网络，如果电影网站算法改变，专做解析的网站没有写出算法就可能无法播放，你可以在页面刷新，或者点击右键　切换解析线路　用其他的解析网站测试!不是所有的解析网站可解析所有电影网站，有的解析网站只能解析一部份!
+
+在哪儿找解析网址?
+
+一种是到ckplayer的论坛http://bbs.ckplayer.com/查看，有很多免费的解析网站发布，二是直接打开本程序的play.exe，可以显示我们收集的setup.ini参数!你也可以自己在ckplayer买解析源码自己建网址解析
+
+本软件收费吗？
+
+本软件不收费，如果你觉得本软件很好使用，你可以捐赠，多少不限，也许你的一点爱心可以促进我们优化软件
+
+能不能直接打开播放网址进行播放？
+",
         "wordCount": 34
     }
 </script>
@@ -387,7 +410,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -396,7 +419,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1816476569\" rel="bookmark"><i class="fa fa-file"></i> 8圈计费系统9.5独立挂机_充值_换机_下机等功能工具</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1213995227\" rel="bookmark"><i class="fa fa-file"></i> 中止非驱动保护进程的工具</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\278292559\" rel="bookmark"><i class="fa fa-file"></i> 370safe安全管理软件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2797625853\" rel="bookmark"><i class="fa fa-file"></i> ApacheBench(ab)服务器负载压力测试软件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

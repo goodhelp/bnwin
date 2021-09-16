@@ -134,7 +134,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -290,6 +290,11 @@ Fine Uploader 采用ajax方式实现对文件上传.同时在浏览器中直接�
 </ol>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -310,7 +315,16 @@ Fine Uploader 采用ajax方式实现对文件上传.同时在浏览器中直接�
 
 unigui使用前端上传组件plupload上传文件,改进文件上传，显示文件上传进度先看看效果图片
 Plupload有以下功能和特点：
-1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测",
+1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测当前的环境，选择最合适的上传方式，并且会优先使用HTML5的方式。所以你完全不用去操心当前的浏览器支持哪些上传方式，Plupload会自动为你选择最合适的方式。
+2、支持以拖拽的方式来选取要上传的文件
+3、支持在前端压缩图片，即在图片文件还未上传之前就对它进行压缩
+4、可以直接读取原生的文件数据，这样的好处就是例如可以在图片文件还未上传之前就能把它显示在页面上预览
+5、支持把大文件切割成小片进行上传，因为有些浏览器对很大的文件比如几G的一些文件无法上传。
+unigui使用前端上传组件fineuploader上传文件，增强文件上传先看看效果图片
+Fine Uploader 采用ajax方式实现对文件上传.同时在浏览器中直接支持文件拖拽[对浏览器版本有要求类似IE版本必须是9或是更高的IE10].在不同浏览器中提供统一用户体验.该组件基本覆盖目前所有主流浏览器.同时没有任何第三方组件依赖.相当Clear.在服务器端已经覆盖支持了ASP.NET/ColdFusion/Java/Node.js/Perl/PHP/Python. 对上传细节类似限制文件大小，文件类型，文件上传的数量等通过统一接口以暴露选项方式操作.可以到这儿Github 上Fine Uploader 查看具体内容
+delphi使用unigui源码下载地址链接: https://pan.baidu.com/s/10zOTt4eKqsDHnwHCDPp5ng 提取码: nenp 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+",
         "wordCount": 18
     }
 </script>
@@ -363,7 +377,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -372,7 +386,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2767400155\" rel="bookmark"><i class="fa fa-file"></i> unigui管理系统源码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3910524000\" rel="bookmark"><i class="fa fa-file"></i> delphi如何在Ring3下跨进程获取DLL信息</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

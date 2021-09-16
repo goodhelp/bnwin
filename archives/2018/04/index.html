@@ -127,7 +127,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -248,7 +248,12 @@ daovoice('update');
 
         <p class="article-excerpt">
             php中拆分URL的一个很重要的函数就是parse_url();但在delphi如何不正则分析就可以实现如此方便的功能呢？实际上delphi的indy有一个单元实现此功能-IdURI单元，实现如下分拆
-1234http://login:password@somehost.somedomain.com:8080/some_path/something.html?param1=val&amp;para
+1234http://login:password@somehost.somedomain.com:8080/some_path/something.html?param1=val&amp;param2=val#nose\__/   \___/ \______/ \_____________________/ \__/\_______________________/ \___________________/ \__/ |       |      |               |               |                |                   |              |Scheme Username Password       Host            Port             Path              Query         Fragment
+123456789101112131415161718uses  ..., IdURI; var  URI: TIdURI; URI := TIdURI.Create(&#x27;http://login:password@somehost.somedomain.com:8080/some_path/something_else.html?param1=val&amp;param2=val&#x27;);try   Protocol = URI.Protocol   Username = URI.Username   Password = URI.Password   Host = URI.Host   Port = URI.Port   Path = URI.Path   Query = URI.Paramsfinally  URI.Free;end;
+以下是使用InternetCrackUrl方法实现(依赖windows的WinInet库)
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758&#123;$APPTYPE CONSOLE&#125; uses  Windows,  SysUtils,  WinInet; procedure ParseURL(const lpszUrl: string);var  lpszScheme      : array[0..INTERNET_MAX_SCHEME_LENGTH - 1] of Char;  lpszHostName    : array[0..INTERNET_MAX_HOST_NAME_LENGTH - 1] of Char;  lpszUserName    : array[0..INTERNET_MAX_USER_NAME_LENGTH - 1] of Char;  lpszPassword    : array[0..INTERNET_MAX_PASSWORD_LENGTH - 1] of Char;  lpszUrlPath     : array[0..INTERNET_MAX_PATH_LENGTH - 1] of Char;  lpszExtraInfo   : array[0..1024 - 1] of Char;  lpUrlComponents : TURLComponents;begin  ZeroMemory(@lpszScheme, SizeOf(lpszScheme));  ZeroMemory(@lpszHostName, SizeOf(lpszHostName));  ZeroMemory(@lpszUserName, SizeOf(lpszUserName));  ZeroMemory(@lpszPassword, SizeOf(lpszPassword));  ZeroMemory(@lpszUrlPath, SizeOf(lpszUrlPath));  ZeroMemory(@lpszExtraInfo, SizeOf(lpszExtraInfo));  ZeroMemory(@lpUrlComponents, SizeOf(TURLComponents));   lpUrlComponents.dwStructSize      := SizeOf(TURLComponents);  lpUrlComponents.lpszScheme        := lpszScheme;  lpUrlComponents.dwSchemeLength    := SizeOf(lpszScheme);  lpUrlComponents.lpszHostName      := lpszHostName;  lpUrlComponents.dwHostNameLength  := SizeOf(lpszHostName);  lpUrlComponents.lpszUserName      := lpszUserName;  lpUrlComponents.dwUserNameLength  := SizeOf(lpszUserName);  lpUrlComponents.lpszPassword      := lpszPassword;  lpUrlComponents.dwPasswordLength  := SizeOf(lpszPassword);  lpUrlComponents.lpszUrlPath       := lpszUrlPath;  lpUrlComponents.dwUrlPathLength   := SizeOf(lpszUrlPath);  lpUrlComponents.lpszExtraInfo     := lpszExtraInfo;  lpUrlComponents.dwExtraInfoLength := SizeOf(lpszExtraInfo);   InternetCrackUrl(PChar(lpszUrl), Length(lpszUrl), ICU_DECODE or ICU_ESCAPE, lpUrlComponents);   Writeln(Format(&#x27;Protocol : %s&#x27;,[lpszScheme]));  Writeln(Format(&#x27;Host     : %s&#x27;,[lpszHostName]));  Writeln(Format(&#x27;User     : %s&#x27;,[lpszUserName]));  Writeln(Format(&#x27;Password : %s&#x27;,[lpszPassword]));  Writeln(Format(&#x27;Path     : %s&#x27;,[lpszUrlPath]));  Writeln(Format(&#x27;ExtraInfo: %s&#x27;,[lpszExtraInfo]));end; begin  try   ParseURL(&#x27;http://login:password@somehost.somedomain.com/some_path/something_else.html?param1=val&amp;param2=val&#x27;);  except    on E: Exception do      Writeln(E.ClassName, &#x27;: &#x27;, E.Message);  end;  readln;end.
+以上运行输出效果Protocol : httpHost : somehost.somedomain.comUser : loginPassword : passwordPath : /some_path/something_else.htmlExtraInfo: ?param1=val&amp;param2=val
+
         </p>
     </div>
 </article>

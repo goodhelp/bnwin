@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -280,6 +280,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unit</span> Unit1;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">interface</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">uses</span></span><br><span class="line">Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,</span><br><span class="line">Dialogs, StdCtrls, ExtCtrls;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">type</span></span><br><span class="line"><span class="title">TForm1</span> = <span class="keyword">class</span>(TForm)</span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">FormCreate</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">FormClose</span><span class="params">(Sender: TObject; <span class="keyword">var</span> Action: TCloseAction)</span>;</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">private</span></span><br><span class="line"><span class="comment">&#123; Private declarations &#125;</span></span><br><span class="line"><span class="keyword">public</span></span><br><span class="line"><span class="comment">&#123; Public declarations &#125;</span></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">Form1: TForm1;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HookOn</span><span class="params">(lpHwnd:HWND;lpType:Longint)</span>:</span>Longint;<span class="keyword">stdcall</span>;<span class="keyword">external</span> <span class="string">&#x27;HOOK32.DLL&#x27;</span> <span class="keyword">name</span> <span class="string">&#x27;HookOn&#x27;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HookOff</span>:</span>Boolean;<span class="keyword">stdcall</span>;<span class="keyword">external</span> <span class="string">&#x27;HOOK32.DLL&#x27;</span> <span class="keyword">name</span> <span class="string">&#x27;HookOff&#x27;</span>;</span><br><span class="line"><span class="keyword">implementation</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">&#123;$R *.dfm&#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TForm1</span>.<span class="title">FormCreate</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">hHandle:HWND;</span><br><span class="line">hProID:HWND;</span><br><span class="line">hThrID:HWND;</span><br><span class="line">h1:HWND;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="comment">//这些只是自身程序的，没什么用。</span></span><br><span class="line">hHandle:=Application.Handle;</span><br><span class="line">hProID:=GetCurrentProcessId();</span><br><span class="line">hThrID:=GetCurrentThreadId();</span><br><span class="line">h1:=FindWindow(<span class="keyword">NIL</span>,<span class="string">&#x27;你的程序&#x27;</span>);<span class="comment">//这是窗口的句柄，要自己找到后，填写入。</span></span><br><span class="line">HookOn(h1,WH_KEYBOARD);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TForm1</span>.<span class="title">FormClose</span><span class="params">(Sender: TObject; <span class="keyword">var</span> Action: TCloseAction)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">hookoff;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -297,7 +302,12 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/1318062081/",
         "description": "需要用DLL方式调用:这是DLL的DPR文件:
-1234567891011121314151617181920212223242526library Hook32; &#123; Important note about DLL memory management: ShareMem must be thefirst unit in your library&#x27;s USES clause ",
+1234567891011121314151617181920212223242526library Hook32; &#123; Important note about DLL memory management: ShareMem must be thefirst unit in your library&#x27;s USES clause AND your project&#x27;s (selectProject-View Source) USES clause if your DLL exports any procedures orfunctions that pass strings as parameters or function results. Thisapplies to all strings passed to and from your DLL--even those thatare nested in records and classes. ShareMem is the interface unit tothe BORLNDMM.DLL shared memory manager, which must be deployed alongwith your DLL. To avoid using BORLNDMM.DLL, pass string informationusing PChar or ShortString parameters. &#125; usesSysUtils,Forms,Classes,myDLl in &#x27;myDLl.pas&#x27; &#123;Form1&#125;; &#123;$R *.res&#125; exportsHookOn,HookOff; begin&#123;Application.Initialize;Application.Run; &#125;end.
+这是DLL的PAS文件:
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142unit myDLl; interface usesWindows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,Dialogs, StdCtrls; typeTForm1 = class(TForm)Button1: TButton;Edit1: TEdit;Memo1: TMemo;procedure Button1Click(Sender: TObject);procedure FormClose(Sender: TObject; var Action: TCloseAction);procedure FormDestroy(Sender: TObject);procedure FormActivate(Sender: TObject);private&#123; Private declarations &#125;public&#123; Public declarations &#125;end; varForm1: TForm1;function HookProc(nCode:Integer;WParam: WPARAM;LParam:LPARAM):LRESULT;stdcall;function HookOn(lpHwnd:HWND;lpType:Longint):Longint;stdcall;export;function HookOff:Boolean;stdcall;export; implementation&#123;type KeyboardBytes=recordkbArray:array[0..255] of byte;end;&#125; varhHk: HHOOK=0;hMOUSEHk: HHOOK=0;mhwnd:HWND=0;bShow:Boolean=False;myKey:Byte=VK_F7;kbArray:TKeyboardState;hThread: Cardinal;hmod: Pointer; //HinstancehProcessId: Cardinal; // KeyHookStruct:^THardwareHookStruct;mMode:Integer; &#123;$R *.dfm&#125; function HookProc(nCode:Integer;WParam: WPARAM;LParam:LPARAM):LRESULT;stdcall;beginResult :=0; if nCode&lt;0 thenResult := CallNextHookEx(hHk,nCode,WParam,LParam)elsebeginGetKeyboardState(kbArray); if (bShow=False) And (kbArray[myKey]=1) thenbeginbShow:=True;Form1:=TForm1.Create(Application);ShowCursor(true);try// Form1.Caption :=&#x27;我的DLL中的窗体！&#x27;;// LockWindowUpdate(mhwnd);/// SetParent(Form1.Handle,mhwnd);// MoveWindow(Form1.Handle,1,1,2,2,True);// UpdateWindow(Form1.Handle);// UpdateWindow(mhwnd);SetWindowPos(Form1.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE Or SWP_NOSIZE);// UpdateWindow(mhwnd);// mMode:=GetMapMode(GetDC(mhwnd));// SetMapMode(GetDC(Form1.Handle),mMode);// UpdateWindow(Form1.Handle);// SetWindowLong(Form1.Handle,GWL_STYLE,GetWindowLong(mhwnd, GWL_STYLE)); Result :=1;SuspendThread(hThread);Form1.ShowModal;ShowCursor(true);ResumeThread(hThread);kbArray[myKey] := 0;SetKeyboardState(kbArray); finallyForm1.Free;end;endelsebeginResult := CallNextHookEx(hHk,nCode,WParam,LParam);end;end;end; function HookOn(lpHwnd:HWND;lpType:Longint): Longint;stdcall; export;beginmhwnd:=lpHwnd;if hHk&lt;&gt;0 then UnHookWindowsHookEx(hHk);hThread :=GetWindowThreadProcessId(mhwnd,hmod);// hProcessId:=cardinal(hmod);// Sleep(200);hHk :=SetWindowsHookEx(lpType,@HookProc,hInstance,hThread); // WH_KEYBOARDResult :=hHkend; function HookOff:Boolean;stdcall; export;beginif hHk&lt;&gt;0 thenbeginUnHookWindowsHookEx(hHk);hHk :=0;Result :=true;endelseResult :=false;end; procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);beginbShow:=False;end; procedure TForm1.FormDestroy(Sender: TObject);beginbShow:=False;end; procedure TForm1.Button1Click(Sender: TObject);beginForm1.close;end; procedure TForm1.FormActivate(Sender: TObject);beginShowCursor(true);end; end.
+这是调用的程序PAS
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748unit Unit1; interface usesWindows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,Dialogs, StdCtrls, ExtCtrls; typeTForm1 = class(TForm)procedure FormCreate(Sender: TObject);procedure FormClose(Sender: TObject; var Action: TCloseAction); private&#123; Private declarations &#125;public&#123; Public declarations &#125;end; varForm1: TForm1;function HookOn(lpHwnd:HWND;lpType:Longint):Longint;stdcall;external &#x27;HOOK32.DLL&#x27; name &#x27;HookOn&#x27;;function HookOff:Boolean;stdcall;external &#x27;HOOK32.DLL&#x27; name &#x27;HookOff&#x27;;implementation &#123;$R *.dfm&#125; procedure TForm1.FormCreate(Sender: TObject);varhHandle:HWND;hProID:HWND;hThrID:HWND;h1:HWND;begin//这些只是自身程序的，没什么用。hHandle:=Application.Handle;hProID:=GetCurrentProcessId();hThrID:=GetCurrentThreadId();h1:=FindWindow(NIL,&#x27;你的程序&#x27;);//这是窗口的句柄，要自己找到后，填写入。HookOn(h1,WH_KEYBOARD);end; procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);beginhookoff;end; end.
+",
         "wordCount": 965
     }
 </script>
@@ -350,7 +360,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -359,7 +369,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2301859295\" rel="bookmark"><i class="fa fa-file"></i> TChromium获取网页源代码delphi代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

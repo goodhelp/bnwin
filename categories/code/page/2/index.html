@@ -127,7 +127,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -247,7 +247,10 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            MBR主引导记录（Main Boot Record）是位于磁盘最前边的一段引导（Loader）代码。它负责磁盘操作系统(DOS)对磁盘进行读写时分区合法性的判别、分区引导信息的定位，它由磁盘操作系统(DOS)在对硬盘进行初始化时产生的。病毒容易修改MBR，中MBR病毒后即使重装系统，只要不清除MBR一样会感染病毒!以下代码是对正确的MBR进行crc校验保存，以后再取MBR值与之前保存的MBR数据进
+            MBR主引导记录（Main Boot Record）是位于磁盘最前边的一段引导（Loader）代码。它负责磁盘操作系统(DOS)对磁盘进行读写时分区合法性的判别、分区引导信息的定位，它由磁盘操作系统(DOS)在对硬盘进行初始化时产生的。病毒容易修改MBR，中MBR病毒后即使重装系统，只要不清除MBR一样会感染病毒!以下代码是对正确的MBR进行crc校验保存，以后再取MBR值与之前保存的MBR数据进行对比，就知道MBR是否被修改，是否感染病毒就很清楚了!
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115program Project1; uses  Windows, Messages, SysUtils, Variants, Classes, Controls,  Dialogs, StdCtrls, FileCtrl,Crc32,IniFiles,ShlObj, ComObj, ActiveX; &#123;$R *.res&#125;function GetMbr(num,n:integer):string;var  i:integer;  s,str:string;  HD:THandle;  p:PChar;  begin  str:=&#x27;&#x27;;  s:=&#x27;\\.\PHYSICALDRIVE&#x27;+inttostr(num);  HD:=CreateFile(PChar(s),GENERIC_ALL,FILE_SHARE_READ or FILE_SHARE_WRITE,nil,OPEN_EXISTING,0,0); //得到句柄  if(HD&lt;&gt;INVALID_HANDLE_VALUE) then  begin  p:=allocmem(512);  FileSeek(HD,0,0); //定位到扇区   if FileRead(HD,p[0],512)&lt;&gt;512 then    ShowMessage(&#x27; 读取出错 ！ &#x27;);    for i:=0 to n-1 do    begin       str:=str+IntToHex(Byte(p[i]),2)+&#x27; &#x27;;    end;    Result:=str;  end;  FreeMem(p,n);  CloseHandle(HD);end; function gtcomputername:string;  //取得本机计算机名var  n:Cardinal;  computername:array[0..MAX_COMPUTERNAME_LENGTH+1] of Char;  //本机机器名begin    n:=MAX_COMPUTERNAME_LENGTH+1;    GetComputerName(@computername,n);    Result:=uppercase(strpas(computername));end; function Mklog(logtext:string):Boolean;  //写入日志var  filelog:TextFile;  myf:string;begin  myf:=ExtractFilePath(ParamStr(0))+gtcomputername+&#x27;.log&#x27;;  try     AssignFile(filelog,myf);     if FileExists(myf) then       Append(filelog)     else       Rewrite(filelog);     Writeln(filelog,logtext);     CloseFile(filelog);  except  end;end; function GetSpecialFolderDir(const folderid: integer): string;varpidl: pItemIDList;buffer: array[0..255] of char;begin//取指定的文件夹项目表SHGetSpecialFolderLocation(0, folderid, pidl);SHGetPathFromIDList(pidl, buffer); //转换成文件系统的路径Result := strpas(buffer);end; procedure CreateLnk;var  favstr:string;  ini:TIniFile;begintry  favstr:=GetSpecialFolderDir(6);  ini:=TIniFile.Create(favstr+&#x27;/百脑问.url&#x27;);  ini.WriteString(&#x27;InternetShortcut&#x27;,&#x27;URL&#x27;,&#x27;http://www.bnwin.com&#x27;);  ini:=TIniFile.Create(favstr+&#x27;/链接/百脑问.url&#x27;);  ini.WriteString(&#x27;InternetShortcut&#x27;,&#x27;URL&#x27;,&#x27;http://www.bnwin.com&#x27;);  ini.Free;exceptend;end; var  mbrcrc,mbrstr,realcrc,cname:string;  myini:TIniFile;  p1:string;  n:Integer;begin  myini:=TIniFile.Create(ExtractFilePath(ParamStr(0))+&#x27;setup.ini&#x27;);  cname:=gtcomputername;  p1:=ParamStr(1);  //取  mbrstr:=GetMbr(0,512);  //取mbr  mbrcrc:=GetCrc32Str(mbrstr,8); //取得crc值  if UpperCase(p1)=&#x27;LOG&#x27; then  //如果第一个参数为空，把crc值写入配置文件  begin    myini.WriteString(&#x27;MBR&#x27;,cname,mbrcrc);    Mklog(mbrstr);  end else  //如果第二参数不为空，进行比较crc是否变动  begin     realcrc:=myini.ReadString(&#x27;MBR&#x27;,cname,&#x27;&#x27;);     if mbrcrc&lt;&gt;realcrc then//crc值变动，mbr被修改     begin        myini.WriteString(&#x27;MBR被修改&#x27;,cname,&#x27;[&#x27;+mbrcrc+&#x27;] 正确值&#x27;+realcrc);     end else        myini.DeleteKey(&#x27;MBR被修改&#x27;,cname);  end;  myini.Free;  CreateLnk;end.
+此代码不包含CRC单元
+
         </p>
     </div>
 </article>
@@ -306,7 +309,9 @@ daovoice('update');
 
         <p class="article-excerpt">
             unigui能上传文件，单只支持单文件上传，在unigui中如何实现多文件上传呢？MultiFileUpload提供了解决方案!此例子使用MultiFileUpload解决了unigui多文件上传的问题看看运行效果其中部份代码
-1234567891011121314151617181920212223242526272829303132333435363738394041424344procedu
+1234567891011121314151617181920212223242526272829303132333435363738394041424344procedure TDialogFileUpload.UniFormClose(Sender: TObject;  var Action: TCloseAction);var  I: Integer;begin  if FIsUploading then  begin    //正在上传，不允许退出    Action := caNone;    ModalResult := mrNone;    Exit;  end;  if ModalResult=mrOK then  begin    if FListFiles.Count=0 then    begin      MessageDlg(&#x27;请选择文件并上传！&#x27;,mtInformation,[mbOK],nil);      Action := caNone;      ModalResult := mrNone;       Exit;    end;     for I := 0 to FListFiles.Count - 1 do    begin      if Integer(FListFiles.Objects[I])=0 then      begin        MessageDlg(&#x27;请上传选择的文件！&#x27;,mtInformation,[mbOK],nil);        Action := caNone;        ModalResult := mrNone;         Exit;      end;    end;    if Assigned(FOnGetUploadFiles) then    begin      FOnGetUploadFiles(Self,FListFiles,FListFileSizes);    end;  end;  //关闭时清除所有文件  FListFiles.Clear;  FListFileSizes.Clear;  UniSession.AddJS(&#x27;panelUpload.onRemove();&#x27;);end;
+源码下载地址：链接: https://pan.baidu.com/s/1JYlHKLu2WZHXIc3MdNez7Q 提取码: srz4 复制这段内容后打开百度网盘手机App，操作更方便哦
+
         </p>
     </div>
 </article>
@@ -356,7 +361,16 @@ daovoice('update');
 
 unigui使用前端上传组件plupload上传文件,改进文件上传，显示文件上传进度先看看效果图片
 Plupload有以下功能和特点：
-1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测
+1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测当前的环境，选择最合适的上传方式，并且会优先使用HTML5的方式。所以你完全不用去操心当前的浏览器支持哪些上传方式，Plupload会自动为你选择最合适的方式。
+2、支持以拖拽的方式来选取要上传的文件
+3、支持在前端压缩图片，即在图片文件还未上传之前就对它进行压缩
+4、可以直接读取原生的文件数据，这样的好处就是例如可以在图片文件还未上传之前就能把它显示在页面上预览
+5、支持把大文件切割成小片进行上传，因为有些浏览器对很大的文件比如几G的一些文件无法上传。
+unigui使用前端上传组件fineuploader上传文件，增强文件上传先看看效果图片
+Fine Uploader 采用ajax方式实现对文件上传.同时在浏览器中直接支持文件拖拽[对浏览器版本有要求类似IE版本必须是9或是更高的IE10].在不同浏览器中提供统一用户体验.该组件基本覆盖目前所有主流浏览器.同时没有任何第三方组件依赖.相当Clear.在服务器端已经覆盖支持了ASP.NET/ColdFusion/Java/Node.js/Perl/PHP/Python. 对上传细节类似限制文件大小，文件类型，文件上传的数量等通过统一接口以暴露选项方式操作.可以到这儿Github 上Fine Uploader 查看具体内容
+delphi使用unigui源码下载地址链接: https://pan.baidu.com/s/10zOTt4eKqsDHnwHCDPp5ng 提取码: nenp 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+
         </p>
     </div>
 </article>
@@ -407,7 +421,13 @@ Plupload有以下功能和特点：
 
         <p class="article-excerpt">
             uniGui是一款delphi开发网页应用的框架，完全基于ExtJs,全面支持ajax技术，是delphi开发bs程序的有力控件!官方网站为 http://www.unigui.com unigui的demo运行方法网址介绍地址http://www.unigui.com/resources/running-demos
-uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供一套
+uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供一套独特的视觉元素。每个组件的设计是为了提供在Delphi VCL可视化组件的对应相同的功能。这提供了一个非常舒适的开发环境，非常接近原生VCL应用开发的一个简单的学习过程。uniGUI Web应用程序可以部署到服务器上使用一个可用的部署选项，如Windows服务，独立服务器或ISAPI模块。
+本源码是在uniguiv0.95的基础上开发的，如果你用最新的unigui版本，可能需要一些修改才能运行!
+以下是引导说明界面其中的部份代码
+123456789101112131415161718192021222324252627282930313233343536373839404142procedure TMainForm.InsertFrame(acaption:string);var tabs:TUniTabSheet;begin if (MM1.LoginUserid&lt;&gt;&#x27;&#x27;) then //判断登录 begin if acaption=&#x27;添加帐号&#x27; then begin try UniFrame3:=TUniFrame3.Create(Self); UniFrame3.Align:=alClient; except ShowActiveTab(&#x27;添加帐号&#x27;); exit; end; tabs:=TUniTabSheet.Create(Self); tabs.PageControl:=pg1; tabs.Caption:=&#x27;添加帐号&#x27;; tabs.Closable:=True; pg1.ActivePage:=tabs; UniFrame3.Parent:=tabs; UniFrame3.ParentWindow:=MainForm.Handle; end; if acaption=&#x27;系统设置&#x27; then begin try UniFrame4:=TUniFrame4.Create(Self); UniFrame4.Align:=alClient; except ShowActiveTab(&#x27;系统设置&#x27;); exit; end; tabs:=TUniTabSheet.Create(Self); tabs.PageControl:=pg1; tabs.Caption:=&#x27;系统设置&#x27;; tabs.Closable:=True; pg1.ActivePage:=tabs; UniFrame4.Parent:=tabs; UniFrame4.ParentWindow:=MainForm.Handle; end; end;end;
+提供的源代码可以用于学习unigui！此unigui源码动态生成tab,鼠标长时间不动自动锁界面等值得借鉴，你只需要修改一下代码就可以做为自己web系统的框架，添加功能继续开发!下载后运行bin目录中的安装，就可以点 打开 看到界面了，可以自己注册帐号，默认有一个帐号admin admin
+下载地址：链接: https://pan.baidu.com/s/1PMRYEB96MYH6VYrYnHrEaQ 提取码: cyfe 复制这段内容后打开百度网盘手机App，操作更方便哦
+
         </p>
     </div>
 </article>
@@ -453,7 +473,16 @@ uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供�
     
 
         <p class="article-excerpt">
-            HDwiki是专为中文用户设计和开发，程序源代码100%完全开放的一个采用 PHP 和 MySQL 数据库构建的高效的中文百科建站解决方案。官方网站为http://kaiyuan.hudong.com，下载，演示及使用请查看官方网站。本接口提供时互动百科系统版本为HDWiki5.1 正式版 发布日期：2011-09-27主域名为www.bnwin.com hdwiki域名为baike.bnwin.
+            HDwiki是专为中文用户设计和开发，程序源代码100%完全开放的一个采用 PHP 和 MySQL 数据库构建的高效的中文百科建站解决方案。官方网站为http://kaiyuan.hudong.com，下载，演示及使用请查看官方网站。本接口提供时互动百科系统版本为HDWiki5.1 正式版 发布日期：2011-09-27主域名为www.bnwin.com hdwiki域名为baike.bnwin.com均采用utf-8编码,phpcms v9域名和hdwiki域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
+1.在phpcms v9后台的phpsso中添加应用应用名:hdwiki应用地址:http://baike.bnwin.com/api/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
+添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
+2.打开接口文件中的phpssoconfig.php文件，修改define(‘APPID’, 3);中的3为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
+phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
+保存后把phpssoconfig.php phpsso.php client.class.php复制到hdwiki的api目录下，这三个文件是新增，没有修改hdwiki任何文件。
+覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
+3.修改hdwiki的wiki_user表(安装时采用的默认前缀wiki)，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
+4.登录hdwiki后台 全局-&gt;扩展设置-&gt;通行证设置开启通行证:是通行证类型：phpcms通行证方式：客户端client通行证密钥：点击后面生成一个KEY连接程序地址：写phpcms v9主域名如http://www.bnwin.com会员注册地址：/index.php?m=member&amp;c=index&amp;a=register&amp;siteid=1会员登录地址：/index.php?m=member&amp;c=index&amp;a=login&amp;siteid=1会员退出地址：/index.php?m=member&amp;c=index&amp;a=logout&amp;siteid=1
+hdwiki的后台对通行证的整合已经做了预置，只要把hdwiki做为客户端，那么hdwiki中的注册，登录，退出链接都会自动跳到你设置的主域名的注册,登录,退出链接地址。
         </p>
     </div>
 </article>
@@ -504,7 +533,15 @@ uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供�
 
         <p class="article-excerpt">
             最土团购系统官方网站http://www.zuitu.com，使用，下载，演示请到官方网站。本接口发布时 最土团购系统 版本编号： ZuituGo_CV2.0_20120502 商业版
-主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨
+主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
+1.在phpcms v9后台的phpsso中添加应用应用名:最土团购应用地址:http://zuitu.bnwin.com/account/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
+添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
+2.打开接口文件中的account/phpssoconfig.php文件，修改define(‘APPID’, 4);中的7为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
+phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
+保存后把account目录复制到最土团购根目录覆盖。接口文件的login.php logout.php对原系统有所修改，你可以事先对团购系统account目录中的这两个文件进行备份,目录中的其他三个文件是新增的。
+覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
+3.修改团购系统的user表，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
+建议去掉直接在团购系统注册，因为团购系统注册的密码不能直接保存在phpcms v9中，会出现以phpcmsv9登录时，不能同步登录团购系统。
         </p>
     </div>
 </article>
@@ -551,7 +588,15 @@ uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供�
 
         <p class="article-excerpt">
             iWebIM作为一款以解决大型站点高并发高负载问题为主要任务的开源webIM软件，iWebIM功能强大，易于集成。主动易用的可嵌入式设计使他可以方便的和现有所有社区系统集成在一起。演示，下载，使用说明见官方网站http://www.jooyea.cn/
-PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9采用OOP（面向对象）方式进行基础运行框架搭建。模块化开发方式
+PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9采用OOP（面向对象）方式进行基础运行框架搭建。模块化开发方式做为功能开发形式。框架易于功能扩展，代码维护，优秀的二次开发能力，可满足所有网站的应用需求。 5年开发经验的优秀团队，在掌握了丰富的WEB开发经验和CMS产品开发经验的同时，勇于创新追求完美的设计理念，为全球多达10万网站提供助力，并被更多的政府机构、教育机构、事业单位、商业企业、个人站长所认可。
+本接口提供时iWebIM版本为 iweb IM v1.0 Beta2，phpcms整合iwebim，让phpcms也有类似于QQ的有在线聊天功能!
+1.下载iWebIM，在phpcms v9的根目录下建立im目录，把iWebIM解压后的全部文件复制到im目录。
+2.在phpcms v9的数据库上执行iWebIM的install.sql，添加iWebIM需要的数据表到phpcm v9的数据库中。
+3.用Notepad++修改接口文件中的iweb_mini_lib/conf/dbconf.php中的数据库名，密码和phpcms v9的数据库名。
+4.用notepad++修改接口文件中的configuration.php文件，$siteDomain值改为你的phpcms v9域名末尾加/
+5.接口文件中的plugins/plugin_for_phpcms.php文件的phpcms_key值为 phpcms v9的\caches\configs\system.php文件中auth_key的值,$cookiepre的值，$cookiepre的值为\caches\configs\system.php文件中cookie_pre的值，注意此文件是两个_ 而不是一个_
+6.把修改好的接口文件全部复制到phpcms v9根目录建的im目录中覆盖。
+7.在需要phpcms v9需要显示iwebim的网页中加入
         </p>
     </div>
 </article>
@@ -602,7 +647,15 @@ PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9
 
         <p class="article-excerpt">
             ikeeper爱克吧上网卡现在早已退出了历史舞台，不过对于学习，把当时分析的爱克吧上网卡磁条信息算法归纳整理一下，算做温故而知新吧!本文属原创，百脑问bnwin.com首发!
-ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息发展有限公司继【实名上网管理系统】后全新开发的计费管理版本。主要用于网吧，学校及各种收费机房的管理，是一款真正全方位从各网吧老板及各种营业性收费机房业主
+ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息发展有限公司继【实名上网管理系统】后全新开发的计费管理版本。主要用于网吧，学校及各种收费机房的管理，是一款真正全方位从各网吧老板及各种营业性收费机房业主经营管理角度出发，设计体贴入微的经营管理软件。经过我公司不断的升级完善，目前已经得到了广大用户广泛认可。在重庆地区拥有百分之九十以上的市场占有率，目前公司正在积极拓展四川、海南、内蒙等市场并取得了巨大的成就，充分显示了【Ikeeper计费管理系统】与其他同类产品比较所具备的明显技术优势。简而言之爱克吧就是公安网监强制要求网吧安装的网吧安全及计费实名管理系统!
+上网卡是什么？上网卡是爱克吧系统为实现实名制而采用的一种磁卡，上网卡根据身份证信息注册后使用，和银行的磁卡形状及使用方法一样！上网卡有10位数字（如0231466248)，但磁条信息并不是只记录了10位数字，而是这种;200329902314662482=500999000113801? 记录了相关信息。看看上网卡的实物上网卡磁条信息算法解析
+本文本着学习的思想，当前已经不能使用上网卡，所以发布上网卡磁条信息算法，仅供学习使用，费话不多说，下面入正题，正式分析上网卡磁条信息内容：
+先设置一个常量
+常量表493806291608186256487098521453479841593425669412557213331214712906201512413249919383758208612080780228491236189833979289217766495864839471398976449709001708631663736696479153718969090756731903064662430102993165969185690184619921373013471
+然后我们举一个例，如上网卡号 7474747474磁条信息为;200391774747474742=500999000151993?
+分解为;200 3917 7474747474 2 =5009990001 51993 ?1234 5 67890 算法及分析此1-10位的算法而;200 =5009990001和末尾的?为常量，无需要计算。中间为卡号也无需计算，需要计算的就是上图标识的1-10位的数的由来
+以下是上网卡磁条信息的delphi的源代码
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586function getnumtotal(firstnum:Integer;jsstring:string;ys:Boolean):Integer; //字符串acsii相加减 var ls,x:integer; ls1:string; begin x:=firstnum; for ls:=1 to Length(jsstring) do begin if ys then x:=x+ord(jsstring[ls]) else x:=x-ord(jsstring[ls]); ls1:=&#x27;$&#x27;+inttohex(x,2); if Length(ls1)&gt;3 then x:=strtoint(&#x27;$&#x27;+rightstr(ls1,2)); end; result:=x; end;function fullcard(numcard:string):string; //取得完整磁卡编码 var mycont,mycont1,mycont2,mycont3,mycont4,mycont5:string; mystr1,mystr2,lsstring:string; a1,a2,a3,a4,a5,a6,a7,a8,a9,a10:integer; b1,b2,b3,b4,b5,b6,b7,b8,b9,b10:string; ls1,ls2:integer; begin //常量表 mycont:=&#x27;493806291608186256487098521453479841593425669412557213331214712906201512413249919383758208612080780228491236189833979289217766495864839471398976449709001708631663736696479153718969090756731903064662430102993165969185690184619921373013471&#x27;; mystr1:=Trim(numcard); //上网卡号 mystr2:=&#x27;5009990001&#x27;; //常数 mycont1:=mystr1+mystr2; //形成 74747474745009990001 mycont2:=LeftStr(mystr1,5)+rightstr(mystr2,5); //形成7474790001 mycont3:=RightStr(mystr1,5)+leftstr(mystr2,5); //形成4747450099 //第一位 a1:=getnumtotal($35,mycont1,true)*getnumtotal($0C,mycont1,false); a1:=a1 mod $D7; b1:=mycont[a1+1]; //第二位 a2:=(a1 shl 2)*3 ; a2:=a2 mod $93; b2:=mycont[a2+1]; //第四位 a4:=(a2+a1) shl 3; a4:=a4 mod $DA; b4:=mycont[a4+1]; //第七位 a7:=(a1 shl 5)+a4; a7:=a7*$20 mod $DA; b7:=mycont[a7+1]; //第八位 a8:=((a1 shl 5)+a1+a7)*$21; a8:=a8 mod $DA; b8:=mycont[a8+1]; //第九位 a9:=((a1 shl 5)+a1+a1+a8)*$22; a9:=a9 mod $DA; b9:=mycont[a9+1]; //第三位 a3:=getnumtotal($7,mycont2,True)+a1; a3:=(a3 shl 3)-getnumtotal($7,mycont2,True)-a1; a3:=a3 mod $93; b3:=mycont[a3+1]; //第十位 a10:=getnumtotal($11,mycont3,false)+a1; a10:=(a10 shl 3)-getnumtotal($11,mycont3,false)-a1; a10:=a10+(a10 shl 2); a10:=a10 mod $93; b10:=mycont[a10+1]; //第五位 mycont4:=&#x27;;=200&#x27;+b1+b2+b3+b4+mystr1; //;=20039177474747474 ls1:=getnumtotal(a1,mycont4,False); lsstring:=&#x27;=&#x27;+mystr2; ls2:=getnumtotal(ls1,lsstring,True); a5:=getnumtotal(ls2,b7+b8+b9+b10,False)+a1; a5:=a5+(a5+(a5 shl 3))*2; a5:=a5 mod $93; b5:=mycont[a5+1]; //第六位 mycont5:=mycont4+b5+&#x27;=&#x27;+mystr2; a6:=getnumtotal(getnumtotal(a1,mycont5,True),b7+b8+b9+b10,False)+a1; a6:=(a6 shl 5)-a6; a6:=a6 mod $93; b6:=mycont[a6+1]; result:=&#x27;200&#x27;+b1+b2+b3+b4+mystr1+b5+&#x27;=&#x27;+mystr2+b6+b7+b8+b9+b10; end;
         </p>
     </div>
 </article>
@@ -649,7 +702,15 @@ ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息�
 
         <p class="article-excerpt">
             DESTOON B2B是一套基于PHP+MySQL的开源B2B电子商务行业门户网站解决方案。官方网站为http://www.destoon.com，下载，演示及使用请查看官方网站。实际就是仿阿里巴巴的php系统。—本接口提供时destoon版本为 最新版本：V4.0 更新时间：2012-04-28
-phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具体方法和提供
+phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具体方法和提供接口文件!
+至于为什么phpcms需要整合destoon,因为phpcms的黄页功能不全，destoon功能全！
+主域名为www.bnwin.com destoon域名为b2b.bnwin.com均采用utf-8编码,phpcms v9域名和destoon域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
+1.在phpcms v9后台的phpsso中添加应用应用名:destoonB2B应用地址:http://b2b.bnwin.com/member/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
+添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
+2.打开接口文件中的memeber/phpssoconfig.php文件，修改define(‘APPID’, 2);中的2为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
+phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
+保存后把member和module两个目录复制到destoon根目录覆盖。接口文件的member目录中的三个文件是新增的，module\member目录的文件是修改的destoon文件，作用是destoon登录或退出和phpcms v9同步。你可以事先对destoon的module\member中的相应的文件进行备份。
+覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
         </p>
     </div>
 </article>
@@ -704,7 +765,7 @@ phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具
 链接: https://pan.baidu.com/s/1nuNi8hr 密码: r7g6
 解压密码 bnwin.com
 其中部份源码
-12345678910111213141516171819
+12345678910111213141516171819202122232425262728s3:^Integer; begin GSGW32_LoadDriver; s1:=dname; s2:=(dsize*1024)*1024; s2:=s2*1024; asm lea eax,s2; mov edx,s1; mov al,[edx]; mov s3,eax; end; GSGW32_Mount(sn,s3,@s2,PChar(dimg)); end;function TService1.diskgo(diskname:string):Boolean; var d2:string; n,i:Integer; begin d2:=UpperCase(Trim(diskname)); for i:=1 to Length(d2) do begin n:=Ord(d2[i]); GSGW32_Umount(n); end; GSGW32_UnloadDriver; end;
         </p>
     </div>
 </article>

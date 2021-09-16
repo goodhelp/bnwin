@@ -134,7 +134,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -290,6 +290,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>第一种hook方法是修改flash文件，但其实是采用动态方法改了汇编代码，处理不好容易蓝屏。第二种方法修改flash插件文件,原理是：flash执行cmd的逻辑是，先读取环境变量comspec(cmd.exe的全路径)，读取到就执行它，读取不到就不执行cmd.exe.只要把变量和cmd.exe名字修改，就执行不成功，就没有DOS黑框出来!第一种方法是在flash插件要运行cmd.exe的时候再进行拦截，是动态修改的，而第二种是直接让flash找不到变量和cmd.exe程序，flash自己判断不用执行，是静态修改!第三种是懒人方法!但几种方法实现的效果都是阻止cmd.exe的正常执行!同时你就可以这样思考了，为了让flash不出现闪黑框的问题，就变成了如何阻止cmd.exe的执行，比如你在你自己的程序中先修改一下comspec环境变量，也是可以阻止cmd.exe执行的，大家自由发挥!</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -308,7 +313,18 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "url": "https://goodhelp.gitee.io/page/1936827288/",
         "description": "dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!
 
-一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码1234567891011",
+一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100unit HookExt;  interfaceuses   uhook,Windows,SysUtils; type  TFuncCreateProcessA = function(lpApplicationName: LPCSTR; lpCommandLine: LPSTR;    lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;    lpEnvironment: Pointer; lpCurrentDirectory: LPCSTR; const lpStartupInfo: TStartupInfoA;    var lpProcessInformation: TProcessInformation): BOOL; stdcall;  TFuncCreateProcessW = function(lpApplicationName: LPCWSTR; lpCommandLine: LPWSTR;    lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;    lpEnvironment: Pointer; lpCurrentDirectory: LPCWSTR; const lpStartupInfo: TStartupInfoW;    var lpProcessInformation: TProcessInformation): BOOL; stdcall; implementation var  hhk: HHook;  MapFile: THandle;  startPID: PDWORD;  Hook: array [0 .. 1] of TNtHookClass; function NewCreateProcessA(lpApplicationName: LPCSTR; lpCommandLine: LPSTR;  lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;  lpEnvironment: Pointer; lpCurrentDirectory: LPCSTR; const lpStartupInfo: TStartupInfoA;  var lpProcessInformation: TProcessInformation): BOOL; stdcall;var  strCommandLine: AnsiString;begin  strCommandLine := StrPas(lpCommandLine);  if (Pos(&#x27;echo NOT SANDBOXED&#x27;,strCommandLine)&gt;0) or  (Pos(&#x27;no-sandbox&#x27;,strCommandLine)&gt;0) then    Result := True  else  begin    Hook[0].UnHook;    Result := TFuncCreateProcessA(Hook[0].BaseAddr)(lpApplicationName, lpCommandLine, lpProcessAttributes,      lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo,      lpProcessInformation);    Hook[0].Hook;  end;end; function NewCreateProcessW(lpApplicationName: LPCWSTR; lpCommandLine: LPWSTR;  lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;  lpEnvironment: Pointer; lpCurrentDirectory: LPCWSTR; const lpStartupInfo: TStartupInfoW;  var lpProcessInformation: TProcessInformation): BOOL; stdcall;var  strCommandLine: string;begin  strCommandLine := StrPas(lpCommandLine);   if (Pos(&#x27;echo NOT SANDBOXED&#x27;,strCommandLine)&gt;0) or  (Pos(&#x27;no-sandbox&#x27;,strCommandLine)&gt;0) then    Result := True  else  begin    Hook[1].UnHook;    Result := TFuncCreateProcessW(Hook[1].BaseAddr)(lpApplicationName, lpCommandLine, lpProcessAttributes,      lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo,      lpProcessInformation);    Hook[1].Hook;  end;end; // 安装API Hookprocedure InitHook;begin  Hook[0] := TNtHookClass.Create(&#x27;kernel32.dll&#x27;, &#x27;CreateProcessA&#x27;, @NewCreateProcessA);  Hook[1] := TNtHookClass.Create(&#x27;kernel32.dll&#x27;, &#x27;CreateProcessW&#x27;, @NewCreateProcessW);  // Hook[2] := TNtHookClass.Create( &#x27;user32.dll&#x27;, &#x27;MessageBoxA&#x27;, @NewMessageBoxA );end; // 删除API Hookprocedure UnInitHook;var  i: Integer;begin  for i := 0 to High(Hook) do    FreeAndNil(Hook[i]);end; // 环境处理procedure DllEntry(dwReason: DWORD);begin  case dwReason of    DLL_PROCESS_ATTACH:      InitHook;    DLL_PROCESS_DETACH:      UnInitHook;  end;end; initialization   InitHook; finalization  UnInitHook;end.
+其中的uHook.pas源码:12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788unit uHook; interface usesWindows, Messages, SysUtils;type  TNtJmpCode = packed record    MovEax: Byte;    Addr: DWORD;    JmpCode: Word;    dwReserved: Byte;  end;   TNtHookClass = class(TObject)  private    hProcess: THandle;    NewAddr: TNtJmpCode;    OldAddr: array [0 .. 7] of Byte;    ReadOk: Boolean;  public    BaseAddr: Pointer;    constructor Create(const ADllName, AFuncName: string; ANewFunc: Pointer);    destructor Destroy; override;    procedure Hook;    procedure UnHook;  end; implementation &#123; TNtHookClass &#125; constructor TNtHookClass.Create(const ADllName, AFuncName: string; ANewFunc: Pointer);var  dllModule: HMODULE;  lpNumberOfBytesReacd: DWORD; //NativeUInt;  i:Integer;begin  // 获取模块句柄  dllModule := GetModuleHandle(PWideChar(ADllName));  if dllModule = 0 then    dllModule := LoadLibrary(PWideChar(ADllName));  // 得到模块入口地址  BaseAddr := Pointer(GetProcAddress(dllModule, PWideChar(AFuncName)));  // 获取当前进程句柄  hProcess := GetCurrentProcess;  // 指向新地址的指针  NewAddr.MovEax := $B8;  NewAddr.Addr := DWORD(ANewFunc);  NewAddr.JmpCode := $E0FF;  // 保存原始地址   ReadOk:=ReadProcessMemory(hProcess, BaseAddr, Pointer(@OldAddr), 8, lpNumberOfBytesReacd);  // 开始拦截  Hook; end; destructor TNtHookClass.Destroy;begin  UnHook;  CloseHandle(hProcess);   inherited;end; procedure TNtHookClass.Hook;var  lpNumberOfBytesRead: DWORD;begin  if not ReadOk then    exit;  // 写入新的地址  WriteProcessMemory(hProcess, BaseAddr, @NewAddr, 8, lpNumberOfBytesRead);end; procedure TNtHookClass.UnHook;var  lpNumberOfBytesRead: DWORD;begin  if not ReadOk then    exit;  // 恢复地址  WriteProcessMemory(hProcess, BaseAddr, @OldAddr, 8, lpNumberOfBytesRead); end; end.
+这种hook处理不好就容易蓝屏，更简单的方法如下：用二进制编辑软件，比如winhex,我这儿采用UltraEdit,用UltraEdit打开flash插件dll文件 pepflashplayer.dll
+搜索comspec修改为somspec,(修改的名字只要和comspec不相同即可)修改cmd.exe为cm1.exe (修改的名字只要和cmd.exe不相同即可)
+
+修改后为
+
+然后保存即可，这时打开flash就不会有dos黑框闪一下了！
+第三种方法，更简单，什么都不用修改，只要在你的程序目录下新建一个文本文件，然后改名为cmd.exe，因为弹出黑框需要使用cmd程序，而系统搜索程序是从进程当前的工作目录开始查找，所以直接这样建一个不能执行的cmd.exe文件可以拦截cmd的调用。这个方法最简单！
+
+第一种hook方法是修改flash文件，但其实是采用动态方法改了汇编代码，处理不好容易蓝屏。第二种方法修改flash插件文件,原理是：flash执行cmd的逻辑是，先读取环境变量comspec(cmd.exe的全路径)，读取到就执行它，读取不到就不执行cmd.exe.只要把变量和cmd.exe名字修改，就执行不成功，就没有DOS黑框出来!第一种方法是在flash插件要运行cmd.exe的时候再进行拦截，是动态修改的，而第二种是直接让flash找不到变量和cmd.exe程序，flash自己判断不用执行，是静态修改!第三种是懒人方法!但几种方法实现的效果都是阻止cmd.exe的正常执行!同时你就可以这样思考了，为了让flash不出现闪黑框的问题，就变成了如何阻止cmd.exe的执行，比如你在你自己的程序中先修改一下comspec环境变量，也是可以阻止cmd.exe执行的，大家自由发挥!
+",
         "wordCount": 1213
     }
 </script>
@@ -361,7 +377,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -370,7 +386,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\4288787729\" rel="bookmark"><i class="fa fa-file"></i> delphi中dcef如何自定义referer信息？</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3468945668\" rel="bookmark"><i class="fa fa-file"></i> delphi中如何删除dcef3的cookie和缓存？</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

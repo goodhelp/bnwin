@@ -127,7 +127,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -248,7 +248,15 @@ daovoice('update');
 
         <p class="article-excerpt">
             我们用以下代码打开网站
-12345678910var   Chromium: TChromium;begin   try     Chromium := TChromium.Create(nil);     Chromium.SetParentComponent(Form1);     Chromium.Align := alClient;     chromium.Browser.MainFra
+12345678910var   Chromium: TChromium;begin   try     Chromium := TChromium.Create(nil);     Chromium.SetParentComponent(Form1);     Chromium.Align := alClient;     chromium.Browser.MainFrame.LoadUrl(&#x27;www.bnwin.com&#x27;);     FreeAndNil(Chromium)end;
+如何删除dcef3的cookie和缓存？请看以下代码
+123456789101112131415161718192021222324252627282930313233343536373839type  CefTask = class(TCefTaskOwn)    procedure Execute; override;     public    var url,cookieName: ustring;    constructor create; virtual;  end; constructor CefTask.create;begin  inherited create;  url := &#x27;&#x27;;  cookieName := &#x27;&#x27;;end; procedure CefTask.Execute;var CookieManager: ICefCookieManager;begin  CookieManager := TCefCookieManagerRef.Global;  CookieManager.DeleteCookies(url,cookieName);end; procedure c_WB_ClearCookies;var Task: CefTask;begin  Task := CefTask.Create;  CefPostTask(TID_IO, Task);end; // c_WB_Clear_url_Cookies(&#x27;http://google.com&#x27;,&#x27;cookie_name&#x27;);procedure c_WB_Clear_url_Cookies(c_url,c_cookieName: ustring);var Task: CefTask;begin  Task := CefTask.Create;  Task.url := c_url;  Task.cookieName := c_cookieName;  CefPostTask(TID_IO, Task);end;
+整理自网站 https://stackoverflow.com/questions/12269587/how-do-i-clear-the-cache-and-cookies-for-an-embedded-chromium-browser
+取得cookie并显示，如果需要删除cookie，把deleteCookie:= False改为deleteCookie:= True
+123456789101112131415161718192021222324252627282930313233343536373839404142434445function VisitCookie (const name, value, domain, path: ustring; secure, httponly, hasExpires: Boolean;const creation, lastAccess, expires: TDateTime; count, total: Integer;out deleteCookie: Boolean): Boolean;begin  deleteCookie:= False;  MainForm.Memo1.Lines. Add (&#x27; cookie &#x27; +inttostr (count) + &#x27; / &#x27; + inttostr (total));  MainForm.Memo1.Lines. Add (&#x27; name &#x27; +name);  MainForm.Memo1.Lines. Add (&#x27; value &#x27; +value);  MainForm.Memo1.Lines. Add (&#x27; domain &#x27; +domain);  MainForm.Memo1.Lines. Add (&#x27; path &#x27; +path);  MainForm.Memo1.Lines. Add (&#x27; secure &#x27; +BoolToStr (secure));  MainForm.Memo1.Lines. Add (&#x27; httponly &#x27; +BoolToStr (httponly));  MainForm.Memo1.Lines. Add (&#x27; hasExpires &#x27; +BoolToStr (hasExpires));  MainForm.Memo1.Lines. Add (&#x27; creation &#x27; +DateToStr (creation));  MainForm.Memo1.Lines. Add (&#x27; lastAccess &#x27; +DateToStr (lastAccess));  MainForm.Memo1.Lines. Add (&#x27; expires &#x27; +DateToStr (expires));  MainForm.Memo1.Lines. Add (&#x27;--------------- &#x27;);  Result:= True;end; procedure TMainForm.btn2Click(Sender: TObject);var CookieManager: ICefCookieManager;beginCookieManager:= TCefCookieManagerRef.Global(nil);CookieManager.VisitAllCookiesProc (VisitCookie);end; //这样写，我在delphi xe8中编译不过procedure TMainForm.Button1Click(Sender: TObject);var  CookieManager: ICefCookieManager;begin  CookieManager := TCefCookieManagerRef.Global(nil);  CookieManager.VisitAllCookiesProc(    function(const name, value, domain, path: ustring; secure, httponly,      hasExpires: Boolean; const creation, lastAccess, expires: TDateTime;      count, total: Integer; out deleteCookie: Boolean): Boolean    begin      deleteCookie := True;      ShowMessage(&#x27;A cookie from domain &#x27; + domain + &#x27; will be unmercifully &#x27; +        &#x27;deleted!&#x27;);    end  );end;
+为网址设置单独的cookie文件
+1234567891011121314CookieManager: ICefCookieManager; FormCreate:begin   CookiesPath := ExtractFilePath(Application.ExeName) + &#x27;cookies/bnwin&#x27;;   CookieManager := TCefCookieManagerRef.Global(nil);   CookieManager.SetStoragePath(CookiesPath, True, nil);   Chromium1.Load（&#x27;bnwin.com&#x27;）; end; FormClose:   begin  CookieManager.FlushStore(nil);end
+为指定的网站设置cookie
         </p>
     </div>
 </article>
@@ -295,7 +303,10 @@ daovoice('update');
 
         <p class="article-excerpt">
             TChromium自定义referer，在早期的dcef版本中，这样Append(‘Referer’,’http://www.bnwin.com’)就可以了，详细看下面代码，如果append不行，启用这句request.SetReferrer(request.url, REFERRER_POLICY_ALWAYS);
-123456789101112131415161718192021procedu
+123456789101112131415161718192021procedure TMainForm.chrm1BeforeResourceLoad(Sender: TObject;  const browser: ICefBrowser; const frame: ICefFrame;  const request: ICefRequest; const callback: ICefRequestCallback;  out Result: TCefReturnValue);var  map: ICefStringMultimap;  sAccept,sUserAgent:string;begin          sAccept:= &#x27;application/x-shockwave-flash, image/gif, image/jpeg, image/pjpeg, application/x-ms-application, application/x-ms-xbap,&#x27;+    &#x27; application/vnd.ms-xpsdocument, application/xaml+xml,text/html,application/octet-stream, */*&#x27;;    sUserAgent:=&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36 QIHU 360EE&#x27;;  map := TCefStringMultimapOwn.Create;  request.GetHeaderMap(map);  map.Append(&#x27;Referer&#x27;,request.url);  map.Append(&#x27;Accept&#x27;,sAccept);  map.Append(&#x27;User-Agent&#x27;,sUserAgent); // ShowMessage(map.getvalue(1)+&#x27;  &#x27;+map.getkey(1));  request.SetHeaderMap(map);  //map:=nil; //request.SetReferrer(request.url, REFERRER_POLICY_ALWAYS);end;
+在高版本的dcef中自定义referer，可以直接定义request.
+12345678910111213141516171819procedure TMainForm.ShowUrl(hurl,AllUrl:string);var Request: ICefRequest; Data: ICefPostData; Header: ICefStringMultimap; sUserAgent:string;begin    if chrm1.Browser.IsLoading then chrm1.Browser.StopLoad;    sUserAgent:=&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36 QIHU 360EE&#x27;;    Request := TCefRequestRef.New;    Request.SetReferrer(hurl,REFERRER_POLICY_ORIGIN);//定义referer    Data := TCefPostDataRef.New;    Header := TCefStringMultimapOwn.Create;    Header.Append(&#x27;Accept-Language&#x27;, &#x27;zh-CN&#x27;);    Header.Append(&#x27;User-Agent&#x27;,sUserAgent);    Request.Assign(AllUrl,&#x27;POST&#x27;,Data,header);     chrm1.Browser.MainFrame.LoadRequest(Request);end;
+
         </p>
     </div>
 </article>
@@ -345,7 +356,14 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            Procmon也被称为Process Monitor，是一款系统进程监视软件，总体来说，Process Monitor相当于Filemon+Regmon，其中的Filemon专门用来监视系统 中的任何文件操作过程，而Regmon用来监视注册表的读写操作过程。 有了Process Monitor，使用者就可以对系统中的任何文件和 注册表操作同时进行监视和记录，通过注册表和文件读写的变化， 对于帮助诊
+            Procmon也被称为Process Monitor，是一款系统进程监视软件，总体来说，Process Monitor相当于Filemon+Regmon，其中的Filemon专门用来监视系统 中的任何文件操作过程，而Regmon用来监视注册表的读写操作过程。 有了Process Monitor，使用者就可以对系统中的任何文件和 注册表操作同时进行监视和记录，通过注册表和文件读写的变化， 对于帮助诊断系统故障或是发现恶意软件、病毒或木马来说，非常 有用。 这是一个高级的 Windows 系统和应用程序监视工具，由优秀的 Sysinternals 开发，并且目前已并入微软旗下，可靠性自不用说。
+
+Process Monitor 不仅结合了 Filemon（文件监视器） 和 Regmon（注册表监视器） 两个工具的功能，还具有以下一些增强：
+
+监视进程和线程的启动和退出，包括退出状态代码监视映像 (DLL 和内核模式驱动程序) 加载捕获更多输入输出参数操作非破坏性的过滤器允许你自行定义而不会丢失任何捕获的数据捕获每一个线程操作的堆栈，使得可以在许多情况下识别一个操作的根源可靠捕获进程详细信息，包括映像路径、命令行、完整性、用户和会话ID等等完全可以自定义任何事件的属性列过滤器可以设置为任何数据条件，包括未在当前视图中显示的高级的日志机制，可记录上千万的事件，数GB的日志数据进程树工具显示所有进程的关系原生的日志格式，可将所有数据信息保存，让另一个 Process Monitor 实例加载进程悬停提示，可方便的查看进程信息详细的悬停提示信息让你方便的查看列中不能完整显示的信息搜索可取消系统引导时记录所有操作
+官方下载地址：  https://docs.microsoft.com/zh-cn/sysinternals/downloads/procmon
+百度网盘下载地址：链接: https://pan.baidu.com/s/1eSF9fAM 密码: erib
+
         </p>
     </div>
 </article>
@@ -391,7 +409,19 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            Chromium Embedded Framework (CEF)是个基于Google Chromium项目的开源Web browser控件，支持Windows, Linux, Mac平台。除了提供C/C++接口外，也有其他语言的移植版。因为基于Chromium，所以CEF支持Webkit &amp; Chrome中实现的HTML5的特性，并且在性能上面，也比较接近Chrome。CEF还提供的如下
+            Chromium Embedded Framework (CEF)是个基于Google Chromium项目的开源Web browser控件，支持Windows, Linux, Mac平台。除了提供C/C++接口外，也有其他语言的移植版。因为基于Chromium，所以CEF支持Webkit &amp; Chrome中实现的HTML5的特性，并且在性能上面，也比较接近Chrome。CEF还提供的如下特性：自定义插件、自定义协议、自定义JavaScript对象和扩展；可控制的resource loading, navigation, context menus等等。dcef是指的cef在delphi中的版本
+cef在前期版本中是自带支持flash插件的,后来Chromium不再默认支持flash控件!下面看看我的程序的dcef命令行参数
+
+如何让dcef支持flash呢？
+
+
+安装好dcef，不管哪个版本都行!
+安装360极速浏览器或QQ浏览器，打开其安装目录，找到ppflash目录和npflash目录(360极速浏览器是这两个目录，而QQ浏览器略有不同)！
+在你的工程目录中建NativeFlash目录和PepperFlash目录,然后360的npflash目录下的NPSWF开头的dll文件和同目录下的vch文件复制到自己工程的NativeFlash中，把360的ppflash目录中的pepflash开头的dll文件和同目录下的json文件复制到工程的PepperFlash目录中!这一步就是用360浏览器的flash文件，不需要你手工去下载安装插件!至少你应该发现即使你的系统没有安装flash插件，但360浏览器安装后一样可以正常播放flash，这就是因为他的目录中自带了这几个flash文件，为了让你的程序的dcef支持flash，所以我们直接复制360极速浏览器的flash文件过来，简单方便!
+编辑你的delphi工程文件（即dpr文件），在{$R *.res}后面添加如下代码123456789101112131415161718192021procedure AppendCefCmdline(const processType: ustring; const cmd: ICefCommandLine);begin  //cmd.AppendSwitch(&#x27;--enable-gpu-plugin&#x27;);//允许gpu  //cmd.AppendSwitch(&#x27;disable-gpu&#x27;);//禁止gpu  cmd.AppendSwitch(&#x27;enable-npapi&#x27;); //允许NativeFlash  //cmd.AppendSwitch(&#x27;enable-tab-audio-muting&#x27;);//允许tab页禁音  //cmd.AppendSwitch(&#x27;--enable-media-stream&#x27;); //允许视频流  cmd.AppendSwitchwithvalue(&#x27;load-plugin&#x27;, &#x27;NativeFlash\NPSWF32.dll&#x27;);//指定NativeFlash插件文件位置，注意文件名要和你的一致    //cmd.AppendSwitchWithValue(&#x27;ppapi-flash-version&#x27;,&#x27;20.0.0.267&#x27;);//指定PepperFlash版本号  cmd.AppendSwitchWithValue(&#x27;ppapi-flash-path&#x27;,&#x27;PepperFlash\pepflashplayer.dll&#x27;);//指定PepperFlash插件文件位置,注意文件名要和你的一致  cmd.AppendSwitch(&#x27;--enable-system-flash&#x27;);//允许PepperFlash  //cmd.AppendSwitch(&#x27;--enable-usermedia-screen-capturing&#x27;);end; begin  CefOnBeforeCommandLineProcessing :=AppendCefCmdline; //这一句就是指定了dcef启动的命令行  Application.Initialize;  Application.MainFormOnTaskbar := True;  Application.CreateForm(TMainForm, MainForm);  Application.Run;end.
+
+很多人用delphi的dcef写的程序，不支持flash，是只在命令行中添加了允许flash，而没有指定flash插件文件的位置，这时dcef会去调用系统安装的flash插件，一旦系统插件有问题，你的程序就无法播放flash了，本文写的方法就是360极速浏览器的方法，不管你的系统安装不安装flash，一样播放flash!而要让dcefbrowser支持flash也一样，dcefbrowser中只是把CefOnBeforeCommandLineProcessing改为DcefBApp.OnBeforeCommandLineProcessing即可，至于播放flash会有dos窗口弹一下的问题，请看本站的这篇文章http://www.bnwin.com/2017/12/01/328.html
+
         </p>
     </div>
 </article>
@@ -441,7 +471,9 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            1234567//声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &#123;窗口句柄&#125;  crKey: COLORREF; &#123;透明色&#125;  bAlpha: Byte;    &#123;Alpha 值&#125;  dwFlags: DWORD   &#123;LWA_COLORKEY(=1)表示使用透明色; LWA_
+            1234567//声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &#123;窗口句柄&#125;  crKey: COLORREF; &#123;透明色&#125;  bAlpha: Byte;    &#123;Alpha 值&#125;  dwFlags: DWORD   &#123;LWA_COLORKEY(=1)表示使用透明色; LWA_ALPHA(=2)表示使用 Alpha 值&#125;): Boolean;        &#123;是否成功设置&#125;
+举例(控制外部程序的透明度, 用计算器举了个例子):
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748unit Unit1; interface uses  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,  Dialogs, StdCtrls; type  TForm1 = class(TForm)    Button1: TButton;    Button2: TButton;    procedure Button1Click(Sender: TObject);    procedure Button2Click(Sender: TObject);  end; var  Form1: TForm1; implementation &#123;$R *.dfm&#125; &#123;设定计算器的 Alpha 透明&#125;procedure TForm1.Button1Click(Sender: TObject);var  h: HWND;  FormStyle: Integer;begin  h := FindWindow(&#x27;CalcFrame&#x27;,&#x27;计算器&#x27;);  FormStyle := GetWindowLong(h, GWL_EXSTYLE);  SetWindowLong(h, GWL_EXSTYLE, FormStyle or WS_EX_LAYERED);  SetLayeredWindowAttributes(h, 0, 128, LWA_ALPHA);end; &#123;设定计算器中的白色透明&#125;procedure TForm1.Button2Click(Sender: TObject);var  h: HWND;  FormStyle: Integer;begin  h := FindWindow(&#x27;SciCalc&#x27;, nil);  FormStyle := GetWindowLong(h, GWL_EXSTYLE);  SetWindowLong(h, GWL_EXSTYLE, FormStyle or WS_EX_LAYERED);  SetLayeredWindowAttributes(h, clWhite, 255, LWA_COLORKEY);end; end.
         </p>
     </div>
 </article>
@@ -487,7 +519,14 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            适用于八圈9.5以下版本，9.5版本请查看本站其他页面8圈网管计费系统，自带有挂机锁，一般的网吧均在桌面添加一个挂机锁，但单独的挂机锁或无盘提供的挂机锁，只要重启机器就解锁了，但计费系统的挂机锁则不同，重启机器后，8圈网管计费系统的挂机锁仍然是挂机状态！（如果顾客忘记了8圈挂机锁的密码，可以直接在8圈计费服务端对着挂机机器右键解锁，无需挂机密码，而普通的挂机锁密码忘了就没法，只有重启，重启后就解锁
+            适用于八圈9.5以下版本，9.5版本请查看本站其他页面8圈网管计费系统，自带有挂机锁，一般的网吧均在桌面添加一个挂机锁，但单独的挂机锁或无盘提供的挂机锁，只要重启机器就解锁了，但计费系统的挂机锁则不同，重启机器后，8圈网管计费系统的挂机锁仍然是挂机状态！（如果顾客忘记了8圈挂机锁的密码，可以直接在8圈计费服务端对着挂机机器右键解锁，无需挂机密码，而普通的挂机锁密码忘了就没法，只有重启，重启后就解锁了!这也是8圈计费挂机锁的优势所在!）看看8圈网管计费系统界面，而8圈的挂机锁一般要点开界面才能运行，无法把8圈挂机锁创建快捷方式到桌面，本程序独立于8圈网管计费系统，运行本程序自动运行8圈的挂机锁，这样就可以把无盘系统的挂机锁或单独的挂机全部换成8圈的挂机锁了!
+本程序直接运行实现功能就是 8圈的挂机锁，同时可以添加参数运行加参数 1 运行就是 8圈的结账下机加参数 2 运行就是 8圈的电脑换机加参数 3 运行就是 8圈的呼叫网管加参数 4 运行就是 8圈的在线充值
+如何添加参数，请看下面的gif动画
+下载地址:
+———————-支持8圈9.4.4链接: https://pan.baidu.com/s/159bjiteKJnRwNhlGGK05Lg 密码: shrs增加参数 5 运行就是 8圈的修改密码功能———————-8圈9.4.4以前版本链接: https://pan.baidu.com/s/1nvoVTLB 密码: jxg4
+解压密码 bnwin.com
+查看8圈相关软件 https://goodhelp.gitee.io/tags/八圈/
+
         </p>
     </div>
 </article>
@@ -539,7 +578,18 @@ daovoice('update');
         <p class="article-excerpt">
             dcef3添加flash插件后，在播放flash时会有一个dos的黑框一闪而过,显示not sandboxed,影响使用体验!
 
-一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码1234567891011
+一种方法是hook 具体可以看这篇文章 http://blog.csdn.net/zx2356/article/details/51514403这篇文章是使用的C语言，这儿采用同样的方法，在delphi中实现!代码如下HookExt.pas源码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100unit HookExt;  interfaceuses   uhook,Windows,SysUtils; type  TFuncCreateProcessA = function(lpApplicationName: LPCSTR; lpCommandLine: LPSTR;    lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;    lpEnvironment: Pointer; lpCurrentDirectory: LPCSTR; const lpStartupInfo: TStartupInfoA;    var lpProcessInformation: TProcessInformation): BOOL; stdcall;  TFuncCreateProcessW = function(lpApplicationName: LPCWSTR; lpCommandLine: LPWSTR;    lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;    lpEnvironment: Pointer; lpCurrentDirectory: LPCWSTR; const lpStartupInfo: TStartupInfoW;    var lpProcessInformation: TProcessInformation): BOOL; stdcall; implementation var  hhk: HHook;  MapFile: THandle;  startPID: PDWORD;  Hook: array [0 .. 1] of TNtHookClass; function NewCreateProcessA(lpApplicationName: LPCSTR; lpCommandLine: LPSTR;  lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;  lpEnvironment: Pointer; lpCurrentDirectory: LPCSTR; const lpStartupInfo: TStartupInfoA;  var lpProcessInformation: TProcessInformation): BOOL; stdcall;var  strCommandLine: AnsiString;begin  strCommandLine := StrPas(lpCommandLine);  if (Pos(&#x27;echo NOT SANDBOXED&#x27;,strCommandLine)&gt;0) or  (Pos(&#x27;no-sandbox&#x27;,strCommandLine)&gt;0) then    Result := True  else  begin    Hook[0].UnHook;    Result := TFuncCreateProcessA(Hook[0].BaseAddr)(lpApplicationName, lpCommandLine, lpProcessAttributes,      lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo,      lpProcessInformation);    Hook[0].Hook;  end;end; function NewCreateProcessW(lpApplicationName: LPCWSTR; lpCommandLine: LPWSTR;  lpProcessAttributes, lpThreadAttributes: PSecurityAttributes; bInheritHandles: BOOL; dwCreationFlags: DWORD;  lpEnvironment: Pointer; lpCurrentDirectory: LPCWSTR; const lpStartupInfo: TStartupInfoW;  var lpProcessInformation: TProcessInformation): BOOL; stdcall;var  strCommandLine: string;begin  strCommandLine := StrPas(lpCommandLine);   if (Pos(&#x27;echo NOT SANDBOXED&#x27;,strCommandLine)&gt;0) or  (Pos(&#x27;no-sandbox&#x27;,strCommandLine)&gt;0) then    Result := True  else  begin    Hook[1].UnHook;    Result := TFuncCreateProcessW(Hook[1].BaseAddr)(lpApplicationName, lpCommandLine, lpProcessAttributes,      lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo,      lpProcessInformation);    Hook[1].Hook;  end;end; // 安装API Hookprocedure InitHook;begin  Hook[0] := TNtHookClass.Create(&#x27;kernel32.dll&#x27;, &#x27;CreateProcessA&#x27;, @NewCreateProcessA);  Hook[1] := TNtHookClass.Create(&#x27;kernel32.dll&#x27;, &#x27;CreateProcessW&#x27;, @NewCreateProcessW);  // Hook[2] := TNtHookClass.Create( &#x27;user32.dll&#x27;, &#x27;MessageBoxA&#x27;, @NewMessageBoxA );end; // 删除API Hookprocedure UnInitHook;var  i: Integer;begin  for i := 0 to High(Hook) do    FreeAndNil(Hook[i]);end; // 环境处理procedure DllEntry(dwReason: DWORD);begin  case dwReason of    DLL_PROCESS_ATTACH:      InitHook;    DLL_PROCESS_DETACH:      UnInitHook;  end;end; initialization   InitHook; finalization  UnInitHook;end.
+其中的uHook.pas源码:12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788unit uHook; interface usesWindows, Messages, SysUtils;type  TNtJmpCode = packed record    MovEax: Byte;    Addr: DWORD;    JmpCode: Word;    dwReserved: Byte;  end;   TNtHookClass = class(TObject)  private    hProcess: THandle;    NewAddr: TNtJmpCode;    OldAddr: array [0 .. 7] of Byte;    ReadOk: Boolean;  public    BaseAddr: Pointer;    constructor Create(const ADllName, AFuncName: string; ANewFunc: Pointer);    destructor Destroy; override;    procedure Hook;    procedure UnHook;  end; implementation &#123; TNtHookClass &#125; constructor TNtHookClass.Create(const ADllName, AFuncName: string; ANewFunc: Pointer);var  dllModule: HMODULE;  lpNumberOfBytesReacd: DWORD; //NativeUInt;  i:Integer;begin  // 获取模块句柄  dllModule := GetModuleHandle(PWideChar(ADllName));  if dllModule = 0 then    dllModule := LoadLibrary(PWideChar(ADllName));  // 得到模块入口地址  BaseAddr := Pointer(GetProcAddress(dllModule, PWideChar(AFuncName)));  // 获取当前进程句柄  hProcess := GetCurrentProcess;  // 指向新地址的指针  NewAddr.MovEax := $B8;  NewAddr.Addr := DWORD(ANewFunc);  NewAddr.JmpCode := $E0FF;  // 保存原始地址   ReadOk:=ReadProcessMemory(hProcess, BaseAddr, Pointer(@OldAddr), 8, lpNumberOfBytesReacd);  // 开始拦截  Hook; end; destructor TNtHookClass.Destroy;begin  UnHook;  CloseHandle(hProcess);   inherited;end; procedure TNtHookClass.Hook;var  lpNumberOfBytesRead: DWORD;begin  if not ReadOk then    exit;  // 写入新的地址  WriteProcessMemory(hProcess, BaseAddr, @NewAddr, 8, lpNumberOfBytesRead);end; procedure TNtHookClass.UnHook;var  lpNumberOfBytesRead: DWORD;begin  if not ReadOk then    exit;  // 恢复地址  WriteProcessMemory(hProcess, BaseAddr, @OldAddr, 8, lpNumberOfBytesRead); end; end.
+这种hook处理不好就容易蓝屏，更简单的方法如下：用二进制编辑软件，比如winhex,我这儿采用UltraEdit,用UltraEdit打开flash插件dll文件 pepflashplayer.dll
+搜索comspec修改为somspec,(修改的名字只要和comspec不相同即可)修改cmd.exe为cm1.exe (修改的名字只要和cmd.exe不相同即可)
+
+修改后为
+
+然后保存即可，这时打开flash就不会有dos黑框闪一下了！
+第三种方法，更简单，什么都不用修改，只要在你的程序目录下新建一个文本文件，然后改名为cmd.exe，因为弹出黑框需要使用cmd程序，而系统搜索程序是从进程当前的工作目录开始查找，所以直接这样建一个不能执行的cmd.exe文件可以拦截cmd的调用。这个方法最简单！
+
+第一种hook方法是修改flash文件，但其实是采用动态方法改了汇编代码，处理不好容易蓝屏。第二种方法修改flash插件文件,原理是：flash执行cmd的逻辑是，先读取环境变量comspec(cmd.exe的全路径)，读取到就执行它，读取不到就不执行cmd.exe.只要把变量和cmd.exe名字修改，就执行不成功，就没有DOS黑框出来!第一种方法是在flash插件要运行cmd.exe的时候再进行拦截，是动态修改的，而第二种是直接让flash找不到变量和cmd.exe程序，flash自己判断不用执行，是静态修改!第三种是懒人方法!但几种方法实现的效果都是阻止cmd.exe的正常执行!同时你就可以这样思考了，为了让flash不出现闪黑框的问题，就变成了如何阻止cmd.exe的执行，比如你在你自己的程序中先修改一下comspec环境变量，也是可以阻止cmd.exe执行的，大家自由发挥!
+
         </p>
     </div>
 </article>
@@ -586,7 +636,11 @@ daovoice('update');
 
         <p class="article-excerpt">
             
-TChromium自定义post的header信息提交数据1234567891011121314151617181920212223242526272829uses  ceflib; function CreateField(const AValue: AnsiString): ICefPostDataElement;begin  Result := TCefPostDataElementRef
+TChromium自定义post的header信息提交数据1234567891011121314151617181920212223242526272829uses  ceflib; function CreateField(const AValue: AnsiString): ICefPostDataElement;begin  Result := TCefPostDataElementRef.New;  Result.SetToBytes(Length(AValue), PAnsiChar(AValue));end; procedure TForm1.Button1Click(Sender: TObject);var  Header: ICefStringMultimap;  Data: ICefPostData;  Request: ICefRequest;begin  Header := TCefStringMultimapOwn.Create;  Header.Append(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);   Data := TCefPostDataRef.New;  Data.AddElement(CreateField(&#x27;Data.id=27&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.title=title&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.body=body&#x27;));   Request := TCefRequestRef.New;  Request.Flags := WUR_FLAG_NONE;  Request.Assign(&#x27;http://example.com/&#x27;, &#x27;POST&#x27;, Data, Header);   Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+在另一版本中的代码1234567891011121314151617181920212223procedure TForm1.Button1Click(Sender: TObject);var  Header: ICefStringMultimap;  Data: ICefPostData;  Request: ICefRequest;begin  Request := TCefRequestRef.New;  Request.Url := &#x27;http://example.com/&#x27;;  Request.Method := &#x27;POST&#x27;;  Request.Flags := WUR_FLAG_NONE;   Header := TCefStringMultimapOwn.Create;  Header.Append(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);  Request.SetHeaderMap(Header);   Data := TCefPostDataRef.New;  Data.AddElement(CreateField(&#x27;Data.id=27&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.title=title&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.body=body&#x27;));  Request.PostData := Data;   Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+TChromium自定义post数据123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051function CreateField(const AValue: AnsiString): ICefPostDataElement;begin Result := TCefPostDataElementRef.New; Result.SetToBytes(Length(AValue), PAnsiChar(AValue));end; //***************************************** procedure POST(total, fee: integer);var Header: ICefStringMultimap; Data: ICefPostData; Request: ICefRequest; Cook: ICefCookieManager;begin Request := TCefRequestRef.New; Request.Url := &#x27;&#x27;; Request.Method := &#x27;POST&#x27;; Request.Flags:=[UR_FLAG_ALLOW_CACHED_CREDENTIALS,UR_FLAG_ALLOW_COOKIES];  Header := TCefStringMultimapOwn.Create; Header.Append(&#x27;Host&#x27;, &#x27;&#x27;); Header.Append(&#x27;User-Agent&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept-Language&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept-Encoding&#x27;, &#x27;&#x27;); Header.Append(&#x27;Content-Type&#x27;, &#x27;&#x27;); Header.Append(&#x27;Referer&#x27;, &#x27;&#x27;); Header.Append(&#x27;Content-Length&#x27;, &#x27;&#x27;); Header.Append(&#x27;Origin&#x27;, &#x27;&#x27;); Header.Append(&#x27;Connection&#x27;, &#x27;&#x27;); Header.Append(&#x27;Pragma&#x27;, &#x27;&#x27;); Header.Append(&#x27;Cache-Control&#x27;, &#x27;&#x27;);  Header.Append(&#x27;Cookie&#x27;,&#x27;...&#x27;); ... Header.Append(&#x27;Cookie&#x27;,&#x27;...&#x27;);  Request.SetHeaderMap(Header);  Data := TCefPostDataRef.New; Data.AddElement(CreateField(&#x27;sessionid=&#x27;+SessionID)); Data.AddElement(CreateField(&#x27;¤cy=5&#x27;)); Data.AddElement(CreateField(&#x27;&amp;subtotal=&#x27;+inttostr(total-fee))); Data.AddElement(CreateField(&#x27;&amp;fee=&#x27;+IntToStr(fee))); Data.AddElement(CreateField(&#x27;&amp;total=&#x27;+IntToStr(total)));  Request.PostData := Data;  form1.Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+
+
         </p>
     </div>
 </article>
@@ -636,7 +690,18 @@ TChromium自定义post的header信息提交数据1234567891011121314151617181920
     
 
         <p class="article-excerpt">
-            嵌入式Chromium框架(简称CEF) 是一个由Marshall Greenblatt在2008建立的开源项目，它主要目的是开发一个基于Google Chromium的Webbrowser控件。CEF支持一系列的编程语言和操作系统，并且能很容易地整合到新的或已有的工程中去。它的设计思想政治就是易用且兼顾性能。CEF基本的框架包含C/C++程序接口，通过本地库的接口来实现，而这个库则会隔离宿主程序
+            嵌入式Chromium框架(简称CEF) 是一个由Marshall Greenblatt在2008建立的开源项目，它主要目的是开发一个基于Google Chromium的Webbrowser控件。CEF支持一系列的编程语言和操作系统，并且能很容易地整合到新的或已有的工程中去。它的设计思想政治就是易用且兼顾性能。CEF基本的框架包含C/C++程序接口，通过本地库的接口来实现，而这个库则会隔离宿主程序和Chromium&amp;Webkit的操作细节。它在浏览器控件和宿主程序之间提供紧密的整合，它支持用户插件，协议，javascript对象以及javascript扩展，宿主程序可以随意地控件资源下载，导航，下下文内容和打印等，并且可以跟Google Chrome浏览器一起，支持高性能和Html5 技术
+
+为什么chromium不支持mp3和h.264的mp4音视频解码，因为h.264编码并非开源，是需要付费的!所以就存在谷歌自己的浏览器chrome能支持mp4和tchromium不支持mp4!如何查看你的tchromium是否支持mp4呢？你用tchromium写一个简单浏览器，然后打开http://html5test.com 支持是这样显示的
+而不支持是这样显示的
+
+也就是支持h.264 support mp3 support和aac support应该是钩!
+要让cef支持mp3和mp4，需要自己编译，如果你对自己如何编辑有兴趣可以看这篇文件  在Windows下编译Cef3.2623并加入mp3、mp4支持
+对于delphi用户，如何让在delphi中dcef3支持mp3和mp4呢？先到这儿下载dcef3 3.2623.1401  http://download.csdn.net/download/cyu/9917747  (如果没有积分就到这儿下载 链接：https://pan.baidu.com/s/1dFETI0L 密码：gult  ) 你也可以安装dcefbrowser，封装后的dcef3 这儿下载dcefbrowser3.2623.1401 https://github.com/bccsafe/DcefBrowser  (你也可以到这儿下载dcefbrowser 链接：https://pan.baidu.com/s/1dFB5Zv7 密码：fljs  )不管你是下载的dcef3 3.2623.1401 还是下载的dcefbrowser 3.2623.1401都可以，安装控件后，运行示例程序，这时你的dcef是不支持mp3和mp4的，为什么呢？因为h.264等编码问题，作者打包的dll库文件是默认不支持mp3和mp4的!
+如何让delphi中dcef3支持mp3和mp4呢？你只需要到这儿下载  链接：https://pan.baidu.com/s/1c1DZ1DY 密码：sqir  已经编译好支持mp3和mp4的dll库，覆盖到前面安装的控件中，就OK了，因为这个dll库是对应于dcef3.2623.1401，所以dcef必须也要安装3.26.23.1401。如何让delphi中dcef3支持mp3和mp4呢?因为非开源问题，所以自己编译dcef3的dll库的不多，提供下载的也不多，为了让你的dcef3支持mp3和mp4，我们只要找对应的版本就可以使用了!为什么非要指定dcef3为3.2623.1401，这是因为编译cef的dll需要开启mp3和mp4支持，网上提供其他版本的cef的dll库，并且加入了支持mp3和mp4的没有，如果你会C++，会自己编译cef的库，那什么版本都一样，都可以支持mp3和mp4
+
+附dcef3另一版本及库文件：dcef3.2454 下载http://download.csdn.net/download/bigcoolfish/9616325  相对应已添加支持mp3和mp4的 dcef3.2454 dll库文件下载  https://pan.baidu.com/s/1pKHbeY3 密码: mxr2
+
         </p>
     </div>
 </article>
@@ -684,7 +749,20 @@ TChromium自定义post的header信息提交数据1234567891011121314151617181920
         <p class="article-excerpt">
             做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!来看看桌面出现的这个弹出窗口在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！
 
-打开 句柄精灵ViewWizard (下载句柄精灵请到 
+打开 句柄精灵ViewWizard (下载句柄精灵请到 http://www.bnwin.com/2017/11/03/202.html)  界面如下
+鼠标按住 句柄精灵的 十字图标拖到这个弹出的窗口上！
+这时句柄精灵就显示出来这个程序的所有信息
+这个窗口的模块是 C:\Users\Administrator\AppData\Local\Temp\QXREPAIR1.DLL 往下面拉，看看进程是谁
+
+exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe 是由谁创建的呢？父进程是 916 [svchost.exe] 找到了是谁创建的，是什么进程，就可以相应的进行控制了!你可以禁止XFIXER.exe的运行，或者禁止svchost.exe在temp目录创建xfixer.exe文件等！
+你也可以根据句柄精灵提供的窗口信息进行自动关闭!对于这种有独立进程的弹出窗口你可能通过任务管理器也能查找到，虽然没有使用句柄精灵方便，但通过其他程序加载dll库文件弹出的窗口，通过任务管理器就无能为力了!
+我们来看看英雄联盟选择英雄时左边的窗口是谁创建的
+
+打开句柄精灵，拖动十字图标到这个窗口上，看看句柄精灵中的信息
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121属性 数据基本&gt;句柄 67140 [0x00010644]文本长度 0类名 TWINCONTROL基类 Generic描述 通用窗口ID *数据 0x130B9478字节 *实例 *模块 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe父窗&gt;句柄 [65552]文本 [Desktop]类名 [#32769]基类 [Generic]显示&gt;状态 常规&gt;可视 yes有效 yes置顶 yes分层 no透明 no重叠 no不活动 noUnicode yes密码框 no掩码不透明度 *Z序 3大小&gt;窗口矩形 (1508,415)-(1810,798) 302×383还原矩形 (1508,415)-(1810,798) 302×383客户矩形(屏幕) (1508,415)-(1810,798) 302×383客户矩形(窗口) (0,0)-(302,383) 302×383最大化坐标 (0,0) 1920×1050最小最大尺寸 0x0 1930×1057当前窗口坐标当前客户坐标关系&gt;父窗口 65552 [0x00010010] #32769 “Desktop”根窗口 *所有者窗口 *首个子窗口 *首兄弟窗口 394540 [0x0006052C] MSCTFIME UI “MSCTFIME UI”上一个窗口 918714 [0x000E04BA] IME “Default IME”下一个窗口 198612 [0x000307D4] Auto-Suggest Dropdown “”尾兄弟窗口 65812 [0x00010114] Progman “Program Manager”样式&gt;标准样式 0x96020000 (2516713472)描述 WS_POPUP|WS_VISIBLE|WS_CLIPSIBLINGS|WS_CLIPCHILDREN|WS_GROUP控件扩展样式 0x00000088 (136)描述 WS_EX_TOPMOST|WS_EX_TOOLWINDOW控件类&gt;类名 TWINCONTROL类原子 0xC2CC (49868)类字节 *窗口字节 *类样式 0x00000008 (8)描述 CS_DBLCLKS图标 *小图标 *光标 0x00010003 IDC_ARROW画刷 *菜单 *过程 0x55C1AD90 (1438756240) [Unicode]模块 0x00400000 (4194304)模块路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe菜单&gt;句柄 *子菜单所有子菜单菜单项菜单矩形字体&gt;句柄 *名称大小粗体斜体删除线下划线字符集进程&gt;进程ID 7060 [0x00001B94]线程ID 2560 [0x00000A00]进程启动 2017-11-26 16:32:06线程启动 2017-11-26 16:32:06内存使用 32,248 KB内存峰值 91,252 KB虚拟内存 82,008 KB线程计数 17句柄计数 324GUI对象 GDI:52, User:40映像名称 pallas.exeEXE路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe物理路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe命令行父进程 6444 [tgp_daemon.exe]文件&gt;名称 pallas.exe大小 7390408版本 4.1.1.123版权 Copyright (C) 2015 Tencent.All Rights Reserved产品 WeGame公司 腾讯计算机系统有限公司描述 Tencent.WeGame.Pallas创建时间 2015-12-31 21:14:44统计&gt;子窗口所有子窗口无效子窗口隐藏子窗口线程窗口 12进程窗口 12附加&gt;基本类型 Generic (通用)
+正确使用句柄精灵，可以找出广告程序等弹出窗口的幕后黑手！
+
+
         </p>
     </div>
 </article>

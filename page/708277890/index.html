@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -285,6 +285,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>这样，普通的http地址就可以轻松的转换成快车，迅雷，旋风的地址了。相反，解密只要将过程反推即可。同样还是利用Base64加密，解密工具。迅雷地址和快车地址的加密方式很简单，其实都是用的Base64加密方式，只不过有一点点的小改动而已。</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -302,7 +307,13 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/708277890/",
         "description": "迅雷地址和快车地址的加密方式很简单，其实都是用的Base64加密方式，只不过有一点点的小改动而已。
-1. 迅雷链接地址加密方式迅雷链接地址转换原理是在地址的前方和后方加入两个字母AA、ZZ，然后再进行Base64加密，再加上Thunder://这个专用链接标识，从而转换成迅雷的专用地址。例如：原链接为：http://www.forece.net/win7.rar在原地址前面加”AA”，后面加”ZZ",
+1. 迅雷链接地址加密方式迅雷链接地址转换原理是在地址的前方和后方加入两个字母AA、ZZ，然后再进行Base64加密，再加上Thunder://这个专用链接标识，从而转换成迅雷的专用地址。例如：原链接为：http://www.forece.net/win7.rar在原地址前面加”AA”，后面加”ZZ”(注：不包括引号)，地址变为AAhttp://www.forece.net/win7.rarZZ此地址base64编码为QUFodHRwOi8vd3d3LmZvcmVjZS5uZXQvd2luNy5yYXJaWg==加入迅雷专链标识，即在上地址前加thunder://，即thunder://QUFodHRwOi8vd3d3LmZvcmVjZS5uZXQvd2luNy5yYXJaWg==
+2. 网际快车链接地址加密方式网际快车的链接地址转换原理和迅雷的类似，只不过是在地址前后加上[FLASHGET]，经过Base64加密，然后在地址前加flashget://这个快车专用链接标识，最后还需要加一个标识符（&amp;符号），符号任意，我一般就加我的名字（&amp;forece），这样就可以将普通http地址转换成快车的地址了。例如：原链接为：http://www.forece.net/win7.rar在原地址前后都加上”[FLASHGET]“(注：不包括引号)，地址变为[FLASHGET]http://www.forece.net/win7.rar[FLASHGET]此地址base64编码为
+W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=
+加上快车专链标识和结尾符号，即在上地址前加flashget://，结尾加&amp;forece，即
+flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&amp;forece
+“&amp;符号”，符号怎么得出我也不清楚，只是看网上别人这么写的，至今无人报错。
+3. QQ旋风链接地址加密方式",
         "wordCount": 23
     }
 </script>
@@ -355,7 +366,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -364,7 +375,27 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

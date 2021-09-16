@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -289,6 +289,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">get_zorder</span><span class="params">(win_hwnd)</span></span>&#123;</span><br><span class="line">    var lowestHwnd = ::User32.GetWindow(win_hwnd,<span class="number">0x1</span><span class="comment">/*_GW_HWNDLAST*/</span>);</span><br><span class="line">    var z=<span class="number">0</span>;</span><br><span class="line">    var hwndTmp=lowestHwnd;</span><br><span class="line">	<span class="keyword">while</span> (hwndTmp != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (win_hwnd == hwndTmp)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> z;</span><br><span class="line">                &#125;</span><br><span class="line">                hwndTmp = ::User32.GetWindow(hwndTmp,<span class="number">0x3</span>);</span><br><span class="line">                z++;</span><br><span class="line">            &#125;    </span><br><span class="line">    	<span class="keyword">return</span>  <span class="number">0</span>; </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -306,7 +311,14 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/2238981937/",
         "description": "如何取得窗口的Z序_How to get the window`s z-order?Z 序：一个重叠窗口的堆，每个窗口在Z 序中 都有唯一一个位置。一个窗口的Z 序 ，指明了该窗口在重叠窗口堆中的位置。这个窗口堆 是沿着一个虚拟的轴——“ Z 轴”，从屏幕上垂直向屏幕外延伸。 Z 序顶部的窗口覆盖 Z 序中的其他窗口。 Z 序底部的窗口被 Z 序中的其他窗口覆盖。
-系统用一个单链表维护 Z 序。系",
+系统用一个单链表维护 Z 序。系统按照顶端窗口、顶层窗口和子窗口的分类 ，将窗口插入到 Z 序表中。顶端窗口覆盖其他所有非顶端窗口，而不管它是不是活动窗口或是不是前台窗口。顶端窗口有 WS_EX_TOPMOST 风格。在 Z 序中，所有顶端窗口都在非顶端窗口之前。在 Z 序中，子窗口是按着他的父窗口进行分组的。
+应用程序一旦创建了一个窗口，系统就将其放入Z 序中 同类窗口的顶部。可以调用 BringWindowToTop() 函数，把某窗口拉到 Z 序中同类窗口的顶部。可以利用 SetWindowPos() 和 DeferWindowPos() 函数对 Z 序进行重新排列。
+用户在激活不同的窗口过程中会改变 Z 序。因为系统会将活动窗口，放置在 Z 序中同类窗口的顶部 。当一个窗口变成 Z 序中的顶层窗口时，它的所有子窗口也变为顶层窗口。可以用 GetTopWindow() 来查找一个父窗口的所有子窗口，并返回（ Z 序中）顶部子窗口的句柄。用 GetNextWindow() 函数，可以获得 Z 序中的前一个或后一个窗口的句柄。
+对于顶端窗口，顶层窗口和子窗口，如果只考虑同一类的话，如果有多个，总会一个覆盖另一个。但是这三类是按照上面讲的排列的。也就是有人讲的：1.TopMost在最上面2，顶级窗口次之3，子窗口在父窗口之上4，同级窗口当前激活窗口在前
+HDWP hdwp = BeginDeferWindowPos(2);
+hdwp = DeferWindowPos( hdwp, hStatic, NULL, 0, 0,100, 20, SWP_NOACTIVATE | SWP_NOZORDER |SWP_NOMOVE );hdwp = DeferWindowPos( hdwp, hEdit, NULL, 0, 0, 100, 20, SWP_NOACTIVATE | SWP_NOZORDER |SWP_NOMOVE );EndDeferWindowPos( hdwp );
+其作用和SetWindowPos()差不多。
+6.HWND GetWindow(HWND hWnd,UINT uCmd)",
         "wordCount": 788
     }
 </script>
@@ -359,7 +371,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -368,7 +380,27 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

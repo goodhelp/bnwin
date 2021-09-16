@@ -127,7 +127,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -248,7 +248,12 @@ daovoice('update');
 
         <p class="article-excerpt">
             php中拆分URL的一个很重要的函数就是parse_url();但在delphi如何不正则分析就可以实现如此方便的功能呢？实际上delphi的indy有一个单元实现此功能-IdURI单元，实现如下分拆
-1234http://login:password@somehost.somedomain.com:8080/some_path/something.html?param1=val&amp;para
+1234http://login:password@somehost.somedomain.com:8080/some_path/something.html?param1=val&amp;param2=val#nose\__/   \___/ \______/ \_____________________/ \__/\_______________________/ \___________________/ \__/ |       |      |               |               |                |                   |              |Scheme Username Password       Host            Port             Path              Query         Fragment
+123456789101112131415161718uses  ..., IdURI; var  URI: TIdURI; URI := TIdURI.Create(&#x27;http://login:password@somehost.somedomain.com:8080/some_path/something_else.html?param1=val&amp;param2=val&#x27;);try   Protocol = URI.Protocol   Username = URI.Username   Password = URI.Password   Host = URI.Host   Port = URI.Port   Path = URI.Path   Query = URI.Paramsfinally  URI.Free;end;
+以下是使用InternetCrackUrl方法实现(依赖windows的WinInet库)
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758&#123;$APPTYPE CONSOLE&#125; uses  Windows,  SysUtils,  WinInet; procedure ParseURL(const lpszUrl: string);var  lpszScheme      : array[0..INTERNET_MAX_SCHEME_LENGTH - 1] of Char;  lpszHostName    : array[0..INTERNET_MAX_HOST_NAME_LENGTH - 1] of Char;  lpszUserName    : array[0..INTERNET_MAX_USER_NAME_LENGTH - 1] of Char;  lpszPassword    : array[0..INTERNET_MAX_PASSWORD_LENGTH - 1] of Char;  lpszUrlPath     : array[0..INTERNET_MAX_PATH_LENGTH - 1] of Char;  lpszExtraInfo   : array[0..1024 - 1] of Char;  lpUrlComponents : TURLComponents;begin  ZeroMemory(@lpszScheme, SizeOf(lpszScheme));  ZeroMemory(@lpszHostName, SizeOf(lpszHostName));  ZeroMemory(@lpszUserName, SizeOf(lpszUserName));  ZeroMemory(@lpszPassword, SizeOf(lpszPassword));  ZeroMemory(@lpszUrlPath, SizeOf(lpszUrlPath));  ZeroMemory(@lpszExtraInfo, SizeOf(lpszExtraInfo));  ZeroMemory(@lpUrlComponents, SizeOf(TURLComponents));   lpUrlComponents.dwStructSize      := SizeOf(TURLComponents);  lpUrlComponents.lpszScheme        := lpszScheme;  lpUrlComponents.dwSchemeLength    := SizeOf(lpszScheme);  lpUrlComponents.lpszHostName      := lpszHostName;  lpUrlComponents.dwHostNameLength  := SizeOf(lpszHostName);  lpUrlComponents.lpszUserName      := lpszUserName;  lpUrlComponents.dwUserNameLength  := SizeOf(lpszUserName);  lpUrlComponents.lpszPassword      := lpszPassword;  lpUrlComponents.dwPasswordLength  := SizeOf(lpszPassword);  lpUrlComponents.lpszUrlPath       := lpszUrlPath;  lpUrlComponents.dwUrlPathLength   := SizeOf(lpszUrlPath);  lpUrlComponents.lpszExtraInfo     := lpszExtraInfo;  lpUrlComponents.dwExtraInfoLength := SizeOf(lpszExtraInfo);   InternetCrackUrl(PChar(lpszUrl), Length(lpszUrl), ICU_DECODE or ICU_ESCAPE, lpUrlComponents);   Writeln(Format(&#x27;Protocol : %s&#x27;,[lpszScheme]));  Writeln(Format(&#x27;Host     : %s&#x27;,[lpszHostName]));  Writeln(Format(&#x27;User     : %s&#x27;,[lpszUserName]));  Writeln(Format(&#x27;Password : %s&#x27;,[lpszPassword]));  Writeln(Format(&#x27;Path     : %s&#x27;,[lpszUrlPath]));  Writeln(Format(&#x27;ExtraInfo: %s&#x27;,[lpszExtraInfo]));end; begin  try   ParseURL(&#x27;http://login:password@somehost.somedomain.com/some_path/something_else.html?param1=val&amp;param2=val&#x27;);  except    on E: Exception do      Writeln(E.ClassName, &#x27;: &#x27;, E.Message);  end;  readln;end.
+以上运行输出效果Protocol : httpHost : somehost.somedomain.comUser : loginPassword : passwordPath : /some_path/something_else.htmlExtraInfo: ?param1=val&amp;param2=val
+
         </p>
     </div>
 </article>
@@ -295,7 +300,9 @@ daovoice('update');
 
         <p class="article-excerpt">
             音悦Tai，主要提供MTV在线播放功能,官网http://www.yinyuetai.com/ ，有时我们需要下载音悦台的MTV的时候，按照官方的下载很多限制，这儿使用PHP直接解析出音悦台的MTV源地址，可以直接下载！音悦台MTV视频真实地址PHP解析源码如下:
-12345678910111213141516171819202122232425262728@header(&#x27;Conten
+12345678910111213141516171819202122232425262728@header(&#x27;Content-type: text/html;charset=UTF-8&#x27;);$url=isset($_GET[&#x27;url&#x27;])?trim($_GET[&#x27;url&#x27;]):&#x27;&#x27;;//http://v.yinyuetai.com/video/2185713$time=$_SERVER[&#x27;REQUEST_TIME&#x27;];$content = file_get_contents($url);//获取标题preg_match(&#x27;/property=&quot;og:title&quot;[\s]+content=&quot;([^&quot;]*)&quot;.*?&gt;/i&#x27;,$content,$title);//获取封面preg_match(&#x27;/property=&quot;og:image&quot; content=&quot;([^&quot;]*)&quot;.*?&gt;/&#x27;,$content,$images);//获取MV的IDpreg_match(&#x27;/[\d]+/&#x27;,$url,$song_id);$title=$title[1];$images=$images[1];$song_id=$song_id[0];//解析json$songurl = &quot;http://www.yinyuetai.com/api/info/get-video-urls?callback=callback&amp;videoId=&quot;.$song_id.&quot;&amp;_=&quot;.$time;$data = file_get_contents($songurl);if (strpos($data, &quot;callback&quot;) !== false)&#123; $lpos = strpos($data, &quot;(&quot;); $rpos = strrpos($data, &quot;)&quot;); $data = substr($data, $lpos + 1, $rpos - $lpos -1);&#125;$json= json_decode($data,true);echo $title.&quot;&lt;br/&gt;&quot;;echo &quot;流畅地址：&quot;.$json[&#x27;hcVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;高清地址：&quot;.$json[&#x27;hdVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;超清地址：&quot;.$json[&#x27;heVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;&lt;img src=\&quot;&quot;.$images.&quot;\&quot;/&gt;&quot;;
+看看解析效果
+
         </p>
     </div>
 </article>
@@ -355,7 +362,16 @@ daovoice('update');
     
 
         <p class="article-excerpt">
-            HDwiki是专为中文用户设计和开发，程序源代码100%完全开放的一个采用 PHP 和 MySQL 数据库构建的高效的中文百科建站解决方案。官方网站为http://kaiyuan.hudong.com，下载，演示及使用请查看官方网站。本接口提供时互动百科系统版本为HDWiki5.1 正式版 发布日期：2011-09-27主域名为www.bnwin.com hdwiki域名为baike.bnwin.
+            HDwiki是专为中文用户设计和开发，程序源代码100%完全开放的一个采用 PHP 和 MySQL 数据库构建的高效的中文百科建站解决方案。官方网站为http://kaiyuan.hudong.com，下载，演示及使用请查看官方网站。本接口提供时互动百科系统版本为HDWiki5.1 正式版 发布日期：2011-09-27主域名为www.bnwin.com hdwiki域名为baike.bnwin.com均采用utf-8编码,phpcms v9域名和hdwiki域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
+1.在phpcms v9后台的phpsso中添加应用应用名:hdwiki应用地址:http://baike.bnwin.com/api/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
+添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
+2.打开接口文件中的phpssoconfig.php文件，修改define(‘APPID’, 3);中的3为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
+phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
+保存后把phpssoconfig.php phpsso.php client.class.php复制到hdwiki的api目录下，这三个文件是新增，没有修改hdwiki任何文件。
+覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
+3.修改hdwiki的wiki_user表(安装时采用的默认前缀wiki)，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
+4.登录hdwiki后台 全局-&gt;扩展设置-&gt;通行证设置开启通行证:是通行证类型：phpcms通行证方式：客户端client通行证密钥：点击后面生成一个KEY连接程序地址：写phpcms v9主域名如http://www.bnwin.com会员注册地址：/index.php?m=member&amp;c=index&amp;a=register&amp;siteid=1会员登录地址：/index.php?m=member&amp;c=index&amp;a=login&amp;siteid=1会员退出地址：/index.php?m=member&amp;c=index&amp;a=logout&amp;siteid=1
+hdwiki的后台对通行证的整合已经做了预置，只要把hdwiki做为客户端，那么hdwiki中的注册，登录，退出链接都会自动跳到你设置的主域名的注册,登录,退出链接地址。
         </p>
     </div>
 </article>
@@ -402,7 +418,15 @@ daovoice('update');
 
         <p class="article-excerpt">
             最土团购系统官方网站http://www.zuitu.com，使用，下载，演示请到官方网站。本接口发布时 最土团购系统 版本编号： ZuituGo_CV2.0_20120502 商业版
-主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨
+主域名为www.bnwin.com zuitu团购域名为zuitu.bnwin.com均采用utf-8编码,phpcms v9域名和zuitu团购域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
+1.在phpcms v9后台的phpsso中添加应用应用名:最土团购应用地址:http://zuitu.bnwin.com/account/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
+添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
+2.打开接口文件中的account/phpssoconfig.php文件，修改define(‘APPID’, 4);中的7为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
+phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
+保存后把account目录复制到最土团购根目录覆盖。接口文件的login.php logout.php对原系统有所修改，你可以事先对团购系统account目录中的这两个文件进行备份,目录中的其他三个文件是新增的。
+覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
+3.修改团购系统的user表，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
+建议去掉直接在团购系统注册，因为团购系统注册的密码不能直接保存在phpcms v9中，会出现以phpcmsv9登录时，不能同步登录团购系统。
         </p>
     </div>
 </article>
@@ -453,7 +477,15 @@ daovoice('update');
 
         <p class="article-excerpt">
             iWebIM作为一款以解决大型站点高并发高负载问题为主要任务的开源webIM软件，iWebIM功能强大，易于集成。主动易用的可嵌入式设计使他可以方便的和现有所有社区系统集成在一起。演示，下载，使用说明见官方网站http://www.jooyea.cn/
-PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9采用OOP（面向对象）方式进行基础运行框架搭建。模块化开发方式
+PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9采用OOP（面向对象）方式进行基础运行框架搭建。模块化开发方式做为功能开发形式。框架易于功能扩展，代码维护，优秀的二次开发能力，可满足所有网站的应用需求。 5年开发经验的优秀团队，在掌握了丰富的WEB开发经验和CMS产品开发经验的同时，勇于创新追求完美的设计理念，为全球多达10万网站提供助力，并被更多的政府机构、教育机构、事业单位、商业企业、个人站长所认可。
+本接口提供时iWebIM版本为 iweb IM v1.0 Beta2，phpcms整合iwebim，让phpcms也有类似于QQ的有在线聊天功能!
+1.下载iWebIM，在phpcms v9的根目录下建立im目录，把iWebIM解压后的全部文件复制到im目录。
+2.在phpcms v9的数据库上执行iWebIM的install.sql，添加iWebIM需要的数据表到phpcm v9的数据库中。
+3.用Notepad++修改接口文件中的iweb_mini_lib/conf/dbconf.php中的数据库名，密码和phpcms v9的数据库名。
+4.用notepad++修改接口文件中的configuration.php文件，$siteDomain值改为你的phpcms v9域名末尾加/
+5.接口文件中的plugins/plugin_for_phpcms.php文件的phpcms_key值为 phpcms v9的\caches\configs\system.php文件中auth_key的值,$cookiepre的值，$cookiepre的值为\caches\configs\system.php文件中cookie_pre的值，注意此文件是两个_ 而不是一个_
+6.把修改好的接口文件全部复制到phpcms v9根目录建的im目录中覆盖。
+7.在需要phpcms v9需要显示iwebim的网页中加入
         </p>
     </div>
 </article>
@@ -500,7 +532,15 @@ PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9
 
         <p class="article-excerpt">
             DESTOON B2B是一套基于PHP+MySQL的开源B2B电子商务行业门户网站解决方案。官方网站为http://www.destoon.com，下载，演示及使用请查看官方网站。实际就是仿阿里巴巴的php系统。—本接口提供时destoon版本为 最新版本：V4.0 更新时间：2012-04-28
-phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具体方法和提供
+phpcms如何整合destoon？destoon如何整合phpcms呢？本文就会介绍具体方法和提供接口文件!
+至于为什么phpcms需要整合destoon,因为phpcms的黄页功能不全，destoon功能全！
+主域名为www.bnwin.com destoon域名为b2b.bnwin.com均采用utf-8编码,phpcms v9域名和destoon域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
+1.在phpcms v9后台的phpsso中添加应用应用名:destoonB2B应用地址:http://b2b.bnwin.com/member/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
+添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
+2.打开接口文件中的memeber/phpssoconfig.php文件，修改define(‘APPID’, 2);中的2为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
+phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
+保存后把member和module两个目录复制到destoon根目录覆盖。接口文件的member目录中的三个文件是新增的，module\member目录的文件是修改的destoon文件，作用是destoon登录或退出和phpcms v9同步。你可以事先对destoon的module\member中的相应的文件进行备份。
+覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
         </p>
     </div>
 </article>

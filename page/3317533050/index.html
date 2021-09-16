@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -283,6 +283,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>如果你是使用wke或blink在自己的程序界面中添加显示mp4或mp3，那么你需要自己把html5media.min.js和flowplayer.audio.swf flowplayer.controls.swf flowplayer.swf文件全部下载到你的程序目录(js文件和swf放在同一目录)，在你的程序中就可以在wke或blink中使用video或audio标签了!</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -300,7 +305,14 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/3317533050/",
         "description": "如何快速让cef、wke、blink等支持mp4和mp3(支持html5的video和audio标签)?在cef中，默认是不支持mp3和mp4的，使用cef控件写的软件打开带有video或audio标签的视频或音频是会播放失败的!一种方法就是自己重新编译cef的库，加入支持mp3和mp4的支持。如何编译看这篇文章 如何让dcef3支持mp3和h.264 mp4解码播放(有源码及dll)!
-这是从文",
+这是从文件的本身出发，修改后支持mp3和mp4，从另一方面来说，采用cef的精简版控件，比如wke,blink或低版本的ie等，修改文件重新编译支持mp3和mp4的方法就不可行了!能不能不修改文件直接支持mp3和mp4的video和audio标签呢？这儿介绍一种修改html本身而不动浏览器控件文件的解决方法，当然你得有修改html文件的权限。
+使用html5media让浏览器兼容&lt;Video&gt;&lt;Audio&gt;标签。html5media是一个开源项目html5media 官网：https://html5media.info/html5media 项目：https://github.com/etianen/html5mediahtml5media Wiki：https://github.com/etianen/html5media/wiki
+html5media 官网CDN:http://api.html5media.info/1.2.2/html5media.min.jshtml5media 国内CDN:http://www.bootcdn.cn/html5media/
+如何使用html5media？它只需要一行代码就可以使HTML5的video和audio标签在所有主流浏览器中都能正常工作。只需要在html的head文档中添加如下代码
+1&lt; script src = “ http://api.html5media.info/1.1.8/html5media.min.js ” &gt; &lt;/ script &gt;
+然后按照html5的video标签添加的视频
+1&lt; video src=&quot;video.mp4&quot; preload=&quot;&quot; controls=&quot;controls&quot; width=&quot;320&quot; height=&quot;200&quot;&gt;
+按照html5的audio标签添加的音频",
         "wordCount": 62
     }
 </script>
@@ -353,7 +365,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -362,7 +374,27 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

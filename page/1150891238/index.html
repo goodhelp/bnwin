@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -290,6 +290,11 @@ StrAlloc和StrDispose这个函数也是一对，他们分配PChar加一个Cardin
 </ul>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -306,7 +311,23 @@ StrAlloc和StrDispose这个函数也是一对，他们分配PChar加一个Cardin
         "dateCreated": "2018-02-28",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/1150891238/",
-        "description": "1. @、^、Addr、PointerDelphi(Pascal)中有几个特殊的符号，如@、^等，弄清楚这些符号的运行，首先要明白Delphi指针的一些基础知识：指针，是一个无符号整数（unsigned int），它是一个以当前系统寻址范围为取值范围的整数。指针对应着一个数据在内存中的地址，得到了指针就可以自由地修改该数据。指针的指针就是用来存放指针所在的内存地址的。明白了指针的基本含义，就容易理",
+        "description": "1. @、^、Addr、PointerDelphi(Pascal)中有几个特殊的符号，如@、^等，弄清楚这些符号的运行，首先要明白Delphi指针的一些基础知识：指针，是一个无符号整数（unsigned int），它是一个以当前系统寻址范围为取值范围的整数。指针对应着一个数据在内存中的地址，得到了指针就可以自由地修改该数据。指针的指针就是用来存放指针所在的内存地址的。明白了指针的基本含义，就容易理解它们之间 的区别了：
+
+@XX：取变量、函数或过程XX的地址（获取指针）；
+Addr(XX)：和@的作用类似，唯一的不同在于如果编译选项{$T-}没有打开，@返回的是一个通用的指针，如果编译选项打开了，@返回的是XX对应的指针，但Addr却不受此编译选项的约束。
+^：当它出现在类型定义的前面时如 ^typename 表示指向这种类型的指针; 当它出现在指针变量后边时 如 point^ 返回指针指向的变量的值;
+Pointer：无类型指针（对应PChar、PInteger等则为“有类型指针”）。通过这段代码则更容易区分它们：12345678varX, Y: Integer;  // X and Y 整数类型P: ^Integer;  // P 指向整数类型的指针beginX := 11;  // 给 X 赋值P := @X;  // 把 x的地址赋给pY := P^;  // 取出p所指向的数值赋给yend;
+第二行定义了两个变量X，Y。 第三行声明了P是指向整数类型的指针；意味着P能够指向X或者Y的地址。第五行赋给X值，第六行把X的地址赋给P。最后通过P指向的变量赋值给Y。此时，X和Y有相同的值。2. Char、Byte
+Char是一个字符，必须赋以字符如‘A’等；
+Byte是无符号整数，数值范围0~255。虽然字符实质上也是整数，但与C不同，Delphi中将他们划为两种不同的类型，各自遵从不同的运算。比如运算符+对于Byte是整数加法，对于Char则是字符连接成串。他们可以相互转化：Ord(‘A’)得到字符对应的整数，Chr(65)得到整数对应的字符。同理，就很好区分array of Byte和array of Char了。3. Move、CopyMemoryMove字面意思上是“移动”的意思，其实不然，在Delphi中Move更像是Copy：它可以复制一段内存片段到另外一段内存空间中。如下代码：1234567891011121314151617var  source, dest : string;begin  // Set up our starting string  source := &#x27;123456789&#x27;;  dest   := &#x27;---------&#x27;;   // Copy a substring from source into the middle of dest  Move(source[5], dest[3], 4);   // Show the source and destination strings  ShowMessage(&#x27;Source = &#x27;+source);  ShowMessage(&#x27;Dest   = &#x27;+dest);end;//结果------------------//Source = 123456789//Dest   = --5678---
+而CopyMemory则可以在Delphi的源码中看出端倪：1234procedure CopyMemory(Destination: Pointer; Source: Pointer; Length: DWORD);begin  Move(Source^, Destination^, Length);end;
+可以看出，CopyMemory其实也是调用了Move方法，但参数变了，CopyMemory参数是指针。当然，从源码还可以发现MoveMemory和CopyMemory是一模一样的功能。CopyMemory一般的使用方法为：123456789var  buf1,buf2: array[0..9] of AnsiChar;begin  buf1 := &#x27;0123456789&#x27;;  buf2 := &#x27;abcdefghij&#x27;;  CopyMemory(@buf2[2], @buf1[4], 5);  ShowMessage(buf1); &#123;0123456789&#125;  ShowMessage(buf2); &#123;ab45678hij&#125;end;
+4. GetMem和FreeMem、GetMemory和FreeMemory、New和Dispose、StrAlloc和StrDispose、AllocMemDelphi中的内存申请和释放方法比较多，但有一点儿需要牢记的是上述方法建议配对使用。GetMem和FreeMem与GetMemory和FreeMemory在Delphi的源码中可以看到是被调用和调用的关系，FreeMemory会判断指针是否为空：123456789101112function GetMemory(Size: Integer): Pointer; cdecl;begin  Result := MemoryManager.GetMem(Size);end; function FreeMemory(P: Pointer): Integer; cdecl;begin  if P = nil then    Result := 0  else    Result := MemoryManager.FreeMem(P);end;
+因此，建议用GetMemory和FreeMemory代替GetMem和FreeMem。New和Dispose是用来管理变体类型内存分配，如变体结构体：12345TRecord = recordText: string;Value: Integer;end;PRecord = ^TRecord;
+如果用GetMem和FreeMem、GetMemory和FreeMemory来释放，会造成Text的内存没有释放，造成内存泄漏。如果用Dispose来释放指针，要加上定义信息，否则造成内存泄漏，正确写法Dispose(PRecord(Point))。另外需要注意的一点是：Delphi设计的Dispose释放内存时，只是标记这部分内存可以再用来被New等函数分配，并不是把从系统申请到的内存归还给操作系统，只在程序结束时，才全部释放给操作系统，因此并不能在资源管理器中看到Dispose的“显著效果”。一般使用方法如下：12345678910111213141516Type　PMyRec = ^TMyRec;　TMyRec = record　　FName: string;　　LName: string;　end;var　MyRecPtr: PMyRec;　TreeViewIndex: LongInt;begin　New(MyRecPtr);　MyRecPtr^.FName := Edit1.Text;　MyRecPtr^.LName := Edit2.Text;　&#123;其他处理&#125;　Dispose(MyRecPtr);end;
+StrAlloc和StrDispose这个函数也是一对，他们分配PChar加一个Cardinal长度，因此一定要用StrDispose释放，否则容易造成4字节的内存泄漏。StrAlloc分配的指针可以使用StrBufSize来获得大小。AllocMem和GetMem的区别在于AllocMem在申请内存后会初始化这段内存（把内存全部初始化为#0），同样和FreeMem配对使用。
+
+",
         "wordCount": 464
     }
 </script>
@@ -359,7 +380,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -368,7 +389,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2301859295\" rel="bookmark"><i class="fa fa-file"></i> TChromium获取网页源代码delphi代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\407779666\" rel="bookmark"><i class="fa fa-file"></i> RemoteAdo数据库中间件爆破分析(RemoteAdo破解版)</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

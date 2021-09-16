@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -286,6 +286,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>下载地址：<br>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/15ioEadpZ7XpW-5yrnfnZSg">https://pan.baidu.com/s/15ioEadpZ7XpW-5yrnfnZSg</a> 提取码: b954 复制这段内容后打开百度网盘手机App，操作更方便哦</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -302,7 +307,16 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateCreated": "2017-11-06",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/3400538132/",
-        "description": "HDwiki是专为中文用户设计和开发，程序源代码100%完全开放的一个采用 PHP 和 MySQL 数据库构建的高效的中文百科建站解决方案。官方网站为http://kaiyuan.hudong.com，下载，演示及使用请查看官方网站。本接口提供时互动百科系统版本为HDWiki5.1 正式版 发布日期：2011-09-27主域名为www.bnwin.com hdwiki域名为baike.bnwin.",
+        "description": "HDwiki是专为中文用户设计和开发，程序源代码100%完全开放的一个采用 PHP 和 MySQL 数据库构建的高效的中文百科建站解决方案。官方网站为http://kaiyuan.hudong.com，下载，演示及使用请查看官方网站。本接口提供时互动百科系统版本为HDWiki5.1 正式版 发布日期：2011-09-27主域名为www.bnwin.com hdwiki域名为baike.bnwin.com均采用utf-8编码,phpcms v9域名和hdwiki域名应同属不同的子域名，不能采用不用的域名!因为cookie不允许跨域!
+1.在phpcms v9后台的phpsso中添加应用应用名:hdwiki应用地址:http://baike.bnwin.com/api/通信密钥:(点击自动生成)类型:其他应用IP：(保持为空)通信文件：phpsso.php字符集:utf-8同步登录:是
+添加应用后，查看应用ID号，并且复制自动生成的 通信密钥
+2.打开接口文件中的phpssoconfig.php文件，修改define(‘APPID’, 3);中的3为上一步中查看的应用ID号,修改$ps_api_url的地址为phpsso的web地址，修改$ps_auth_key为上一步中自动生成的通信密钥。
+phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为utf-8无bom编码，不加中文可以使用记事本编辑，加入中文就不能使用记事本编辑，可以使用Notepad++编辑。
+保存后把phpssoconfig.php phpsso.php client.class.php复制到hdwiki的api目录下，这三个文件是新增，没有修改hdwiki任何文件。
+覆盖文件后，进入phpcms v9的应用管理，通信状态应该为通信成功。不成功请检查上面的步骤。
+3.修改hdwiki的wiki_user表(安装时采用的默认前缀wiki)，添加字段phpssouid 类型bigint 长度20 小数点0 不允许空值，默认值为0
+4.登录hdwiki后台 全局-&gt;扩展设置-&gt;通行证设置开启通行证:是通行证类型：phpcms通行证方式：客户端client通行证密钥：点击后面生成一个KEY连接程序地址：写phpcms v9主域名如http://www.bnwin.com会员注册地址：/index.php?m=member&amp;c=index&amp;a=register&amp;siteid=1会员登录地址：/index.php?m=member&amp;c=index&amp;a=login&amp;siteid=1会员退出地址：/index.php?m=member&amp;c=index&amp;a=logout&amp;siteid=1
+hdwiki的后台对通行证的整合已经做了预置，只要把hdwiki做为客户端，那么hdwiki中的注册，登录，退出链接都会自动跳到你设置的主域名的注册,登录,退出链接地址。",
         "wordCount": 30
     }
 </script>
@@ -355,7 +369,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -364,7 +378,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3056921327\" rel="bookmark"><i class="fa fa-file"></i> delphi如何实现php中的parse_url网址拆分函数?</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\415747762\" rel="bookmark"><i class="fa fa-file"></i> phpcms整合DESTOONB2B接口文件及使用说明</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

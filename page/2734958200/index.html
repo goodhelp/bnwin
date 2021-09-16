@@ -132,7 +132,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -280,6 +280,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>其中部份源码</p>
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">s3:^Integer;</span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> GSGW32_LoadDriver;</span><br><span class="line"> s1:=dname;</span><br><span class="line"> s2:=(dsize*<span class="number">1024</span>)*<span class="number">1024</span>;</span><br><span class="line"> s2:=s2*<span class="number">1024</span>;</span><br><span class="line"> <span class="keyword">asm</span></span><br><span class="line"> lea eax,s2;</span><br><span class="line"> mov edx,s1;</span><br><span class="line"> mov al,[edx];</span><br><span class="line"> mov s3,eax;</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> GSGW32_Mount(sn,s3,@s2,PChar(dimg));</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TService1</span>.<span class="title">diskgo</span><span class="params">(diskname:<span class="keyword">string</span>)</span>:</span>Boolean;</span><br><span class="line"> <span class="keyword">var</span></span><br><span class="line"> d2:<span class="keyword">string</span>;</span><br><span class="line"> n,i:Integer;</span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> d2:=UpperCase(Trim(diskname));</span><br><span class="line"> <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> Length(d2) <span class="keyword">do</span></span><br><span class="line"> <span class="keyword">begin</span></span><br><span class="line"> n:=Ord(d2[i]);</span><br><span class="line"> GSGW32_Umount(n);</span><br><span class="line"> <span class="keyword">end</span>;</span><br><span class="line"> GSGW32_UnloadDriver;</span><br><span class="line"> <span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -301,7 +306,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 链接: https://pan.baidu.com/s/1nuNi8hr 密码: r7g6
 解压密码 bnwin.com
 其中部份源码
-12345678910111213141516171819",
+12345678910111213141516171819202122232425262728s3:^Integer; begin GSGW32_LoadDriver; s1:=dname; s2:=(dsize*1024)*1024; s2:=s2*1024; asm lea eax,s2; mov edx,s1; mov al,[edx]; mov s3,eax; end; GSGW32_Mount(sn,s3,@s2,PChar(dimg)); end;function TService1.diskgo(diskname:string):Boolean; var d2:string; n,i:Integer; begin d2:=UpperCase(Trim(diskname)); for i:=1 to Length(d2) do begin n:=Ord(d2[i]); GSGW32_Umount(n); end; GSGW32_UnloadDriver; end;",
         "wordCount": 123
     }
 </script>
@@ -354,7 +359,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -363,7 +368,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\589247647\" rel="bookmark"><i class="fa fa-file"></i> 锐起CGO2043客户端绿色出盘源码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

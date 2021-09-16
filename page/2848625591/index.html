@@ -134,7 +134,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -296,6 +296,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>vc代码在VS2010 SP1编译通过， Win7 SP1测试有效。</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -314,7 +319,13 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "url": "https://goodhelp.gitee.io/page/2848625591/",
         "description": "1. 保护进程，结束就蓝屏RtlSetProcessIsCritical函数可以启用或关闭开启之后变得和系统进程一样被杀系统直接蓝屏系统进程也是此函数实现的上图可以用于进程保护设置自己为保护进程，这样结束掉就会蓝屏，蓝屏信息翻译就是 重点保护进程。
 设置为保护进程：RtlSetProcessIsCritical(True,Null(或Nothing),False)
-取消（关闭时记得加上去。）：Rt",
+取消（关闭时记得加上去。）：RtlSetProcessIsCritical(False,Null,False)把进程做crss中止就蓝屏，防止进程被杀这是最不占用CPU的方式了
+以下为C代码
+1234567891011121314151617181920212223#include&lt;stdio.h&gt;#include&lt;Windows.h&gt;typedef (NTAPI*Rtl)(ULONG,BOOL,BOOL,PBOOL);typedef (NTAPI*PT1)(BOOL, PBOOLEAN, BOOL);typedef (NTAPI*PT2)(BOOL,PBOOLEAN,BOOL);void Protect()&#123;	BOOL B;	ULONG SE_DEBUG_PRIVILEGE = 20;	Rtl RtlAdjustPrivilege=(Rtl)GetProcAddress(GetModuleHandleW(L&quot;ntdll&quot;),&quot;RtlAdjustPrivilege&quot;);	PT1 RtlSetProcessIsCritical=(PT1)GetProcAddress(GetModuleHandleW(L&quot;ntdll&quot;), &quot;RtlSetProcessIsCritical&quot;);	PT2 RtlSetThreadIsCritical=(PT2)GetProcAddress(GetModuleHandleW(L&quot;ntdll&quot;), &quot;RtlSetThreadIsCritical&quot;);	RtlAdjustPrivilege(SE_DEBUG_PRIVILEGE,TRUE,FALSE,&amp;B);	RtlSetProcessIsCritical(TRUE,NULL,FALSE);	RtlSetThreadIsCritical(TRUE, NULL, FALSE);	//BY 1361784102&#125;void main()&#123;	Protect();	getchar();	//BY 1361784102&#125;
+
+vb代码如下：
+12345678910Option ExplicitPublic Declare Function RtlAdjustPrivilege Lib &quot;ntdll.dll&quot; (ByVal Privilege As Long, ByVal Enable As Boolean, ByVal Client As Boolean, WasEnabled As Long) As LongPublic Declare Function RtlSetProcessIsCritical Lib &quot;ntdll&quot; (Optional ByVal NewValue As Boolean, Optional ByVal Value As Boolean, Optional ByVal WinLogon As Boolean = True)Sub Main()    RtlAdjustPrivilege 20, True, False, 0    RtlSetProcessIsCritical False, False, True    EndEnd Sub
+2. RtlAdjustPrivilege提权后NtRaiseHardError制造系统蓝屏VB代码如下：",
         "wordCount": 1032
     }
 </script>
@@ -367,7 +378,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -376,7 +387,27 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

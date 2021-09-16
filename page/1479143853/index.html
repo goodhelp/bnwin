@@ -133,7 +133,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -296,6 +296,11 @@ ViewWizard 3.5
 <p>下载地址：<br>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1ChWSUHr-rAljhOR4cnXH0Q">https://pan.baidu.com/s/1ChWSUHr-rAljhOR4cnXH0Q</a> 提取码: hnkn 复制这段内容后打开百度网盘手机App，操作更方便哦</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -316,7 +321,23 @@ ViewWizard 3.5
 ViewWizard 3.5
 句柄精灵是一个窗口辅助工具，用于获得窗口或控件的句柄等各种信息和属性。其中包括窗口类，大小，样式，状态，字体等相关内容。此外，它可以控制一个窗口的状态，比如显示或隐藏，置顶，透明，更改样式等等。
 具体介绍：
-窗口样式编辑器：用于修改窗口样式和扩展样式。窗口创建监视器：监视顶层窗口的创建和销毁。系统窗口列表：查看系统所有窗口，其中包括不可见的Message窗口以及内核",
+窗口样式编辑器：用于修改窗口样式和扩展样式。窗口创建监视器：监视顶层窗口的创建和销毁。系统窗口列表：查看系统所有窗口，其中包括不可见的Message窗口以及内核挂钩的隐藏窗口。自动显示隐藏控件：选择该项后，当前活动窗口中的隐藏的控件（子窗口）会全部显示出来。自动激活无效控件：选择该项后，当前活动窗口中的无效的控件（呈灰色）会变为有效。取色器：功能强大的屏幕取色器。屏幕抓图工具：可抓取桌面、窗口和区域图像。
+软件设置：
+搜索隐藏窗口：搜索隐藏的控件，不包括顶层窗口。搜索透明窗口：搜索穿透的窗口，这种窗口不接受鼠标点击。搜索挂起窗口：搜索被挂起线程的窗口，容易死锁，除非特殊情况，否则不要选择。暴力搜索窗口：强制遍历系统所有窗口透视搜索窗口：搜索前先把自己设为穿透，以便能够看到下面的窗口。Shift键搜索：按下Shift键自动捕获窗口。搜索模式：精确搜索将搜索最内层的可见的子窗口，标准Z序搜索将搜索最上层的窗口。
+其它选项：
+鼠标链接：关系一栏所列出的相关窗口以及文件路径栏，单击以便快速捕获窗口或定位文件。附加栏：列出基本控件的专项信息。窗口文本查看功能：该项会列出窗口的标题或控件的文字内容，对于特殊类型的窗口，比如ListView，则会列出它的列表项数据。窗口菜单查看功能：列出窗口包含的菜单内容。*内容：代表该项不可用或者获取失败。终极模式：拖动搜索屏幕上能看到的所有窗口
+3.5增加搜索挂起窗口增加暴力搜索窗口及暴力模式密码框判断不对加强总在最前问题通过数值编辑窗口样式
+3.4.8总在最前后不再被Win+D最小化
+3.4.6加强总在最前时右键菜单无法弹出
+3.4.5增加设置还原密码框字符增加加强总在最前密码掩码有时获取不对
+3.4：窗口列表图标换掉增加进程部分信息增加设置窗口视界修正系统窗口列表功能增加窗口最大化坐标/最小最大尺寸增加窗口透明度显示修正设置窗口透明/穿透功能光标和画刷描述
+3.3：增加ListView修改器，可编辑任意ListView控件内容增加部分热键样式窗口选定项高亮显示
+3.2：增加查看进程窗口功能win8以上无法获取消息窗口问题菜单布局等其它问题
+3.1.1：控件显示状态不正确问题，不再随父窗口的状态而改变
+3.1更新：1.增加窗口坐标功能2.修复窗口坐标显示不准确问题3.修复编辑窗口坐标窗口4.增加智能调整窗口大小5.增加直接复制句柄6.非标准类不能保存问题
+
+下载地址：链接: https://pan.baidu.com/s/1ChWSUHr-rAljhOR4cnXH0Q 提取码: hnkn 复制这段内容后打开百度网盘手机App，操作更方便哦
+",
         "wordCount": 9
     }
 </script>
@@ -369,7 +390,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -378,7 +399,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\278292559\" rel="bookmark"><i class="fa fa-file"></i> 370safe安全管理软件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2797625853\" rel="bookmark"><i class="fa fa-file"></i> ApacheBench(ab)服务器负载压力测试软件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1816476569\" rel="bookmark"><i class="fa fa-file"></i> 8圈计费系统9.5独立挂机_充值_换机_下机等功能工具</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\446633678\" rel="bookmark"><i class="fa fa-file"></i> Procmon监视系统一举一动的利器!</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

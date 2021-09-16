@@ -131,7 +131,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -280,6 +280,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 </ol>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -298,7 +303,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "url": "https://goodhelp.gitee.io/page/2301859295/",
         "description": "使用Webbrowser取得网页源代码网上已经有很多例子了，而TChromium如何获得网页源代码呢？
 
-第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;b",
+第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;begindata:=tstringlist.create;if frame.IsMain thendata.text:=frame.Source; // HTML Sourceend;data.free;end;
+在dcef3中123456789101112procedure StringVisitor(const str: ustring);begin//str is the SourceHtmlshowmessage(str);end;function GetSourceHTML: string;varCefStringVisitor:ICefStringVisitor;beginCefStringVisitor := TCefFastStringVisitor.Create(StringVisitor);Chromium1.Browser.MainFrame.GetSource(CefStringVisitor);end;
+第三种1Chromium1.Browser.MainFrame.ViewSource;
+
+",
         "wordCount": 114
     }
 </script>
@@ -351,7 +360,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -360,7 +369,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1936827288\" rel="bookmark"><i class="fa fa-file"></i> dcef3加载flash闪烁问题简单解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\407779666\" rel="bookmark"><i class="fa fa-file"></i> RemoteAdo数据库中间件爆破分析(RemoteAdo破解版)</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

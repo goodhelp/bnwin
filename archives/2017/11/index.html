@@ -127,7 +127,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -248,7 +248,11 @@ daovoice('update');
 
         <p class="article-excerpt">
             
-TChromium自定义post的header信息提交数据1234567891011121314151617181920212223242526272829uses  ceflib; function CreateField(const AValue: AnsiString): ICefPostDataElement;begin  Result := TCefPostDataElementRef
+TChromium自定义post的header信息提交数据1234567891011121314151617181920212223242526272829uses  ceflib; function CreateField(const AValue: AnsiString): ICefPostDataElement;begin  Result := TCefPostDataElementRef.New;  Result.SetToBytes(Length(AValue), PAnsiChar(AValue));end; procedure TForm1.Button1Click(Sender: TObject);var  Header: ICefStringMultimap;  Data: ICefPostData;  Request: ICefRequest;begin  Header := TCefStringMultimapOwn.Create;  Header.Append(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);   Data := TCefPostDataRef.New;  Data.AddElement(CreateField(&#x27;Data.id=27&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.title=title&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.body=body&#x27;));   Request := TCefRequestRef.New;  Request.Flags := WUR_FLAG_NONE;  Request.Assign(&#x27;http://example.com/&#x27;, &#x27;POST&#x27;, Data, Header);   Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+在另一版本中的代码1234567891011121314151617181920212223procedure TForm1.Button1Click(Sender: TObject);var  Header: ICefStringMultimap;  Data: ICefPostData;  Request: ICefRequest;begin  Request := TCefRequestRef.New;  Request.Url := &#x27;http://example.com/&#x27;;  Request.Method := &#x27;POST&#x27;;  Request.Flags := WUR_FLAG_NONE;   Header := TCefStringMultimapOwn.Create;  Header.Append(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);  Request.SetHeaderMap(Header);   Data := TCefPostDataRef.New;  Data.AddElement(CreateField(&#x27;Data.id=27&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.title=title&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.body=body&#x27;));  Request.PostData := Data;   Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+TChromium自定义post数据123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051function CreateField(const AValue: AnsiString): ICefPostDataElement;begin Result := TCefPostDataElementRef.New; Result.SetToBytes(Length(AValue), PAnsiChar(AValue));end; //***************************************** procedure POST(total, fee: integer);var Header: ICefStringMultimap; Data: ICefPostData; Request: ICefRequest; Cook: ICefCookieManager;begin Request := TCefRequestRef.New; Request.Url := &#x27;&#x27;; Request.Method := &#x27;POST&#x27;; Request.Flags:=[UR_FLAG_ALLOW_CACHED_CREDENTIALS,UR_FLAG_ALLOW_COOKIES];  Header := TCefStringMultimapOwn.Create; Header.Append(&#x27;Host&#x27;, &#x27;&#x27;); Header.Append(&#x27;User-Agent&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept-Language&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept-Encoding&#x27;, &#x27;&#x27;); Header.Append(&#x27;Content-Type&#x27;, &#x27;&#x27;); Header.Append(&#x27;Referer&#x27;, &#x27;&#x27;); Header.Append(&#x27;Content-Length&#x27;, &#x27;&#x27;); Header.Append(&#x27;Origin&#x27;, &#x27;&#x27;); Header.Append(&#x27;Connection&#x27;, &#x27;&#x27;); Header.Append(&#x27;Pragma&#x27;, &#x27;&#x27;); Header.Append(&#x27;Cache-Control&#x27;, &#x27;&#x27;);  Header.Append(&#x27;Cookie&#x27;,&#x27;...&#x27;); ... Header.Append(&#x27;Cookie&#x27;,&#x27;...&#x27;);  Request.SetHeaderMap(Header);  Data := TCefPostDataRef.New; Data.AddElement(CreateField(&#x27;sessionid=&#x27;+SessionID)); Data.AddElement(CreateField(&#x27;¤cy=5&#x27;)); Data.AddElement(CreateField(&#x27;&amp;subtotal=&#x27;+inttostr(total-fee))); Data.AddElement(CreateField(&#x27;&amp;fee=&#x27;+IntToStr(fee))); Data.AddElement(CreateField(&#x27;&amp;total=&#x27;+IntToStr(total)));  Request.PostData := Data;  form1.Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+
+
         </p>
     </div>
 </article>
@@ -294,7 +298,18 @@ TChromium自定义post的header信息提交数据1234567891011121314151617181920
     
 
         <p class="article-excerpt">
-            嵌入式Chromium框架(简称CEF) 是一个由Marshall Greenblatt在2008建立的开源项目，它主要目的是开发一个基于Google Chromium的Webbrowser控件。CEF支持一系列的编程语言和操作系统，并且能很容易地整合到新的或已有的工程中去。它的设计思想政治就是易用且兼顾性能。CEF基本的框架包含C/C++程序接口，通过本地库的接口来实现，而这个库则会隔离宿主程序
+            嵌入式Chromium框架(简称CEF) 是一个由Marshall Greenblatt在2008建立的开源项目，它主要目的是开发一个基于Google Chromium的Webbrowser控件。CEF支持一系列的编程语言和操作系统，并且能很容易地整合到新的或已有的工程中去。它的设计思想政治就是易用且兼顾性能。CEF基本的框架包含C/C++程序接口，通过本地库的接口来实现，而这个库则会隔离宿主程序和Chromium&amp;Webkit的操作细节。它在浏览器控件和宿主程序之间提供紧密的整合，它支持用户插件，协议，javascript对象以及javascript扩展，宿主程序可以随意地控件资源下载，导航，下下文内容和打印等，并且可以跟Google Chrome浏览器一起，支持高性能和Html5 技术
+
+为什么chromium不支持mp3和h.264的mp4音视频解码，因为h.264编码并非开源，是需要付费的!所以就存在谷歌自己的浏览器chrome能支持mp4和tchromium不支持mp4!如何查看你的tchromium是否支持mp4呢？你用tchromium写一个简单浏览器，然后打开http://html5test.com 支持是这样显示的
+而不支持是这样显示的
+
+也就是支持h.264 support mp3 support和aac support应该是钩!
+要让cef支持mp3和mp4，需要自己编译，如果你对自己如何编辑有兴趣可以看这篇文件  在Windows下编译Cef3.2623并加入mp3、mp4支持
+对于delphi用户，如何让在delphi中dcef3支持mp3和mp4呢？先到这儿下载dcef3 3.2623.1401  http://download.csdn.net/download/cyu/9917747  (如果没有积分就到这儿下载 链接：https://pan.baidu.com/s/1dFETI0L 密码：gult  ) 你也可以安装dcefbrowser，封装后的dcef3 这儿下载dcefbrowser3.2623.1401 https://github.com/bccsafe/DcefBrowser  (你也可以到这儿下载dcefbrowser 链接：https://pan.baidu.com/s/1dFB5Zv7 密码：fljs  )不管你是下载的dcef3 3.2623.1401 还是下载的dcefbrowser 3.2623.1401都可以，安装控件后，运行示例程序，这时你的dcef是不支持mp3和mp4的，为什么呢？因为h.264等编码问题，作者打包的dll库文件是默认不支持mp3和mp4的!
+如何让delphi中dcef3支持mp3和mp4呢？你只需要到这儿下载  链接：https://pan.baidu.com/s/1c1DZ1DY 密码：sqir  已经编译好支持mp3和mp4的dll库，覆盖到前面安装的控件中，就OK了，因为这个dll库是对应于dcef3.2623.1401，所以dcef必须也要安装3.26.23.1401。如何让delphi中dcef3支持mp3和mp4呢?因为非开源问题，所以自己编译dcef3的dll库的不多，提供下载的也不多，为了让你的dcef3支持mp3和mp4，我们只要找对应的版本就可以使用了!为什么非要指定dcef3为3.2623.1401，这是因为编译cef的dll需要开启mp3和mp4支持，网上提供其他版本的cef的dll库，并且加入了支持mp3和mp4的没有，如果你会C++，会自己编译cef的库，那什么版本都一样，都可以支持mp3和mp4
+
+附dcef3另一版本及库文件：dcef3.2454 下载http://download.csdn.net/download/bigcoolfish/9616325  相对应已添加支持mp3和mp4的 dcef3.2454 dll库文件下载  https://pan.baidu.com/s/1pKHbeY3 密码: mxr2
+
         </p>
     </div>
 </article>
@@ -346,7 +361,20 @@ TChromium自定义post的header信息提交数据1234567891011121314151617181920
         <p class="article-excerpt">
             做为PC系统，很大一部份是使用的windows，windows的广告软件很多，不小心就会在桌面上弹出一个窗口，凭肉眼，用任务管理器，很难看出是哪个程序创建的弹出窗口，本文件介绍用句柄精灵ViewWizard找出桌面弹出窗口是什么程序创建的!来看看桌面出现的这个弹出窗口在开机运行QQ后不久就在桌面右下角弹出这个窗口，任务栏没有任何程序出现！
 
-打开 句柄精灵ViewWizard (下载句柄精灵请到 
+打开 句柄精灵ViewWizard (下载句柄精灵请到 http://www.bnwin.com/2017/11/03/202.html)  界面如下
+鼠标按住 句柄精灵的 十字图标拖到这个弹出的窗口上！
+这时句柄精灵就显示出来这个程序的所有信息
+这个窗口的模块是 C:\Users\Administrator\AppData\Local\Temp\QXREPAIR1.DLL 往下面拉，看看进程是谁
+
+exe执行文件在 C:\Users\Administrator\AppData\Local\Temp\PZYTOOLS\XFIXER.exe 是由谁创建的呢？父进程是 916 [svchost.exe] 找到了是谁创建的，是什么进程，就可以相应的进行控制了!你可以禁止XFIXER.exe的运行，或者禁止svchost.exe在temp目录创建xfixer.exe文件等！
+你也可以根据句柄精灵提供的窗口信息进行自动关闭!对于这种有独立进程的弹出窗口你可能通过任务管理器也能查找到，虽然没有使用句柄精灵方便，但通过其他程序加载dll库文件弹出的窗口，通过任务管理器就无能为力了!
+我们来看看英雄联盟选择英雄时左边的窗口是谁创建的
+
+打开句柄精灵，拖动十字图标到这个窗口上，看看句柄精灵中的信息
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121属性 数据基本&gt;句柄 67140 [0x00010644]文本长度 0类名 TWINCONTROL基类 Generic描述 通用窗口ID *数据 0x130B9478字节 *实例 *模块 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe父窗&gt;句柄 [65552]文本 [Desktop]类名 [#32769]基类 [Generic]显示&gt;状态 常规&gt;可视 yes有效 yes置顶 yes分层 no透明 no重叠 no不活动 noUnicode yes密码框 no掩码不透明度 *Z序 3大小&gt;窗口矩形 (1508,415)-(1810,798) 302×383还原矩形 (1508,415)-(1810,798) 302×383客户矩形(屏幕) (1508,415)-(1810,798) 302×383客户矩形(窗口) (0,0)-(302,383) 302×383最大化坐标 (0,0) 1920×1050最小最大尺寸 0x0 1930×1057当前窗口坐标当前客户坐标关系&gt;父窗口 65552 [0x00010010] #32769 “Desktop”根窗口 *所有者窗口 *首个子窗口 *首兄弟窗口 394540 [0x0006052C] MSCTFIME UI “MSCTFIME UI”上一个窗口 918714 [0x000E04BA] IME “Default IME”下一个窗口 198612 [0x000307D4] Auto-Suggest Dropdown “”尾兄弟窗口 65812 [0x00010114] Progman “Program Manager”样式&gt;标准样式 0x96020000 (2516713472)描述 WS_POPUP|WS_VISIBLE|WS_CLIPSIBLINGS|WS_CLIPCHILDREN|WS_GROUP控件扩展样式 0x00000088 (136)描述 WS_EX_TOPMOST|WS_EX_TOOLWINDOW控件类&gt;类名 TWINCONTROL类原子 0xC2CC (49868)类字节 *窗口字节 *类样式 0x00000008 (8)描述 CS_DBLCLKS图标 *小图标 *光标 0x00010003 IDC_ARROW画刷 *菜单 *过程 0x55C1AD90 (1438756240) [Unicode]模块 0x00400000 (4194304)模块路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe菜单&gt;句柄 *子菜单所有子菜单菜单项菜单矩形字体&gt;句柄 *名称大小粗体斜体删除线下划线字符集进程&gt;进程ID 7060 [0x00001B94]线程ID 2560 [0x00000A00]进程启动 2017-11-26 16:32:06线程启动 2017-11-26 16:32:06内存使用 32,248 KB内存峰值 91,252 KB虚拟内存 82,008 KB线程计数 17句柄计数 324GUI对象 GDI:52, User:40映像名称 pallas.exeEXE路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe物理路径 I:\游戏辅助\TGP腾讯游戏平台网吧版\apps\Pallas\pallas.exe命令行父进程 6444 [tgp_daemon.exe]文件&gt;名称 pallas.exe大小 7390408版本 4.1.1.123版权 Copyright (C) 2015 Tencent.All Rights Reserved产品 WeGame公司 腾讯计算机系统有限公司描述 Tencent.WeGame.Pallas创建时间 2015-12-31 21:14:44统计&gt;子窗口所有子窗口无效子窗口隐藏子窗口线程窗口 12进程窗口 12附加&gt;基本类型 Generic (通用)
+正确使用句柄精灵，可以找出广告程序等弹出窗口的幕后黑手！
+
+
         </p>
     </div>
 </article>
@@ -392,7 +420,26 @@ TChromium自定义post的header信息提交数据1234567891011121314151617181920
     
 
         <p class="article-excerpt">
-            TeamViewer是一个能在任何防火墙和NAT代理的后台用于远程控制，桌面共享和文件传输的简单且快速的解决方案。为了连接到另一台计算机，只需要在两台计算机上同时运行 TeamViewer 即可，而不需要进行安装（也可以选择安装，安装后可以设置开机运行）。该软件第一次启动在两台计算机上自动生成伙伴 ID。只需要输入你的伙伴的ID到TeamViewer，然后就会立即建立起连接。TeamViewer官
+            TeamViewer是一个能在任何防火墙和NAT代理的后台用于远程控制，桌面共享和文件传输的简单且快速的解决方案。为了连接到另一台计算机，只需要在两台计算机上同时运行 TeamViewer 即可，而不需要进行安装（也可以选择安装，安装后可以设置开机运行）。该软件第一次启动在两台计算机上自动生成伙伴 ID。只需要输入你的伙伴的ID到TeamViewer，然后就会立即建立起连接。TeamViewer官方网站:https://www.teamviewer.com/zhCN/
+如何使用手机控制电脑呢？
+
+在TeamViewer官方网站下载相应的App,比如Android版TeamViewer下载地址为https://play.google.com/store/apps/details?id=com.teamviewer.teamviewer.market.mobile,不过你可以直接在你的手机应用市场中搜索TeamViewer，也可以下载安装TeamViewer的app安装!Android手机安装成功运行的界面如下
+在电脑中运行TeamViewer，界面如下:
+只要在手机的伙伴ＩＤ处输入电脑端显示的ＩＤ，点击远程控制，输入电脑端的密码，就可以在手机中控制电脑了，连接成功后的界面如下
+
+点继续后就可以操控电脑了
+
+电脑端运行TeamViewer，每次运行，密码都不一样，为了便于控制，我们要设置一个固定的密码，实现无人值守！点击电脑端显示的密码，会弹出一个菜单，选择　设置预定义密码，界面如下
+这样做了以后，只要在电脑中TeamViewer的其他菜单的选项点开，钩上随windows一同启动TeamViewer，就可以在手机上输入电脑端teamviewer的id和预设的固定密码，从手机控制电脑了!但这时你是不是觉得还不够方便？为了更自动化一些，我们需要注册一个TeamViewer的控制帐号!在手机端是不是有一个计算机选项卡，点击后有一个注册按钮，你只要注册了帐号，你第一次登录，teamviewer会发一封添加允许设备登录的邮件，也就是只有允许的设备才能使用，这样安全性就高了!允许的设备登录帐号后，就可以添加电脑端的ID和密码，以后在手机中，只要登录帐号，直接点击你预添加的计算机就可以控制了，不需要你记和输ＩＤ和密码!
+TeamViewer最新版需要授权许可才能使用
+
+Teamviewer连接的原理主要分为三部分，分别是①如何根据ID找到要连接的电脑，②找到电脑之后如何内网间互联，③如何能操作对方的电脑。一、先说TeamViewer如何根据ID连接到对方：
+1、运行TeamViewer 之后，电脑会先连接到TV的服务器，然后服务器对这台电脑分配一个唯一的ID。这个ID主要是以网卡的MAC地址为依据生成的，所以如果想给电脑换一个Teamviewer ID，只要修改一下MAC地址就行了。
+2、当一个TeamViewer 连接另一个的时候，会先连接到服务器，通过ID与电脑的对应关系找到这台要连接的电脑。
+二、如何建立内网对内网的连接：
+如果连接的其中任一方是有公网IP的网络环境，双方的连接就启用P2P连接。双方是内网的情况， TeamViewer数据就会通过TeamViewer 自己的服务器进行中转。这也是TeamViewer 内网互通会在网络高峰期比较慢的原因。
+三、如何操作被控机的鼠标与键盘。
+原理与远程控制木马是一样的。这里远端指被控制的电脑。连接建立之后，远端的电脑图像压缩后发回本地，这样本地就能看到画面，本地进行键盘鼠标的等操作的动作封装成数据包发送给远端解开后还原成动作进行远程的模拟操作。远端反馈的画面通过压缩后继续发回给控制端。就远控的图像传输来说，早年远控都是直接进行JPEG截图后传输，所以速度不太理想。之后各种大牛延伸出很多很腻害的基于截图的方式的屏幕传输的算法，传输效率进一步提高，通常是先加载一个虚拟屏幕驱动，然后对屏幕做逐行扫描，然后计算变化的部分，之后只传输变化的部分。TeamViewer(版本9.0)也是支持虚拟屏幕驱动的，但是需要到设置中手动进行安装。
         </p>
     </div>
 </article>
@@ -443,7 +490,9 @@ TChromium自定义post的header信息提交数据1234567891011121314151617181920
 
         <p class="article-excerpt">
             unigui能上传文件，单只支持单文件上传，在unigui中如何实现多文件上传呢？MultiFileUpload提供了解决方案!此例子使用MultiFileUpload解决了unigui多文件上传的问题看看运行效果其中部份代码
-1234567891011121314151617181920212223242526272829303132333435363738394041424344procedu
+1234567891011121314151617181920212223242526272829303132333435363738394041424344procedure TDialogFileUpload.UniFormClose(Sender: TObject;  var Action: TCloseAction);var  I: Integer;begin  if FIsUploading then  begin    //正在上传，不允许退出    Action := caNone;    ModalResult := mrNone;    Exit;  end;  if ModalResult=mrOK then  begin    if FListFiles.Count=0 then    begin      MessageDlg(&#x27;请选择文件并上传！&#x27;,mtInformation,[mbOK],nil);      Action := caNone;      ModalResult := mrNone;       Exit;    end;     for I := 0 to FListFiles.Count - 1 do    begin      if Integer(FListFiles.Objects[I])=0 then      begin        MessageDlg(&#x27;请上传选择的文件！&#x27;,mtInformation,[mbOK],nil);        Action := caNone;        ModalResult := mrNone;         Exit;      end;    end;    if Assigned(FOnGetUploadFiles) then    begin      FOnGetUploadFiles(Self,FListFiles,FListFileSizes);    end;  end;  //关闭时清除所有文件  FListFiles.Clear;  FListFileSizes.Clear;  UniSession.AddJS(&#x27;panelUpload.onRemove();&#x27;);end;
+源码下载地址：链接: https://pan.baidu.com/s/1JYlHKLu2WZHXIc3MdNez7Q 提取码: srz4 复制这段内容后打开百度网盘手机App，操作更方便哦
+
         </p>
     </div>
 </article>
@@ -493,7 +542,16 @@ TChromium自定义post的header信息提交数据1234567891011121314151617181920
 
 unigui使用前端上传组件plupload上传文件,改进文件上传，显示文件上传进度先看看效果图片
 Plupload有以下功能和特点：
-1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测
+1、拥有多种上传方式：HTML5、flash、silverlight以及传统的。Plupload会自动侦测当前的环境，选择最合适的上传方式，并且会优先使用HTML5的方式。所以你完全不用去操心当前的浏览器支持哪些上传方式，Plupload会自动为你选择最合适的方式。
+2、支持以拖拽的方式来选取要上传的文件
+3、支持在前端压缩图片，即在图片文件还未上传之前就对它进行压缩
+4、可以直接读取原生的文件数据，这样的好处就是例如可以在图片文件还未上传之前就能把它显示在页面上预览
+5、支持把大文件切割成小片进行上传，因为有些浏览器对很大的文件比如几G的一些文件无法上传。
+unigui使用前端上传组件fineuploader上传文件，增强文件上传先看看效果图片
+Fine Uploader 采用ajax方式实现对文件上传.同时在浏览器中直接支持文件拖拽[对浏览器版本有要求类似IE版本必须是9或是更高的IE10].在不同浏览器中提供统一用户体验.该组件基本覆盖目前所有主流浏览器.同时没有任何第三方组件依赖.相当Clear.在服务器端已经覆盖支持了ASP.NET/ColdFusion/Java/Node.js/Perl/PHP/Python. 对上传细节类似限制文件大小，文件类型，文件上传的数量等通过统一接口以暴露选项方式操作.可以到这儿Github 上Fine Uploader 查看具体内容
+delphi使用unigui源码下载地址链接: https://pan.baidu.com/s/10zOTt4eKqsDHnwHCDPp5ng 提取码: nenp 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+
         </p>
     </div>
 </article>
@@ -545,7 +603,14 @@ Plupload有以下功能和特点：
         <p class="article-excerpt">
             PC Hunter是一个Windows系统信息查看软件，同时也是一个手工杀毒辅助软件。支持xp~win10的所有32位操作系统，还支持64位的Win7、Win8、Win8.1和Win10系统。看看界面主要功能:1.进程、线程、进程模块、进程窗口、进程内存信息查看，杀进程、杀线程、卸载模块等功能
 2.内核驱动模块查看，支持内核驱动模块的内存拷贝
-3.SSDT、Shadow SSDT、FSD、KBD、
+3.SSDT、Shadow SSDT、FSD、KBD、TCPIP、Nsiproxy、Tdx、Classpnp、Atapi、Acpi、SCSI、IDT、GDT信息查看，并能检测和恢复ssdt hook和inline hook
+4.CreateProcess、CreateThread、LoadImage、CmpCallback、BugCheckCallback、Shutdown、Lego等近20多种Notify Routine信息查看，并支持对这些Notify Routine的删除
+5.端口信息查看，目前不支持2000系统
+6.查看消息钩子
+7.内核模块的iat、eat、inline hook、patches检测和恢复
+8.磁盘、卷、键盘、网络层等过滤驱动检测，并支持删除
+9.注册表编辑
+10.进程iat、eat、inline hook、patches检测和恢复
         </p>
     </div>
 </article>
@@ -593,7 +658,11 @@ Plupload有以下功能和特点：
         <p class="article-excerpt">
             使用Webbrowser取得网页源代码网上已经有很多例子了，而TChromium如何获得网页源代码呢？
 
-第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;b
+第一种方法1234567891011procedure TCustomLoad.OnLoadEnd(const browser: ICefBrowser;const frame: ICefFrame; httpStatusCode: Integer);vardata:tstringlist;begindata:=tstringlist.create;if frame.IsMain thendata.text:=frame.Source; // HTML Sourceend;data.free;end;
+在dcef3中123456789101112procedure StringVisitor(const str: ustring);begin//str is the SourceHtmlshowmessage(str);end;function GetSourceHTML: string;varCefStringVisitor:ICefStringVisitor;beginCefStringVisitor := TCefFastStringVisitor.Create(StringVisitor);Chromium1.Browser.MainFrame.GetSource(CefStringVisitor);end;
+第三种1Chromium1.Browser.MainFrame.ViewSource;
+
+
         </p>
     </div>
 </article>
@@ -644,7 +713,13 @@ Plupload有以下功能和特点：
 
         <p class="article-excerpt">
             uniGui是一款delphi开发网页应用的框架，完全基于ExtJs,全面支持ajax技术，是delphi开发bs程序的有力控件!官方网站为 http://www.unigui.com unigui的demo运行方法网址介绍地址http://www.unigui.com/resources/running-demos
-uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供一套
+uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供一套独特的视觉元素。每个组件的设计是为了提供在Delphi VCL可视化组件的对应相同的功能。这提供了一个非常舒适的开发环境，非常接近原生VCL应用开发的一个简单的学习过程。uniGUI Web应用程序可以部署到服务器上使用一个可用的部署选项，如Windows服务，独立服务器或ISAPI模块。
+本源码是在uniguiv0.95的基础上开发的，如果你用最新的unigui版本，可能需要一些修改才能运行!
+以下是引导说明界面其中的部份代码
+123456789101112131415161718192021222324252627282930313233343536373839404142procedure TMainForm.InsertFrame(acaption:string);var tabs:TUniTabSheet;begin if (MM1.LoginUserid&lt;&gt;&#x27;&#x27;) then //判断登录 begin if acaption=&#x27;添加帐号&#x27; then begin try UniFrame3:=TUniFrame3.Create(Self); UniFrame3.Align:=alClient; except ShowActiveTab(&#x27;添加帐号&#x27;); exit; end; tabs:=TUniTabSheet.Create(Self); tabs.PageControl:=pg1; tabs.Caption:=&#x27;添加帐号&#x27;; tabs.Closable:=True; pg1.ActivePage:=tabs; UniFrame3.Parent:=tabs; UniFrame3.ParentWindow:=MainForm.Handle; end; if acaption=&#x27;系统设置&#x27; then begin try UniFrame4:=TUniFrame4.Create(Self); UniFrame4.Align:=alClient; except ShowActiveTab(&#x27;系统设置&#x27;); exit; end; tabs:=TUniTabSheet.Create(Self); tabs.PageControl:=pg1; tabs.Caption:=&#x27;系统设置&#x27;; tabs.Closable:=True; pg1.ActivePage:=tabs; UniFrame4.Parent:=tabs; UniFrame4.ParentWindow:=MainForm.Handle; end; end;end;
+提供的源代码可以用于学习unigui！此unigui源码动态生成tab,鼠标长时间不动自动锁界面等值得借鉴，你只需要修改一下代码就可以做为自己web系统的框架，添加功能继续开发!下载后运行bin目录中的安装，就可以点 打开 看到界面了，可以自己注册帐号，默认有一个帐号admin admin
+下载地址：链接: https://pan.baidu.com/s/1PMRYEB96MYH6VYrYnHrEaQ 提取码: cyfe 复制这段内容后打开百度网盘手机App，操作更方便哦
+
         </p>
     </div>
 </article>
@@ -690,7 +765,7 @@ uniGUI为Delphi开发者在IDE上的Web应用程序设计创建、调试提供�
     
 
         <p class="article-excerpt">
-            12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210
+            1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011021031041051061071081091101111121131141151161171181191201211221231241251261271281291301311321331341351361371381391401411421431441451461471481491501511521531541551561571581591601611621631641651661671681691701711721731741751761771781791801811821831841851861871881891901911921931941951961971981992002012022032042052062072082092102112122132142152162172182192202212222232242252262272282292302312322332342352362372382392402412422432442452462472482492502512522532542552562572582592602612622632642652662672682692702712722732742752762772782792802812822832842852862872882892902912922932942952962972982993003013023033043053063073083093103113123133143153163173183193203213223233243253263273283293303313323333343353363373383393403413423433443453463473483493503513523533543553563573583593603613623633643653663673683693703713723733743753763773783793803813823833843853863873883893903913923933943953963973983994004014024034044054064074084094104114124134144154164174184194204214224234244254264274284294304314324334344354364374384394404414424434444454464474484494504514524534544554564574584594604614624634644651、人之所以有一张嘴，而有两只耳朵，原因是听的要比说的多一倍。2、哲人无忧，智者常乐。并不是因为所爱的一切他都拥有了，而是所拥有的一切他都爱。3、泪水和汗水的化学成分相似，但前者只能为你换来同情，后者却可以为你赢的成功。4、越是成熟的稻穗，越懂得弯腰。5、江海之所以能成为百谷之王，是因为懂得身处低下。6、每个人都有潜在的能量，只是很容易被习惯所掩盖，被时间所迷离，被惰性所消磨。 7、生气是拿别人做错的事来惩罚自己。 8、后悔是一种耗费精神的情绪。后悔是比损失更大的损失，比错误更大的错误，所以请不要后悔。 9、人生有几件绝对不能失去的东西：自制的力量，冷静的头脑，希望和信心。 10、不是境况造就人，而是人造就境况。 11、自己要先看得起自己，别人才会看得起你。 12、要铭记在心：每天都是一年中最美好的日子。 13、爱的力量大到可以使人忘记一切，却又小到连一粒嫉妒的沙石也不能容纳。 14、人是可以快乐地生活的，只是我们自己选择了复杂，选择了叹息！ 15、过去的一页，能不翻就不翻，翻落了灰尘会迷了双眼。 16、人若软弱就是自己最大的敌人；人若勇敢就是自己最好的朋友。 17、要纠正别人之前，先反省自己有没有犯错。　 18、许多人缺少的不是美，而是自信的气质，记住：自信本身就是一种美。有了积极的心态就容易成功。　 19、人总是珍惜未得到的，而遗忘了所拥有的。　　 20、用最少的悔恨面对过去。用最少的浪费面对现在。用最多的梦面对未来。　 21、大多数人想要改造这个世界，但却罕有人想改造自己。 22、得意时应善待他人，因为你失意时会需要他们。　 23、一千个人就有一千种生存方式和生活道路，要想改变一些事情，首先得把自己给找回来。 24、任何的限制，都是从自己的内心开始的。忘掉失败，不过要牢记失败中的教训。 25、假如我不能，我一定要；假如我一定要，我就一定能。 26、一个能从别人的观念来看事情，能了解别人心灵活动的人，永远不必为自己的前途担心。 27、人生不过三万天，成功失败均坦然，是非恩怨莫在意，健康快乐最值钱。 28、世界上有两种人：索取者和给予者。前者也许能吃得更好，但后者绝对能睡得更香。 29、环境不会改变，解决之道在于改变自己。 30、要让事情改变，先改变我自己；要让事情变得更好，先让自己变得更好。 31、不要对挫折叹气，姑且把这一切看成是在你成大事之前，必须经受的准备工作。 32、你出生的时候，你哭着，周围的人笑着；在生命的尽头，你笑着，而周围的人在哭着。 33、伟人之所以伟大，是因为他与别人共处逆境时，别人失去了信心，他却下决心实现自己的目标。 34、如果早上醒来，你发现自己还能自由呼吸，你就比在这一周离开人世的100万人更有福气。 35、什么时候也不要放弃希望，越是险恶的环境越要燃起希望的意志。 36、积极的人在每一次忧患中都看到一个机会，而消极的人则在每个机会都看到某种忧患。 37、许多人企求着生活的完美结局，殊不知美根本不在结局，而在于追求的过程。 38、也许有些人很可恶，有些人很卑鄙。而当我设身为他想象的时候，我才知道：他比我还可怜。所以请原谅所有你见过的人，好人或者坏人。 39、一句无心的话也许会点燃纠纷，一句残酷的话也许会毁掉生命，一句及时的话也许会消释紧张，一句知心的话也许会愈合伤口、挽救他人。　 40、生命就是一个逐渐支出和利用时间的过程。一旦丧失了时间，生命也就走到了尽头。 41、世上并没有用来鼓励工作努力的赏赐，所有的赏赐都只是被用来奖励工作成果的。 42、生命的完整，在于宽恕、容忍、等待与爱，如果没有这一切，你拥有了所有，也是虚无。 43、当我们眺望远方的时候，近处的风景便看不清了。 44、如果你希望成功，以恒心为良友，以经验为参谋，以小心为兄弟，以希望为哨兵。 45、思考是一件最辛苦的工作，这可能是为什么很少人愿意思考的原因。 46、成功呈概率分布，关键是你能不能坚持到成功开始呈现的那一刻。 47、自己打败自己是最可悲的失败，自己战胜自己是最可贵的胜利。 48、为别人鼓掌的人也是在给自己的生命加油。 49、拥有梦想只是一种智力，实现梦想才是一种能力。 50、如果一个人不知道他要驶向哪个码头，那么任何风都不会是顺风。 51、人的才华就如海绵的水，没有外力的挤压，它是绝对流不出来的。流出来后，海绵才能吸收新的源泉。 52、感恩生命，感谢她给予我们一个聪明的大脑。思考疑难的问题，生命的意义；赞颂真善美，批判假恶丑。记住精彩的瞬间，激动的时刻，温馨的情景，甜蜜的镜头。感恩生命赋予我们特有的灵性。 53、善待自己，幸福无比，善待别人，快乐无比，善待生命，健康无比。 54、一切伟大的行动和思想，都有一个微不足道的开始。 55、在你发怒的时候，要紧闭你的嘴，免得增加你的怒气。 56、获致幸福的不二法门是珍视你所拥有的、遗忘你所没有的。 57、骄傲是胜利下的蛋，孵出来的却是失败。 58、没有一个朋友比得上健康，没有一个敌人比得上病魔，与其为病痛暗自流泪，不如运动健身为生命添彩。 59、有什么别有病，没什么别没钱，缺什么也别缺健康，健康不是一切，但是没有健康就没有一切。 60、什么都可以不好，心情不能不好；什么都可以缺乏，自信不能缺乏；什么都可以不要，快乐不能不要；什么都可以忘掉，健身不能忘掉。 61、选对事业可以成就一生，选对朋友可以智能一生，选对环境可以快乐一生，选对伴侣可以幸福一生，选对生活方式可以健康一生。 62、含泪播种的人一定能含笑收获。 63、一个有信念者所开发出的力量，大于个只有兴趣者。 64、忍耐力较诸脑力，尤胜一筹。 65、影响我们人生的绝不仅仅是环境，其实是心态在控制个人的行动和思想。同时，心态也决定了一个人的视野、事业和成就，甚至一生。 66、每一发奋努力的背后，必有加倍的赏赐。 67、懒惰像生锈一样，比操劳更消耗身体。 68、所有的胜利，与征服自己的胜利比起来，都是微不足道。所有的失败，与失去自己的失败比起来，更是微不足道。 69、挫折其实就是迈向成功所应缴的学费。 70、在这个尘世上，虽然有不少寒冷，不少黑暗，但只要人与人之间多些信任，多些关爱，那么，就会增加许多阳光。 71、一个能从别人的观念来看事情，能了解别人心灵活动的人，永远不必为自己的前途担心。 72、当一个人先从自己的内心开始奋斗，他就是个有价值的人。 73、没有人富有得可以不要别人的帮助，也没有人穷得不能在某方面给他人帮助。 74、凡真心尝试助人者，没有不帮到自己的。 75、积极者相信只有推动自己才能推动世界，只要推动自己就能推动世界。 76、一个人最大的破产是绝望，最大的资产是希望。 77、行动是成功的阶梯，行动越多，登得越高。 78、环境永远不会十全十美，消极的人受环境控制，积极的人却控制环境。 79、当所有人都低调的时候，你可以高调，但不能跑调。 80、成功的法则极为简单，但简单并不代表容易。 81、肯低头的人，永远不会撞到矮门。 82、昨晚多几分钟的准备，今天少几小时的麻烦。 83、拿望远镜看别人，拿放大镜看自己。 84、一念放下，万般自在。 85、六个不能：不能饿了才吃，不能渴了才喝，不能困了才睡，不能累了才歇，不能病了才检查，不能老了再后悔。 86、屋子修得再大也是临时住所，只有那个小木匣才是永久的家，所以，屋宽不如心宽，身安不如心安！ 87、人生最大的错误，是用健康换取身外之物，人生最大的悲哀，是用生命换取个人的烦恼，人生最大的浪费，是用生命解决自己制造的麻烦！ 88、人生最大的哀痛，是子欲孝而亲不在！人生最大的悲剧，是家未富而人先亡，人生最大的可怜，是弥留之际才明白自己是应该做什么的！ 89、当心灵趋于平静时，精神便是永恒！把欲望降到最低点，把理性升华到最高点，你会感受到：平安是福，清心是禄，寡欲是寿！ 90、最好的医生是自己，最好的药物是时间，最好的心情是宁静，最好的保健是笑脸，最好的运动是步行！ 91、欢乐是长寿的妙药，勤奋是健康的灵丹，运动是健康的投资，长寿是健身的回报，相逢莫问留春术，淡薄宁静比药好！ 92、金钱难买健康，健康大于金钱，金钱难买幸福，幸福必有健康，生命的幸福不在名利在健康，身体的强壮不在金钱在运动！ 93、饮食贵在节，读书贵在精，锻炼贵在恒，节饮食养胃，多读书养胆，喜运动延生！ 94、你不能左右天气，但可以改变心情。你不能改变容貌，但可以掌握自己。你不能预见明天，但可以珍惜今天！ 95、热爱生活的人，生活也爱他。 96、微笑不用本钱，但能创造财富。赞美不用花钱，但能产生气力。分享不用过度，但能倍增快乐。 97、快乐总和宽厚的人相伴，财富总与诚信的人相伴，聪明总与高尚的人相伴，魅力总与幽默的人相伴，健康总与豁达的人相伴。 98、愚者用肉体监视心灵，智者用心灵监视肉体。 99、生活若剥去了理想、梦想、幻想，那生命便只是一堆空架子。 100、尝试去把别人拍过来的砖砌成结实的地基，生活就不会那么辛苦了。
         </p>
     </div>
 </article>

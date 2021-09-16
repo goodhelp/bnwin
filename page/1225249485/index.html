@@ -133,7 +133,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -300,6 +300,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1TUCMpNo90H194u927ce3ug">https://pan.baidu.com/s/1TUCMpNo90H194u927ce3ug</a> 密码：f35t</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -316,7 +321,21 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateCreated": "2018-05-08",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/1225249485/",
-        "description": "如何自定义编译Cheat Engine6.7(打造自己的CE6.7修改器，避免部分游戏的检测)Cheat Engine(作弊引擎ce) 是一款内存修改编辑工具 ，它允许你修改你的游戏或软件内存数据，以得到一些其他功能。它包括16进制编辑，反汇编程序，内存查找工具。与同类修改工具相比，它具有强大的反汇编功能，且自身附带了外挂制作工具，可以用它直接生成外挂。Cheat Engine的开发语言是pasc",
+        "description": "如何自定义编译Cheat Engine6.7(打造自己的CE6.7修改器，避免部分游戏的检测)Cheat Engine(作弊引擎ce) 是一款内存修改编辑工具 ，它允许你修改你的游戏或软件内存数据，以得到一些其他功能。它包括16进制编辑，反汇编程序，内存查找工具。与同类修改工具相比，它具有强大的反汇编功能，且自身附带了外挂制作工具，可以用它直接生成外挂。Cheat Engine的开发语言是pascal,采用Lazarus IDE开发!Cheat Engine是一个开源软件！Cheat Engine开源地址： https://github.com/cheat-engine/cheat-engineCheat Engine 官方网站：http://cheatengine.org/
+官方有编译好的版本，如果没有专门检测CE的程序，那么使用官方的CE就足够了，直接下载就可以运行!但现在很多游戏或程序对CE有检测，直接下载官方的CE会无法运行。这时我们可以自己编译Cheat Engine，当前官方最新版本为6.7，所以我们这儿介绍Cheat Engine6.7的修改及编译，避免部份游戏检测CE!
+前期工作：
+需要使用到的软件及ce源码等下载地址：
+
+
+lazarus-1.6.4-fpc-3.0.2-win64.exe下载地址(Cheat Engine6.7是使用的lazarus1.6.4编译，所以必须下载1.6.4，此文件是64位的lazarus1.6.4的主安装文件)官方推荐第三方下载链接：https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/百脑问提供的百度云下载链接：https://pan.baidu.com/s/1VIRTU57RikwSMk1X15RP2w 密码：mbwj
+lazarus-1.6.4-fpc-3.0.2-cross-i386-win32-win64.exe(此文件是lazarus1.6.4编译为32位程序的补丁包)官方推荐第三方下载链接：https://sourceforge.net/projects/lazarus/files/Lazarus%20Windows%2064%20bits/百脑问提供的百度云下载链接：https://pan.baidu.com/s/1iGnpHnOor2ygiz4TaY3OJw 密码：bt8s
+cheat-engine-6.7.zip(Cheat Engine6.7的源码包，你可以直接到https://github.com/cheat-engine/cheat-engine 下载)百脑问提供的百度云下载链接：https://pan.baidu.com/s/1bXTJkn6lHCFmOKc2AoJjEw 密码：68×2
+
+
+安装好 lazarus-1.6.4-fpc-3.0.2-win64.exe和lazarus-1.6.4-fpc-3.0.2-cross-i386-win32-win64.exe 解开cheat-engine-6.7.zip源码包! 进入CE源码包的Cheat Engine目录，找到cheatengine.lpi，双击打开!
+
+自定义cheatengine6.7如果你熟悉lazarus的使用就可以轻松的修改Cheat Engine的源文件了，以下是假如你不了解lazarus的使用，仅仅是为了不让程序检测到ce而自定义ce！
+前面的源码中双击cheatengine.lpi打开后的界面，象这样第一步，我们修改ce的标题，按Shift+F12(也可以点击上面所示图中的第二行的第二个图标)打开窗口管理器，找到MainForm，双击打开，然后在Object Inspector窗口(如果没有显示Object Inspector窗口，可以在view菜单中点击Object Inspector打开，或者按F11打开)中单击MainForm:TMainForm 在下面的Properties选项卡中，找到Caption，修改后面的Cheat Engine 6.8为自己的标题，比如这儿修改为C_BnWin.Com_E6.7，然后Ctrl+O找到MainUnit2.pas打开，修改第16行的Cheat Engine 6.8 Beta 1为自己的标题，如这儿修改为C_BnWin.Com_E6.7",
         "wordCount": 77
     }
 </script>
@@ -369,7 +388,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -378,7 +397,27 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

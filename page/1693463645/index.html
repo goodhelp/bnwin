@@ -133,7 +133,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -279,6 +279,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>8圈在桌面生成图标就是利用上面的原理!实际改一下就是这样</p>
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">TForm1</span>.<span class="title">btn2Click</span><span class="params">(Sender: TObject)</span>;</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">GetPid</span><span class="params">(ExeFileName: <span class="keyword">string</span>)</span>:</span> THandle;  <span class="comment">//根据进程名返回进程PID</span></span><br><span class="line">  <span class="keyword">const</span></span><br><span class="line">    PROCESS_TERMINATE = <span class="number">$0001</span>;</span><br><span class="line">  <span class="keyword">var</span></span><br><span class="line">    ContinueLoop: BOOL;</span><br><span class="line">    FSnapshotHandle: THandle;</span><br><span class="line">    FProcessEntry32: TProcessEntry32;</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    Result := <span class="number">0</span>;</span><br><span class="line">    FSnapshotHandle := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span class="number">0</span>);</span><br><span class="line">    FProcessEntry32.dwSize := SizeOf(FProcessEntry32);</span><br><span class="line">    ContinueLoop := Process32First(FSnapshotHandle, FProcessEntry32);</span><br><span class="line">    <span class="keyword">while</span> Integer(ContinueLoop) &lt;&gt; <span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">      <span class="keyword">if</span> ((UpperCase(ExtractFileName(FProcessEntry32.szExeFile)) = UpperCase(ExeFileName)) <span class="keyword">or</span></span><br><span class="line">          (UpperCase(FProcessEntry32.szExeFile) = UpperCase(ExeFileName))) <span class="keyword">then</span></span><br><span class="line">          <span class="keyword">begin</span></span><br><span class="line">              Result :=FProcessEntry32.th32ProcessID;</span><br><span class="line">              <span class="keyword">Break</span>;</span><br><span class="line">          <span class="keyword">end</span>;</span><br><span class="line">          ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);</span><br><span class="line">      <span class="keyword">end</span>;</span><br><span class="line">    CloseHandle(FSnapshotHandle);</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  fhand:THandle;</span><br><span class="line">  hProcess,hFile:THandle;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  fhand:=FileOpen(PWideChar(edt1.Text),GENERIC_READ);<span class="comment">//取得阻止删除的文件句柄</span></span><br><span class="line">  EnabledDebugPrivilege;</span><br><span class="line">  hProcess:=OpenProcess(PROCESS_ALL_ACCESS, FALSE, GetPid(<span class="string">&#x27;services.exe&#x27;</span>));</span><br><span class="line">  <span class="keyword">if</span> DuplicateHandle(GetCurrentProcess(), fhand,hProcess, @hFile,  <span class="number">0</span> ,FALSE, DUPLICATE_SAME_ACCESS) <span class="keyword">then</span>  </span><br><span class="line">    ShowMessage(<span class="string">&#x27;文件占坑成功!&#x27;</span>);</span><br><span class="line">  CloseHandle(hProcess);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -296,7 +301,9 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/1693463645/",
         "description": "8圈网管计费系统，最近在桌面生成图标，直接删除会提示服务和应用管理程序已经打开，无法删除，8圈计费系统先生成url快捷图标，然后打开这个快捷方式取得句柄，再使用DuplicateHandle复制句柄丢给系统进程services.exe，达到占用文件，删除8圈桌面图标就不行了!8圈桌面图标阻止删除的方法关键地方就是使用了DuplicateHandle这个API，看看下面的代码!
-1234567891",
+12345678910111213141516171819202122232425262728293031323334353637383940414243function EnabledDebugPrivilege(const bEnabled: Boolean): Boolean;//提权varhToken: THandle;tp: TOKEN_PRIVILEGES;a: DWORD;constSE_DEBUG_NAME = &#x27;SeDebugPrivilege&#x27;;beginResult := False;if (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, hToken)) thenbegintp.PrivilegeCount := 1;LookupPrivilegeValue(nil, SE_DEBUG_NAME, tp.Privileges[0].Luid);if bEnabled thentp.Privileges[0].Attributes := SE_PRIVILEGE_ENABLEDelsetp.Privileges[0].Attributes := 0;a := 0;AdjustTokenPrivileges(hToken, False, tp, SizeOf(tp), nil, a);Result := GetLastError = ERROR_SUCCESS;CloseHandle(hToken);end;end; function DupFile(FileName:String;PID:Cardinal):Boolean;varhFile,hProcess,hTarget:THandle;beginResult := False;EnabledDebugPrivilege(True);hProcess := OpenProcess(PROCESS_DUP_HANDLE, False, PID);Tryif hProcess &lt;&gt; 0 thenbeginhFile := CreateFile(PChar(FileName), GENERIC_READ, 0, nil, Create_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);if hFile = INVALID_HANDLE_VALUE then Exit;Result := DuplicateHandle(GetCurrentProcess(), hFile, hProcess, @hTarget,0, False, DUPLICATE_SAME_ACCESS or DUPLICATE_CLOSE_SOURCE);end;FinallyCloseHandle(hProcess);End;end;
+8圈在桌面生成图标就是利用上面的原理!实际改一下就是这样
+123456789101112131415161718192021222324252627282930313233343536procedure TForm1.btn2Click(Sender: TObject);  function GetPid(ExeFileName: string): THandle;  //根据进程名返回进程PID  const    PROCESS_TERMINATE = $0001;  var    ContinueLoop: BOOL;    FSnapshotHandle: THandle;    FProcessEntry32: TProcessEntry32;  begin    Result := 0;    FSnapshotHandle := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);    FProcessEntry32.dwSize := SizeOf(FProcessEntry32);    ContinueLoop := Process32First(FSnapshotHandle, FProcessEntry32);    while Integer(ContinueLoop) &lt;&gt; 0 do    begin      if ((UpperCase(ExtractFileName(FProcessEntry32.szExeFile)) = UpperCase(ExeFileName)) or          (UpperCase(FProcessEntry32.szExeFile) = UpperCase(ExeFileName))) then          begin              Result :=FProcessEntry32.th32ProcessID;              Break;          end;          ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);      end;    CloseHandle(FSnapshotHandle);  end;var  fhand:THandle;  hProcess,hFile:THandle;begin  fhand:=FileOpen(PWideChar(edt1.Text),GENERIC_READ);//取得阻止删除的文件句柄  EnabledDebugPrivilege;  hProcess:=OpenProcess(PROCESS_ALL_ACCESS, FALSE, GetPid(&#x27;services.exe&#x27;));  if DuplicateHandle(GetCurrentProcess(), fhand,hProcess, @hFile,  0 ,FALSE, DUPLICATE_SAME_ACCESS) then      ShowMessage(&#x27;文件占坑成功!&#x27;);  CloseHandle(hProcess);end;",
         "wordCount": 526
     }
 </script>
@@ -349,7 +356,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -358,7 +365,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2301859295\" rel="bookmark"><i class="fa fa-file"></i> TChromium获取网页源代码delphi代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\407779666\" rel="bookmark"><i class="fa fa-file"></i> RemoteAdo数据库中间件爆破分析(RemoteAdo破解版)</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

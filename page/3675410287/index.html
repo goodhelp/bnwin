@@ -132,7 +132,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -280,6 +280,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 </ol>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -297,7 +302,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/3675410287/",
         "description": "
-TChromium自定义post的header信息提交数据1234567891011121314151617181920212223242526272829uses  ceflib; function CreateField(const AValue: AnsiString): ICefPostDataElement;begin  Result := TCefPostDataElementRef",
+TChromium自定义post的header信息提交数据1234567891011121314151617181920212223242526272829uses  ceflib; function CreateField(const AValue: AnsiString): ICefPostDataElement;begin  Result := TCefPostDataElementRef.New;  Result.SetToBytes(Length(AValue), PAnsiChar(AValue));end; procedure TForm1.Button1Click(Sender: TObject);var  Header: ICefStringMultimap;  Data: ICefPostData;  Request: ICefRequest;begin  Header := TCefStringMultimapOwn.Create;  Header.Append(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);   Data := TCefPostDataRef.New;  Data.AddElement(CreateField(&#x27;Data.id=27&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.title=title&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.body=body&#x27;));   Request := TCefRequestRef.New;  Request.Flags := WUR_FLAG_NONE;  Request.Assign(&#x27;http://example.com/&#x27;, &#x27;POST&#x27;, Data, Header);   Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+在另一版本中的代码1234567891011121314151617181920212223procedure TForm1.Button1Click(Sender: TObject);var  Header: ICefStringMultimap;  Data: ICefPostData;  Request: ICefRequest;begin  Request := TCefRequestRef.New;  Request.Url := &#x27;http://example.com/&#x27;;  Request.Method := &#x27;POST&#x27;;  Request.Flags := WUR_FLAG_NONE;   Header := TCefStringMultimapOwn.Create;  Header.Append(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);  Request.SetHeaderMap(Header);   Data := TCefPostDataRef.New;  Data.AddElement(CreateField(&#x27;Data.id=27&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.title=title&#x27;));  Data.AddElement(CreateField(&#x27;&amp;Data.body=body&#x27;));  Request.PostData := Data;   Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+TChromium自定义post数据123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051function CreateField(const AValue: AnsiString): ICefPostDataElement;begin Result := TCefPostDataElementRef.New; Result.SetToBytes(Length(AValue), PAnsiChar(AValue));end; //***************************************** procedure POST(total, fee: integer);var Header: ICefStringMultimap; Data: ICefPostData; Request: ICefRequest; Cook: ICefCookieManager;begin Request := TCefRequestRef.New; Request.Url := &#x27;&#x27;; Request.Method := &#x27;POST&#x27;; Request.Flags:=[UR_FLAG_ALLOW_CACHED_CREDENTIALS,UR_FLAG_ALLOW_COOKIES];  Header := TCefStringMultimapOwn.Create; Header.Append(&#x27;Host&#x27;, &#x27;&#x27;); Header.Append(&#x27;User-Agent&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept-Language&#x27;, &#x27;&#x27;); Header.Append(&#x27;Accept-Encoding&#x27;, &#x27;&#x27;); Header.Append(&#x27;Content-Type&#x27;, &#x27;&#x27;); Header.Append(&#x27;Referer&#x27;, &#x27;&#x27;); Header.Append(&#x27;Content-Length&#x27;, &#x27;&#x27;); Header.Append(&#x27;Origin&#x27;, &#x27;&#x27;); Header.Append(&#x27;Connection&#x27;, &#x27;&#x27;); Header.Append(&#x27;Pragma&#x27;, &#x27;&#x27;); Header.Append(&#x27;Cache-Control&#x27;, &#x27;&#x27;);  Header.Append(&#x27;Cookie&#x27;,&#x27;...&#x27;); ... Header.Append(&#x27;Cookie&#x27;,&#x27;...&#x27;);  Request.SetHeaderMap(Header);  Data := TCefPostDataRef.New; Data.AddElement(CreateField(&#x27;sessionid=&#x27;+SessionID)); Data.AddElement(CreateField(&#x27;¤cy=5&#x27;)); Data.AddElement(CreateField(&#x27;&amp;subtotal=&#x27;+inttostr(total-fee))); Data.AddElement(CreateField(&#x27;&amp;fee=&#x27;+IntToStr(fee))); Data.AddElement(CreateField(&#x27;&amp;total=&#x27;+IntToStr(total)));  Request.PostData := Data;  form1.Chromium1.Browser.MainFrame.LoadRequest(Request);end;
+
+",
         "wordCount": 504
     }
 </script>
@@ -350,7 +359,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -359,7 +368,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1936827288\" rel="bookmark"><i class="fa fa-file"></i> dcef3加载flash闪烁问题简单解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\4288787729\" rel="bookmark"><i class="fa fa-file"></i> delphi中dcef如何自定义referer信息？</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\753365309\" rel="bookmark"><i class="fa fa-file"></i> 8088汇编速查手册</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2745266982\" rel="bookmark"><i class="fa fa-file"></i> Delphi实现类似Android锁屏的密码锁控件</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

@@ -134,7 +134,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -285,6 +285,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>delphi源码下载地址：<br>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3myg">https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3myg</a> 提取码: 2hzk 复制这段内容后打开百度网盘手机App，操作更方便哦</p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -301,7 +306,15 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateCreated": "2018-01-13",
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/2074828779/",
-        "description": "uniGUI is a Web Application Framework for Delphi，unigui使delphi使用extjs快速的开发web程序,unigui符合delphi开发者的习惯，开发web就象开发桌面程序一样。但unigui中打印没有好的办法，因为是web，所以要么是直接打印html代码，要么是生成pdf，然后打印，这儿我们介绍的是unigui中使用Grid++Report",
+        "description": "uniGUI is a Web Application Framework for Delphi，unigui使delphi使用extjs快速的开发web程序,unigui符合delphi开发者的习惯，开发web就象开发桌面程序一样。但unigui中打印没有好的办法，因为是web，所以要么是直接打印html代码，要么是生成pdf，然后打印，这儿我们介绍的是unigui中使用Grid++Report锐浪报表打印方法，使用Grid++Report锐浪报表需要事先安装Grid++Report锐浪报表插件，如果你不喜欢喜欢插件，就只有使用生成pdf文件再打印了，可以不必看下面的内容!
+
+先在ServerModule模块的Customfiles中加入grinstall/CreateControl.js  grinstall/GRInstall.js 这两个Grid++Report锐浪报表的JS，如果浏览器没有安装Grid++Report锐浪报表插件会提示安装!
+引用UntGridppReportCommon.pas单元，该单元就是处理Grid++Report锐浪报表所需要的数据格式的!
+在主窗口中加入TUniHTMLFrame控件!用来显示最终的html数据!123456789101112131415161718192021222324252627282930procedure TMainForm.unbtbtn1Click(Sender: TObject);begin //预览报表  SetReportPrintViewerHTML(UniHTMLFrame1, &#x27;files/1a.grf&#x27;, &#x27;files/ff.txt&#x27;);end; procedure TMainForm.UniBitBtn1Click(Sender: TObject);begin //创建报表  CreateReport(UniHTMLFrame1, &#x27;PlunID&#x27;, &#x27;&#x27;);  UniSession.JSCode(&#x27;PlunID.LoadFromURL(&quot;files/1a.grf&quot;);&#x27; +      &#x27;PlunID.LoadDataFromURL(&quot;files/ff.txt&quot;);&#x27; + &#x27;PlunID.PrintPreview(true);&#x27;);end; procedure TMainForm.UniBitBtn2Click(Sender: TObject);begin //查询报表  SetReportDisplayViewerHTML(UniHTMLFrame1, &#x27;files/1a.grf&#x27;, &#x27;files/ff.txt&#x27;);end; procedure TMainForm.UniBitBtn3Click(Sender: TObject);begin //设计报表  SetReportDesignHTML(UniHTMLFrame1, &#x27;files/1a.grf&#x27;, &#x27;files/ff.txt&#x27;, self);end; procedure TMainForm.UniBitBtn4Click(Sender: TObject);begin//打印报表  UniSession.JSCode(&#x27;ReportViewer.Print(true);&#x27;);   Exit;  UniHTMLFrame1.HTML.Text := &#x27;  &#x27;;end;
+虽然安装插件不是太理想，但安装插件后就可以实现和桌面打印一样的功能，为什么不安装呢？为什么使用Grid++Report锐浪报表呢？因为Grid++Report锐浪报表可以免费使用，付费就是去掉打印右下角的标志，免费使用有一个标志，不过不影响使用!最重要的是锐浪报表支持Web的打印，官网有详细教程，Grid++Report锐浪报表官网 http://www.rubylong.cn/
+
+delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3myg 提取码: 2hzk 复制这段内容后打开百度网盘手机App，操作更方便哦
+",
         "wordCount": 195
     }
 </script>
@@ -354,7 +367,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -363,7 +376,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2767400155\" rel="bookmark"><i class="fa fa-file"></i> unigui管理系统源码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3576835458\" rel="bookmark"><i class="fa fa-file"></i> 使用plupload和fineuploader组件强化unigui文件上传功能!</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3910524000\" rel="bookmark"><i class="fa fa-file"></i> delphi如何在Ring3下跨进程获取DLL信息</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 

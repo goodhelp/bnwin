@@ -133,7 +133,7 @@ daovoice('update');
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 其他</a>
+                                    <a class="main-nav-list-link" href="/categories/other/"><i class="fa fa-wrench faa-horizontal animated-hover"></i> 杂集</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -279,6 +279,11 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 <p>看看解析效果<br><img src="/images/1516031845-1.gif" alt=""></p>
 
         </div>
+		<div>
+			
+				<div style="text-align:center;color: #FF0000;">-------------本文已结束<i class="fa fa-arrow-circle-down faa-bounce animated"></i>赏个小钱吧-------------</div>
+			
+		</div>
 		<script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -296,7 +301,9 @@ var qrcode = new QRCode(document.getElementById("qr"), {
         "dateModified": "2021-09-12",
         "url": "https://goodhelp.gitee.io/page/1586233474/",
         "description": "音悦Tai，主要提供MTV在线播放功能,官网http://www.yinyuetai.com/ ，有时我们需要下载音悦台的MTV的时候，按照官方的下载很多限制，这儿使用PHP直接解析出音悦台的MTV源地址，可以直接下载！音悦台MTV视频真实地址PHP解析源码如下:
-12345678910111213141516171819202122232425262728@header(&#x27;Conten",
+12345678910111213141516171819202122232425262728@header(&#x27;Content-type: text/html;charset=UTF-8&#x27;);$url=isset($_GET[&#x27;url&#x27;])?trim($_GET[&#x27;url&#x27;]):&#x27;&#x27;;//http://v.yinyuetai.com/video/2185713$time=$_SERVER[&#x27;REQUEST_TIME&#x27;];$content = file_get_contents($url);//获取标题preg_match(&#x27;/property=&quot;og:title&quot;[\s]+content=&quot;([^&quot;]*)&quot;.*?&gt;/i&#x27;,$content,$title);//获取封面preg_match(&#x27;/property=&quot;og:image&quot; content=&quot;([^&quot;]*)&quot;.*?&gt;/&#x27;,$content,$images);//获取MV的IDpreg_match(&#x27;/[\d]+/&#x27;,$url,$song_id);$title=$title[1];$images=$images[1];$song_id=$song_id[0];//解析json$songurl = &quot;http://www.yinyuetai.com/api/info/get-video-urls?callback=callback&amp;videoId=&quot;.$song_id.&quot;&amp;_=&quot;.$time;$data = file_get_contents($songurl);if (strpos($data, &quot;callback&quot;) !== false)&#123; $lpos = strpos($data, &quot;(&quot;); $rpos = strrpos($data, &quot;)&quot;); $data = substr($data, $lpos + 1, $rpos - $lpos -1);&#125;$json= json_decode($data,true);echo $title.&quot;&lt;br/&gt;&quot;;echo &quot;流畅地址：&quot;.$json[&#x27;hcVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;高清地址：&quot;.$json[&#x27;hdVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;超清地址：&quot;.$json[&#x27;heVideoUrl&#x27;].&quot;&lt;br/&gt;&quot;;echo &quot;&lt;img src=\&quot;&quot;.$images.&quot;\&quot;/&gt;&quot;;
+看看解析效果
+",
         "wordCount": 187
     }
 </script>
@@ -349,7 +356,7 @@ $(function() {
 <div class="jzpay article-title"><a href="javascript:;" class="outbox action-rewards faa-horizontal animated" etap="rewards" alt="打赏作者"></a></div>
 <! -- 添加捐赠图标 -->
 		
-				
+			
         <footer class="article-footer">
             
 
@@ -358,7 +365,39 @@ $(function() {
 
 
 
-        </footer>
+        </footer>  
+  	
+  
+  <h1 class="popular-posts-header"><i class="fa fa-list"></i> 相关文章推荐</h1>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\3056921327\" rel="bookmark"><i class="fa fa-file"></i> delphi如何实现php中的parse_url网址拆分函数?</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\415747762\" rel="bookmark"><i class="fa fa-file"></i> phpcms整合DESTOONB2B接口文件及使用说明</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\2074828779\" rel="bookmark"><i class="fa fa-file"></i> Unigui如何打印？Grid++Report锐浪报表解决方法</a></p>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      <p class="popular-posts-title"><a href="\page\1712950360\" rel="bookmark"><i class="fa fa-file"></i> aardio的listview自绘源代码</a></p>
+      
+    </li>
+  
+  </ul>
+  
+
     </div>
 </article>
 
