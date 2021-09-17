@@ -214,6 +214,53 @@ daovoice('update');
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/page/753365309/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span><a href="https://goodhelp.gitee.io/page/753365309/#isso-thread"></a></span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/article/">文章</a>
+            </div>
+            <div class="date"><time datetime="2017-11-07T15:33:22.000Z" itemprop="datePublished">2017-11-07</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/page/753365309/">8088汇编速查手册</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            汇编语言(assembly language)是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符(Mnemonics)代替机器指令的操作码，用地址符号(Symbol)或标号(Label)代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对应的不同平台之间不可直接移植。下面是汇编指令一、数据传输指令───────────────────────────────────────    它们在存贮器和寄存器、寄存器和输入输出端口之间传送数据.    1. 通用数据传送指令.        MOV    传送字或字节.        MOVSX  先符号扩展,再传送.        MOVZX  先零扩展,再传送.        PUSH    把字压入堆栈.        POP    把字弹出堆栈.        PUSHA  把AX,CX,DX,BX,SP,BP,SI,DI依次压入堆栈.        POPA    把DI,SI,BP,SP,BX,DX,CX,AX依次弹出堆栈.        PUSHAD  把EAX,ECX,EDX,EBX,ESP,EBP,ESI,EDI依次压入堆栈.        POPAD  把EDI,ESI,EBP,ESP,EBX,EDX,ECX,EAX依次弹出堆栈.        BSWAP  交换32位寄存器里字节的顺序        XCHG    交换字或字节.( 至少有一个操作数为寄存器,段寄存器不可作为操作数)        CMPXCHG 比较并交换操作数.( 第二个操作数必须为累加器AL/AX/EAX )        XADD    先交换再累加.( 结果在第一个操作数里 )        XLAT    字节查表转换.                ── BX 指向一张 256 字节的表的起点, AL 为表的索引值 (0-255,即                0-FFH); 返回 AL 为查表结果. ( [BX+AL]-&gt;AL )    2. 输入输出端口传送指令.        IN      I/O端口输入. ( 语法: IN 累加器, {端口号│DX} )        OUT    I/O端口输出. ( 语法: OUT {端口号│DX},累加器 )          输入输出端口由立即方式指定时, 其范围是 0-255; 由寄存器 DX 指定时,          其范围是 0-65535.    3. 目的地址传送指令.        LEA    装入有效地址.          例: LEA DX,string  ;把偏移地址存到DX.        LDS    传送目标指针,把指针内容装入DS.          例: LDS SI,string  ;把段地址:偏移地址存到DS:SI.        LES    传送目标指针,把指针内容装入ES.          例: LES DI,string  ;把段地址:偏移地址存到ES:DI.        LFS    传送目标指针,把指针内容装入FS.          例: LFS DI,string  ;把段地址:偏移地址存到FS:DI.        LGS    传送目标指针,把指针内容装入GS.          例: LGS DI,string  ;把段地址:偏移地址存到GS:DI.        LSS    传送目标指针,把指针内容装入SS.          例: LSS DI,string  ;把段地址:偏移地址存到SS:DI.    4. 标志传送指令.        LAHF    标志寄存器传送,把标志装入AH.        SAHF    标志寄存器传送,把AH内容装入标志寄存器.        PUSHF  标志入栈.        POPF    标志出栈.        PUSHD  32位标志入栈.        POPD    32位标志出栈.二、算术运算指令───────────────────────────────────────        　　ADD    加法.        ADC    带进位加法.        INC    加 1.        AAA    加法的ASCII码调整.        DAA    加法的十进制调整.        SUB    减法.        SBB    带借位减法.        DEC    减 1.        NEC    求反(以 0 减之).        CMP    比较.(两操作数作减法,仅修改标志位,不回送结果).        AAS    减法的ASCII码调整.        DAS    减法的十进制调整.        MUL    无符号乘法.        IMUL    整数乘法.          以上两条,结果回送AH和AL(字节运算),或DX和AX(字运算),        AAM    乘法的ASCII码调整.        DIV    无符号除法.        IDIV    整数除法.          以上两条,结果回送:              商回送AL,余数回送AH, (字节运算);          或  商回送AX,余数回送DX, (字运算).        AAD    除法的ASCII码调整.        CBW    字节转换为字. (把AL中字节的符号扩展到AH中去)        CWD    字转换为双字. (把AX中的字的符号扩展到DX中去)        CWDE    字转换为双字. (把AX中的字符号扩展到EAX中去)        CDQ    双字扩展.    (把EAX中的字的符号扩展到EDX中去)三、逻辑运算指令───────────────────────────────────────        　　AND    与运算.        OR      或运算.        XOR    异或运算.        NOT    取反.        TEST    测试.(两操作数作与运算,仅修改标志位,不回送结果).        SHL    逻辑左移.        SAL    算术左移.(=SHL)        SHR    逻辑右移.        SAR    算术右移.(=SHR)        ROL    循环左移.        ROR    循环右移.        RCL    通过进位的循环左移.        RCR    通过进位的循环右移.          以上八种移位指令,其移位次数可达255次.              移位一次时, 可直接用操作码.  如 SHL AX,1.              移位&gt;1次时, 则由寄存器CL给出移位次数.                如  MOV CL,04                    SHL AX,CL四、串指令───────────────────────────────────────            　DS:SI  源串段寄存器  :源串变址.            ES:DI  目标串段寄存器:目标串变址.            CX      重复次数计数器.            AL/AX  扫描值.            D标志  0表示重复操作中SI和DI应自动增量; 1表示应自动减量.            Z标志  用来控制扫描或比较操作的结束.        MOVS    串传送.            ( MOVSB  传送字符.    MOVSW  传送字.    MOVSD  传送双字. )        CMPS    串比较.            ( CMPSB  比较字符.    CMPSW  比较字. )        SCAS    串扫描.            把AL或AX的内容与目标串作比较,比较结果反映在标志位.        LODS    装入串.            把源串中的元素(字或字节)逐一装入AL或AX中.            ( LODSB  传送字符.    LODSW  传送字.    LODSD  传送双字. )        STOS    保存串.            是LODS的逆过程.        REP            当CX/ECX&lt;&gt;0时重复.        REPE/REPZ      当ZF=1或比较结果相等,且CX/ECX&lt;&gt;0时重复.        REPNE/REPNZ    当ZF=0或比较结果不相等,且CX/ECX&lt;&gt;0时重复.        REPC          当CF=1且CX/ECX&lt;&gt;0时重复.        REPNC          当CF=0且CX/ECX&lt;&gt;0时重复.五、程序转移指令───────────────────────────────────────    　1&gt;无条件转移指令 (长转移)        JMP    无条件转移指令        CALL    过程调用        RET/RETF过程返回.    2&gt;条件转移指令 (短转移,-128到+127的距离内)        ( 当且仅当(SF XOR OF)=1时,OP1&lt;OP2 )        JA/JNBE 不小于或不等于时转移.        JAE/JNB 大于或等于转移.        JB/JNAE 小于转移.        JBE/JNA 小于或等于转移.          以上四条,测试无符号整数运算的结果(标志C和Z).        JG/JNLE 大于转移.        JGE/JNL 大于或等于转移.        JL/JNGE 小于转移.        JLE/JNG 小于或等于转移.          以上四条,测试带符号整数运算的结果(标志S,O和Z).        JE/JZ  等于转移.        JNE/JNZ 不等于时转移.        JC      有进位时转移.        JNC    无进位时转移.        JNO    不溢出时转移.        JNP/JPO 奇偶性为奇数时转移.        JNS    符号位为 “0” 时转移.        JO      溢出转移.        JP/JPE  奇偶性为偶数时转移.        JS      符号位为 “1” 时转移.    3&gt;循环控制指令(短转移)        LOOP            CX不为零时循环.        LOOPE/LOOPZ    CX不为零且标志Z=1时循环.        LOOPNE/LOOPNZ  CX不为零且标志Z=0时循环.        JCXZ            CX为零时转移.        JECXZ          ECX为零时转移.    4&gt;中断指令        INT    中断指令        INTO    溢出中断        IRET    中断返回    5&gt;处理器控制指令        HLT    处理器暂停, 直到出现中断或复位信号才继续.        WAIT    当芯片引线TEST为高电平时使CPU进入等待状态.        ESC    转换到外处理器.        LOCK    封锁总线.        NOP    空操作.        STC    置进位标志位.        CLC    清进位标志位.        CMC    进位标志取反.        STD    置方向标志位.        CLD    清方向标志位.        STI    置中断允许位.        CLI    清中断允许位.六、伪指令───────────────────────────────────────        　　DW      定义字(2字节).        PROC    定义过程.        ENDP    过程结束.        SEGMENT 定义段.        ASSUME  建立段寄存器寻址.        ENDS    段结束.        END    程序结束.
+
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/page/2104750721/" class="thumbnail">
     
     
@@ -261,10 +308,14 @@ daovoice('update');
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -314,14 +365,10 @@ WINdbg是什么，我们需要它做什么？
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -373,10 +420,14 @@ hdwiki的后台对通行证的整合已经做了预置，只要把hdwiki做为�
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -428,14 +479,10 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -483,10 +530,14 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -538,14 +589,10 @@ PHPCMS V9（后面简称V9）采用PHP5+MYSQL做为技术基础进行开发。V9
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -608,10 +655,14 @@ ViewWizard 3.5
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -663,14 +714,10 @@ ikeeper爱克吧是什么?【Ikeeper计费管理系统】是重庆智多信息�
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -722,61 +769,6 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
     </div>
 </article>
     
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/page/2134220563/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/40330003082f7a5dd55a.jpg)" alt="“春宵一刻值千金”古代的优美情诗" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span><a href="https://goodhelp.gitee.io/page/2134220563/#isso-thread"></a></span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
-            </div>
-            <div class="date"><time datetime="2017-10-30T15:11:10.000Z" itemprop="datePublished">2017-10-30</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/page/2134220563/">“春宵一刻值千金”古代的优美情诗</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            ——《江城子》 苏轼十年生死两茫茫，不思量，自难忘。千里孤坟，无处话凄凉。纵使相逢应不识，尘满面，鬓如霜。夜来幽梦忽还乡，小轩窗，正梳妆。相顾无言，惟有泪千行。料得年年肠断处，明月夜，短松冈。
-——纳兰性德《木兰词·拟古决绝词柬友》
-人生若只如初见，何事秋风悲画扇；
-等闲变却故人心，却道故人心易变。
-骊山语罢清宵半，泪雨霖铃终不怨；
-何如薄幸锦衣郎，比翼连枝当日愿。
-——《花月痕》
-多情自古空余恨，好梦由来最易醒。
-岂是拈花难解脱，可怜飞絮太飘零。
-——元稹《遣悲怀•其二》
-        </p>
-    </div>
-</article>
-    
         </div>
     
 
@@ -785,8 +777,8 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
 
 
     <nav id="page-nav">
-        <span class="pages">第 8 页，共 9 页</span>
-        <a class="extend prev" rel="prev" href="/page/7/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">&raquo;</a>
+        <span class="pages">第 8 页，共 10 页</span>
+        <a class="extend prev" rel="prev" href="/page/7/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/">&raquo;</a>
     </nav>
 
 
@@ -849,6 +841,26 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
         <h3 class="widget-title fa fa-file"> 最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/4125339080/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/EWOCA8IZXGRZQCPD.png)" alt="发现网卡变百兆自动发送邮件通知的AutoIt源码" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/page/4125339080/" class="title">发现网卡变百兆自动发送邮件通知的AutoIt源码</a></p>
+                            <p class="item-date"><time datetime="2021-09-17T02:34:19.000Z" itemprop="datePublished">2021-09-17</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -930,26 +942,6 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/page/2434381964/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/2354883490,3989130937.jpg)" alt="可实现维护通道的vbs脚本类" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
-                            <p class="item-title"><a href="/page/2434381964/" class="title">可实现维护通道的vbs脚本类</a></p>
-                            <p class="item-date"><time datetime="2021-09-11T14:19:22.000Z" itemprop="datePublished">2021-09-11</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -959,7 +951,7 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-book faa-horizontal animated"> 分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">24</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂集</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">24</span></li></ul>
         </div>
     </div>
 
@@ -969,7 +961,7 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-calendar-o"> 归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li></ul>
         </div>
     </div>
 
@@ -979,7 +971,7 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-tag"> 标签</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%8A%80%E5%B7%A7/" rel="tag">delphi技巧</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%BA%90%E7%A0%81/" rel="tag">delphi源码</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">dcef3使用方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" rel="tag">去广告方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AB%E5%9C%88/" rel="tag">八圈</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" rel="tag">基址查找方法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php%E6%BA%90%E7%A0%81/" rel="tag">php源码</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">unigui使用方法</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%8A%80%E5%B7%A7/" rel="tag">delphi技巧</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%BA%90%E7%A0%81/" rel="tag">delphi源码</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" rel="tag">去广告方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AB%E5%9C%88/" rel="tag">八圈</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">dcef3使用方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php%E6%BA%90%E7%A0%81/" rel="tag">php源码</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" rel="tag">基址查找方法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">unigui使用方法</a><span class="tag-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -989,7 +981,7 @@ phpssoconfig.php文件中无中文，如果加入中文，需要保存格式为u
     <div class="widget-wrap widget-float">
         <h3 class="widget-title fa fa-tags"> 标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/TChromium%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">TChromium技巧</a> <a href="/tags/aardio%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">aardio技巧</a> <a href="/tags/aardio%E6%BA%90%E7%A0%81/" style="font-size: 11.11px;">aardio源码</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">ae模板</a> <a href="/tags/autoit%E6%BA%90%E7%A0%81/" style="font-size: 11.11px;">autoit源码</a> <a href="/tags/c-%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">c#技巧</a> <a href="/tags/c-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">c++源码</a> <a href="/tags/cef%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">cef技巧</a> <a href="/tags/ce%E6%8A%80%E5%B7%A7/" style="font-size: 11.11px;">ce技巧</a> <a href="/tags/dcef3/" style="font-size: 10px;">dcef3</a> <a href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 16.67px;">dcef3使用方法</a> <a href="/tags/debug%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">debug使用方法</a> <a href="/tags/delphi%E6%8A%80%E5%B7%A7/" style="font-size: 20px;">delphi技巧</a> <a href="/tags/delphi%E6%BA%90%E7%A0%81/" style="font-size: 18.89px;">delphi源码</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">listview使用方法</a> <a href="/tags/php%E6%BA%90%E7%A0%81/" style="font-size: 14.44px;">php源码</a> <a href="/tags/remoteado%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">remoteado破解</a> <a href="/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">softether使用方法</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13.33px;">unigui使用方法</a> <a href="/tags/vbscript/" style="font-size: 10px;">vbscript</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%8D%E8%B4%B9%E5%BD%B1%E8%A7%86%E4%BC%9A%E5%91%98/" style="font-size: 10px;">免费影视会员</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 16.67px;">八圈</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" style="font-size: 10px;">内存修改方法</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.22px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" style="font-size: 16.67px;">去广告方法</a> <a href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" style="font-size: 14.44px;">基址查找方法</a> <a href="/tags/%E5%A5%A5%E8%BF%90%E4%BC%9A%E8%A7%86%E9%A2%91/" style="font-size: 10px;">奥运会视频</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 10px;">密码锁</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.11px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 15.56px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%A5%E8%8A%82%E8%A7%86%E9%A2%91/" style="font-size: 10px;">春节视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">汇编使用方法</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%A4%96%E6%8C%82%E6%96%B9%E6%B3%95/" style="font-size: 11.11px;">游戏外挂方法</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/" style="font-size: 10px;">破解方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E8%A7%86%E9%A2%91/" style="font-size: 10px;">破解视频</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.78px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">蓝屏使用方法</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 14.44px;">视频</a> <a href="/tags/%E9%94%90%E8%B5%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 11.11px;">锐起使用方法</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+            <a href="/tags/TChromium%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">TChromium技巧</a> <a href="/tags/aardio%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">aardio技巧</a> <a href="/tags/aardio%E6%BA%90%E7%A0%81/" style="font-size: 11.11px;">aardio源码</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">ae模板</a> <a href="/tags/autoit%E6%BA%90%E7%A0%81/" style="font-size: 12.22px;">autoit源码</a> <a href="/tags/c-%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">c#技巧</a> <a href="/tags/c-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">c++源码</a> <a href="/tags/cef%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">cef技巧</a> <a href="/tags/ce%E6%8A%80%E5%B7%A7/" style="font-size: 11.11px;">ce技巧</a> <a href="/tags/dcef3/" style="font-size: 10px;">dcef3</a> <a href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 16.67px;">dcef3使用方法</a> <a href="/tags/debug%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">debug使用方法</a> <a href="/tags/delphi%E6%8A%80%E5%B7%A7/" style="font-size: 20px;">delphi技巧</a> <a href="/tags/delphi%E6%BA%90%E7%A0%81/" style="font-size: 18.89px;">delphi源码</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">listview使用方法</a> <a href="/tags/php%E6%BA%90%E7%A0%81/" style="font-size: 14.44px;">php源码</a> <a href="/tags/remoteado%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">remoteado破解</a> <a href="/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">softether使用方法</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13.33px;">unigui使用方法</a> <a href="/tags/vbscript/" style="font-size: 10px;">vbscript</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%8D%E8%B4%B9%E5%BD%B1%E8%A7%86%E4%BC%9A%E5%91%98/" style="font-size: 10px;">免费影视会员</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 16.67px;">八圈</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" style="font-size: 10px;">内存修改方法</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.22px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" style="font-size: 16.67px;">去广告方法</a> <a href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" style="font-size: 14.44px;">基址查找方法</a> <a href="/tags/%E5%A5%A5%E8%BF%90%E4%BC%9A%E8%A7%86%E9%A2%91/" style="font-size: 10px;">奥运会视频</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 10px;">密码锁</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.11px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 15.56px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%A5%E8%8A%82%E8%A7%86%E9%A2%91/" style="font-size: 10px;">春节视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">汇编使用方法</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%A4%96%E6%8C%82%E6%96%B9%E6%B3%95/" style="font-size: 11.11px;">游戏外挂方法</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/" style="font-size: 10px;">破解方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E8%A7%86%E9%A2%91/" style="font-size: 10px;">破解视频</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.78px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">蓝屏使用方法</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 14.44px;">视频</a> <a href="/tags/%E9%94%90%E8%B5%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 11.11px;">锐起使用方法</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
         </div>
     </div>
 

@@ -144,11 +144,12 @@ body {
   float: left;
   overflow: hidden;
 }
-#header-title .logo-wrap:before {
+#header-title .logo:before {
   content: "";
   position: absolute;
-  width: 200px;
-  height: 18px;
+  width: 220px;
+  height: 16px;
+  overflow: hidden;
   background-color: rgba(236,250,255,0.5);
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
@@ -255,12 +256,6 @@ body {
   width: 149px;
   z-index: 11;
 }
-.thumbnail:hover {
-  background-color: #fafdff;
-  border-color: #88d3f9;
-  -webkit-box-shadow: 0px 0px 9px #88d3f9;
-  box-shadow: 0px 0px 9px #88d3f9;
-}
 .popular-posts-header {
   border-bottom: 1px solid $gainsboro;
   display: block;
@@ -283,6 +278,34 @@ body {
 .popular-posts .popular-posts-item .popular-posts-title a {
   color: #006bde;
   text-decoration: none;
+}
+.thumbnail:hover {
+  background-color: #fafdff;
+  border-color: #88d3f9;
+  -webkit-box-shadow: 0px 0px 9px #88d3f9;
+  box-shadow: 0px 0px 9px #88d3f9;
+  -webkit-animation: bounce 1s 0.1s ease both;
+  -moz-animation: bounce 1s 0.1s ease both;
+}
+@-webkit-keyframes bounce {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  10%, 20% {
+    -webkit-transform: scale(0.8) rotate(-2deg);
+  }
+  30%, 50%, 70%, 90% {
+    -webkit-transform: scale(1.1) rotate(2deg);
+  }
+  40%, 60%, 80% {
+    -webkit-transform: scale(1.1) rotate(-2deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate(0);
+  }
+}
+.bshare-custom {
+  float: right;
 }
 @-moz-keyframes searchLights {
   0% {
