@@ -147,6 +147,9 @@ body {
   color: #006bde;
   text-decoration: none;
 }
+.thumbnail {
+  border: 1px solid #ccc;
+}
 .thumbnail:hover {
   background-color: #fafdff;
   border-color: #88d3f9;

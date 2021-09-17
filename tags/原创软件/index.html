@@ -214,6 +214,58 @@ daovoice('update');
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/page/4125339080/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/EWOCA8IZXGRZQCPD.png)" alt="发现网卡变百兆自动发送邮件通知的AutoIt源码" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span><a href="https://goodhelp.gitee.io/page/4125339080/#isso-thread"></a></span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/code/">源码</a>
+            </div>
+            <div class="date"><time datetime="2021-09-17T02:34:19.000Z" itemprop="datePublished">2021-09-17</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/page/4125339080/">发现网卡变百兆自动发送邮件通知的AutoIt源码</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            问题的出现网吧维护中，由于交换机或水晶机或工艺上的问题，有些机器网卡正常的千兆会变成百兆，在无盘系统中启动机器或启动游戏变得很慢，用户体验相当不好!出现这个问题时，网管或维护却很难第一时间发现1000M变成100M的问题机器。以下是使用autoit3写的，发现任意网卡是100M，就会按mail.ini配置文件中指定的邮件发送邮件通知，让你第一时间发现这种网卡变100M的问题机器，及时进行处理！
+把以下代码保存为au3脚本或编译为可执行文件后，需要在同目录下建一个mail.ini文件，内容如下[setup]FromAddress=发件人@qq.comtoaddress=收件人@qq.comusername=qq号password=QQ的smtp服务器提供的邮件授权码body=邮件正文内容
+其中password内容，应该进入你的QQ邮箱开通smtp和取得授权码
+使用方法设置好mainl.ini中的qq的smtp服务器的用户名及授权码等一切信息后，开机执行一次此代码就行，检测完成自动退出程序
+autoit源码如下以下为autoit3实现发现任意一网卡是100M，自动根据设置的邮件发送邮件通知!
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162#include &lt;ButtonConstants.au3&gt; #include &lt;GUIConstantsEx.au3&gt; #include &lt;ListViewConstants.au3&gt; #include &lt;WindowsConstants.au3&gt; #include &lt;GuiListView.au3&gt; #Include&lt;file.au3&gt;#NoTrayIcon$badlan=false$a = _GetAdaptersInfo() For $i = 1 To $a[0][0] $lSpeed=GetIfEntry($a[$i][3])if $lSpeed=100 then  $badlan=true  ExitLoopendifNextif $badlan=true then    	$SmtpServer = &quot;smtp.qq.com&quot;              ; address for the smtp-server to use - REQUIRED	$FromName = &quot;发送人&quot;                      ; name from who the email was sent	$FromAddress = IniRead(@WorkingDir&amp;&quot;\mail.ini&quot;,&quot;setup&quot;,&quot;FromAddress&quot;,&quot;&quot;)	$ToAddress = IniRead(@WorkingDir&amp;&quot;\mail.ini&quot;,&quot;setup&quot;,&quot;toaddress&quot;,&quot;&quot;)	$Subject = @ComputerName&amp;&quot;号机器网卡为100M，请检查!&quot;                    ; subject from the email - can be anything you want it to be	;$Body = &quot;邮件正文&quot;                                ; the messagebody from the mail - can be left blank but then you get a blank mail	$Body = IniRead(@WorkingDir&amp;&quot;\mail.ini&quot;,&quot;setup&quot;,&quot;body&quot;,&quot;&quot;)	$AttachFiles = &quot;&quot;                        ; the file you want to attach- leave blank if not needed	$CcAddress = &quot;&quot;        ; address for cc - leave blank if not needed	$BccAddress = &quot;&quot;      ; address for bcc - leave blank if not needed	$Importance = &quot;Normal&quot;                  ; Send message priority: &quot;High&quot;, &quot;Normal&quot;, &quot;Low&quot;	$Username = IniRead(@WorkingDir&amp;&quot;\mail.ini&quot;,&quot;setup&quot;,&quot;Username&quot;,&quot;&quot;)	$Password = IniRead(@WorkingDir&amp;&quot;\mail.ini&quot;,&quot;setup&quot;,&quot;Password&quot;,&quot;&quot;)	$IPPort = 465                            ; port used for sending the mail	$ssl = 1    	$rc = _INetSmtpMailCom ( $SmtpServer, $FromName, $FromAddress, $ToAddress, $Subject, $Body, $AttachFiles, $CcAddress, $BccAddress, $Importance, $Username, $Password, $IPPort, $ssl )endif;msgbox(0,&quot;&quot;,$ToAddress)Func SetListView() $a = _GetAdaptersInfo() $index = ($a[1][3]) For $i = 1 To $a[0][0] GUICtrlCreateListViewItem($a[$i][1] &amp; &#x27;|&#x27; &amp; _ StringLeft(Hex($a[$i][2]), 12) &amp; &#x27;|&#x27; &amp; _ $a[$i][6] &amp; &#x27;|&#x27; &amp; _ GetIfEntry($a[$i][3]) &amp; &#x27; MB&#x27;, $ListView1) Next EndFunc ;==&gt;SetListView Func GetIfEntry($ifIndex) Local $tagBuffer, $tBuffer, $pBuffer, $iResult, $iSpeed, $sDescr $tagBuffer = &quot;wchar[256];dword[5];byte[8];dword[16];char[256]&quot; $tBuffer = DllStructCreate($tagBuffer) $pBuffer = DllStructGetPtr($tBuffer) DllStructSetData($tBuffer, 2, $ifIndex, 1) $iResult = DllCall(&quot;iphlpapi.dll&quot;, &quot;long&quot;, &quot;GetIfEntry&quot;, &quot;ptr&quot;, $pBuffer) $iSpeed = DllStructGetData($tBuffer, 2, 4) / 1000 / 1000 $sDescr = DllStructGetData($tBuffer, 5) $tBuffer = 0 Return SetError($iResult[0], $iSpeed, $iSpeed) EndFunc ;==&gt;GetIfEntry Func _GetAdaptersInfo() Local $iResult, $tBuffer, $pBuffer, $aResult[1][9], $tagADPTINFO, $tAdpt ; 第一次调用传递空值，pOutBufLen ( $iResult[2] ) 设为结构所需大小，单位byte。 $iResult = DllCall(&quot;iphlpapi.dll&quot;, &quot;dword&quot;, &quot;GetAdaptersInfo&quot;, &quot;ptr&quot;, 0, &quot;ulong*&quot;, 0) $tBuffer = DllStructCreate(&quot;byte[&quot; &amp; $iResult[2] &amp; &quot;]&quot;) ; 定义$iResult[2] 字节的缓存区域 (分配内存空间)。 $pBuffer = DllStructGetPtr($tBuffer) ; 获取内存指针。 ; 第二次调用，GetAdaptersInfo把网卡信息复制到指定的内存空间 ($tBuffer) 中。 $iResult = DllCall(&quot;iphlpapi.dll&quot;, &quot;dword&quot;, &quot;GetAdaptersInfo&quot;, &quot;ptr&quot;, $pBuffer, &quot;ulong*&quot;, $iResult[2]) ; $iResult[0]值为0则调用成功，否则为系统错误号。 ; 数据转换， byte --&gt; IP_ADAPTER_INFO $tagADPTINFO = &quot;ptr NextAdpt; dword ComboIndex; char AdptName[260]; char AdptDescr[132];uint AddrLength;byte MacAddr[8];dword Index;uint Type; uint DhcpEnabled;ptr CurrentIpAddr;ptr NextIpAddr; char IpAddr[16];char IpAddrMask[16]; dword IpAddrCxt; ptr NextGateway; char GatewayAddr[16]; char GatewayAddrMask[16];dword GatewayCxt; ptr NextDhcp; char DhcpAddr[16]; char DhcpAddrMask[16];dword DhcpCxt; int HaveWins; ptr NextPriWinsServer; char PriWinsServerAddr[16]; char PriWinsServerAddrMask[16]; dword PriWinsServerCxt; ptr NextSecWinsServer; char SecWinsServerAddr[16]; char SecWinsServerAddrMask[16]; dword LeaseObtained; dword LeaseExpires&quot; While $pBuffer $tAdpt = DllStructCreate($tagADPTINFO, $pBuffer) $aResult[0][0] += 1 ReDim $aResult[$aResult[0][0] + 1][9] $aResult[$aResult[0][0]][0] = DllStructGetData($tAdpt, &quot;AdptName&quot;) ; 网卡名称 $aResult[$aResult[0][0]][1] = DllStructGetData($tAdpt, &quot;AdptDescr&quot;) ; 网卡描述 $aResult[$aResult[0][0]][2] = DllStructGetData($tAdpt, &quot;MacAddr&quot;) ; 网卡MAC $aResult[$aResult[0][0]][3] = DllStructGetData($tAdpt, &quot;Index&quot;) ; 网卡索引号 $aResult[$aResult[0][0]][4] = DllStructGetData($tAdpt, &quot;Type&quot;) ; 类型 $aResult[$aResult[0][0]][5] = DllStructGetData($tAdpt, &quot;DhcpEnabled&quot;) ; DHCP是否启用 true = 启用， false = 禁用 $aResult[$aResult[0][0]][6] = DllStructGetData($tAdpt, &quot;IpAddr&quot;) ; IP 地址 $aResult[$aResult[0][0]][7] = DllStructGetData($tAdpt, &quot;GatewayAddr&quot;) ; 网关地址 $aResult[$aResult[0][0]][8] = DllStructGetData($tAdpt, &quot;DhcpAddr&quot;) ; DHCP地址, 只有DhcpEnabled为true时，此值才有效。 $pBuffer = DllStructGetData($tAdpt, &quot;NextAdpt&quot;) ; [下一张网卡信息的内存地址。] $tAdpt = 0 WEnd $tBuffer = 0 Return SetError($iResult[0], 0, $aResult) EndFunc ;==&gt;_GetAdaptersInfo; The UDFFunc _INetSmtpMailCom ( $s_SmtpServer, $s_FromName, $s_FromAddress, $s_ToAddress, $s_Subject = &quot;&quot;, $as_Body = &quot;&quot;, $s_AttachFiles = &quot;&quot;, $s_CcAddress = &quot;&quot;, $s_BccAddress = &quot;&quot;, $s_Importance= &quot;Normal&quot;, $s_Username = &quot;&quot;, $s_Password = &quot;&quot;, $IPPort = 25, $ssl = 0 )    Local $objEmail = ObjCreate ( &quot;CDO.Message&quot; )    $objEmail.From = &#x27;&quot;&#x27; &amp; $s_FromName &amp; &#x27;&quot; &lt;&#x27; &amp; $s_FromAddress &amp; &#x27;&gt;&#x27;    $objEmail.To = $s_ToAddress    Local $i_Error = 0    Local $i_Error_desciption = &quot;&quot;    If $s_CcAddress &lt;&gt; &quot;&quot; Then $objEmail.Cc = $s_CcAddress    If $s_BccAddress &lt;&gt; &quot;&quot; Then $objEmail.Bcc = $s_BccAddress    $objEmail.Subject = $s_Subject    If StringInStr ( $as_Body, &quot;&lt;&quot; ) And StringInStr ( $as_Body, &quot;&gt;&quot; ) Then        $objEmail.HTMLBody = $as_Body    Else        $objEmail.Textbody = $as_Body &amp; @CRLF    EndIf    If $s_AttachFiles &lt;&gt; &quot;&quot; Then        Local $S_Files2Attach = StringSplit ( $s_AttachFiles, &quot;;&quot; )        For $x = 1 To $S_Files2Attach [ 0 ]            $S_Files2Attach [ $x ] = _PathFull ( $S_Files2Attach [ $x ] )            ConsoleWrite ( &#x27;@@ Debug(62) : $S_Files2Attach = &#x27; &amp; $S_Files2Attach &amp; @LF &amp; &#x27;&gt;Error code: &#x27; &amp; @error &amp; @LF ) ;### Debug Console            If FileExists ( $S_Files2Attach [ $x ] ) Then                $objEmail.AddAttachment ( $S_Files2Attach [ $x ] )            Else                ConsoleWrite ( &#x27;!&gt; File not found to attach: &#x27; &amp; $S_Files2Attach [ $x ] &amp; @LF )                SetError ( 1 )                Return 0            EndIf        Next    EndIf    $objEmail.Configuration.Fields.Item ( &quot;http://schemas.microsoft.com/cdo/configuration/sendusing&quot; ) = 2    $objEmail.Configuration.Fields.Item ( &quot;http://schemas.microsoft.com/cdo/configuration/smtpserver&quot; ) = $s_SmtpServer    If Number ( $IPPort ) = 0 then $IPPort = 25    $objEmail.Configuration.Fields.Item ( &quot;http://schemas.microsoft.com/cdo/configuration/smtpserverport&quot; ) = $IPPort    ;Authenticated SMTP    If $s_Username &lt;&gt; &quot;&quot; Then        $objEmail.Configuration.Fields.Item ( &quot;http://schemas.microsoft.com/cdo/configuration/smtpauthenticate&quot; ) = 1        $objEmail.Configuration.Fields.Item ( &quot;http://schemas.microsoft.com/cdo/configuration/sendusername&quot; ) = $s_Username        $objEmail.Configuration.Fields.Item ( &quot;http://schemas.microsoft.com/cdo/configuration/sendpassword&quot; ) = $s_Password    EndIf    If $ssl Then        $objEmail.Configuration.Fields.Item ( &quot;http://schemas.microsoft.com/cdo/configuration/smtpusessl&quot; ) = True    EndIf    ;Update settings    $objEmail.Configuration.Fields.Update    ; Set Email Importance    Switch $s_Importance        Case &quot;High&quot;            $objEmail.Fields.Item ( &quot;urn:schemas:mailheader:Importance&quot; ) = &quot;High&quot;        Case &quot;Normal&quot;            $objEmail.Fields.Item ( &quot;urn:schemas:mailheader:Importance&quot; ) = &quot;Normal&quot;        Case &quot;Low&quot;            $objEmail.Fields.Item ( &quot;urn:schemas:mailheader:Importance&quot; ) = &quot;Low&quot;    EndSwitch    $objEmail.Fields.Update    ; Sent the Message    $objEmail.Send    If @error Then        SetError ( 2 )        Return $oMyRet [ 1 ]    EndIf    $objEmail= &quot;&quot;EndFunc    ;==&gt;_INetSmtpMailCom;
+成品下载地址
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/page/2434381964/" class="thumbnail">
     
     
@@ -259,10 +311,14 @@ demo为示例代码， 维护通道是使用vbs自定义类写的网吧开机维
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -305,17 +361,11 @@ demo为示例代码， 维护通道是使用vbs自定义类写的网吧开机维
 注意：需要关闭无盘的闪电关机，开启闪电关机，本软件无效！
 功能：运行本工具，按电源键，或系统中点关机，会执行重启！总之就是不关机，关机就是重启，关机直接重启，关机会重启，说三遍!
 适用范围：息屏挖矿，按电源键会关机，本软件作用就显现了!机器正在挖矿，显示器黑屏，总有顾客以为机器是关了的，去按电源键开机，这时机器就会关机。顾客就会以为这台机器有问题，明明按了开关键，结果机器没开起，有些会立马换一台机器，重复上面的操作。使用了本软件，按了电源键不会关机，直接变成重启，顾客不会置疑了，呼叫网管的次数少了!
+下载地址
 
-  下载地址_
-  下载地址
-  R25
-
-[下载地址](https://item.taobao.com/item.htm?spm=a1z10.1-c.w4023-488448694.4.62d67cacz2wvxZ&id=655303638168)
         </p>
     </div>
 </article>
-    
-        </div>
     
 
     
@@ -751,63 +801,6 @@ demo为示例代码， 维护通道是使用vbs自定义类写的网吧开机维
         </div>
     
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/page/3211467574/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/8quan.png)" alt="关闭8圈桌面侧边栏工具" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span><a href="https://goodhelp.gitee.io/page/3211467574/#isso-thread"></a></span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/soft/">软件</a>
-            </div>
-            <div class="date"><time datetime="2017-10-26T13:31:46.000Z" itemprop="datePublished">2017-10-26</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/page/3211467574/">关闭8圈桌面侧边栏工具</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            关闭8圈桌面侧边栏工具-适用于八圈9.5以下版本此页面工具仅适用于八圈9.5以下版本，不适用于八圈9.5及以上版本，9.5版本请查看本站其他页面
-8圈网管平台(8圈计费系统)是专门针对新型网吧网咖会所开发的一款全新网管服务软件!官方网站:http://www.8quan.com
-网吧计费系统8圈，会在桌面右侧显示一个窗口，无法修改，无法控制是否显示！如何关闭8圈计费系统桌面上的窗口呢？本工具可以自由控制显示或隐藏，或销毁，还你桌面一个自由!本程序可以加参数运行 加 1 隐藏 加 0 显示 加 2 销毁
-销毁就是彻底关闭，窗体是不存在了，隐藏只是不显示出来，实际是存在的!
-如何添加参数，请参照这儿  https://goodhelp.gitee.io/page/576111441/
-
-
-下载地址：
-关闭八圈9.5版工具下载地址
-https://goodhelp.gitee.io/page/3043345977/
-        </p>
-    </div>
-</article>
-    
-
 
     </div></section>
 
@@ -1007,7 +1000,7 @@ https://goodhelp.gitee.io/page/3043345977/
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-tag"> 标签</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%8A%80%E5%B7%A7/" rel="tag">delphi技巧</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%BA%90%E7%A0%81/" rel="tag">delphi源码</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" rel="tag">去广告方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AB%E5%9C%88/" rel="tag">八圈</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">dcef3使用方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php%E6%BA%90%E7%A0%81/" rel="tag">php源码</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" rel="tag">基址查找方法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">unigui使用方法</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%8A%80%E5%B7%A7/" rel="tag">delphi技巧</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%BA%90%E7%A0%81/" rel="tag">delphi源码</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">dcef3使用方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" rel="tag">去广告方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AB%E5%9C%88/" rel="tag">八圈</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" rel="tag">基址查找方法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php%E6%BA%90%E7%A0%81/" rel="tag">php源码</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">unigui使用方法</a><span class="tag-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -1017,7 +1010,7 @@ https://goodhelp.gitee.io/page/3043345977/
     <div class="widget-wrap widget-float">
         <h3 class="widget-title fa fa-tags"> 标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/TChromium%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">TChromium技巧</a> <a href="/tags/aardio%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">aardio技巧</a> <a href="/tags/aardio%E6%BA%90%E7%A0%81/" style="font-size: 11.11px;">aardio源码</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 13.33px;">ae模板</a> <a href="/tags/autoit%E6%BA%90%E7%A0%81/" style="font-size: 12.22px;">autoit源码</a> <a href="/tags/c-%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">c#技巧</a> <a href="/tags/c-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">c++源码</a> <a href="/tags/cef%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">cef技巧</a> <a href="/tags/ce%E6%8A%80%E5%B7%A7/" style="font-size: 11.11px;">ce技巧</a> <a href="/tags/dcef3/" style="font-size: 10px;">dcef3</a> <a href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 16.67px;">dcef3使用方法</a> <a href="/tags/debug%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">debug使用方法</a> <a href="/tags/delphi%E6%8A%80%E5%B7%A7/" style="font-size: 20px;">delphi技巧</a> <a href="/tags/delphi%E6%BA%90%E7%A0%81/" style="font-size: 18.89px;">delphi源码</a> <a href="/tags/dxva2/" style="font-size: 10px;">dxva2</a> <a href="/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">listview使用方法</a> <a href="/tags/php%E6%BA%90%E7%A0%81/" style="font-size: 14.44px;">php源码</a> <a href="/tags/remoteado%E7%A0%B4%E8%A7%A3/" style="font-size: 10px;">remoteado破解</a> <a href="/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">softether使用方法</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 10px;">time小青龙伴奏</a> <a href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13.33px;">unigui使用方法</a> <a href="/tags/vbscript/" style="font-size: 10px;">vbscript</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 10px;">下载视频</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">云更新</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 10px;">人物故事</a> <a href="/tags/%E5%85%8D%E8%B4%B9%E5%BD%B1%E8%A7%86%E4%BC%9A%E5%91%98/" style="font-size: 10px;">免费影视会员</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 16.67px;">八圈</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 10px;">关机重启</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" style="font-size: 10px;">内存修改方法</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 12.22px;">励志视频</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">原创软件</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" style="font-size: 16.67px;">去广告方法</a> <a href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" style="font-size: 14.44px;">基址查找方法</a> <a href="/tags/%E5%A5%A5%E8%BF%90%E4%BC%9A%E8%A7%86%E9%A2%91/" style="font-size: 10px;">奥运会视频</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 10px;">密码锁</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 10px;">座右铭</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 11.11px;">情诗</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 10px;">控制电脑</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 15.56px;">文章</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 10px;">新年视频</a> <a href="/tags/%E6%98%A5%E8%8A%82%E8%A7%86%E9%A2%91/" style="font-size: 10px;">春节视频</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 10px;">显示器设置</a> <a href="/tags/%E6%B1%87%E7%BC%96%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">汇编使用方法</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%A4%96%E6%8C%82%E6%96%B9%E6%B3%95/" style="font-size: 11.11px;">游戏外挂方法</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 10px;">爱克吧</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 10px;">电源键</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/" style="font-size: 10px;">破解方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E8%A7%86%E9%A2%91/" style="font-size: 10px;">破解视频</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 17.78px;">精品软件</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 10px;">英语名言</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">蓝屏代码</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 10px;">蓝屏使用方法</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 14.44px;">视频</a> <a href="/tags/%E9%94%90%E8%B5%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 11.11px;">锐起使用方法</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">音乐</a>
+            <a href="/tags/delphi%E6%8A%80%E5%B7%A7/" style="font-size: 22px; color: #e6001a">delphi技巧</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 13px; color: #00f">密码锁</a> <a href="/tags/remoteado%E7%A0%B4%E8%A7%A3/" style="font-size: 13px; color: #00f">remoteado破解</a> <a href="/tags/TChromium%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">TChromium技巧</a> <a href="/tags/%E6%B1%87%E7%BC%96%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">汇编使用方法</a> <a href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">dcef3使用方法</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">去广告方法</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 19px; color: #906">八圈</a> <a href="/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">softether使用方法</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">下载视频</a> <a href="/tags/cef%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">cef技巧</a> <a href="/tags/aardio%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">aardio技巧</a> <a href="/tags/c-%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">c#技巧</a> <a href="/tags/ce%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #1a00e6">ce技巧</a> <a href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" style="font-size: 17px; color: #609">基址查找方法</a> <a href="/tags/dcef3/" style="font-size: 13px; color: #00f">dcef3</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 13px; color: #00f">控制电脑</a> <a href="/tags/c-%E6%BA%90%E7%A0%81/" style="font-size: 13px; color: #00f">c++源码</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">蓝屏使用方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">破解方法</a> <a href="/tags/delphi%E6%BA%90%E7%A0%81/" style="font-size: 21px; color: #c03">delphi源码</a> <a href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 16px; color: #4d00b3">unigui使用方法</a> <a href="/tags/aardio%E6%BA%90%E7%A0%81/" style="font-size: 14px; color: #1a00e6">aardio源码</a> <a href="/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">listview使用方法</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 13px; color: #00f">爱克吧</a> <a href="/tags/php%E6%BA%90%E7%A0%81/" style="font-size: 17px; color: #609">php源码</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">内存修改方法</a> <a href="/tags/autoit%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">autoit源码</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 23px; color: #f00">原创软件</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%A4%96%E6%8C%82%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">游戏外挂方法</a> <a href="/tags/%E9%94%90%E8%B5%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">锐起使用方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">破解视频</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 16px; color: #4d00b3">ae模板</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 13px; color: #00f">蓝屏代码</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 13px; color: #00f">人物故事</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 18px; color: #800080">文章</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 15px; color: #30c">励志视频</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 17px; color: #609">视频</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 14px; color: #1a00e6">情诗</a> <a href="/tags/%E6%98%A5%E8%8A%82%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">春节视频</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">新年视频</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 13px; color: #00f">time小青龙伴奏</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 13px; color: #00f">音乐</a> <a href="/tags/%E5%A5%A5%E8%BF%90%E4%BC%9A%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">奥运会视频</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 13px; color: #00f">座右铭</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 13px; color: #00f">英语名言</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 20px; color: #b3004d">精品软件</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 13px; color: #00f">云更新</a> <a href="/tags/%E5%85%8D%E8%B4%B9%E5%BD%B1%E8%A7%86%E4%BC%9A%E5%91%98/" style="font-size: 13px; color: #00f">免费影视会员</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 13px; color: #00f">开源项目</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 13px; color: #00f">关机重启</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 13px; color: #00f">电源键</a> <a href="/tags/debug%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">debug使用方法</a> <a href="/tags/vbscript/" style="font-size: 13px; color: #00f">vbscript</a> <a href="/tags/dxva2/" style="font-size: 13px; color: #00f">dxva2</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 13px; color: #00f">显示器设置</a>
         </div>
     </div>
 
