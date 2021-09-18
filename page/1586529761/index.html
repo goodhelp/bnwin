@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://goodhelp.gitee.io/images/20210918090344.png">
 <meta property="article:published_time" content="2021-09-18T00:23:50.000Z">
-<meta property="article:modified_time" content="2021-09-18T01:41:13.560Z">
+<meta property="article:modified_time" content="2021-09-18T01:45:55.458Z">
 <meta property="article:author" content="百脑问">
 <meta property="article:tag" content="aardio源码">
 <meta property="article:tag" content="python源码">
@@ -258,10 +258,10 @@ var qrcode = new QRCode(document.getElementById("qr"), {
    <div class="article-counter">
       <i class="fa fa-file-word-o"></i>
       <span class="post-count-item-text">本文字数: </span>
-      <span class="post-count">1.3k</span>
+      <span class="post-count">1.5k</span>
       <i class="fa fa-clock-o"></i>
       <span class="post-time-item-text">阅读时长: </span>
-      <span class="post-count">5 分钟 </span>
+      <span class="post-count">6 分钟 </span>
    </div>
 
 
@@ -290,7 +290,14 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 </ol>
 <h1 id="后期可能失效说明"><a href="#后期可能失效说明" class="headerlink" title="后期可能失效说明"></a>后期可能失效说明</h1><p>登录按钮的css selector，现在为 #new_user &gt; div &gt; div &gt; div &gt; div:nth-child(4) &gt; input<br>更新按钮的css selector, 现在为 #pages-branch &gt; div.button.orange.redeploy-button.ui.update_deploy<br>如何查看这两个按钮的css selector<br>比如更新按钮的css selector<br>手动打开gitee pages更新页面，对着更新按钮，右键审查元素，<img src="/images/20210918092106.png"><br>在弹出的devtool的Elements界面，自动选中的地方右键，点击选择copy selector，<img src="/images/20210918092554.png">把上面的代码中修改即可!</p>
 <p>其实就是一个模拟手动按键的过程!不过无头模式，似乎有点问题，有时不点击更新，也可能是延时问题，但非无头模式是正常的，不点击就加大延时!</p>
-
+<h1 id="题外话-Headless-Chrome"><a href="#题外话-Headless-Chrome" class="headerlink" title="题外话:-Headless Chrome"></a>题外话:-Headless Chrome</h1><p>Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏览器的前提下，使用所有 Chrome 支持的特性运行你的程序。相比于现代浏览器，Headless Chrome 更加方便测试 web 应用，获得网站的截图，做爬虫抓取信息等。相比于出道较早的 PhantomJS，SlimerJS 等，Headless Chrome 则更加贴近浏览器环境。<br>启动无头模式</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome.exe --headless --disable-gpu --remote-debugging-port=<span class="number">9222</span>  https://github.com</span><br></pre></td></tr></table></figure>
+<p>获取屏幕截图</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome.exe --headless --disable-gpu --screenshot --window-size=<span class="number">1280</span>,<span class="number">1696</span> https://github.com</span><br></pre></td></tr></table></figure>
+<p>获取页面为PDF</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome.exe --headless --disable-gpu --<span class="built_in">print</span>-to-pdf https://github.com</span><br></pre></td></tr></table></figure>
+<p>打印页面DOM</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome.exe --headless --disable-gpu --dump-dom https://github.com/</span><br></pre></td></tr></table></figure>
         </div>
 		<div>
 			
@@ -327,7 +334,7 @@ aardio部署gitee pages的源码123456789101112131415161718192021222324252627282
 其中，代码的第二行的参数，第一个改为你的浏览器路径（其中第一步上面已查看到），第二个参数改为你下载的chromedriver的路径，然后在http://www.aardio.com 下载aardio，新建文件，复制上面代码，直接编译就可运行(如果没有chrome.divver库，aardio会自动下载)
 
 后期可能失效说明登录按钮的css selector，现在为 #new_user &gt; div &gt; div &gt; div &gt; div:nth-child(4) &gt; input更新按钮的css selector, 现在为 #pages-branch &gt; div.button.orange.redeploy-button.ui.update_deploy如何查看这两个按钮的css selector比如更新按钮的css selector手动打开gitee pages更新页面，对着更新按钮，右键审查元素，在弹出的devtool的Elements界面，自动选中的地方右键，点击选择copy selector，把上面的代码中修改即可!",
-        "wordCount": 413
+        "wordCount": 479
     }
 </script>
 
