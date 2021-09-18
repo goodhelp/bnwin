@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>实现GiteePages自动部署的aardio源码</title>
+      <link href="/page/1586529761/"/>
+      <url>/page/1586529761/</url>
+      
+        <content type="html"><![CDATA[<h1 id="问题的由来"><a href="#问题的由来" class="headerlink" title="问题的由来"></a>问题的由来</h1><p>github提供开源项目管理，同时提供静态网站github page，但国内访问速度很慢，经常打不开，gitee码云在国内，提供和github一样的功能，但gitee page每次推送文件后，不会自动刷新（免费版），必须手动刷新!网上已有提供python自动刷新Gitee Pages的源码!</p><h1 id="python自动部署Gitee-Pages源码"><a href="#python自动部署Gitee-Pages源码" class="headerlink" title="python自动部署Gitee Pages源码"></a>python自动部署Gitee Pages源码</h1><ol><li>python环境要求<br>python3 + selenium + chromedrive.exe。</li><li>python源码<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.alert <span class="keyword">import</span> Alert</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟浏览器打开到gitee登录界面</span></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.get(<span class="string">&#x27;https://gitee.com/login&#x27;</span>)</span><br><span class="line"><span class="comment"># 将窗口最大化</span></span><br><span class="line">driver.maximize_window()</span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入账号--通过html的id属性定位输入位置--改为你的账号</span></span><br><span class="line">user_login = driver.find_element_by_id(<span class="string">&#x27;user_login&#x27;</span>)</span><br><span class="line">user_login.send_keys(<span class="string">&quot;此处改为你的账号&quot;</span>)</span><br><span class="line"><span class="comment"># 输入密码--通过html的id属性定位输入位置--改为你的密码</span></span><br><span class="line">driver.find_element_by_id(<span class="string">&#x27;user_password&#x27;</span>).send_keys(<span class="string">&quot;此处改为你的密码&quot;</span>)</span><br><span class="line"><span class="comment"># 点击登录按钮--通过xpath确定点击位置</span></span><br><span class="line">driver.find_element_by_xpath(</span><br><span class="line">    <span class="string">&#x27;/html/body/div[2]/div[2]/div[1]/div/div[2]/div/form[1]/div[2]/div/div/div[4]/input&#x27;</span>).click()</span><br><span class="line"></span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到gitee pages界面--改为you_gitee_id</span></span><br><span class="line">driver.get(<span class="string">&#x27;https://gitee.com/此处改为you_gitee_id/此处改为you_gitee_id/pages&#x27;</span>)</span><br><span class="line"><span class="comment"># 点击更新按钮--通过xpath确定点击位置</span></span><br><span class="line">driver.find_element_by_xpath(<span class="string">&#x27;//*[@id=&quot;pages-branch&quot;]/div[7]&#x27;</span>).click()</span><br><span class="line"><span class="comment"># 确认更新提示框--这个函数的作用是确认提示框</span></span><br><span class="line">Alert(driver).accept()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待5秒更新</span></span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个print其实没事什么用,如果真的要测试脚本是否运行成功，可以用try来抛出异常</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;成功&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 脚本运行成功,退出浏览器</span></span><br><span class="line">driver.quit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写上更新日志</span></span><br><span class="line"><span class="comment"># 我这里是写在D盘，可以改为自己喜欢的目录</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&quot;D:\log.txt&quot;</span>, <span class="string">&quot;a+&quot;</span>)</span><br><span class="line">now_time = time.strftime(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>, time.localtime())</span><br><span class="line">fp.write(<span class="string">&quot;部署时间:&#123;0&#125;\n&quot;</span>.<span class="built_in">format</span>(now_time))</span><br><span class="line">fp.close()</span><br></pre></td></tr></table></figure></li></ol><p>提供此代码的开源项目地址：<a href="https://github.com/witmy/my-giteepages">https://github.com/witmy/my-giteepages</a></p><h1 id="aardio自动部署Gitee-Pages的源码"><a href="#aardio自动部署Gitee-Pages的源码" class="headerlink" title="aardio自动部署Gitee Pages的源码"></a>aardio自动部署Gitee Pages的源码</h1><p>python的代码，如果是新手，安装python，然后直接运行上面的源码，成功的机率很小，因为Chrome driver是需要浏览器和driver版本匹配的!上面的python源码，如果你不熟悉python，基本上调试不会成功!<br>不过不要紧，下面我讲的，小白也会的aardio教程，一步一步复杂粘贴就能实现，你不需要会python，不需要会aardio，一样可以编译一个自动更新gitee pages的执行文件!</p><ol><li>查看chrome内核的浏览器版本<br>只要是使用chrome为内核的浏览器，都可以，比如qq浏览器，360极速浏览器，搜狗浏览器或chrome谷歌浏览器!第一步打开浏览器，第二步，在地址栏输入  chrome://version 查看版本号，正常应该显示为这样<br><img src="/images/20210918090344.png"><br>查看版本号，上图版本号为86.0.4240.112，并且知道浏览器的路径为 D:\Program Files (x86)\360Chrome\Chrome\Application\360chrome.exe</li><li>打开chromedriver的镜像网站<a href="https://npm.taobao.org/mirrors/chromedriver">https://npm.taobao.org/mirrors/chromedriver</a> 下载相应的chromedriver<br><img src="/images/20210918090709.png"><br>对应上面的chrome，应该下载86.0.4240.22，最后的版本号112，选择最接近的就行！<br>进入86.0.4240.22目录，<img src="/images/20210918091136.png">下载 chromedriver_win32.zip，并解压到本地目录，如d:\temp\</li><li>aardio部署gitee pages的源码<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> chrome.driver;</span><br><span class="line">var driver = chrome.driver(<span class="string">&quot;D:\Program Files\CentBrowser64\chrome.exe&quot;</span>,<span class="string">&quot;d:\temp\chromedriver.exe&quot;</span>);</span><br><span class="line"><span class="comment">//driver.addArguments(&quot;--headless&quot;,&quot;--disable-gpu&quot;,&quot;--remote-debugging-port=9222&quot;); //无头模式</span></span><br><span class="line">var browser = driver.startBrowser( &#123;</span><br><span class="line">    loggingPrefs  = &#123; browser = <span class="string">&#x27;ALL&#x27;</span>, performance = <span class="string">&#x27;ALL&#x27;</span>, &#125;;</span><br><span class="line">perfLoggingPrefs = &#123;</span><br><span class="line">    enableNetwork = <span class="literal">true</span>,</span><br><span class="line">    enablePage= <span class="literal">false</span>,</span><br><span class="line">    enableTimeline = <span class="literal">false</span></span><br><span class="line">&#125; </span><br><span class="line">&#125;);</span><br><span class="line">browser.go(<span class="string">&quot;https://gitee.com/login&quot;</span>)</span><br><span class="line">var ele = browser.querySelector(<span class="string">&quot;body&quot;</span>).querySelector(<span class="string">&quot;#user_login&quot;</span>); </span><br><span class="line">ele.setValue( <span class="string">&quot;gitee的用户名&quot;</span> );<span class="comment">//改为你的gitee用户名</span></span><br><span class="line">ele = browser.querySelector(<span class="string">&quot;body&quot;</span>).querySelector(<span class="string">&quot;#user_password&quot;</span>);</span><br><span class="line">ele.setValue( <span class="string">&quot;gitee的登录密码&quot;</span> ); <span class="comment">//改为你的gitee密码</span></span><br><span class="line">var searchButton = browser.doScript(<span class="string">` </span></span><br><span class="line"><span class="string">return arguments[0].querySelector(&quot;#new_user &gt; div &gt; div &gt; div &gt; div:nth-child(4) &gt; input&quot;);</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line">,browser.querySelector(<span class="string">&quot;body&quot;</span>)</span><br><span class="line">)</span><br><span class="line">searchButton.click();</span><br><span class="line">win.delay(<span class="number">2000</span>)</span><br><span class="line">browser.go(<span class="string">&quot;https://gitee.com/此处改为you_gitee_id/此处改为you_gitee_id/pages&quot;</span>); <span class="comment">//改为你的gitee项目地址</span></span><br><span class="line">var gxButton=browser.doScript(<span class="string">`</span></span><br><span class="line"><span class="string">   return arguments[0].querySelector(&quot;#pages-branch &gt; div.button.orange.redeploy-button.ui.update_deploy&quot;);</span></span><br><span class="line"><span class="string">`</span>,browser.querySelector(<span class="string">&quot;body&quot;</span>)</span><br><span class="line">)</span><br><span class="line">win.delay(<span class="number">5000</span>)</span><br><span class="line">gxButton.click();</span><br><span class="line">browser.alert.accept();</span><br><span class="line">win.delay(<span class="number">2000</span>)</span><br><span class="line">browser.closeAll();</span><br></pre></td></tr></table></figure>其中，代码的第二行的参数，第一个改为你的浏览器路径（其中第一步上面已查看到），第二个参数改为你下载的chromedriver的路径<br>，然后在<a href="http://www.aardio.com/">http://www.aardio.com</a> 下载aardio，新建文件，复制上面代码，直接编译就可运行(如果没有chrome.divver库，aardio会自动下载)</li></ol><h1 id="后期可能失效说明"><a href="#后期可能失效说明" class="headerlink" title="后期可能失效说明"></a>后期可能失效说明</h1><p>登录按钮的css selector，现在为 #new_user &gt; div &gt; div &gt; div &gt; div:nth-child(4) &gt; input<br>更新按钮的css selector, 现在为 #pages-branch &gt; div.button.orange.redeploy-button.ui.update_deploy<br>如何查看这两个按钮的css selector<br>比如更新按钮的css selector<br>手动打开gitee pages更新页面，对着更新按钮，右键审查元素，<img src="/images/20210918092106.png"><br>在弹出的devtool的Elements界面，自动选中的地方右键，点击选择copy selector，<img src="/images/20210918092554.png">把上面的代码中修改即可!</p><p>其实就是一个模拟手动按键的过程!不过无头模式，似乎有点问题，有时不点击更新，也可能是延时问题，但非无头模式是正常的，不点击就加大延时!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 源码 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio源码 </tag>
+            
+            <tag> python源码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>发现网卡变百兆自动发送邮件通知的AutoIt源码</title>
       <link href="/page/4125339080/"/>
       <url>/page/4125339080/</url>
@@ -1155,7 +1182,36 @@
       
         <tags>
             
+            <tag> 视频 </tag>
+            
             <tag> 励志视频 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>BBC拍的中国春节，中国新年视频</title>
+      <link href="/page/3669695729/"/>
+      <url>/page/3669695729/</url>
+      
+        <content type="html"><![CDATA[<p>《中国春节》是英国广播公司（BBC）2015年12月拍摄的三集纪录片，用镜头聚焦“亿万中国人同时迁徙的壮观。在开篇，三位主持人开门见山地为网友介绍了中国的农历新年。可能买不到票，可能坐上没有座位的火车，可能要在人堆里挤上三天三夜，但这都不能阻止中国人回家过年的愿望。<br><img src="/images/1515031398-1.jpg" ></p><p>1.《中国新年》第一集《回家》主要讲述了在中国传统文化和家庭观念的影响下，中国人通过火车、飞机、摩托车不同方式回家过年的故事，介绍了中国为保障春节期间人们顺利出行所做的准备，同时对中国哈尔滨冰雪节、蔚县打树花等春节文化进行了展示。主持人还特意到云南白马雪山探寻金丝猴的保护情况，介绍中国12属相文化。</p><iframe frameborder="0" width="100%" height="480px" src="https://v.qq.com/txp/iframe/player.html?vid=x01859ooa23" allowFullScreen="true"></iframe>2.《中国新年》第二集《团圆》主要介绍中国家庭春节期间的传统风俗习惯，包括包饺子、贴春联、看春晚、放烟花、摆鲜花以及祈福等，通过照全家福等生动的故事体现了中国人家庭的团圆和温暖，而在蔬菜批发市场的采购过程又体现了现代中国生活的富足。<iframe frameborder="0"  width="100%" height="480px" src="https://v.qq.com/txp/iframe/player.html?vid=b0185941qtj" allowFullScreen="true"></iframe>3.《中国新年》第三集《欢庆》从中国最南端的香港到最北端的查干湖，从北京的庙会到香港维多利亚港的焰火，体现了遍布中国大江南北的欢乐祥和气氛，介绍了中国的饮食文化和舞龙舞狮等民俗文化。特别是本集里客观地介绍了香港1997年回归和一国两制的理念，并把香港本土文化作为中国文化的一部分展示给海外观众。<iframe frameborder="0"  width="100%" height="480px" src="https://v.qq.com/txp/iframe/player.html?vid=n0019v5i9ta" allowFullScreen="true"></iframe>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂集 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 春节视频 </tag>
+            
+            <tag> 新年视频 </tag>
             
             <tag> 视频 </tag>
             
@@ -1182,38 +1238,9 @@
       
         <tags>
             
+            <tag> 视频 </tag>
+            
             <tag> 励志视频 </tag>
-            
-            <tag> 视频 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>BBC拍的中国春节，中国新年视频</title>
-      <link href="/page/3669695729/"/>
-      <url>/page/3669695729/</url>
-      
-        <content type="html"><![CDATA[<p>《中国春节》是英国广播公司（BBC）2015年12月拍摄的三集纪录片，用镜头聚焦“亿万中国人同时迁徙的壮观。在开篇，三位主持人开门见山地为网友介绍了中国的农历新年。可能买不到票，可能坐上没有座位的火车，可能要在人堆里挤上三天三夜，但这都不能阻止中国人回家过年的愿望。<br><img src="/images/1515031398-1.jpg" ></p><p>1.《中国新年》第一集《回家》主要讲述了在中国传统文化和家庭观念的影响下，中国人通过火车、飞机、摩托车不同方式回家过年的故事，介绍了中国为保障春节期间人们顺利出行所做的准备，同时对中国哈尔滨冰雪节、蔚县打树花等春节文化进行了展示。主持人还特意到云南白马雪山探寻金丝猴的保护情况，介绍中国12属相文化。</p><iframe frameborder="0" width="100%" height="480px" src="https://v.qq.com/txp/iframe/player.html?vid=x01859ooa23" allowFullScreen="true"></iframe>2.《中国新年》第二集《团圆》主要介绍中国家庭春节期间的传统风俗习惯，包括包饺子、贴春联、看春晚、放烟花、摆鲜花以及祈福等，通过照全家福等生动的故事体现了中国人家庭的团圆和温暖，而在蔬菜批发市场的采购过程又体现了现代中国生活的富足。<iframe frameborder="0"  width="100%" height="480px" src="https://v.qq.com/txp/iframe/player.html?vid=b0185941qtj" allowFullScreen="true"></iframe>3.《中国新年》第三集《欢庆》从中国最南端的香港到最北端的查干湖，从北京的庙会到香港维多利亚港的焰火，体现了遍布中国大江南北的欢乐祥和气氛，介绍了中国的饮食文化和舞龙舞狮等民俗文化。特别是本集里客观地介绍了香港1997年回归和一国两制的理念，并把香港本土文化作为中国文化的一部分展示给海外观众。<iframe frameborder="0"  width="100%" height="480px" src="https://v.qq.com/txp/iframe/player.html?vid=n0019v5i9ta" allowFullScreen="true"></iframe>]]></content>
-      
-      
-      <categories>
-          
-          <category> 杂集 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 视频 </tag>
-            
-            <tag> 春节视频 </tag>
-            
-            <tag> 新年视频 </tag>
             
         </tags>
       
@@ -1292,9 +1319,9 @@
       
         <tags>
             
-            <tag> 励志视频 </tag>
-            
             <tag> 视频 </tag>
+            
+            <tag> 励志视频 </tag>
             
         </tags>
       
