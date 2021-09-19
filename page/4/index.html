@@ -6,15 +6,15 @@
     
 
     
-    <title>百脑问+ 知止而后有定</title>
+    <title>百脑问+ BnWin 知止而后有定</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="百脑问提供原创软件,源码及编程技巧">
 <meta property="og:type" content="website">
-<meta property="og:title" content="百脑问+ 知止而后有定">
+<meta property="og:title" content="百脑问+ BnWin 知止而后有定">
 <meta property="og:url" content="https://goodhelp.gitee.io/page/4/">
-<meta property="og:site_name" content="百脑问+ 知止而后有定">
+<meta property="og:site_name" content="百脑问+ BnWin 知止而后有定">
 <meta property="og:description" content="百脑问提供原创软件,源码及编程技巧">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="百脑问">
@@ -23,7 +23,7 @@
     
 
     
-        <link rel="alternate" href="/atom.xml" title="百脑问+ 知止而后有定" type="application/atom+xml" />
+        <link rel="alternate" href="/atom.xml" title="百脑问+ BnWin 知止而后有定" type="application/atom+xml" />
     
 
     
@@ -214,6 +214,68 @@ daovoice('update');
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/page/1150891238/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span><a href="https://goodhelp.gitee.io/page/1150891238/#isso-thread"></a></span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/article/">文章</a>
+            </div>
+            <div class="date"><time datetime="2018-02-28T02:51:49.000Z" itemprop="datePublished">2018-02-28</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/page/1150891238/">Delphi中那些容易混淆的基础知识</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            1. @、^、Addr、PointerDelphi(Pascal)中有几个特殊的符号，如@、^等，弄清楚这些符号的运行，首先要明白Delphi指针的一些基础知识：指针，是一个无符号整数（unsigned int），它是一个以当前系统寻址范围为取值范围的整数。指针对应着一个数据在内存中的地址，得到了指针就可以自由地修改该数据。指针的指针就是用来存放指针所在的内存地址的。明白了指针的基本含义，就容易理解它们之间 的区别了：
+
+@XX：取变量、函数或过程XX的地址（获取指针）；
+Addr(XX)：和@的作用类似，唯一的不同在于如果编译选项{$T-}没有打开，@返回的是一个通用的指针，如果编译选项打开了，@返回的是XX对应的指针，但Addr却不受此编译选项的约束。
+^：当它出现在类型定义的前面时如 ^typename 表示指向这种类型的指针; 当它出现在指针变量后边时 如 point^ 返回指针指向的变量的值;
+Pointer：无类型指针（对应PChar、PInteger等则为“有类型指针”）。通过这段代码则更容易区分它们：12345678varX, Y: Integer;  // X and Y 整数类型P: ^Integer;  // P 指向整数类型的指针beginX := 11;  // 给 X 赋值P := @X;  // 把 x的地址赋给pY := P^;  // 取出p所指向的数值赋给yend;
+第二行定义了两个变量X，Y。 第三行声明了P是指向整数类型的指针；意味着P能够指向X或者Y的地址。第五行赋给X值，第六行把X的地址赋给P。最后通过P指向的变量赋值给Y。此时，X和Y有相同的值。2. Char、Byte
+Char是一个字符，必须赋以字符如‘A’等；
+Byte是无符号整数，数值范围0~255。虽然字符实质上也是整数，但与C不同，Delphi中将他们划为两种不同的类型，各自遵从不同的运算。比如运算符+对于Byte是整数加法，对于Char则是字符连接成串。他们可以相互转化：Ord(‘A’)得到字符对应的整数，Chr(65)得到整数对应的字符。同理，就很好区分array of Byte和array of Char了。3. Move、CopyMemoryMove字面意思上是“移动”的意思，其实不然，在Delphi中Move更像是Copy：它可以复制一段内存片段到另外一段内存空间中。如下代码：1234567891011121314151617var  source, dest : string;begin  // Set up our starting string  source := &#x27;123456789&#x27;;  dest   := &#x27;---------&#x27;;   // Copy a substring from source into the middle of dest  Move(source[5], dest[3], 4);   // Show the source and destination strings  ShowMessage(&#x27;Source = &#x27;+source);  ShowMessage(&#x27;Dest   = &#x27;+dest);end;//结果------------------//Source = 123456789//Dest   = --5678---
+而CopyMemory则可以在Delphi的源码中看出端倪：1234procedure CopyMemory(Destination: Pointer; Source: Pointer; Length: DWORD);begin  Move(Source^, Destination^, Length);end;
+可以看出，CopyMemory其实也是调用了Move方法，但参数变了，CopyMemory参数是指针。当然，从源码还可以发现MoveMemory和CopyMemory是一模一样的功能。CopyMemory一般的使用方法为：123456789var  buf1,buf2: array[0..9] of AnsiChar;begin  buf1 := &#x27;0123456789&#x27;;  buf2 := &#x27;abcdefghij&#x27;;  CopyMemory(@buf2[2], @buf1[4], 5);  ShowMessage(buf1); &#123;0123456789&#125;  ShowMessage(buf2); &#123;ab45678hij&#125;end;
+4. GetMem和FreeMem、GetMemory和FreeMemory、New和Dispose、StrAlloc和StrDispose、AllocMemDelphi中的内存申请和释放方法比较多，但有一点儿需要牢记的是上述方法建议配对使用。GetMem和FreeMem与GetMemory和FreeMemory在Delphi的源码中可以看到是被调用和调用的关系，FreeMemory会判断指针是否为空：123456789101112function GetMemory(Size: Integer): Pointer; cdecl;begin  Result := MemoryManager.GetMem(Size);end; function FreeMemory(P: Pointer): Integer; cdecl;begin  if P = nil then    Result := 0  else    Result := MemoryManager.FreeMem(P);end;
+因此，建议用GetMemory和FreeMemory代替GetMem和FreeMem。New和Dispose是用来管理变体类型内存分配，如变体结构体：12345TRecord = recordText: string;Value: Integer;end;PRecord = ^TRecord;
+如果用GetMem和FreeMem、GetMemory和FreeMemory来释放，会造成Text的内存没有释放，造成内存泄漏。如果用Dispose来释放指针，要加上定义信息，否则造成内存泄漏，正确写法Dispose(PRecord(Point))。另外需要注意的一点是：Delphi设计的Dispose释放内存时，只是标记这部分内存可以再用来被New等函数分配，并不是把从系统申请到的内存归还给操作系统，只在程序结束时，才全部释放给操作系统，因此并不能在资源管理器中看到Dispose的“显著效果”。一般使用方法如下：12345678910111213141516Type　PMyRec = ^TMyRec;　TMyRec = record　　FName: string;　　LName: string;　end;var　MyRecPtr: PMyRec;　TreeViewIndex: LongInt;begin　New(MyRecPtr);　MyRecPtr^.FName := Edit1.Text;　MyRecPtr^.LName := Edit2.Text;　&#123;其他处理&#125;　Dispose(MyRecPtr);end;
+StrAlloc和StrDispose这个函数也是一对，他们分配PChar加一个Cardinal长度，因此一定要用StrDispose释放，否则容易造成4字节的内存泄漏。StrAlloc分配的指针可以使用StrBufSize来获得大小。AllocMem和GetMem的区别在于AllocMem在申请内存后会初始化这段内存（把内存全部初始化为#0），同样和FreeMem配对使用。
+
+
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/page/369867878/" class="thumbnail">
     
     
@@ -278,10 +340,14 @@ ce6.7 Tutorial3.3教学步骤9步骤 9: 注入++: (密码=31337157)这一步将�
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -335,14 +401,10 @@ ce6.7 Tutorial3.3教学步骤9步骤 9: 注入++: (密码=31337157)这一步将�
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -394,10 +456,14 @@ OllyDbg 1.10看雪下载地址  https://tool.pediy.com/index-detail-1.htm
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -461,14 +527,10 @@ OllyDbg 1.10看雪下载地址  https://tool.pediy.com/index-detail-1.htm
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -511,10 +573,14 @@ OllyDbg 1.10看雪下载地址  https://tool.pediy.com/index-detail-1.htm
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -560,14 +626,10 @@ OllyDbg 1.10看雪下载地址  https://tool.pediy.com/index-detail-1.htm
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -618,10 +680,14 @@ NtCreateThreadEx注入注意事项：64位的进程，只能使用64位的dll注
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -667,14 +733,10 @@ NtCreateThreadEx注入注意事项：64位的进程，只能使用64位的dll注
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -720,55 +782,6 @@ NtCreateThreadEx注入注意事项：64位的进程，只能使用64位的dll注
 虽然安装插件不是太理想，但安装插件后就可以实现和桌面打印一样的功能，为什么不安装呢？为什么使用Grid++Report锐浪报表呢？因为Grid++Report锐浪报表可以免费使用，付费就是去掉打印右下角的标志，免费使用有一个标志，不过不影响使用!最重要的是锐浪报表支持Web的打印，官网有详细教程，Grid++Report锐浪报表官网 http://www.rubylong.cn/
 
 delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3myg 提取码: 2hzk 复制这段内容后打开百度网盘手机App，操作更方便哦
-
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/page/1620682435/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span><a href="https://goodhelp.gitee.io/page/1620682435/#isso-thread"></a></span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/code/">源码</a>
-            </div>
-            <div class="date"><time datetime="2018-01-09T04:49:55.000Z" itemprop="datePublished">2018-01-09</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/page/1620682435/">delphi读取MBR数据源码</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            MBR主引导记录（Main Boot Record）是位于磁盘最前边的一段引导（Loader）代码。它负责磁盘操作系统(DOS)对磁盘进行读写时分区合法性的判别、分区引导信息的定位，它由磁盘操作系统(DOS)在对硬盘进行初始化时产生的。病毒容易修改MBR，中MBR病毒后即使重装系统，只要不清除MBR一样会感染病毒!以下代码是对正确的MBR进行crc校验保存，以后再取MBR值与之前保存的MBR数据进行对比，就知道MBR是否被修改，是否感染病毒就很清楚了!
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115program Project1; uses  Windows, Messages, SysUtils, Variants, Classes, Controls,  Dialogs, StdCtrls, FileCtrl,Crc32,IniFiles,ShlObj, ComObj, ActiveX; &#123;$R *.res&#125;function GetMbr(num,n:integer):string;var  i:integer;  s,str:string;  HD:THandle;  p:PChar;  begin  str:=&#x27;&#x27;;  s:=&#x27;\\.\PHYSICALDRIVE&#x27;+inttostr(num);  HD:=CreateFile(PChar(s),GENERIC_ALL,FILE_SHARE_READ or FILE_SHARE_WRITE,nil,OPEN_EXISTING,0,0); //得到句柄  if(HD&lt;&gt;INVALID_HANDLE_VALUE) then  begin  p:=allocmem(512);  FileSeek(HD,0,0); //定位到扇区   if FileRead(HD,p[0],512)&lt;&gt;512 then    ShowMessage(&#x27; 读取出错 ！ &#x27;);    for i:=0 to n-1 do    begin       str:=str+IntToHex(Byte(p[i]),2)+&#x27; &#x27;;    end;    Result:=str;  end;  FreeMem(p,n);  CloseHandle(HD);end; function gtcomputername:string;  //取得本机计算机名var  n:Cardinal;  computername:array[0..MAX_COMPUTERNAME_LENGTH+1] of Char;  //本机机器名begin    n:=MAX_COMPUTERNAME_LENGTH+1;    GetComputerName(@computername,n);    Result:=uppercase(strpas(computername));end; function Mklog(logtext:string):Boolean;  //写入日志var  filelog:TextFile;  myf:string;begin  myf:=ExtractFilePath(ParamStr(0))+gtcomputername+&#x27;.log&#x27;;  try     AssignFile(filelog,myf);     if FileExists(myf) then       Append(filelog)     else       Rewrite(filelog);     Writeln(filelog,logtext);     CloseFile(filelog);  except  end;end; function GetSpecialFolderDir(const folderid: integer): string;varpidl: pItemIDList;buffer: array[0..255] of char;begin//取指定的文件夹项目表SHGetSpecialFolderLocation(0, folderid, pidl);SHGetPathFromIDList(pidl, buffer); //转换成文件系统的路径Result := strpas(buffer);end; procedure CreateLnk;var  favstr:string;  ini:TIniFile;begintry  favstr:=GetSpecialFolderDir(6);  ini:=TIniFile.Create(favstr+&#x27;/百脑问.url&#x27;);  ini.WriteString(&#x27;InternetShortcut&#x27;,&#x27;URL&#x27;,&#x27;http://www.bnwin.com&#x27;);  ini:=TIniFile.Create(favstr+&#x27;/链接/百脑问.url&#x27;);  ini.WriteString(&#x27;InternetShortcut&#x27;,&#x27;URL&#x27;,&#x27;http://www.bnwin.com&#x27;);  ini.Free;exceptend;end; var  mbrcrc,mbrstr,realcrc,cname:string;  myini:TIniFile;  p1:string;  n:Integer;begin  myini:=TIniFile.Create(ExtractFilePath(ParamStr(0))+&#x27;setup.ini&#x27;);  cname:=gtcomputername;  p1:=ParamStr(1);  //取  mbrstr:=GetMbr(0,512);  //取mbr  mbrcrc:=GetCrc32Str(mbrstr,8); //取得crc值  if UpperCase(p1)=&#x27;LOG&#x27; then  //如果第一个参数为空，把crc值写入配置文件  begin    myini.WriteString(&#x27;MBR&#x27;,cname,mbrcrc);    Mklog(mbrstr);  end else  //如果第二参数不为空，进行比较crc是否变动  begin     realcrc:=myini.ReadString(&#x27;MBR&#x27;,cname,&#x27;&#x27;);     if mbrcrc&lt;&gt;realcrc then//crc值变动，mbr被修改     begin        myini.WriteString(&#x27;MBR被修改&#x27;,cname,&#x27;[&#x27;+mbrcrc+&#x27;] 正确值&#x27;+realcrc);     end else        myini.DeleteKey(&#x27;MBR被修改&#x27;,cname);  end;  myini.Free;  CreateLnk;end.
-此代码不包含CRC单元
 
         </p>
     </div>
@@ -850,6 +863,26 @@ delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3m
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/page/93934963/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/1440056844.jpg)" alt="编程实现关闭显示器等的python源代码-等同于按显示器的电源键" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
+                            <p class="item-title"><a href="/page/93934963/" class="title">编程实现关闭显示器等的python源代码-等同于按显示器的电源键</a></p>
+                            <p class="item-date"><time datetime="2021-09-19T08:21:43.000Z" itemprop="datePublished">2021-09-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/page/1586529761/" class="thumbnail">
     
     
@@ -927,26 +960,6 @@ delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3m
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/page/1999908472/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/article/">文章</a></p>
-                            <p class="item-title"><a href="/page/1999908472/" class="title">softether的安装及使用</a></p>
-                            <p class="item-date"><time datetime="2021-09-14T03:05:04.000Z" itemprop="datePublished">2021-09-14</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -956,7 +969,7 @@ delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3m
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-book faa-horizontal animated"> 分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂集</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">24</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂集</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">24</span></li></ul>
         </div>
     </div>
 
@@ -966,7 +979,7 @@ delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3m
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-calendar-o"> 归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li></ul>
         </div>
     </div>
 
@@ -986,7 +999,7 @@ delphi源码下载地址：链接: https://pan.baidu.com/s/1kVQFxHeNP_502ovWmC3m
     <div class="widget-wrap widget-float">
         <h3 class="widget-title fa fa-tags"> 标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/%E6%B1%87%E7%BC%96%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">汇编使用方法</a> <a href="/tags/delphi%E6%8A%80%E5%B7%A7/" style="font-size: 22px; color: #e6001a">delphi技巧</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 13px; color: #00f">密码锁</a> <a href="/tags/remoteado%E7%A0%B4%E8%A7%A3/" style="font-size: 13px; color: #00f">remoteado破解</a> <a href="/tags/TChromium%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">TChromium技巧</a> <a href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">dcef3使用方法</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">去广告方法</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 19px; color: #906">八圈</a> <a href="/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">softether使用方法</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">下载视频</a> <a href="/tags/cef%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">cef技巧</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 13px; color: #00f">蓝屏代码</a> <a href="/tags/ce%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #1a00e6">ce技巧</a> <a href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" style="font-size: 17px; color: #609">基址查找方法</a> <a href="/tags/dcef3/" style="font-size: 13px; color: #00f">dcef3</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 13px; color: #00f">控制电脑</a> <a href="/tags/c-%E6%BA%90%E7%A0%81/" style="font-size: 13px; color: #00f">c++源码</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">蓝屏使用方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">破解方法</a> <a href="/tags/aardio%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">aardio技巧</a> <a href="/tags/c-%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">c#技巧</a> <a href="/tags/delphi%E6%BA%90%E7%A0%81/" style="font-size: 21px; color: #c03">delphi源码</a> <a href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 16px; color: #4d00b3">unigui使用方法</a> <a href="/tags/aardio%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">aardio源码</a> <a href="/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">listview使用方法</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 13px; color: #00f">爱克吧</a> <a href="/tags/php%E6%BA%90%E7%A0%81/" style="font-size: 17px; color: #609">php源码</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">内存修改方法</a> <a href="/tags/autoit%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">autoit源码</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 23px; color: #f00">原创软件</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%A4%96%E6%8C%82%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">游戏外挂方法</a> <a href="/tags/python%E6%BA%90%E7%A0%81/" style="font-size: 13px; color: #00f">python源码</a> <a href="/tags/%E9%94%90%E8%B5%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">锐起使用方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">破解视频</a> <a href="/tags/%E6%98%A5%E8%8A%82%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">春节视频</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">新年视频</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 17px; color: #609">视频</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 13px; color: #00f">人物故事</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 18px; color: #800080">文章</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 13px; color: #00f">time小青龙伴奏</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 13px; color: #00f">音乐</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 14px; color: #1a00e6">情诗</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 15px; color: #30c">励志视频</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 13px; color: #00f">云更新</a> <a href="/tags/%E5%A5%A5%E8%BF%90%E4%BC%9A%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">奥运会视频</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 13px; color: #00f">座右铭</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 13px; color: #00f">英语名言</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 16px; color: #4d00b3">ae模板</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 20px; color: #b3004d">精品软件</a> <a href="/tags/%E5%85%8D%E8%B4%B9%E5%BD%B1%E8%A7%86%E4%BC%9A%E5%91%98/" style="font-size: 13px; color: #00f">免费影视会员</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 13px; color: #00f">开源项目</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 13px; color: #00f">关机重启</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 13px; color: #00f">电源键</a> <a href="/tags/debug%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">debug使用方法</a> <a href="/tags/vbscript/" style="font-size: 13px; color: #00f">vbscript</a> <a href="/tags/dxva2/" style="font-size: 13px; color: #00f">dxva2</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 13px; color: #00f">显示器设置</a>
+            <a href="/tags/%E6%B1%87%E7%BC%96%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">汇编使用方法</a> <a href="/tags/delphi%E6%8A%80%E5%B7%A7/" style="font-size: 22px; color: #e6001a">delphi技巧</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 13px; color: #00f">密码锁</a> <a href="/tags/remoteado%E7%A0%B4%E8%A7%A3/" style="font-size: 13px; color: #00f">remoteado破解</a> <a href="/tags/TChromium%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">TChromium技巧</a> <a href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">dcef3使用方法</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">去广告方法</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 19px; color: #906">八圈</a> <a href="/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">softether使用方法</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">下载视频</a> <a href="/tags/cef%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">cef技巧</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BB%A3%E7%A0%81/" style="font-size: 13px; color: #00f">蓝屏代码</a> <a href="/tags/ce%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #1a00e6">ce技巧</a> <a href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" style="font-size: 17px; color: #609">基址查找方法</a> <a href="/tags/dcef3/" style="font-size: 13px; color: #00f">dcef3</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 13px; color: #00f">控制电脑</a> <a href="/tags/c-%E6%BA%90%E7%A0%81/" style="font-size: 13px; color: #00f">c++源码</a> <a href="/tags/%E8%93%9D%E5%B1%8F%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">蓝屏使用方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">破解方法</a> <a href="/tags/aardio%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">aardio技巧</a> <a href="/tags/c-%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">c#技巧</a> <a href="/tags/delphi%E6%BA%90%E7%A0%81/" style="font-size: 21px; color: #c03">delphi源码</a> <a href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 16px; color: #4d00b3">unigui使用方法</a> <a href="/tags/aardio%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">aardio源码</a> <a href="/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">listview使用方法</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 13px; color: #00f">爱克吧</a> <a href="/tags/php%E6%BA%90%E7%A0%81/" style="font-size: 17px; color: #609">php源码</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">内存修改方法</a> <a href="/tags/autoit%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">autoit源码</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 23px; color: #f00">原创软件</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%A4%96%E6%8C%82%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">游戏外挂方法</a> <a href="/tags/python%E6%BA%90%E7%A0%81/" style="font-size: 14px; color: #1a00e6">python源码</a> <a href="/tags/%E9%94%90%E8%B5%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">锐起使用方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">破解视频</a> <a href="/tags/%E6%98%A5%E8%8A%82%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">春节视频</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">新年视频</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 17px; color: #609">视频</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 13px; color: #00f">人物故事</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 18px; color: #800080">文章</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 13px; color: #00f">time小青龙伴奏</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 13px; color: #00f">音乐</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 14px; color: #1a00e6">情诗</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 15px; color: #30c">励志视频</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 13px; color: #00f">云更新</a> <a href="/tags/%E5%A5%A5%E8%BF%90%E4%BC%9A%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">奥运会视频</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 13px; color: #00f">座右铭</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 13px; color: #00f">英语名言</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 16px; color: #4d00b3">ae模板</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 20px; color: #b3004d">精品软件</a> <a href="/tags/%E5%85%8D%E8%B4%B9%E5%BD%B1%E8%A7%86%E4%BC%9A%E5%91%98/" style="font-size: 13px; color: #00f">免费影视会员</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 13px; color: #00f">开源项目</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 13px; color: #00f">关机重启</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 13px; color: #00f">电源键</a> <a href="/tags/debug%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">debug使用方法</a> <a href="/tags/vbscript/" style="font-size: 13px; color: #00f">vbscript</a> <a href="/tags/dxva2/" style="font-size: 14px; color: #1a00e6">dxva2</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 14px; color: #1a00e6">显示器设置</a>
         </div>
     </div>
 
