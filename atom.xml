@@ -6,7 +6,7 @@
   <link href="https://goodhelp.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://goodhelp.gitee.io/"/>
-  <updated>2021-09-19T13:20:52.667Z</updated>
+  <updated>2021-09-20T02:10:51.274Z</updated>
   <id>https://goodhelp.gitee.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>看完世界上最诡异的图片，你还会相信你的眼睛吗？</title>
+    <link href="https://goodhelp.gitee.io/page/3381448577/"/>
+    <id>https://goodhelp.gitee.io/page/3381448577/</id>
+    <published>2021-09-20T02:00:47.000Z</published>
+    <updated>2021-09-20T02:10:51.274Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果你看见这个舞女是顺时针转，说明你用的是右脑；­<br>如果是逆时针转，说明你用的左脑。­<br>据说，14%的美国人可以两个方向都能看见。­<br>可以和别人一起看，测试下，一般不同人同时看这张图的感觉都会不太一样的，真的很神奇。<br><img src="/images/2021092001.gif"><br>照片的本身由34张图片组成的gif图，在photoshop中，一张一张的看，是从左向右转动，如果你看到的图片一会左转，一会儿右转，并不是图片本身是多方向变动的，这一点你可以下载图片自己用photoshop查看! <img src="/images/20210920100945.png"></p><p>下面这张图片:柱子到底是圆的还是方的,别着急慢慢看<br><img src="/images/2021092002.jpg"></p><p>看着黑点身体前后移动</p><p><img src="/images/2021092003.jpg"></p><p>这些图片到底是静的还是动的（看则静，不看则动）</p><p><img src="/images/2021092004.jpg"><br><img src="/images/2021092005.jpg"><br><img src="/images/2021092006.jpg"><br><img src="/images/2021092007.jpg"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;如果你看见这个舞女是顺时针转，说明你用的是右脑；­&lt;br&gt;如果是逆时针转，说明你用的左脑。­&lt;br&gt;据说，14%的美国人可以两个方向都能看见。­&lt;br&gt;可以和别人一起看，测试下，一般不同人同时看这张图的感觉都会不太一样的，真的很神奇。&lt;br&gt;&lt;img src=&quot;/images/2021092001.gif&quot;&gt;&lt;br&gt;照片的本身由34张图片组成的gif图，在photoshop中，一张一张的看，是从左向右转动，如果你看到的图片一会左转，一会儿右转，并不是图片本身是多方向变动的，这一点你可以下载图片自己用photoshop查看! &lt;img src=&quot;/images/20210920100945.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;下面这张图片:柱子到底是圆的还是方的,别着急慢慢看&lt;br&gt;&lt;img src=&quot;/images/2021092002.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;看着黑点身体前后移动&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2021092003.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这些图片到底是静的还是动的（看则静，不看则动）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2021092004.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2021092005.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2021092006.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/2021092007.jpg&quot;&gt;&lt;/p&gt;
+</summary>
+    
+    
+    
+    <category term="素材" scheme="https://goodhelp.gitee.io/categories/material/"/>
+    
+    
+    <category term="图片" scheme="https://goodhelp.gitee.io/tags/%E5%9B%BE%E7%89%87/"/>
+    
+  </entry>
   
   <entry>
     <title>编程实现关闭显示器等的python源代码-等同于按显示器的电源键</title>
@@ -64,9 +91,9 @@
     
     <category term="python源码" scheme="https://goodhelp.gitee.io/tags/python%E6%BA%90%E7%A0%81/"/>
     
-    <category term="显示器设置" scheme="https://goodhelp.gitee.io/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
-    
     <category term="dxva2" scheme="https://goodhelp.gitee.io/tags/dxva2/"/>
+    
+    <category term="显示器设置" scheme="https://goodhelp.gitee.io/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
@@ -369,9 +396,9 @@
     
     <category term="autoit源码" scheme="https://goodhelp.gitee.io/tags/autoit%E6%BA%90%E7%A0%81/"/>
     
-    <category term="显示器设置" scheme="https://goodhelp.gitee.io/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
-    
     <category term="dxva2" scheme="https://goodhelp.gitee.io/tags/dxva2/"/>
+    
+    <category term="显示器设置" scheme="https://goodhelp.gitee.io/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
@@ -614,35 +641,6 @@ aardio的listview自绘源代码，在aardio新建一代码文件，复制下面
     <category term="ce技巧" scheme="https://goodhelp.gitee.io/tags/ce%E6%8A%80%E5%B7%A7/"/>
     
     <category term="基址查找方法" scheme="https://goodhelp.gitee.io/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何快速让cef、wke、blink等支持mp4和mp3</title>
-    <link href="https://goodhelp.gitee.io/page/3317533050/"/>
-    <id>https://goodhelp.gitee.io/page/3317533050/</id>
-    <published>2018-05-02T03:09:20.000Z</published>
-    <updated>2021-09-16T23:37:15.087Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="如何快速让cef、wke、blink等支持mp4和mp3-支持html5的video和audio标签"><a href="#如何快速让cef、wke、blink等支持mp4和mp3-支持html5的video和audio标签" class="headerlink" title="如何快速让cef、wke、blink等支持mp4和mp3(支持html5的video和audio标签)?"></a>如何快速让cef、wke、blink等支持mp4和mp3(支持html5的video和audio标签)?</h2><p>在cef中，默认是不支持mp3和mp4的，使用cef控件写的软件打开带有video或audio标签的视频或音频是会播放失败的!一种方法就是自己重新编译cef的库，加入支持mp3和mp4的支持。如何编译看这篇文章 如何让dcef3支持mp3和h.264 mp4解码播放(有源码及dll)!</p><p>这是从文件的本身出发，修改后支持mp3和mp4，从另一方面来说，采用cef的精简版控件，比如wke,blink或低版本的ie等，修改文件重新编译支持mp3和mp4的方法就不可行了!能不能不修改文件直接支持mp3和mp4的video和audio标签呢？这儿介绍一种修改html本身而不动浏览器控件文件的解决方法，当然你得有修改html文件的权限。</p><p>使用html5media让浏览器兼容&lt;Video&gt;&lt;Audio&gt;标签。html5media是一个开源项目<br>html5media 官网：<a href="https://html5media.info/">https://html5media.info/</a><br>html5media 项目：<a href="https://github.com/etianen/html5media">https://github.com/etianen/html5media</a><br>html5media Wiki：<a href="https://github.com/etianen/html5media/wiki">https://github.com/etianen/html5media/wiki</a></p><p>html5media 官网CDN:<a href="http://api.html5media.info/1.2.2/html5media.min.js">http://api.html5media.info/1.2.2/html5media.min.js</a><br>html5media 国内CDN:<a href="http://www.bootcdn.cn/html5media/">http://www.bootcdn.cn/html5media/</a></p><p>如何使用html5media？它只需要一行代码就可以使HTML5的video和audio标签在所有主流浏览器中都能正常工作。只需要在html的head文档中添加如下代码</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt; script src = “ http://api.html5media.info/1.1.8/html5media.min.js ” &gt; &lt;/ script &gt;</span><br></pre></td></tr></table></figure><p>然后按照html5的video标签添加的视频</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt; video src=&quot;video.mp4&quot; preload=&quot;&quot; controls=&quot;controls&quot; width=&quot;320&quot; height=&quot;200&quot;&gt;</span><br></pre></td></tr></table></figure><p>按照html5的audio标签添加的音频</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">&quot;audio.mp3&quot;</span> <span class="attr">controls</span> <span class="attr">preload</span>&gt;</span></span><br></pre></td></tr></table></figure><p>都可以正常播放了!</p><p>html5media的原理就是把不支持&lt;Video&gt;&lt;Audio&gt;标签的替换为使用flash播放！</p><p>这样使用html5media后，cef、wke、blink等所有浏览器都支持html5的video和audio标签了!</p><p>如果你是使用wke或blink在自己的程序界面中添加显示mp4或mp3，那么你需要自己把html5media.min.js和flowplayer.audio.swf flowplayer.controls.swf flowplayer.swf文件全部下载到你的程序目录(js文件和swf放在同一目录)，在你的程序中就可以在wke或blink中使用video或audio标签了!</p>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;如何快速让cef、wke、blink等支持mp4和mp3-支持html5的video和audio标签&quot;&gt;&lt;a href=&quot;#如何快速让cef、wke、blink等支持mp4和mp3-支持html5的video和audio标签&quot; class=&quot;headerlink&quot; title=&quot;如何快速让cef、wke、blink等支持mp4和mp3(支持html5的video和audio标签)?&quot;&gt;&lt;/a&gt;如何快速让cef、wke、blink等支持mp4和mp3(支持html5的video和audio标签)?&lt;/h2&gt;&lt;p&gt;在cef中，默认是不支持mp3和mp4的，使用cef控件写的软件打开带有video或audio标签的视频或音频是会播放失败的!一种方法就是自己重新编译cef的库，加入支持mp3和mp4的支持。如何编译看这篇文章 如何让dcef3支持mp3和h.264 mp4解码播放(有源码及dll)!&lt;/p&gt;
-&lt;p&gt;这是从文件的本身出发，修改后支持mp3和mp4，从另一方面来说，采用cef的精简版控件，比如wke,blink或低版本的ie等，修改文件重新编译支持mp3和mp4的方法就不可行了!能不能不修改文件直接支持mp3和mp4的video和audio标签呢？这儿介绍一种修改html本身而不动浏览器控件文件的解决方法，当然你得有修改html文件的权限。&lt;/p&gt;
-&lt;p&gt;使用html5media让浏览器兼容&amp;lt;Video&amp;gt;&amp;lt;Audio&amp;gt;标签。html5media是一个开源项目&lt;br&gt;html5media 官网：&lt;a href=&quot;https://html5media.info/&quot;&gt;https://html5media.info/&lt;/a&gt;&lt;br&gt;html5media 项目：&lt;a href=&quot;https://github.com/etianen/html5media&quot;&gt;https://github.com/etianen/html5media&lt;/a&gt;&lt;br&gt;html5media Wiki：&lt;a href=&quot;https://github.com/etianen/html5media/wiki&quot;&gt;https://github.com/etianen/html5media/wiki&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;html5media 官网CDN:&lt;a href=&quot;http://api.html5media.info/1.2.2/html5media.min.js&quot;&gt;http://api.html5media.info/1.2.2/html5media.min.js&lt;/a&gt;&lt;br&gt;html5media 国内CDN:&lt;a href=&quot;http://www.bootcdn.cn/html5media/&quot;&gt;http://www.bootcdn.cn/html5media/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;如何使用html5media？它只需要一行代码就可以使HTML5的video和audio标签在所有主流浏览器中都能正常工作。只需要在html的head文档中添加如下代码&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt; script src = “ http://api.html5media.info/1.1.8/html5media.min.js ” &amp;gt; &amp;lt;/ script &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后按照html5的video标签添加的视频&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt; video src=&amp;quot;video.mp4&amp;quot; preload=&amp;quot;&amp;quot; controls=&amp;quot;controls&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;200&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;按照html5的audio标签添加的音频&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="文章" scheme="https://goodhelp.gitee.io/categories/article/"/>
-    
-    
-    <category term="cef技巧" scheme="https://goodhelp.gitee.io/tags/cef%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
