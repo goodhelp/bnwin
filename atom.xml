@@ -3,11 +3,11 @@
   <title>百脑问+ BnWin 知止而后有定</title>
   
   <subtitle>BnWin.com_人非草木,可语于冰。春可种,夏可耕,秋可收,冬可享。四季就是前路，理该上下而求索!</subtitle>
-  <link href="https://goodhelp.gitee.io/atom.xml" rel="self"/>
+  <link href="https://www.bnwin.com/atom.xml" rel="self"/>
   
-  <link href="https://goodhelp.gitee.io/"/>
+  <link href="https://www.bnwin.com/"/>
   <updated>2021-09-20T02:10:51.274Z</updated>
-  <id>https://goodhelp.gitee.io/</id>
+  <id>https://www.bnwin.com/</id>
   
   <author>
     <name>百脑问</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>看完世界上最诡异的图片，你还会相信你的眼睛吗？</title>
-    <link href="https://goodhelp.gitee.io/page/3381448577/"/>
-    <id>https://goodhelp.gitee.io/page/3381448577/</id>
+    <link href="https://www.bnwin.com/page/3381448577/"/>
+    <id>https://www.bnwin.com/page/3381448577/</id>
     <published>2021-09-20T02:00:47.000Z</published>
     <updated>2021-09-20T02:10:51.274Z</updated>
     
@@ -36,17 +36,17 @@
     
     
     
-    <category term="素材" scheme="https://goodhelp.gitee.io/categories/material/"/>
+    <category term="素材" scheme="https://www.bnwin.com/categories/material/"/>
     
     
-    <category term="图片" scheme="https://goodhelp.gitee.io/tags/%E5%9B%BE%E7%89%87/"/>
+    <category term="图片" scheme="https://www.bnwin.com/tags/%E5%9B%BE%E7%89%87/"/>
     
   </entry>
   
   <entry>
     <title>编程实现关闭显示器等的python源代码-等同于按显示器的电源键</title>
-    <link href="https://goodhelp.gitee.io/page/93934963/"/>
-    <id>https://goodhelp.gitee.io/page/93934963/</id>
+    <link href="https://www.bnwin.com/page/93934963/"/>
+    <id>https://www.bnwin.com/page/93934963/</id>
     <published>2021-09-19T08:21:43.000Z</published>
     <updated>2021-09-19T13:20:52.667Z</updated>
     
@@ -86,21 +86,21 @@
     
     
     
-    <category term="源码" scheme="https://goodhelp.gitee.io/categories/code/"/>
+    <category term="源码" scheme="https://www.bnwin.com/categories/code/"/>
     
     
-    <category term="python源码" scheme="https://goodhelp.gitee.io/tags/python%E6%BA%90%E7%A0%81/"/>
+    <category term="python源码" scheme="https://www.bnwin.com/tags/python%E6%BA%90%E7%A0%81/"/>
     
-    <category term="dxva2" scheme="https://goodhelp.gitee.io/tags/dxva2/"/>
+    <category term="dxva2" scheme="https://www.bnwin.com/tags/dxva2/"/>
     
-    <category term="显示器设置" scheme="https://goodhelp.gitee.io/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
+    <category term="显示器设置" scheme="https://www.bnwin.com/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
     <title>实现GiteePages自动部署的aardio源码</title>
-    <link href="https://goodhelp.gitee.io/page/1586529761/"/>
-    <id>https://goodhelp.gitee.io/page/1586529761/</id>
+    <link href="https://www.bnwin.com/page/1586529761/"/>
+    <id>https://www.bnwin.com/page/1586529761/</id>
     <published>2021-09-18T00:23:50.000Z</published>
     <updated>2021-09-18T01:45:55.458Z</updated>
     
@@ -124,19 +124,19 @@
     
     
     
-    <category term="源码" scheme="https://goodhelp.gitee.io/categories/code/"/>
+    <category term="源码" scheme="https://www.bnwin.com/categories/code/"/>
     
     
-    <category term="aardio源码" scheme="https://goodhelp.gitee.io/tags/aardio%E6%BA%90%E7%A0%81/"/>
+    <category term="aardio源码" scheme="https://www.bnwin.com/tags/aardio%E6%BA%90%E7%A0%81/"/>
     
-    <category term="python源码" scheme="https://goodhelp.gitee.io/tags/python%E6%BA%90%E7%A0%81/"/>
+    <category term="python源码" scheme="https://www.bnwin.com/tags/python%E6%BA%90%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title>发现网卡变百兆自动发送邮件通知的AutoIt源码</title>
-    <link href="https://goodhelp.gitee.io/page/4125339080/"/>
-    <id>https://goodhelp.gitee.io/page/4125339080/</id>
+    <link href="https://www.bnwin.com/page/4125339080/"/>
+    <id>https://www.bnwin.com/page/4125339080/</id>
     <published>2021-09-17T02:34:19.000Z</published>
     <updated>2021-09-17T03:20:16.161Z</updated>
     
@@ -153,19 +153,19 @@
     
     
     
-    <category term="源码" scheme="https://goodhelp.gitee.io/categories/code/"/>
+    <category term="源码" scheme="https://www.bnwin.com/categories/code/"/>
     
     
-    <category term="autoit源码" scheme="https://goodhelp.gitee.io/tags/autoit%E6%BA%90%E7%A0%81/"/>
+    <category term="autoit源码" scheme="https://www.bnwin.com/tags/autoit%E6%BA%90%E7%A0%81/"/>
     
-    <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    <category term="原创软件" scheme="https://www.bnwin.com/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>使用croc两网吧之间同步互传文件</title>
-    <link href="https://goodhelp.gitee.io/page/1934957637/"/>
-    <id>https://goodhelp.gitee.io/page/1934957637/</id>
+    <link href="https://www.bnwin.com/page/1934957637/"/>
+    <id>https://www.bnwin.com/page/1934957637/</id>
     <published>2021-09-15T04:15:29.000Z</published>
     <updated>2021-09-16T12:34:44.558Z</updated>
     
@@ -187,17 +187,17 @@
     
     
     
-    <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
+    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
     
     
-    <category term="精品软件" scheme="https://goodhelp.gitee.io/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/"/>
+    <category term="精品软件" scheme="https://www.bnwin.com/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>Delphi实现类似Android锁屏的密码锁控件</title>
-    <link href="https://goodhelp.gitee.io/page/2745266982/"/>
-    <id>https://goodhelp.gitee.io/page/2745266982/</id>
+    <link href="https://www.bnwin.com/page/2745266982/"/>
+    <id>https://www.bnwin.com/page/2745266982/</id>
     <published>2021-09-14T04:07:15.000Z</published>
     <updated>2021-09-16T23:41:43.689Z</updated>
     
@@ -215,19 +215,19 @@
     
     
     
-    <category term="文章" scheme="https://goodhelp.gitee.io/categories/article/"/>
+    <category term="文章" scheme="https://www.bnwin.com/categories/article/"/>
     
     
-    <category term="delphi技巧" scheme="https://goodhelp.gitee.io/tags/delphi%E6%8A%80%E5%B7%A7/"/>
+    <category term="delphi技巧" scheme="https://www.bnwin.com/tags/delphi%E6%8A%80%E5%B7%A7/"/>
     
-    <category term="密码锁" scheme="https://goodhelp.gitee.io/tags/%E5%AF%86%E7%A0%81%E9%94%81/"/>
+    <category term="密码锁" scheme="https://www.bnwin.com/tags/%E5%AF%86%E7%A0%81%E9%94%81/"/>
     
   </entry>
   
   <entry>
     <title>softether的安装及使用</title>
-    <link href="https://goodhelp.gitee.io/page/1999908472/"/>
-    <id>https://goodhelp.gitee.io/page/1999908472/</id>
+    <link href="https://www.bnwin.com/page/1999908472/"/>
+    <id>https://www.bnwin.com/page/1999908472/</id>
     <published>2021-09-14T03:05:04.000Z</published>
     <updated>2021-09-16T23:39:00.310Z</updated>
     
@@ -252,17 +252,17 @@
     
     
     
-    <category term="文章" scheme="https://goodhelp.gitee.io/categories/article/"/>
+    <category term="文章" scheme="https://www.bnwin.com/categories/article/"/>
     
     
-    <category term="softether使用方法" scheme="https://goodhelp.gitee.io/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <category term="softether使用方法" scheme="https://www.bnwin.com/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>实现进程被结束就蓝屏的函数</title>
-    <link href="https://goodhelp.gitee.io/page/2848625591/"/>
-    <id>https://goodhelp.gitee.io/page/2848625591/</id>
+    <link href="https://www.bnwin.com/page/2848625591/"/>
+    <id>https://www.bnwin.com/page/2848625591/</id>
     <published>2021-09-14T03:04:04.000Z</published>
     <updated>2021-09-16T23:43:38.441Z</updated>
     
@@ -281,19 +281,19 @@
     
     
     
-    <category term="文章" scheme="https://goodhelp.gitee.io/categories/article/"/>
+    <category term="文章" scheme="https://www.bnwin.com/categories/article/"/>
     
     
-    <category term="c++源码" scheme="https://goodhelp.gitee.io/tags/c-%E6%BA%90%E7%A0%81/"/>
+    <category term="c++源码" scheme="https://www.bnwin.com/tags/c-%E6%BA%90%E7%A0%81/"/>
     
-    <category term="蓝屏使用方法" scheme="https://goodhelp.gitee.io/tags/%E8%93%9D%E5%B1%8F%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <category term="蓝屏使用方法" scheme="https://www.bnwin.com/tags/%E8%93%9D%E5%B1%8F%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>可实现维护通道的vbs脚本类</title>
-    <link href="https://goodhelp.gitee.io/page/2434381964/"/>
-    <id>https://goodhelp.gitee.io/page/2434381964/</id>
+    <link href="https://www.bnwin.com/page/2434381964/"/>
+    <id>https://www.bnwin.com/page/2434381964/</id>
     <published>2021-09-11T14:19:22.000Z</published>
     <updated>2021-09-11T16:45:18.627Z</updated>
     
@@ -311,19 +311,19 @@
     
     
     
-    <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
+    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
     
     
-    <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    <category term="原创软件" scheme="https://www.bnwin.com/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
     
-    <category term="开源项目" scheme="https://goodhelp.gitee.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+    <category term="开源项目" scheme="https://www.bnwin.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
   <entry>
     <title>让电源键关机变重启</title>
-    <link href="https://goodhelp.gitee.io/page/1082310208/"/>
-    <id>https://goodhelp.gitee.io/page/1082310208/</id>
+    <link href="https://www.bnwin.com/page/1082310208/"/>
+    <id>https://www.bnwin.com/page/1082310208/</id>
     <published>2021-05-18T13:37:03.000Z</published>
     <updated>2021-09-17T13:01:48.408Z</updated>
     
@@ -334,21 +334,21 @@
     
     
     
-    <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
+    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
     
     
-    <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    <category term="原创软件" scheme="https://www.bnwin.com/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
     
-    <category term="关机重启" scheme="https://goodhelp.gitee.io/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/"/>
+    <category term="关机重启" scheme="https://www.bnwin.com/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/"/>
     
-    <category term="电源键" scheme="https://goodhelp.gitee.io/tags/%E7%94%B5%E6%BA%90%E9%94%AE/"/>
+    <category term="电源键" scheme="https://www.bnwin.com/tags/%E7%94%B5%E6%BA%90%E9%94%AE/"/>
     
   </entry>
   
   <entry>
     <title>八圈9.5版关闭侧边栏工具-怎样关闭8圈侧边栏</title>
-    <link href="https://goodhelp.gitee.io/page/3043345977/"/>
-    <id>https://goodhelp.gitee.io/page/3043345977/</id>
+    <link href="https://www.bnwin.com/page/3043345977/"/>
+    <id>https://www.bnwin.com/page/3043345977/</id>
     <published>2019-10-12T13:58:27.000Z</published>
     <updated>2021-09-18T04:37:56.160Z</updated>
     
@@ -367,19 +367,19 @@
     
     
     
-    <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
+    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
     
     
-    <category term="八圈" scheme="https://goodhelp.gitee.io/tags/%E5%85%AB%E5%9C%88/"/>
+    <category term="八圈" scheme="https://www.bnwin.com/tags/%E5%85%AB%E5%9C%88/"/>
     
-    <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    <category term="原创软件" scheme="https://www.bnwin.com/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>显示器亮度，对比度，色温缩放调节，笔记本亮度调节AUTOIT源码</title>
-    <link href="https://goodhelp.gitee.io/page/365528154/"/>
-    <id>https://goodhelp.gitee.io/page/365528154/</id>
+    <link href="https://www.bnwin.com/page/365528154/"/>
+    <id>https://www.bnwin.com/page/365528154/</id>
     <published>2019-10-11T04:37:00.000Z</published>
     <updated>2021-09-16T23:33:59.040Z</updated>
     
@@ -391,21 +391,21 @@
     
     
     
-    <category term="源码" scheme="https://goodhelp.gitee.io/categories/code/"/>
+    <category term="源码" scheme="https://www.bnwin.com/categories/code/"/>
     
     
-    <category term="autoit源码" scheme="https://goodhelp.gitee.io/tags/autoit%E6%BA%90%E7%A0%81/"/>
+    <category term="autoit源码" scheme="https://www.bnwin.com/tags/autoit%E6%BA%90%E7%A0%81/"/>
     
-    <category term="dxva2" scheme="https://goodhelp.gitee.io/tags/dxva2/"/>
+    <category term="dxva2" scheme="https://www.bnwin.com/tags/dxva2/"/>
     
-    <category term="显示器设置" scheme="https://goodhelp.gitee.io/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
+    <category term="显示器设置" scheme="https://www.bnwin.com/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
     <title>网吧耳麦助手－设置主音量_麦克风音量_麦克风加强级别</title>
-    <link href="https://goodhelp.gitee.io/page/2203111529/"/>
-    <id>https://goodhelp.gitee.io/page/2203111529/</id>
+    <link href="https://www.bnwin.com/page/2203111529/"/>
+    <id>https://www.bnwin.com/page/2203111529/</id>
     <published>2019-03-21T13:56:27.000Z</published>
     <updated>2021-09-11T16:44:49.058Z</updated>
     
@@ -423,17 +423,17 @@
     
     
     
-    <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
+    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
     
     
-    <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    <category term="原创软件" scheme="https://www.bnwin.com/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>8圈计费系统9.5独立挂机_充值_换机_下机等功能工具-八圈挂机锁</title>
-    <link href="https://goodhelp.gitee.io/page/1816476569/"/>
-    <id>https://goodhelp.gitee.io/page/1816476569/</id>
+    <link href="https://www.bnwin.com/page/1816476569/"/>
+    <id>https://www.bnwin.com/page/1816476569/</id>
     <published>2019-03-21T13:53:41.000Z</published>
     <updated>2021-09-18T04:38:14.980Z</updated>
     
@@ -450,19 +450,19 @@
     
     
     
-    <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
+    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
     
     
-    <category term="八圈" scheme="https://goodhelp.gitee.io/tags/%E5%85%AB%E5%9C%88/"/>
+    <category term="八圈" scheme="https://www.bnwin.com/tags/%E5%85%AB%E5%9C%88/"/>
     
-    <category term="原创软件" scheme="https://goodhelp.gitee.io/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    <category term="原创软件" scheme="https://www.bnwin.com/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>单机游戏死亡阴影aardio内存修改器源码</title>
-    <link href="https://goodhelp.gitee.io/page/2891878490/"/>
-    <id>https://goodhelp.gitee.io/page/2891878490/</id>
+    <link href="https://www.bnwin.com/page/2891878490/"/>
+    <id>https://www.bnwin.com/page/2891878490/</id>
     <published>2018-10-26T14:11:47.000Z</published>
     <updated>2021-09-17T00:26:01.058Z</updated>
     
@@ -480,21 +480,21 @@ aardio是专用于桌面软件快速开发的新一代混合型编程语言 – 
     
     
     
-    <category term="源码" scheme="https://goodhelp.gitee.io/categories/code/"/>
+    <category term="源码" scheme="https://www.bnwin.com/categories/code/"/>
     
     
-    <category term="基址查找方法" scheme="https://goodhelp.gitee.io/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/"/>
+    <category term="基址查找方法" scheme="https://www.bnwin.com/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/"/>
     
-    <category term="aardio源码" scheme="https://goodhelp.gitee.io/tags/aardio%E6%BA%90%E7%A0%81/"/>
+    <category term="aardio源码" scheme="https://www.bnwin.com/tags/aardio%E6%BA%90%E7%A0%81/"/>
     
-    <category term="内存修改方法" scheme="https://goodhelp.gitee.io/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/"/>
+    <category term="内存修改方法" scheme="https://www.bnwin.com/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>aardio的listview自绘源代码</title>
-    <link href="https://goodhelp.gitee.io/page/1712950360/"/>
-    <id>https://goodhelp.gitee.io/page/1712950360/</id>
+    <link href="https://www.bnwin.com/page/1712950360/"/>
+    <id>https://www.bnwin.com/page/1712950360/</id>
     <published>2018-10-26T13:52:47.000Z</published>
     <updated>2021-09-16T23:54:09.750Z</updated>
     
@@ -507,19 +507,19 @@ aardio的listview自绘源代码，在aardio新建一代码文件，复制下面
     
     
     
-    <category term="源码" scheme="https://goodhelp.gitee.io/categories/code/"/>
+    <category term="源码" scheme="https://www.bnwin.com/categories/code/"/>
     
     
-    <category term="aardio源码" scheme="https://goodhelp.gitee.io/tags/aardio%E6%BA%90%E7%A0%81/"/>
+    <category term="aardio源码" scheme="https://www.bnwin.com/tags/aardio%E6%BA%90%E7%A0%81/"/>
     
-    <category term="listview使用方法" scheme="https://goodhelp.gitee.io/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <category term="listview使用方法" scheme="https://www.bnwin.com/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>ApacheBench(ab)服务器负载压力测试软件</title>
-    <link href="https://goodhelp.gitee.io/page/2797625853/"/>
-    <id>https://goodhelp.gitee.io/page/2797625853/</id>
+    <link href="https://www.bnwin.com/page/2797625853/"/>
+    <id>https://www.bnwin.com/page/2797625853/</id>
     <published>2018-10-21T04:06:41.000Z</published>
     <updated>2021-09-11T16:44:22.736Z</updated>
     
@@ -539,17 +539,17 @@ aardio的listview自绘源代码，在aardio新建一代码文件，复制下面
     
     
     
-    <category term="软件" scheme="https://goodhelp.gitee.io/categories/soft/"/>
+    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
     
     
-    <category term="精品软件" scheme="https://goodhelp.gitee.io/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/"/>
+    <category term="精品软件" scheme="https://www.bnwin.com/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>TeamViewer_resetclientID重置PC端id源码</title>
-    <link href="https://goodhelp.gitee.io/page/2135361570/"/>
-    <id>https://goodhelp.gitee.io/page/2135361570/</id>
+    <link href="https://www.bnwin.com/page/2135361570/"/>
+    <id>https://www.bnwin.com/page/2135361570/</id>
     <published>2018-06-13T05:10:50.000Z</published>
     <updated>2021-09-17T02:55:21.856Z</updated>
     
@@ -565,19 +565,19 @@ aardio的listview自绘源代码，在aardio新建一代码文件，复制下面
     
     
     
-    <category term="源码" scheme="https://goodhelp.gitee.io/categories/code/"/>
+    <category term="源码" scheme="https://www.bnwin.com/categories/code/"/>
     
     
-    <category term="autoit源码" scheme="https://goodhelp.gitee.io/tags/autoit%E6%BA%90%E7%A0%81/"/>
+    <category term="autoit源码" scheme="https://www.bnwin.com/tags/autoit%E6%BA%90%E7%A0%81/"/>
     
-    <category term="vbscript" scheme="https://goodhelp.gitee.io/tags/vbscript/"/>
+    <category term="vbscript" scheme="https://www.bnwin.com/tags/vbscript/"/>
     
   </entry>
   
   <entry>
     <title>安卓手机控制windows电脑的三种方法</title>
-    <link href="https://goodhelp.gitee.io/page/1757268201/"/>
-    <id>https://goodhelp.gitee.io/page/1757268201/</id>
+    <link href="https://www.bnwin.com/page/1757268201/"/>
+    <id>https://www.bnwin.com/page/1757268201/</id>
     <published>2018-05-31T03:19:12.000Z</published>
     <updated>2021-09-11T16:39:59.685Z</updated>
     
@@ -600,17 +600,17 @@ aardio的listview自绘源代码，在aardio新建一代码文件，复制下面
     
     
     
-    <category term="文章" scheme="https://goodhelp.gitee.io/categories/article/"/>
+    <category term="文章" scheme="https://www.bnwin.com/categories/article/"/>
     
     
-    <category term="控制电脑" scheme="https://goodhelp.gitee.io/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/"/>
+    <category term="控制电脑" scheme="https://www.bnwin.com/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/"/>
     
   </entry>
   
   <entry>
     <title>如何自定义编译CheatEngine6.7</title>
-    <link href="https://goodhelp.gitee.io/page/1225249485/"/>
-    <id>https://goodhelp.gitee.io/page/1225249485/</id>
+    <link href="https://www.bnwin.com/page/1225249485/"/>
+    <id>https://www.bnwin.com/page/1225249485/</id>
     <published>2018-05-08T03:13:49.000Z</published>
     <updated>2021-09-17T00:24:48.619Z</updated>
     
@@ -635,12 +635,12 @@ aardio的listview自绘源代码，在aardio新建一代码文件，复制下面
     
     
     
-    <category term="文章" scheme="https://goodhelp.gitee.io/categories/article/"/>
+    <category term="文章" scheme="https://www.bnwin.com/categories/article/"/>
     
     
-    <category term="ce技巧" scheme="https://goodhelp.gitee.io/tags/ce%E6%8A%80%E5%B7%A7/"/>
+    <category term="ce技巧" scheme="https://www.bnwin.com/tags/ce%E6%8A%80%E5%B7%A7/"/>
     
-    <category term="基址查找方法" scheme="https://goodhelp.gitee.io/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/"/>
+    <category term="基址查找方法" scheme="https://www.bnwin.com/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   

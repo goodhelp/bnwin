@@ -15,7 +15,7 @@
     <meta name="description" content="1234567&#x2F;&#x2F;声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &amp;#123;窗口句柄&amp;#125;  crKey: COLORREF; &amp;#123;透明色&amp;#125;  bAlpha: Byte;    &amp;#123;Alpha 值&amp;#125;  dwFlags: DWORD   &amp;#123;LWA_COLORKEY(&#x3D;1)表示使用透明色; LWA_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="delphi如何实现任意窗口透明化?">
-<meta property="og:url" content="https://goodhelp.gitee.io/page/807774960/">
+<meta property="og:url" content="https://www.bnwin.com/page/807774960/">
 <meta property="og:site_name" content="百脑问+ BnWin 知止而后有定">
 <meta property="og:description" content="1234567&#x2F;&#x2F;声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &amp;#123;窗口句柄&amp;#125;  crKey: COLORREF; &amp;#123;透明色&amp;#125;  bAlpha: Byte;    &amp;#123;Alpha 值&amp;#125;  dwFlags: DWORD   &amp;#123;LWA_COLORKEY(&#x3D;1)表示使用透明色; LWA_">
 <meta property="og:locale" content="zh_CN">
@@ -303,7 +303,7 @@ daovoice('update');
 <script src="//static.runoob.com/assets/qrcode/qrcode.min.js"></script>
 <script>
 var qrcode = new QRCode(document.getElementById("qr"), {
-    text: "https://goodhelp.gitee.io/page/807774960/",
+    text: "https://www.bnwin.com/page/807774960/",
     width: 128,
     height: 128,
 	colorDark : "#00a0f0",
@@ -365,13 +365,13 @@ var qrcode = new QRCode(document.getElementById("qr"), {
             "name": "百脑问"
         },
         "headline": "delphi如何实现任意窗口透明化?",
-        "image": "https://goodhelp.gitee.io",
+        "image": "https://www.bnwin.com",
         "keywords": "delphi技巧 去广告方法",
         "genre": "文章",
         "datePublished": "2017-12-17",
         "dateCreated": "2017-12-17",
         "dateModified": "2021-09-17",
-        "url": "https://goodhelp.gitee.io/page/807774960/",
+        "url": "https://www.bnwin.com/page/807774960/",
         "description": "1234567//声明:SetLayeredWindowAttributes(  Hwnd: THandle;   &#123;窗口句柄&#125;  crKey: COLORREF; &#123;透明色&#125;  bAlpha: Byte;    &#123;Alpha 值&#125;  dwFlags: DWORD   &#123;LWA_COLORKEY(=1)表示使用透明色; LWA_ALPHA(=2)表示使用 Alpha 值&#125;): Boolean;        &#123;是否成功设置&#125;
 举例(控制外部程序的透明度, 用计算器举了个例子):
 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748unit Unit1; interface uses  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,  Dialogs, StdCtrls; type  TForm1 = class(TForm)    Button1: TButton;    Button2: TButton;    procedure Button1Click(Sender: TObject);    procedure Button2Click(Sender: TObject);  end; var  Form1: TForm1; implementation &#123;$R *.dfm&#125; &#123;设定计算器的 Alpha 透明&#125;procedure TForm1.Button1Click(Sender: TObject);var  h: HWND;  FormStyle: Integer;begin  h := FindWindow(&#x27;CalcFrame&#x27;,&#x27;计算器&#x27;);  FormStyle := GetWindowLong(h, GWL_EXSTYLE);  SetWindowLong(h, GWL_EXSTYLE, FormStyle or WS_EX_LAYERED);  SetLayeredWindowAttributes(h, 0, 128, LWA_ALPHA);end; &#123;设定计算器中的白色透明&#125;procedure TForm1.Button2Click(Sender: TObject);var  h: HWND;  FormStyle: Integer;begin  h := FindWindow(&#x27;SciCalc&#x27;, nil);  FormStyle := GetWindowLong(h, GWL_EXSTYLE);  SetWindowLong(h, GWL_EXSTYLE, FormStyle or WS_EX_LAYERED);  SetLayeredWindowAttributes(h, clWhite, 255, LWA_COLORKEY);end; end.",
@@ -528,7 +528,7 @@ $(function() {
                 
             
         </ul>-->
-		  <p class="faa-flash animated">国内镜像：<a href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
+		  <p class="faa-flash animated">国内镜像：<a target="_blank" rel="noopener" href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
     </div>
     
         

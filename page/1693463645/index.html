@@ -15,7 +15,7 @@
     <meta name="description" content="8圈网管计费系统，最近在桌面生成图标，直接删除会提示服务和应用管理程序已经打开，无法删除，8圈计费系统先生成url快捷图标，然后打开这个快捷方式取得句柄，再使用DuplicateHandle复制句柄丢给系统进程services.exe，达到占用文件，删除8圈桌面图标就不行了!8圈桌面图标阻止删除的方法关键地方就是使用了DuplicateHandle这个API，看看下面的代码! 1234567891">
 <meta property="og:type" content="article">
 <meta property="og:title" content="delphi在ring3阻止文件删除(8圈桌面广告图标生成原理)">
-<meta property="og:url" content="https://goodhelp.gitee.io/page/1693463645/">
+<meta property="og:url" content="https://www.bnwin.com/page/1693463645/">
 <meta property="og:site_name" content="百脑问+ BnWin 知止而后有定">
 <meta property="og:description" content="8圈网管计费系统，最近在桌面生成图标，直接删除会提示服务和应用管理程序已经打开，无法删除，8圈计费系统先生成url快捷图标，然后打开这个快捷方式取得句柄，再使用DuplicateHandle复制句柄丢给系统进程services.exe，达到占用文件，删除8圈桌面图标就不行了!8圈桌面图标阻止删除的方法关键地方就是使用了DuplicateHandle这个API，看看下面的代码! 1234567891">
 <meta property="og:locale" content="zh_CN">
@@ -304,7 +304,7 @@ daovoice('update');
 <script src="//static.runoob.com/assets/qrcode/qrcode.min.js"></script>
 <script>
 var qrcode = new QRCode(document.getElementById("qr"), {
-    text: "https://goodhelp.gitee.io/page/1693463645/",
+    text: "https://www.bnwin.com/page/1693463645/",
     width: 128,
     height: 128,
 	colorDark : "#00a0f0",
@@ -367,13 +367,13 @@ var qrcode = new QRCode(document.getElementById("qr"), {
             "name": "百脑问"
         },
         "headline": "delphi在ring3阻止文件删除(8圈桌面广告图标生成原理)",
-        "image": "https://goodhelp.gitee.io",
+        "image": "https://www.bnwin.com",
         "keywords": "delphi技巧 去广告方法 八圈",
         "genre": "文章",
         "datePublished": "2018-01-23",
         "dateCreated": "2018-01-23",
         "dateModified": "2021-09-17",
-        "url": "https://goodhelp.gitee.io/page/1693463645/",
+        "url": "https://www.bnwin.com/page/1693463645/",
         "description": "8圈网管计费系统，最近在桌面生成图标，直接删除会提示服务和应用管理程序已经打开，无法删除，8圈计费系统先生成url快捷图标，然后打开这个快捷方式取得句柄，再使用DuplicateHandle复制句柄丢给系统进程services.exe，达到占用文件，删除8圈桌面图标就不行了!8圈桌面图标阻止删除的方法关键地方就是使用了DuplicateHandle这个API，看看下面的代码!
 12345678910111213141516171819202122232425262728293031323334353637383940414243function EnabledDebugPrivilege(const bEnabled: Boolean): Boolean;//提权varhToken: THandle;tp: TOKEN_PRIVILEGES;a: DWORD;constSE_DEBUG_NAME = &#x27;SeDebugPrivilege&#x27;;beginResult := False;if (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, hToken)) thenbegintp.PrivilegeCount := 1;LookupPrivilegeValue(nil, SE_DEBUG_NAME, tp.Privileges[0].Luid);if bEnabled thentp.Privileges[0].Attributes := SE_PRIVILEGE_ENABLEDelsetp.Privileges[0].Attributes := 0;a := 0;AdjustTokenPrivileges(hToken, False, tp, SizeOf(tp), nil, a);Result := GetLastError = ERROR_SUCCESS;CloseHandle(hToken);end;end; function DupFile(FileName:String;PID:Cardinal):Boolean;varhFile,hProcess,hTarget:THandle;beginResult := False;EnabledDebugPrivilege(True);hProcess := OpenProcess(PROCESS_DUP_HANDLE, False, PID);Tryif hProcess &lt;&gt; 0 thenbeginhFile := CreateFile(PChar(FileName), GENERIC_READ, 0, nil, Create_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);if hFile = INVALID_HANDLE_VALUE then Exit;Result := DuplicateHandle(GetCurrentProcess(), hFile, hProcess, @hTarget,0, False, DUPLICATE_SAME_ACCESS or DUPLICATE_CLOSE_SOURCE);end;FinallyCloseHandle(hProcess);End;end;
 8圈在桌面生成图标就是利用上面的原理!实际改一下就是这样
@@ -531,7 +531,7 @@ $(function() {
                 
             
         </ul>-->
-		  <p class="faa-flash animated">国内镜像：<a href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
+		  <p class="faa-flash animated">国内镜像：<a target="_blank" rel="noopener" href="https://goodhelp.gitee.io" style="color:#FFF">https://goodhelp.gitee.io</a></p>
     </div>
     
         
