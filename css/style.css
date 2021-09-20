@@ -1228,10 +1228,10 @@ code {
   -moz-background-size: cover;
   background-size: cover;
   background-position: center;
-  -webkit-transition: opacity 0.3s ease-in;
-  -moz-transition: opacity 0.3s ease-in;
-  -ms-transition: opacity 0.3s ease-in;
-  transition: opacity 0.3s ease-in;
+  -webkit-transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  -ms-transition: all 0.6s;
+  transition: all 0.6s;
 }
 .article-summary .article-summary-inner .thumbnail .thumbnail-none {
   width: 100%;
@@ -1264,7 +1264,10 @@ code {
   height: 6.4em;
 }
 .article-summary:hover .thumbnail .thumbnail-image {
-  opacity: 0.7;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 .article-summary:hover .article-title a {
   color: #006bde;
