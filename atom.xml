@@ -6,7 +6,7 @@
   <link href="https://www.bnwin.com/atom.xml" rel="self"/>
   
   <link href="https://www.bnwin.com/"/>
-  <updated>2021-09-21T16:12:08.928Z</updated>
+  <updated>2021-09-22T01:36:22.128Z</updated>
   <id>https://www.bnwin.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://www.bnwin.com/page/3944557397/"/>
     <id>https://www.bnwin.com/page/3944557397/</id>
     <published>2021-09-21T15:54:06.000Z</published>
-    <updated>2021-09-21T16:12:08.928Z</updated>
+    <updated>2021-09-22T01:36:22.128Z</updated>
     
-    <content type="html"><![CDATA[<p>Windows无法正常工作，一般情况下很多人的做法就是重装系统，但对于电脑小白来说，重装系统就像是一个难题。并且系统中的数据最为重要，重装不是最好的选择。如果系统出现了问题，大家可利用该工具修复系统问题，实在没辙了再重装也为时未晚!</p><p><img src="/images/2021092201.jpg" alt="win re界面"></p><iframe frameborder="0"  width="100%" height="600px" src="https://v.douyin.com/df7xUFn/" allowFullScreen="true"></iframe> <p>由于磁盘损坏、系统文件损坏或缺少 或安装更新时挂起的操作，系统可能无法启动，依次执行</p><ol><li>BCDEdit (查看系统盘符)</li><li>CHKDSK /f 系统盘符: (修复磁盘错误)</li><li>SFC /scannow /offbootdir=系统盘符:\ /offwindir=系统盘符:\windows (检查修复系统文件)</li></ol><p>这是微软官方给出的解决windows常见启动问题的方法!蓝屏或启动不了系统，可以试试这样操作，不能保证百分百成功，至少离恢复正常工作环境又近了一步!注册表造成的蓝屏可以使用上个蓝屏视频试试!</p><p>执行sfc的相关提供信息如下：</p><p><img src="/images/fc1f4134970a304e444acafffb9c6b80c9175c21.jpeg"></p><p><a href="https://www.douyin.com/user/MS4wLjABAAAAQwn54Jes0qMk4oDljDNC_4zWQCZrhpoMQIe7aPmU4ueHtUmGvSuqmXY6BJRncREG">欢迎关注抖音：杰叔说电脑</a></p><p><a href="https://www.douyin.com/user/MS4wLjABAAAAMa9WqR28kXFhmkObqEzCq0HvOphSyHJaVMKrPHEia54">欢迎关注抖音：表情包零动画</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Windows无法正常工作，一般情况下很多人的做法就是重装系统，但对于电脑小白来说，重装系统就像是一个难题。并且系统中的数据最为重要，重装不是最好的选择。如果系统出现了问题，大家可利用该工具修复系统问题，实在没辙了再重装也为时未晚!</p><p><img src="/images/2021092201.jpg" alt="win re界面"></p><iframe frameborder="0"  width="100%" height="600px" src="https://v.douyin.com/df7xUFn/" allowFullScreen="true"></iframe> <p>由于磁盘损坏、系统文件损坏或缺少 或安装更新时挂起的操作，系统可能无法启动，依次执行</p><ol><li>BCDEdit (查看系统盘符)</li><li>CHKDSK /f 系统盘符: (修复磁盘错误)</li><li>SFC /scannow /offbootdir=系统盘符:\ /offwindir=系统盘符:\windows (检查修复系统文件)</li></ol><p>这是微软官方给出的解决windows常见启动问题的方法!蓝屏或启动不了系统，可以试试这样操作，不能保证百分百成功，至少离恢复正常工作环境又近了一步!注册表造成的蓝屏可以使用上个蓝屏视频试试!</p><p>执行sfc的相关提供信息如下：</p><p><img src="/images/fc1f4134970a304e444acafffb9c6b80c9175c21.jpeg"></p><p><a href="https://www.douyin.com/user/MS4wLjABAAAAQwn54Jes0qMk4oDljDNC_4zWQCZrhpoMQIe7aPmU4ueHtUmGvSuqmXY6BJRncREG">欢迎关注百脑问抖音：杰叔说电脑 抖音号：jscomp</a></p><p><a href="https://www.douyin.com/user/MS4wLjABAAAAMa9WqR28kXFhmkObqEzCq0HvOphSyHJaVMKrPHEia54">欢迎关注百脑问抖音：表情包零动画 抖音号：bqbao</a></p><p><a href="https://www.xiaohongshu.com/user/profile/5e495bbe0000000001005d53">欢迎关注百脑问小红书：电脑百科知识</a></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;Windows无法正常工作，一般情况下很多人的做法就是重装系统，但对于电脑小白来说，重装系统就像是一个难题。并且系统中的数据最为重要，重装不是最好的选择。如果系统出现了问题，大家可利用该工具修复系统问题，实在没辙了再重装也为时未晚!&lt;/p&gt;
@@ -39,8 +39,8 @@
 &lt;p&gt;这是微软官方给出的解决windows常见启动问题的方法!蓝屏或启动不了系统，可以试试这样操作，不能保证百分百成功，至少离恢复正常工作环境又近了一步!注册表造成的蓝屏可以使用上个蓝屏视频试试!&lt;/p&gt;
 &lt;p&gt;执行sfc的相关提供信息如下：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/images/fc1f4134970a304e444acafffb9c6b80c9175c21.jpeg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.douyin.com/user/MS4wLjABAAAAQwn54Jes0qMk4oDljDNC_4zWQCZrhpoMQIe7aPmU4ueHtUmGvSuqmXY6BJRncREG&quot;&gt;欢迎关注抖音：杰叔说电脑&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.douyin.com/user/MS4wLjABAAAAMa9WqR28kXFhmkObqEzCq0HvOphSyHJaVMKrPHEia54&quot;&gt;欢迎关注抖音：表情包零动画&lt;/a&gt;&lt;/p&gt;</summary>
+&lt;p&gt;&lt;a href=&quot;https://www.douyin.com/user/MS4wLjABAAAAQwn54Jes0qMk4oDljDNC_4zWQCZrhpoMQIe7aPmU4ueHtUmGvSuqmXY6BJRncREG&quot;&gt;欢迎关注百脑问抖音：杰叔说电脑 抖音号：jscomp&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.douyin.com/user/MS4wLjABAAAAMa9WqR28kXFhmkObqEzCq0HvOphSyHJaVMKrPHEia54&quot;&gt;欢迎关注百脑问抖音：表情包零动画 抖音号：bqbao&lt;/a&gt;&lt;/p&gt;</summary>
     
     
     
