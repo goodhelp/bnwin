@@ -371,7 +371,7 @@ py monitor_ctrl.py [-h] [-m Model_string] [-s Settings_string] [-r] [-t] [-c] [-
         <a href="/page/1586529761/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/20210918090344.png)" alt="实现GiteePages自动部署的aardio源码" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/2021092202.png)" alt="实现GiteePages自动部署的aardio源码" class="thumbnail-image"></span>
     
     
         
@@ -404,17 +404,16 @@ py monitor_ctrl.py [-h] [-m Model_string] [-s Settings_string] [-r] [-t] [-c] [-
             问题的由来github提供开源项目管理，同时提供静态网站github page，但国内访问速度很慢，经常打不开，gitee码云在国内，提供和github一样的功能，但gitee page每次推送文件后，不会自动刷新（免费版），必须手动刷新!网上已有提供python自动刷新Gitee Pages的源码!
 python自动部署Gitee Pages源码
 python环境要求python3 + selenium + chromedrive.exe。
-python源码1234567891011121314151617181920212223242526272829303132333435363738394041424344import timefrom selenium import webdriverfrom selenium.webdriver.common.alert import Alert# 模拟浏览器打开到gitee登录界面driver = webdriver.Chrome()driver.get(&#x27;https://gitee.com/login&#x27;)# 将窗口最大化driver.maximize_window()time.sleep(2)# 输入账号--通过html的id属性定位输入位置--改为你的账号user_login = driver.find_element_by_id(&#x27;user_login&#x27;)user_login.send_keys(&quot;此处改为你的账号&quot;)# 输入密码--通过html的id属性定位输入位置--改为你的密码driver.find_element_by_id(&#x27;user_password&#x27;).send_keys(&quot;此处改为你的密码&quot;)# 点击登录按钮--通过xpath确定点击位置driver.find_element_by_xpath(    &#x27;/html/body/div[2]/div[2]/div[1]/div/div[2]/div/form[1]/div[2]/div/div/div[4]/input&#x27;).click()time.sleep(2)# 切换到gitee pages界面--改为you_gitee_iddriver.get(&#x27;https://gitee.com/此处改为you_gitee_id/此处改为you_gitee_id/pages&#x27;)# 点击更新按钮--通过xpath确定点击位置driver.find_element_by_xpath(&#x27;//*[@id=&quot;pages-branch&quot;]/div[7]&#x27;).click()# 确认更新提示框--这个函数的作用是确认提示框Alert(driver).accept()# 等待5秒更新time.sleep(5)# 这个print其实没事什么用,如果真的要测试脚本是否运行成功，可以用try来抛出异常print(&quot;成功&quot;)# 脚本运行成功,退出浏览器driver.quit()# 写上更新日志# 我这里是写在D盘，可以改为自己喜欢的目录fp = open(&quot;D:\log.txt&quot;, &quot;a+&quot;)now_time = time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;, time.localtime())fp.write(&quot;部署时间:&#123;0&#125;\n&quot;.format(now_time))fp.close()
 
-提供此代码的开源项目地址：https://github.com/witmy/my-giteepages
+
+先安装好python3(最好设置好国内镜像源，不然安装库，因墙的缘故可能失败)
+再安装好selenium库pip install seleniumpip install Alert
+下载chrome对应的chromedriver
+
+2.python源码
+123456789101112131415161718192021222324252627import timefrom selenium import webdriverfrom selenium.webdriver.common.alert import Alertoption = webdriver.ChromeOptions()#指定chrome浏览器option.binary_location=r&#x27;D:\Program Files\CentBrowser64\chrome.exe&#x27;#指定chromedriver和chrome版本要匹配driver = webdriver.Chrome(r&#x27;D:\Program Files\CentBrowser64\chromedriver.exe&#x27;)driver.get(&#x27;https://gitee.com/login&#x27;)driver.maximize_window()time.sleep(2)user_login = driver.find_element_by_id(&#x27;user_login&#x27;)user_login.send_keys(&quot;gitee的用户名&quot;)driver.find_element_by_id(&#x27;user_password&#x27;).send_keys(&quot;gitee的登录密码&quot;)driver.find_element_by_xpath(&#x27;/html/body/div[2]/div[2]/div/div[1]/div[2]/div[1]/form[1]/div/div/div/div[4]/input&#x27;).click()time.sleep(2)driver.get(&#x27;https://gitee.com/此处改为you_gitee_id/此处改为you_gitee_id/pages&#x27;)driver.find_element_by_xpath(&#x27;/html/body/div[3]/div[2]/div/div[2]/div/form/div[6]&#x27;).click()Alert(driver).accept()time.sleep(5)print(&quot;成功&quot;)driver.quit()fp = open(&quot;D:\log.txt&quot;, &quot;a+&quot;)now_time = time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;, time.localtime())fp.write(&quot;部署时间:&#123;0&#125;\n&quot;.format(now_time))fp.close()
+提供此代码的开源项目地址：https://github.com/witmy/my-giteepages上面的代码修改了一下，指定了chrome浏览器地址和chromedriver的地址，这样就不会运行不了!特别适合小白!
 aardio自动部署Gitee Pages的源码python的代码，如果是新手，安装python，然后直接运行上面的源码，成功的机率很小，因为Chrome driver是需要浏览器和driver版本匹配的!上面的python源码，如果你不熟悉python，基本上调试不会成功!不过不要紧，下面我讲的，小白也会的aardio教程，一步一步复杂粘贴就能实现，你不需要会python，不需要会aardio，一样可以编译一个自动更新gitee pages的执行文件!
-
-查看chrome内核的浏览器版本只要是使用chrome为内核的浏览器，都可以，比如qq浏览器，360极速浏览器，搜狗浏览器或chrome谷歌浏览器!第一步打开浏览器，第二步，在地址栏输入  chrome://version 查看版本号，正常应该显示为这样查看版本号，上图版本号为86.0.4240.112，并且知道浏览器的路径为 D:\Program Files (x86)\360Chrome\Chrome\Application\360chrome.exe
-打开chromedriver的镜像网站https://npm.taobao.org/mirrors/chromedriver 下载相应的chromedriver对应上面的chrome，应该下载86.0.4240.22，最后的版本号112，选择最接近的就行！进入86.0.4240.22目录，下载 chromedriver_win32.zip，并解压到本地目录，如d:\temp\
-aardio部署gitee pages的源码123456789101112131415161718192021222324252627282930313233import chrome.driver;var driver = chrome.driver(&quot;D:\Program Files\CentBrowser64\chrome.exe&quot;,&quot;d:\temp\chromedriver.exe&quot;);//driver.addArguments(&quot;--headless&quot;,&quot;--disable-gpu&quot;,&quot;--remote-debugging-port=9222&quot;); //无头模式var browser = driver.startBrowser( &#123;    loggingPrefs  = &#123; browser = &#x27;ALL&#x27;, performance = &#x27;ALL&#x27;, &#125;;	perfLoggingPrefs = &#123;    	enableNetwork = true,    	enablePage= false,    	enableTimeline = false	&#125; &#125;);browser.go(&quot;https://gitee.com/login&quot;)var ele = browser.querySelector(&quot;body&quot;).querySelector(&quot;#user_login&quot;); ele.setValue( &quot;gitee的用户名&quot; );//改为你的gitee用户名ele = browser.querySelector(&quot;body&quot;).querySelector(&quot;#user_password&quot;);ele.setValue( &quot;gitee的登录密码&quot; ); //改为你的gitee密码var searchButton = browser.doScript(` 		return arguments[0].querySelector(&quot;#new_user &gt; div &gt; div &gt; div &gt; div:nth-child(4) &gt; input&quot;);	`	,browser.querySelector(&quot;body&quot;))searchButton.click();win.delay(2000)browser.go(&quot;https://gitee.com/此处改为you_gitee_id/此处改为you_gitee_id/pages&quot;); //改为你的gitee项目地址var gxButton=browser.doScript(`   return arguments[0].querySelector(&quot;#pages-branch &gt; div.button.orange.redeploy-button.ui.update_deploy&quot;);`,browser.querySelector(&quot;body&quot;))win.delay(5000)gxButton.click();browser.alert.accept();win.delay(2000)browser.closeAll();
-其中，代码的第二行的参数，第一个改为你的浏览器路径（其中第一步上面已查看到），第二个参数改为你下载的chromedriver的路径，然后在http://www.aardio.com 下载aardio，新建文件，复制上面代码，直接编译就可运行(如果没有chrome.divver库，aardio会自动下载)
-
-后期可能失效说明登录按钮的css selector，现在为 #new_user &gt; div &gt; div &gt; div &gt; div:nth-child(4) &gt; input更新按钮的css selector, 现在为 #pages-branch &gt; div.button.orange.redeploy-button.ui.update_deploy如何查看这两个按钮的css selector比如更新按钮的css selector手动打开gitee pages更新页面，对着更新按钮，右键审查元素，在弹出的devtool的Elements界面，自动选中的地方右键，点击选择copy selector，把上面的代码中修改即可!
         </p>
     </div>
 </article>
@@ -573,7 +572,7 @@ aardio部署gitee pages的源码123456789101112131415161718192021222324252627282
                             <a href="/page/1586529761/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/20210918090344.png)" alt="实现GiteePages自动部署的aardio源码" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/2021092202.png)" alt="实现GiteePages自动部署的aardio源码" class="thumbnail-image"></span>
     
     
 </a>
