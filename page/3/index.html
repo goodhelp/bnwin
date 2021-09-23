@@ -579,6 +579,57 @@ daovoice('update');
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/page/2135361570/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span><a href="https://www.bnwin.com/page/2135361570/#isso-thread"></a></span>
+    
+</span>
+
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/code/">源码</a>
+            </div>
+            <div class="date"><time datetime="2018-06-13T05:10:50.000Z" itemprop="datePublished">2018-06-13</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/page/2135361570/">TeamViewer_resetclientID重置PC端id源码</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            如何重置TeamViewer的ID？我们先来了解一下什么是WMI,WMI有一组API。我们不管使用VBScript、PowerShell脚本还是利用C#的来访问WMI的类库，都是因为WMI向外暴露的一组API。这些API是在系统安装WMI模块的时候安装的，通过他们我们能够能拿到我们想要的类。WMI有一个存储库。尽管WMI的多数实例数据都不存储在WMI中，但是WMI确实有一个存储库，用来存放提供程序提供的类信息，或者称为类的蓝图或者Schema。WMI有一个Service。WMI总是能够响应用户的访问，那是因为它有一个一直运行的Windows服务，名字叫Winmgmt。停止这个服务，所有对WMI的操作都将没有反应。WMI是可扩展的。人人都知道WMI能干很多事情，读取本机硬盘信息、读取远程计算机的用户信息、读取域用户信息等等。基本上，你能想到的获取或者更改资源的操作，它都能干。可谓吃得少，干得多。它为什么这么能干呢？这基于WMI的可扩展性。WMI对资源的操作，不是它自己实现了什么方法，而完全取决于向它注册的提供程序。
+如何重置TeamViewer的ID？重置TeamViewer的ID的原理是什么，请看下面的源码Autoit3源代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252253254255256257258259260261262263264265266267268269270271272273274275276277278279280281282283284285286287288289290291292293294295296297298299300301302303304305306307308309310311312313314315316317318319320321322323324325326327328329330331332333334335336337338339340341342343344345346347348349350351352353354355356357358359360361362363364365366367368369370371372373374375376377378379380381382383384385386387388389390391392393394395396397398399400401402403404405406407408409410411412413414415416417418419420421422423424425426427428429430431432433434435436437438439440441442443444445446447448449450451452453454455456457458459460; ; ----------------------------------------------------------------------------; ; ----------------------------------------------------------------------------#RequireAdmin; ----------------------------------------------------------------------------; ; ----------------------------------------------------------------------------Func _ProcessGetName($i_PID)	If Not ProcessExists($i_PID) Then		SetError(1)		Return &#x27;&#x27;	EndIf	Local $a_Processes = ProcessList()	If Not @error Then		For $i = 1 To $a_Processes[0][0]			If $a_Processes[$i][1] = $i_PID Then Return $a_Processes[$i][0]		Next	EndIf	SetError(1)	Return &#x27;&#x27;EndFuncFunc _ProcessGetPriority($vProcess)	Local $i_PID = ProcessExists($vProcess)	If Not $i_PID Then		SetError(1)		Return -1	EndIf	Local $hDLL = DllOpen(&#x27;kernel32.dll&#x27;)	Local $aProcessHandle = DllCall($hDLL, &#x27;int&#x27;, &#x27;OpenProcess&#x27;, &#x27;int&#x27;, 0x0400, &#x27;int&#x27;, False, &#x27;int&#x27;, $i_PID)	Local $aPriority = DllCall($hDLL, &#x27;int&#x27;, &#x27;GetPriorityClass&#x27;, &#x27;int&#x27;, $aProcessHandle[0])	DllCall($hDLL, &#x27;int&#x27;, &#x27;CloseHandle&#x27;, &#x27;int&#x27;, $aProcessHandle[0])	DllClose($hDLL)	Switch $aPriority[0]		Case 0x00000040			Return 0		Case 0x00004000			Return 1		Case 0x00000020			Return 2		Case 0x00008000			Return 3		Case 0x00000080			Return 4		Case 0x00000100			Return 5		Case Else			SetError(1)			Return -1	EndSwitchEndFuncFunc _RunDOS($sCommand)	Return RunWait(@ComSpec &amp; &quot; /C &quot; &amp; $sCommand, &quot;&quot;, @SW_HIDE)EndFunc; ----------------------------------------------------------------------------; ; ----------------------------------------------------------------------------; ----------------------------------------------------------------------------; ; ----------------------------------------------------------------------------Func _FileCountLines($sFilePath)	Local $N = FileGetSize($sFilePath) - 1	If @error Or $N = -1 Then Return 0	Return StringLen(StringAddCR(FileRead($sFilePath, $N))) - $N + 1EndFuncFunc _FileCreate($sFilePath)	Local $hOpenFile	Local $hWriteFile	$hOpenFile = FileOpen($sFilePath, 2)	If $hOpenFile = -1 Then		SetError(1)		Return 0	EndIf	$hWriteFile = FileWrite($hOpenFile, &quot;&quot;)	If $hWriteFile = -1 Then		SetError(2)		Return 0	EndIf	FileClose($hOpenFile)	Return 1EndFuncFunc _FileListToArray($sPath, $sFilter = &quot;*&quot;, $iFlag = 0)	Local $hSearch, $sFile, $asFileList[1]	If Not FileExists($sPath) Then Return SetError(1, 1, &quot;&quot;)	If (StringInStr($sFilter, &quot;\&quot;)) Or (StringInStr($sFilter, &quot;/&quot;)) Or (StringInStr($sFilter, &quot;:&quot;)) Or (StringInStr($sFilter, &quot;&gt;&quot;)) Or (StringInStr($sFilter, &quot;&lt;&quot;)) Or (StringInStr($sFilter, &quot;|&quot;)) Or (StringStripWS($sFilter, 8) = &quot;&quot;) Then Return SetError(2, 2, &quot;&quot;)	If Not ($iFlag = 0 Or $iFlag = 1 Or $iFlag = 2) Then Return SetError(3, 3, &quot;&quot;)	$hSearch = FileFindFirstFile($sPath &amp; &quot;\&quot; &amp; $sFilter)	If $hSearch = -1 Then Return SetError(4, 4, &quot;&quot;)	While 1		$sFile = FileFindNextFile($hSearch)		If @error Then			SetError(0)			ExitLoop		EndIf		If $iFlag = 1 And StringInStr(FileGetAttrib($sPath &amp; &quot;\&quot; &amp; $sFile), &quot;D&quot;) &lt;&gt; 0 Then ContinueLoop		If $iFlag = 2 And StringInStr(FileGetAttrib($sPath &amp; &quot;\&quot; &amp; $sFile), &quot;D&quot;) = 0 Then ContinueLoop		ReDim $asFileList[UBound($asFileList) + 1]		$asFileList[0] = $asFileList[0] + 1		$asFileList[UBound($asFileList) - 1] = $sFile	WEnd	FileClose($hSearch)	Return $asFileListEndFuncFunc _FilePrint($s_File, $i_Show = @SW_HIDE)	Local $a_Ret = DllCall(&quot;shell32.dll&quot;, &quot;long&quot;, &quot;ShellExecute&quot;, _			&quot;hwnd&quot;, 0, _			&quot;string&quot;, &quot;print&quot;, _			&quot;string&quot;, $s_File, _			&quot;string&quot;, &quot;&quot;, _			&quot;string&quot;, &quot;&quot;, _			&quot;int&quot;, $i_Show)	If $a_Ret[0] &gt; 32 And Not @error Then		Return 1	Else		SetError($a_Ret[0])		Return 0	EndIfEndFuncFunc _FileReadToArray($sFilePath, ByRef $aArray)	Local $hFile	$hFile = FileOpen($sFilePath, 0)	If $hFile = -1 Then		SetError(1)		Return 0	EndIf	$aArray = StringSplit(StringStripCR(FileRead($hFile, FileGetSize($sFilePath))), @LF)	FileClose($hFile)	Return 1EndFuncFunc _FileWriteFromArray($sFilePath, $a_Array, $i_Base = 0, $i_UBound = 0)	Local $hFile	If Not IsArray($a_Array) Then		SetError(2)		Return 0	EndIf	Local $last = UBound($a_Array) - 1	If $i_UBound &lt; 1 Or $i_UBound &gt; $last Then $i_UBound = $last	If $i_Base &lt; 0 Or $i_Base &gt; $last Then $i_Base = 0	$hFile = FileOpen($sFilePath, 2)	If $hFile = -1 Then		SetError(1)		Return 0	EndIf	FileWrite($hFile, $a_Array[$i_Base])	For $x = $i_Base + 1 To $i_UBound		FileWrite($hFile, @CRLF &amp; $a_Array[$x])	Next	FileClose($hFile)	Return 1EndFuncFunc _FileWriteLog($sLogPath, $sLogMsg)	Local $sDateNow	Local $sTimeNow	Local $sMsg	Local $hOpenFile	Local $hWriteFile	$sDateNow = @YEAR &amp; &quot;-&quot; &amp; @MON &amp; &quot;-&quot; &amp; @MDAY	$sTimeNow = @HOUR &amp; &quot;:&quot; &amp; @MIN &amp; &quot;:&quot; &amp; @SEC	$sMsg = $sDateNow &amp; &quot; &quot; &amp; $sTimeNow &amp; &quot; : &quot; &amp; $sLogMsg	$hOpenFile = FileOpen($sLogPath, 1)	If $hOpenFile = -1 Then		SetError(1)		Return 0	EndIf	$hWriteFile = FileWriteLine($hOpenFile, $sMsg)	If $hWriteFile = -1 Then		SetError(2)		Return 0	EndIf	FileClose($hOpenFile)	Return 1EndFuncFunc _FileWriteToLine($sFile, $iLine, $sText, $fOverWrite = 0)	If $iLine &lt;= 0 Then		SetError(4)		Return 0	EndIf	If Not IsString($sText) Then		SetError(6)		Return 0	EndIf	If $fOverWrite &lt;&gt; 0 And $fOverWrite &lt;&gt; 1 Then		SetError(5)		Return 0	EndIf	If Not FileExists($sFile) Then		SetError(2)		Return 0	EndIf	Local $filtxt = FileRead($sFile, FileGetSize($sFile))	$filtxt = StringSplit($filtxt, @CRLF, 1)	If UBound($filtxt, 1) &lt; $iLine Then		SetError(1)		Return 0	EndIf	Local $fil = FileOpen($sFile, 2)	If $fil = -1 Then		SetError(3)		Return 0	EndIf	For $i = 1 To UBound($filtxt) - 1		If $i = $iLine Then			If $fOverWrite = 1 Then				If $sText &lt;&gt; &#x27;&#x27; Then					FileWrite($fil, $sText &amp; @CRLF)				Else					FileWrite($fil, $sText)				EndIf			EndIf			If $fOverWrite = 0 Then				FileWrite($fil, $sText &amp; @CRLF)				FileWrite($fil, $filtxt[$i] &amp; @CRLF)			EndIf		ElseIf $i &lt; UBound($filtxt, 1) - 1 Then			FileWrite($fil, $filtxt[$i] &amp; @CRLF)		ElseIf $i = UBound($filtxt, 1) - 1 Then			FileWrite($fil, $filtxt[$i])		EndIf	Next	FileClose($fil)	Return 1EndFuncFunc _PathFull($sRelativePath, $sBasePath = @WorkingDir)	If Not $sRelativePath Or $sRelativePath = &quot;.&quot; Then Return $sBasePath	Local $sFullPath = StringReplace($sRelativePath, &quot;/&quot;, &quot;\&quot;)	Local $sPath = StringLeft($sFullPath, 2)	StringReplace($sFullPath, &quot;\&quot;, &quot;&quot;)	If @extended = StringLen($sFullPath) Then Return StringLeft($sBasePath, 2) &amp; &quot;\&quot;	If StringLeft($sFullPath, 1) = &quot;\&quot; Then		If $sPath = &quot;\\&quot; Then			$sFullPath = StringTrimLeft($sFullPath, 2)			$sPath &amp;= StringLeft($sFullPath, StringInStr($sFullPath, &quot;\&quot;) - 1)		Else			$sPath = StringLeft($sBasePath, 2)		EndIf	ElseIf Not StringInStr($sPath, &quot;:&quot;) Then		$sFullPath = $sBasePath &amp; &quot;\&quot; &amp; $sFullPath		$sPath = StringLeft($sBasePath, 2)	EndIf	Local $aTemp = StringSplit($sFullPath, &quot;\&quot;)	Local $aPathParts[$aTemp[0]], $j = 0	For $i = 2 To $aTemp[0]		If $aTemp[$i] = &quot;..&quot; Then			If $j Then $j -= 1		ElseIf Not ($aTemp[$i] = &quot;&quot; And $i &lt;&gt; $aTemp[0]) And $aTemp[$i] &lt;&gt; &quot;.&quot; Then			$aPathParts[$j] = $aTemp[$i]			$j += 1		EndIf	Next	$sFullPath = $sPath	For $i = 0 To $j - 1		$sFullPath &amp;= &quot;\&quot; &amp; $aPathParts[$i]	Next	While StringInStr($sFullPath, &quot;.\&quot;)		$sFullPath = StringReplace($sFullPath, &quot;.\&quot;, &quot;\&quot;)	WEnd	Return $sFullPathEndFuncFunc _PathMake($szDrive, $szDir, $szFName, $szExt)	Local $szFullPath	If StringLen($szDrive) Then		If Not (StringLeft($szDrive, 2) = &quot;\\&quot;) Then $szDrive = StringLeft($szDrive, 1) &amp; &quot;:&quot;	EndIf	If StringLen($szDir) Then		If Not (StringRight($szDir, 1) = &quot;\&quot;) And Not (StringRight($szDir, 1) = &quot;/&quot;) Then $szDir = $szDir &amp; &quot;\&quot;	EndIf	If StringLen($szExt) Then		If Not (StringLeft($szExt, 1) = &quot;.&quot;) Then $szExt = &quot;.&quot; &amp; $szExt	EndIf	$szFullPath = $szDrive &amp; $szDir &amp; $szFName &amp; $szExt	Return $szFullPathEndFuncFunc _PathSplit($szPath, ByRef $szDrive, ByRef $szDir, ByRef $szFName, ByRef $szExt)	Local $drive = &quot;&quot;	Local $dir = &quot;&quot;	Local $fname = &quot;&quot;	Local $ext = &quot;&quot;	Local $pos	Local $array[5]	$array[0] = $szPath	If StringMid($szPath, 2, 1) = &quot;:&quot; Then		$drive = StringLeft($szPath, 2)		$szPath = StringTrimLeft($szPath, 2)	ElseIf StringLeft($szPath, 2) = &quot;\\&quot; Then		$szPath = StringTrimLeft($szPath, 2)		$pos = StringInStr($szPath, &quot;\&quot;)		If $pos = 0 Then $pos = StringInStr($szPath, &quot;/&quot;)		If $pos = 0 Then			$drive = &quot;\\&quot; &amp; $szPath			$szPath = &quot;&quot;		Else			$drive = &quot;\\&quot; &amp; StringLeft($szPath, $pos - 1)			$szPath = StringTrimLeft($szPath, $pos - 1)		EndIf	EndIf	Local $nPosForward = StringInStr($szPath, &quot;/&quot;, 0, -1)	Local $nPosBackward = StringInStr($szPath, &quot;\&quot;, 0, -1)	If $nPosForward &gt;= $nPosBackward Then		$pos = $nPosForward	Else		$pos = $nPosBackward	EndIf	$dir = StringLeft($szPath, $pos)	$fname = StringRight($szPath, StringLen($szPath) - $pos)	If StringLen($dir) = 0 Then $fname = $szPath	$pos = StringInStr($fname, &quot;.&quot;, 0, -1)	If $pos Then		$ext = StringRight($fname, StringLen($fname) - ($pos - 1))		$fname = StringLeft($fname, $pos - 1)	EndIf	$szDrive = $drive	$szDir = $dir	$szFName = $fname	$szExt = $ext	$array[1] = $drive	$array[2] = $dir	$array[3] = $fname	$array[4] = $ext	Return $arrayEndFuncFunc _ReplaceStringInFile($szFileName, $szSearchString, $szReplaceString, $fCaseness = 0, $fOccurance = 1)	Local $iRetVal = 0	Local $szTempFile, $hWriteHandle, $aFileLines, $nCount, $sEndsWith, $hFile	If StringInstr(FileGetAttrib($szFileName),&quot;R&quot;) then		SetError(6)		Return -1	EndIf	$hFile = FileOpen($szFileName, 0)	If $hFile = -1 Then		SetError(1)		Return -1	EndIf	Local $s_TotFile = FileRead($hFile, FileGetSize($szFileName))	If StringRight($s_TotFile, 2) = @CRLF Then		$sEndsWith = @CRLF	ElseIf StringRight($s_TotFile, 1) = @CR Then		$sEndsWith = @CR	ElseIf StringRight($s_TotFile, 1) = @LF Then		$sEndsWith = @LF	Else		$sEndsWith = &quot;&quot;	EndIf	$aFileLines = StringSplit(StringStripCR($s_TotFile), @LF)	FileClose($hFile)	$szTempFile = _TempFile()	$hWriteHandle = FileOpen($szTempFile, 2)	If $hWriteHandle = -1 Then		SetError(2)		Return -1	EndIf	For $nCount = 1 To $aFileLines[0]		If StringInStr($aFileLines[$nCount], $szSearchString, $fCaseness) Then			$aFileLines[$nCount] = StringReplace($aFileLines[$nCount], $szSearchString, $szReplaceString, 1 - $fOccurance, $fCaseness)			$iRetVal = $iRetVal + 1			If $fOccurance = 0 Then				$iRetVal = 1				ExitLoop			EndIf		EndIf	Next	For $nCount = 1 To $aFileLines[0] - 1		If FileWriteLine($hWriteHandle, $aFileLines[$nCount]) = 0 Then			SetError(3)			FileClose($hWriteHandle)			Return -1		EndIf	Next	If $aFileLines[$nCount] &lt;&gt; &quot;&quot; Then FileWrite($hWriteHandle, $aFileLines[$nCount] &amp; $sEndsWith)	FileClose($hWriteHandle)	If FileDelete($szFileName) = 0 Then		SetError(4)		Return -1	EndIf	If FileMove($szTempFile, $szFileName) = 0 Then		SetError(5)		Return -1	EndIf	Return $iRetValEndFuncFunc _TempFile($s_DirectoryName = @TempDir, $s_FilePrefix = &quot;~&quot;, $s_FileExtension = &quot;.tmp&quot;, $i_RandomLength = 7)	Local $s_TempName	If Not FileExists($s_DirectoryName) Then $s_DirectoryName = @TempDir	If Not FileExists($s_DirectoryName) Then $s_DirectoryName = @ScriptDir	If StringRight($s_DirectoryName, 1) &lt;&gt; &quot;\&quot; Then $s_DirectoryName = $s_DirectoryName &amp; &quot;\&quot;	Do		$s_TempName = &quot;&quot;		While StringLen($s_TempName) &lt; $i_RandomLength			$s_TempName = $s_TempName &amp; Chr(Random(97, 122, 1))		WEnd		$s_TempName = $s_DirectoryName &amp; $s_FilePrefix &amp; $s_TempName &amp; $s_FileExtension	Until Not FileExists($s_TempName)	Return ($s_TempName)EndFunc; ----------------------------------------------------------------------------; ; ---------------------------------------------------------------------------- If WinExists(@ScriptName) Then Exit AutoItWinSetTitle(@ScriptName) AutoItSetOption(&quot;TrayIconHide&quot;, 1) AutoItSetOption(&quot;MouseCoordMode&quot;, 0) If ProcessExists(&quot;TeamViewer_Service.exe&quot;) Then RunWait(@ComSpec &amp; &quot; /C net stop TeamViewer&quot;,&quot;&quot;, @SW_HIDE) EndIf If ProcessExists(&quot;TeamViewer.exe&quot;) Then ProcessClose(&quot;TeamViewer.exe&quot;) EndIf RegDelete(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\TeamViewer&quot;, &quot;ClientID&quot;) Local $iRc = _RunDos(&quot;wmic class Win33_ComputerSystemProduct delete&quot;) $VBSFile = @ScriptDir&amp;&#x27;\source.vbs&#x27; If Not FileExists($VBSFile) Then _FileCreate($VBSFile) FileSetAttrib(@ScriptDir&amp;&#x27;\source.vbs&#x27;, &quot;+H&quot;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;intHighNumber = 99999&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;intLowNumber = 10000&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;intNumbers = 1&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27; Randomize&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27; intNumber = Int((intHighNumber - intLowNumber + 1) * Rnd + intLowNumber)&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;strnum = &quot;01234567-8910-ABCD-1111-093F03C&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;strnum = strnum &amp; Cstr(intNumber)&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;Set oLocation = CreateObject(&quot;WbemScripting.SWbemLocator&quot;)&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;Set oServices = oLocation.ConnectServer(, &quot;root\cimv2&quot;)&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;Set FakeClass = oServices.Get&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Path_.Class = &quot;Win33_ComputerSystemProduct&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_.add &quot;Caption&quot;, 8&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_.add &quot;Description&quot;, 8&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_.add &quot;IdentifyingNumber&quot;, 8&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_.add &quot;Name&quot;, 8&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_.add &quot;SKUNumber&quot;, 8&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_.add &quot;UUID&quot;, 8&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_.add &quot;Vendor&quot;, 8&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_.add &quot;Version&quot;, 8&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Properties_(&quot;Name&quot;).Qualifiers_.add &quot;key&quot;, false&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Put_&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;Set FakeClass = GetObject(&quot;Winmgmts:root\cimv2:Win33_ComputerSystemProduct&quot;).SpawnInstance_&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Caption = &quot;http://www.teamviewer.com&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Description = &quot;class for teamviewer&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.IdentifyingNumber = &quot;www.teamviewer.com&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Name = &quot;Teamviewer&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.SKUNumber = &quot;&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.UUID = strnum&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Vendor = &quot;Teamviewer&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Version = &quot;6.x&quot;&#x27;) FileWriteLine (&#x27;source.vbs&#x27;, &#x27;FakeClass.Put_&#x27;) ShellExecute (&quot;source.vbs&quot;, &quot;&quot;, &quot;&quot;, &quot;open&quot;) Sleep(500) FileDelete(@ScriptDir&amp;&#x27;\source.vbs&#x27;) RunWait(@ComSpec &amp; &quot; /C net start TeamViewer&quot;,&quot;&quot;, @SW_HIDE) Run(@ScriptDir&amp;&#x27;\TeamViewer.exe&#x27;); ----------------------------------------------------------------------------; ; ----------------------------------------------------------------------------
+其中关键的source.vbs代码1234567891011121314151617181920212223242526272829303132333435363738394041intHighNumber = 99999 intLowNumber = 10000 intNumbers = 1  Randomize  intNumber = Int((intHighNumber - intLowNumber + 1) * Rnd + intLowNumber) strnum = &quot;01234567-8910-ABCD-1111-093F03C&quot;strnum = strnum &amp; Cstr(intNumber) Set oLocation = CreateObject(&quot;WbemScripting.SWbemLocator&quot;)Set oServices = oLocation.ConnectServer(, &quot;root\cimv2&quot;)Set FakeClass = oServices.Get FakeClass.Path_.Class = &quot;Win33_ComputerSystemProduct&quot; FakeClass.Properties_.add &quot;Caption&quot;, 8FakeClass.Properties_.add &quot;Description&quot;, 8FakeClass.Properties_.add &quot;IdentifyingNumber&quot;, 8FakeClass.Properties_.add &quot;Name&quot;, 8FakeClass.Properties_.add &quot;SKUNumber&quot;, 8FakeClass.Properties_.add &quot;UUID&quot;, 8FakeClass.Properties_.add &quot;Vendor&quot;, 8FakeClass.Properties_.add &quot;Version&quot;, 8FakeClass.Properties_(&quot;Name&quot;).Qualifiers_.add &quot;key&quot;, falseFakeClass.Put_ Set FakeClass = GetObject(&quot;Winmgmts:root\cimv2:Win33_ComputerSystemProduct&quot;).SpawnInstance_ FakeClass.Caption = &quot;http://www.teamviewer.com&quot;FakeClass.Description = &quot;class for teamviewer&quot;FakeClass.IdentifyingNumber = &quot;www.teamviewer.com&quot;FakeClass.Name = &quot;Teamviewer&quot;FakeClass.SKUNumber = &quot;&quot;FakeClass.UUID = strnumFakeClass.Vendor = &quot;Teamviewer&quot;FakeClass.Version = &quot;10.x&quot;FakeClass.Put_
+仅此远远不够，还得需要修改teamviewer中的Win32_ComputerSystemProduct为Win33_ComputerSystemProduct，同时去掉teamviewer的自校验!
+
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/page/1757268201/" class="thumbnail">
     
     
@@ -629,10 +680,14 @@ teamviewer的优点就是可以访问任何连网的机器，而不需要映射�
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -689,14 +744,10 @@ cheat-engine-6.7.zip(Cheat Engine6.7的源码包，你可以直接到https://git
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -747,10 +798,14 @@ html5media 官网CDN:http://api.html5media.info/1.2.2/html5media.min.jshtml5medi
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -799,14 +854,10 @@ html5media 官网CDN:http://api.html5media.info/1.2.2/html5media.min.jshtml5medi
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -859,10 +910,14 @@ html5media 官网CDN:http://api.html5media.info/1.2.2/html5media.min.jshtml5medi
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -913,14 +968,10 @@ hdwp = DeferWindowPos( hdwp, hStatic, NULL, 0, 0,100, 20, SWP_NOACTIVATE | SWP_N
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -972,10 +1023,14 @@ Winzip的创始人是Philip Katz。用Ultraedit打开任一个zip文件，可以
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -1021,14 +1076,10 @@ Winzip的创始人是Philip Katz。用Ultraedit打开任一个zip文件，可以
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -1069,59 +1120,6 @@ Winzip的创始人是Philip Katz。用Ultraedit打开任一个zip文件，可以
             【版本要求】:建议使用 AE CS6或更高的AE英文版打开【插件要求】:Element V2;Particular【模板尺寸】:1920X1080【时间长度】:14秒【音频】:有【文件大小】:389M【视频截图】:【视频预览】:您的浏览器不支持HTML5的 video 标签，无法为您播放！
 下载地址https://pan.baidu.com/s/1gqNWtWYCc1mFpcBR22Lkgg  密码：5pxn
 
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/page/708277890/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span><a href="https://www.bnwin.com/page/708277890/#isso-thread"></a></span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/article/">文章</a>
-            </div>
-            <div class="date"><time datetime="2018-03-12T03:01:49.000Z" itemprop="datePublished">2018-03-12</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/page/708277890/">迅雷地址、快车地址和QQ旋风地址加解密原理</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            迅雷地址和快车地址的加密方式很简单，其实都是用的Base64加密方式，只不过有一点点的小改动而已。
-1. 迅雷链接地址加密方式迅雷链接地址转换原理是在地址的前方和后方加入两个字母AA、ZZ，然后再进行Base64加密，再加上Thunder://这个专用链接标识，从而转换成迅雷的专用地址。例如：原链接为：http://www.forece.net/win7.rar在原地址前面加”AA”，后面加”ZZ”(注：不包括引号)，地址变为AAhttp://www.forece.net/win7.rarZZ此地址base64编码为QUFodHRwOi8vd3d3LmZvcmVjZS5uZXQvd2luNy5yYXJaWg==加入迅雷专链标识，即在上地址前加thunder://，即thunder://QUFodHRwOi8vd3d3LmZvcmVjZS5uZXQvd2luNy5yYXJaWg==
-2. 网际快车链接地址加密方式网际快车的链接地址转换原理和迅雷的类似，只不过是在地址前后加上[FLASHGET]，经过Base64加密，然后在地址前加flashget://这个快车专用链接标识，最后还需要加一个标识符（&amp;符号），符号任意，我一般就加我的名字（&amp;forece），这样就可以将普通http地址转换成快车的地址了。例如：原链接为：http://www.forece.net/win7.rar在原地址前后都加上”[FLASHGET]“(注：不包括引号)，地址变为[FLASHGET]http://www.forece.net/win7.rar[FLASHGET]此地址base64编码为
-W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=
-加上快车专链标识和结尾符号，即在上地址前加flashget://，结尾加&amp;forece，即
-flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&amp;forece
-“&amp;符号”，符号怎么得出我也不清楚，只是看网上别人这么写的，至今无人报错。
-3. QQ旋风链接地址加密方式
         </p>
     </div>
 </article>
@@ -1198,6 +1196,26 @@ flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&
         <h3 class="widget-title fa fa-file"> 最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/page/3832108924/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/20210923095321.png)" alt="局域网文件多播，局域网拷贝文件，大文件批量传输" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/soft/">软件</a></p>
+                            <p class="item-title"><a href="/page/3832108924/" class="title">局域网文件多播，局域网拷贝文件，大文件批量传输</a></p>
+                            <p class="item-date"><time datetime="2021-09-23T01:44:58.000Z" itemprop="datePublished">2021-09-23</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -1279,26 +1297,6 @@ flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/page/1586529761/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/2021092202.png)" alt="实现GiteePages自动部署的aardio源码" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/code/">源码</a></p>
-                            <p class="item-title"><a href="/page/1586529761/" class="title">实现GiteePages自动部署的aardio源码</a></p>
-                            <p class="item-date"><time datetime="2021-09-18T00:23:50.000Z" itemprop="datePublished">2021-09-18</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1308,7 +1306,7 @@ flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-book faa-horizontal animated"> 分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/douyin/">抖音</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂集</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">24</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/douyin/">抖音</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/article/">文章</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂集</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/code/">源码</a><span class="category-list-count">24</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/material/">素材</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soft/">软件</a><span class="category-list-count">25</span></li></ul>
         </div>
     </div>
 
@@ -1318,7 +1316,7 @@ flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-calendar-o"> 归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">36</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">44</span></li></ul>
         </div>
     </div>
 
@@ -1328,7 +1326,7 @@ flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&
     <div class="widget-wrap widget-list">
         <h3 class="widget-title fa fa-tag"> 标签</h3>
         <div class="widget">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%8A%80%E5%B7%A7/" rel="tag">delphi技巧</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%BA%90%E7%A0%81/" rel="tag">delphi源码</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">dcef3使用方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" rel="tag">去广告方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AB%E5%9C%88/" rel="tag">八圈</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" rel="tag">基址查找方法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php%E6%BA%90%E7%A0%81/" rel="tag">php源码</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">unigui使用方法</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" rel="tag">原创软件</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%8A%80%E5%B7%A7/" rel="tag">delphi技巧</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/delphi%E6%BA%90%E7%A0%81/" rel="tag">delphi源码</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" rel="tag">精品软件</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">dcef3使用方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" rel="tag">去广告方法</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AB%E5%9C%88/" rel="tag">八圈</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E7%AB%A0/" rel="tag">文章</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" rel="tag">基址查找方法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php%E6%BA%90%E7%A0%81/" rel="tag">php源码</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" rel="tag">unigui使用方法</a><span class="tag-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -1338,7 +1336,7 @@ flashget://W0ZMQVNIR0VUXWh0dHA6Ly93d3cuZm9yZWNlLm5ldC93aW43LnJhcltGTEFTSEdFVF0=&
     <div class="widget-wrap widget-float">
         <h3 class="widget-title fa fa-tags"> 标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/%E6%B1%87%E7%BC%96%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">汇编使用方法</a> <a href="/tags/delphi%E6%8A%80%E5%B7%A7/" style="font-size: 22px; color: #e6001a">delphi技巧</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 13px; color: #00f">密码锁</a> <a href="/tags/TChromium%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">TChromium技巧</a> <a href="/tags/remoteado%E7%A0%B4%E8%A7%A3/" style="font-size: 13px; color: #00f">remoteado破解</a> <a href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">dcef3使用方法</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">去广告方法</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 19px; color: #906">八圈</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">下载视频</a> <a href="/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">softether使用方法</a> <a href="/tags/aardio%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">aardio技巧</a> <a href="/tags/c-%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">c#技巧</a> <a href="/tags/cef%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">cef技巧</a> <a href="/tags/%E7%94%B5%E8%84%91%E8%93%9D%E5%B1%8F/" style="font-size: 15px; color: #30c">电脑蓝屏</a> <a href="/tags/ce%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #1a00e6">ce技巧</a> <a href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" style="font-size: 17px; color: #609">基址查找方法</a> <a href="/tags/dcef3/" style="font-size: 13px; color: #00f">dcef3</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 13px; color: #00f">控制电脑</a> <a href="/tags/c-%E6%BA%90%E7%A0%81/" style="font-size: 13px; color: #00f">c++源码</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 14px; color: #1a00e6">开源项目</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">破解方法</a> <a href="/tags/delphi%E6%BA%90%E7%A0%81/" style="font-size: 21px; color: #c03">delphi源码</a> <a href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 16px; color: #4d00b3">unigui使用方法</a> <a href="/tags/aardio%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">aardio源码</a> <a href="/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">listview使用方法</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 13px; color: #00f">爱克吧</a> <a href="/tags/php%E6%BA%90%E7%A0%81/" style="font-size: 17px; color: #609">php源码</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">内存修改方法</a> <a href="/tags/autoit%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">autoit源码</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 23px; color: #f00">原创软件</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%A4%96%E6%8C%82%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">游戏外挂方法</a> <a href="/tags/python%E6%BA%90%E7%A0%81/" style="font-size: 14px; color: #1a00e6">python源码</a> <a href="/tags/%E9%94%90%E8%B5%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">锐起使用方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">破解视频</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 16px; color: #4d00b3">ae模板</a> <a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 13px; color: #00f">图片</a> <a href="/tags/%E6%98%A5%E8%8A%82%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">春节视频</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">新年视频</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 17px; color: #609">视频</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 15px; color: #30c">励志视频</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 14px; color: #1a00e6">情诗</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 18px; color: #800080">文章</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 13px; color: #00f">time小青龙伴奏</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 13px; color: #00f">音乐</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 13px; color: #00f">人物故事</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 13px; color: #00f">云更新</a> <a href="/tags/%E5%A5%A5%E8%BF%90%E4%BC%9A%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">奥运会视频</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 13px; color: #00f">英语名言</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 13px; color: #00f">座右铭</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 20px; color: #b3004d">精品软件</a> <a href="/tags/%E5%85%8D%E8%B4%B9%E5%BD%B1%E8%A7%86%E4%BC%9A%E5%91%98/" style="font-size: 13px; color: #00f">免费影视会员</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 13px; color: #00f">关机重启</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 13px; color: #00f">电源键</a> <a href="/tags/debug%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">debug使用方法</a> <a href="/tags/vbscript/" style="font-size: 13px; color: #00f">vbscript</a> <a href="/tags/dxva2/" style="font-size: 14px; color: #1a00e6">dxva2</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 14px; color: #1a00e6">显示器设置</a>
+            <a href="/tags/%E6%B1%87%E7%BC%96%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">汇编使用方法</a> <a href="/tags/delphi%E6%8A%80%E5%B7%A7/" style="font-size: 22px; color: #e6001a">delphi技巧</a> <a href="/tags/%E5%AF%86%E7%A0%81%E9%94%81/" style="font-size: 13px; color: #00f">密码锁</a> <a href="/tags/TChromium%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">TChromium技巧</a> <a href="/tags/remoteado%E7%A0%B4%E8%A7%A3/" style="font-size: 13px; color: #00f">remoteado破解</a> <a href="/tags/dcef3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">dcef3使用方法</a> <a href="/tags/%E5%8E%BB%E5%B9%BF%E5%91%8A%E6%96%B9%E6%B3%95/" style="font-size: 19px; color: #906">去广告方法</a> <a href="/tags/%E5%85%AB%E5%9C%88/" style="font-size: 19px; color: #906">八圈</a> <a href="/tags/%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">下载视频</a> <a href="/tags/softether%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">softether使用方法</a> <a href="/tags/aardio%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">aardio技巧</a> <a href="/tags/c-%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">c#技巧</a> <a href="/tags/cef%E6%8A%80%E5%B7%A7/" style="font-size: 13px; color: #00f">cef技巧</a> <a href="/tags/%E7%94%B5%E8%84%91%E8%93%9D%E5%B1%8F/" style="font-size: 15px; color: #30c">电脑蓝屏</a> <a href="/tags/ce%E6%8A%80%E5%B7%A7/" style="font-size: 14px; color: #1a00e6">ce技巧</a> <a href="/tags/%E5%9F%BA%E5%9D%80%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95/" style="font-size: 17px; color: #609">基址查找方法</a> <a href="/tags/dcef3/" style="font-size: 13px; color: #00f">dcef3</a> <a href="/tags/%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" style="font-size: 13px; color: #00f">控制电脑</a> <a href="/tags/c-%E6%BA%90%E7%A0%81/" style="font-size: 13px; color: #00f">c++源码</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 14px; color: #1a00e6">开源项目</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">破解方法</a> <a href="/tags/delphi%E6%BA%90%E7%A0%81/" style="font-size: 21px; color: #c03">delphi源码</a> <a href="/tags/unigui%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 16px; color: #4d00b3">unigui使用方法</a> <a href="/tags/aardio%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">aardio源码</a> <a href="/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">listview使用方法</a> <a href="/tags/%E7%88%B1%E5%85%8B%E5%90%A7/" style="font-size: 13px; color: #00f">爱克吧</a> <a href="/tags/php%E6%BA%90%E7%A0%81/" style="font-size: 17px; color: #609">php源码</a> <a href="/tags/%E5%86%85%E5%AD%98%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">内存修改方法</a> <a href="/tags/autoit%E6%BA%90%E7%A0%81/" style="font-size: 15px; color: #30c">autoit源码</a> <a href="/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/" style="font-size: 23px; color: #f00">原创软件</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%A4%96%E6%8C%82%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">游戏外挂方法</a> <a href="/tags/python%E6%BA%90%E7%A0%81/" style="font-size: 14px; color: #1a00e6">python源码</a> <a href="/tags/%E9%94%90%E8%B5%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 14px; color: #1a00e6">锐起使用方法</a> <a href="/tags/%E7%A0%B4%E8%A7%A3%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">破解视频</a> <a href="/tags/ae%E6%A8%A1%E6%9D%BF/" style="font-size: 16px; color: #4d00b3">ae模板</a> <a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 13px; color: #00f">图片</a> <a href="/tags/%E6%98%A5%E8%8A%82%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">春节视频</a> <a href="/tags/%E6%96%B0%E5%B9%B4%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">新年视频</a> <a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 17px; color: #609">视频</a> <a href="/tags/%E5%8A%B1%E5%BF%97%E8%A7%86%E9%A2%91/" style="font-size: 15px; color: #30c">励志视频</a> <a href="/tags/%E6%83%85%E8%AF%97/" style="font-size: 14px; color: #1a00e6">情诗</a> <a href="/tags/%E6%96%87%E7%AB%A0/" style="font-size: 18px; color: #800080">文章</a> <a href="/tags/time%E5%B0%8F%E9%9D%92%E9%BE%99%E4%BC%B4%E5%A5%8F/" style="font-size: 13px; color: #00f">time小青龙伴奏</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 13px; color: #00f">音乐</a> <a href="/tags/%E4%BA%BA%E7%89%A9%E6%95%85%E4%BA%8B/" style="font-size: 13px; color: #00f">人物故事</a> <a href="/tags/%E4%BA%91%E6%9B%B4%E6%96%B0/" style="font-size: 13px; color: #00f">云更新</a> <a href="/tags/%E5%A5%A5%E8%BF%90%E4%BC%9A%E8%A7%86%E9%A2%91/" style="font-size: 13px; color: #00f">奥运会视频</a> <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%90%8D%E8%A8%80/" style="font-size: 13px; color: #00f">英语名言</a> <a href="/tags/%E5%BA%A7%E5%8F%B3%E9%93%AD/" style="font-size: 13px; color: #00f">座右铭</a> <a href="/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/" style="font-size: 20px; color: #b3004d">精品软件</a> <a href="/tags/%E5%85%8D%E8%B4%B9%E5%BD%B1%E8%A7%86%E4%BC%9A%E5%91%98/" style="font-size: 13px; color: #00f">免费影视会员</a> <a href="/tags/%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF/" style="font-size: 13px; color: #00f">关机重启</a> <a href="/tags/%E7%94%B5%E6%BA%90%E9%94%AE/" style="font-size: 13px; color: #00f">电源键</a> <a href="/tags/debug%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" style="font-size: 13px; color: #00f">debug使用方法</a> <a href="/tags/vbscript/" style="font-size: 13px; color: #00f">vbscript</a> <a href="/tags/dxva2/" style="font-size: 14px; color: #1a00e6">dxva2</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E5%99%A8%E8%AE%BE%E7%BD%AE/" style="font-size: 14px; color: #1a00e6">显示器设置</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" style="font-size: 14px; color: #1a00e6">文件传输</a>
         </div>
     </div>
 
