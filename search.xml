@@ -24,6 +24,8 @@
             
             <tag> 文件传输 </tag>
             
+            <tag> 局域网 </tag>
+            
         </tags>
       
     </entry>
@@ -209,6 +211,8 @@
             
             <tag> 文件传输 </tag>
             
+            <tag> 局域网 </tag>
+            
         </tags>
       
     </entry>
@@ -243,7 +247,7 @@
     
     
     <entry>
-      <title>softether的安装及使用</title>
+      <title>多个局域网如何组建成一个局域网互相访问_softether的安装及使用</title>
       <link href="/page/1999908472/"/>
       <url>/page/1999908472/</url>
       
@@ -260,6 +264,8 @@
         <tags>
             
             <tag> softether使用方法 </tag>
+            
+            <tag> 局域网 </tag>
             
         </tags>
       
