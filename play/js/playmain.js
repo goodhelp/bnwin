@@ -43,11 +43,11 @@ if (site=='pptv'){
 	document.getElementsByTagName('head')[0].appendChild(script); 
 	//document.head.appendChild(script);
 };//添加jquery引用，但没有效果*/
-var script=document.createElement("script"); 
+/*var script=document.createElement("script"); 
 script.type="text/javascript"; 
 script.charset="utf-8";
 script.src="http://pv.sohu.com/cityjson?ie=utf-8"; 
-document.getElementsByTagName('body')[0].appendChild(script); 
+document.getElementsByTagName('body')[0].appendChild(script); */
 //alert(returnCitySN["cip"]);
 var nod = document.createElement("style"), 
 str =".bnwinbox{position:fixed;z-index:214783648;width:100%;height:100%;color:#054ea8;background:#FFF;margin:0;padding:0;filter:alpha(opacity=50);-moz-opacity:0.50;opacity:0.50;}";
