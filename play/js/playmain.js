@@ -27,7 +27,7 @@ var script=document.createElement("script");
 script.type="text/javascript"; 
 script.charset="utf-8";
 script.async="async";
-script.crossorigin="anonymous";
+script.crossOrigin="anonymous";
 script.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4388315872936350";
 document.getElementsByTagName('body')[0].appendChild(script); 
 }
