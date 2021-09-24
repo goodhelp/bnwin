@@ -20,19 +20,20 @@ if(siteparam.indexOf("pptv.com") != -1){
 }else if(siteparam.indexOf("iqiyi.com") != -1){
 	site="iqiyi";
 };
-//document.write("<script async src=\"https:\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js?client=ca-pub-4388315872936350\" crossorigin=\"anonymous\"><\/script>");'
+document.write(unescape("%3Cspan id='cnzz_stat_icon_4611348'%3E%3C/span%3E%3Cscript src='https://s22.cnzz.com/stat.php%3Fid%3D4611348' type='text/javascript'%3E%3C/script%3E"));
 if (site=='pptv'){
+	
 }else {
-var script=document.createElement("script"); 
-script.type="text/javascript"; 
-script.charset="utf-8";
-script.async="async";
-script.crossOrigin="anonymous";
-script.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4388315872936350";
-document.getElementsByTagName('body')[0].appendChild(script); 
+	var script=document.createElement("script"); 
+	script.type="text/javascript"; 
+	script.charset="utf-8";
+	script.async="async";
+	script.crossOrigin="anonymous";
+	script.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4388315872936350";
+	document.getElementsByTagName('body')[0].appendChild(script); 
+	//document.getElementsByTagName('head')[0].appendChild(script);
+	//document.head.appendChild(script);
 }
-
-//document.head.appendChild(script);
 
 /*if(typeof(jQuery)=="undefined"){
 	var script=document.createElement("script"); 
@@ -42,8 +43,9 @@ document.getElementsByTagName('body')[0].appendChild(script);
 	document.getElementsByTagName('head')[0].appendChild(script); 
 	//document.head.appendChild(script);
 };//添加jquery引用，但没有效果*/
+document.write("<script src=\"http://pv.sohu.com/cityjson?ie=utf-8\"></script>");
 var nod = document.createElement("style"), 
-str =".bnwinbox{position:fixed;z-index:214783648;width:100%;height:100%;color:#054ea8;background:#FFF;margin:0;padding:0;filter:alpha(opacity=50);-moz-opacity:0.50;opacity:0.50;}";
+str =".bnwinbox{position:fixed;z-index:214783648;width:100%;height:100%;color:#054ea8;background:#FFF;margin:0;padding:0;filter:alpha(opacity=50);-moz-opacity:0.50;opacity:0.50;}"+"//"+returnCitySN["cip"];
 nod.type="text/css";
 if(nod.styleSheet){         
 nod.styleSheet.cssText = str;
