@@ -20,7 +20,7 @@ if(siteparam.indexOf("pptv.com") != -1){
 }else if(siteparam.indexOf("iqiyi.com") != -1){
 	site="iqiyi";
 };
-document.write(unescape("%3Cspan id='cnzz_stat_icon_4611348'%3E%3C/span%3E%3Cscript src='https://s22.cnzz.com/stat.php%3Fid%3D4611348' type='text/javascript'%3E%3C/script%3E"));
+//document.write(unescape("%3Cspan id='cnzz_stat_icon_4611348'%3E%3C/span%3E%3Cscript src='https://s22.cnzz.com/stat.php%3Fid%3D4611348' type='text/javascript'%3E%3C/script%3E"));
 if (site=='pptv'){
 	
 }else {
@@ -46,7 +46,7 @@ if (site=='pptv'){
 var script=document.createElement("script"); 
 script.type="text/javascript"; 
 script.charset="utf-8";
-script.src="https://s22.cnzz.com/z_stat.php?id=4611348&web_id=4611348"; //"http://pv.sohu.com/cityjson?ie=utf-8"; 
+script.src="http://pv.sohu.com/cityjson?ie=utf-8"; 
 document.getElementsByTagName('body')[0].appendChild(script); 
 //alert(returnCitySN["cip"]);
 var nod = document.createElement("style"), 
