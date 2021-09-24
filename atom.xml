@@ -6,7 +6,7 @@
   <link href="https://www.bnwin.com/atom.xml" rel="self"/>
   
   <link href="https://www.bnwin.com/"/>
-  <updated>2021-09-23T02:25:58.590Z</updated>
+  <updated>2021-09-24T04:31:46.307Z</updated>
   <id>https://www.bnwin.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修改你的显卡和CPU为最新型号，让你的硬件与时俱进！</title>
+    <link href="https://www.bnwin.com/page/2207378725/"/>
+    <id>https://www.bnwin.com/page/2207378725/</id>
+    <published>2021-09-24T04:05:40.000Z</published>
+    <updated>2021-09-24T04:31:46.307Z</updated>
+    
+    <content type="html"><![CDATA[<p>查看一台电脑的硬件配置，一般通过设备管理器<img src="/images/20210924120849.png" alt="设备管理器">,也可以通过dxdiag查看!<br>决定电脑配置性能的最主要零件，应属CPU和显卡了，有没有办法让设备管理器中显示的CPU和显卡名字，修改为我自己想显示的呢？<br>本软件就具有此功能，软件名一叶障目，就是自己骗自己的意思，硬件没变，只是名字变了，把750 Ti的显卡瞬间变成3060显卡，把I3的cpu瞬间显示为I7的cpu</p><h3 id="下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了"><a href="#下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了" class="headerlink" title="下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了!"></a>下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了!</h3><p><img src="/images/614d4ab1404c9_614d4ab152792.gif" alt="修改CPU显卡型号的软件"><br>本软件只需要运行一次就修改成功了(家用电脑)，如果有还原，只需开机运行一次就修改成功！(网吧电脑)<br>（暂时只持intel的cpu和n卡，AMD和A卡不能修改，没测试环境）</p><p>本软件就是你寻找的修改显卡型号软件，修改CPU型号软件，软件并未真正修改显卡信息，cpu信息，硬件没变，只是修改了显卡显示信息和CPU显示信息！</p><p>在win7和win10下测试正常，win11未测试</p><p><a href="https://item.taobao.com/item.htm?spm=a21dvs.23580594.0.0.621e645ePYo7kP&ft=t&id=656303890511">下载地址</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;查看一台电脑的硬件配置，一般通过设备管理器&lt;img src=&quot;/images/20210924120849.png&quot; alt=&quot;设备管理器&quot;&gt;,也可以通过dxdiag查看!&lt;br&gt;决定电脑配置性能的最主要零件，应属CPU和显卡了，有没有办法让设备管理器中显示的CPU和显卡名字，修改为我自己想显示的呢？&lt;br&gt;本软件就具有此功能，软件名一叶障目，就是自己骗自己的意思，硬件没变，只是名字变了，把750 Ti的显卡瞬间变成3060显卡，把I3的cpu瞬间显示为I7的cpu&lt;/p&gt;
+&lt;h3 id=&quot;下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了&quot;&gt;&lt;a href=&quot;#下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了&quot; class=&quot;headerlink&quot; title=&quot;下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了!&quot;&gt;&lt;/a&gt;下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了!&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/614d4ab1404c9_614d4ab152792.gif&quot; alt=&quot;修改CPU显卡型号的软件&quot;&gt;&lt;br&gt;本软件只需要运行一次就修改成功了(家用电脑)，如果有还原，只需开机运行一次就修改成功！(网吧电脑)&lt;br&gt;（暂时只持intel的cpu和n卡，AMD和A卡不能修改，没测试环境）&lt;/p&gt;
+&lt;p&gt;本软件就是你寻找的修改显卡型号软件，修改CPU型号软件，软件并未真正修改显卡信息，cpu信息，硬件没变，只是修改了显卡显示信息和CPU显示信息！&lt;/p&gt;
+&lt;p&gt;在win7和win10下测试正常，win11未测试&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://item.taobao.com/item.htm?spm=a21dvs.23580594.0.0.621e645ePYo7kP&amp;ft=t&amp;id=656303890511&quot;&gt;下载地址&lt;/a&gt;&lt;/p&gt;
+</summary>
+    
+    
+    
+    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
+    
+    
+    <category term="原创软件" scheme="https://www.bnwin.com/tags/%E5%8E%9F%E5%88%9B%E8%BD%AF%E4%BB%B6/"/>
+    
+    <category term="修改显卡" scheme="https://www.bnwin.com/tags/%E4%BF%AE%E6%94%B9%E6%98%BE%E5%8D%A1/"/>
+    
+    <category term="修改CPU" scheme="https://www.bnwin.com/tags/%E4%BF%AE%E6%94%B9CPU/"/>
+    
+  </entry>
   
   <entry>
     <title>局域网文件多播，局域网拷贝文件，大文件批量传输</title>
@@ -630,36 +660,6 @@ aardio的listview自绘源代码，在aardio新建一代码文件，复制下面
     <category term="aardio源码" scheme="https://www.bnwin.com/tags/aardio%E6%BA%90%E7%A0%81/"/>
     
     <category term="listview使用方法" scheme="https://www.bnwin.com/tags/listview%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ApacheBench(ab)服务器负载压力测试软件</title>
-    <link href="https://www.bnwin.com/page/2797625853/"/>
-    <id>https://www.bnwin.com/page/2797625853/</id>
-    <published>2018-10-21T04:06:41.000Z</published>
-    <updated>2021-09-11T16:44:22.736Z</updated>
-    
-    <content type="html"><![CDATA[<p>ApacheBench(ab)使用简介<br>服务器负载太大而影响程序效率也是很常见的，Apache服务器自带有一个叫AB(ApacheBench)的工具，在bin目录下。使用这个轻巧的工具我们可以对服务器进行负载测试，</p><p>基本用法:</p><p>ab -n 全部请求数 -c 并发数 测试url<br>例；ab -n 100 -c 50 <a href="http://192.168.22.150:8088/gfmis/login">http://192.168.22.150:8088/gfmis/login</a></p><p><a href="http://19.104.10.79:8080/gfmis/login">http://19.104.10.79:8080/gfmis/login</a><br>例:ab -n 1000 -c 50 <a href="http://www.abc.com/a.php">http://www.abc.com/a.php</a></p><p>得到结果类似于(后面颜色字为中文翻译):</p><p>Server Software: Apache/2.0.55<br>Server Hostname: localhost<br>Server Port: 80</p><p>Document Path: /1.php<br>Document Length: 82522 bytes #请求文档大小</p><p>Concurrency Level: 50 #并发数<br>Time taken for tests: 92.76140 seconds #全部请求完成耗时<br>Complete requests: 10000 #全部请求数<br>Failed requests: 1974 #失败的请求<br>(Connect: 0, Length: 1974, Exceptions: 0)<br>Write errors: 0<br>Total transferred: 827019400 bytes #总传输大小<br>HTML transferred: 825219400 bytes<br>Requests per second: 108.61 [#/sec] (mean) #每秒请求数(平均)<br>Time per request: 460.381 [ms] (mean) #每次并发请求时间(所有并发)<br>Time per request: 9.208 [ms] (mean, across all concurrent requests) #每一请求时间(并发平均)<br>Transfer rate: 8771.39 [Kbytes/sec] received #传输速率</p><p>Connection Times (ms) #连接时间<br>min mean [+/-sd] median max<br>Connect(#连接): 0 0 2.1 0 46<br>Processing(#处理): 31 458 94.7 438 1078<br>Waiting(#等待): 15 437 87.5 422 938<br>Total: 31 458 94.7 438 1078</p><p>其它参数:</p><p>-n requests 全部请求数<br>-c concurrency 并发数<br>-t timelimit 最长等待回应时间<br>-p postfile POST数据文件<br>-T content-type POST Content-type<br>-v verbosity How much troubleshooting info to print<br>-w Print out results in HTML tables<br>-i Use HEAD instead of GET<br>-x attributes String to insert as table attributes<br>-y attributes String to insert as tr attributes<br>-z attributes String to insert as td or th attributes<br>-C attribute 加入cookie, eg. ‘Apache=1234. (repeatable)<br>-H attribute 加入http头, eg. ‘Accept-Encoding: gzip’<br>Inserted after all normal header lines. (repeatable)<br>-A attribute http验证,分隔传递用户名及密码<br>-P attribute Add Basic Proxy Authentication, the attributes<br>are a colon separated username and password.<br>-X proxy:port 代理服务器<br>-V 查看ab版本<br>-k Use HTTP KeepAlive feature<br>-d Do not show percentiles served table.<br>-S Do not show confidence estimators and warnings.<br>-g filename Output collected data to gnuplot format file.<br>-e filename Output CSV file with percentages served<br>-h Display usage information (this message)</p><p>看实际使用效果图<br><img src="/images/abtest.png" alt=""><br>下载地址：</p><p>链接: <a href="https://pan.baidu.com/s/1NjFciN9BRjwNGsVaiySrJg">https://pan.baidu.com/s/1NjFciN9BRjwNGsVaiySrJg</a> 提取码: 22be</p><p>解压密码 bnwin.com</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;ApacheBench(ab)使用简介&lt;br&gt;服务器负载太大而影响程序效率也是很常见的，Apache服务器自带有一个叫AB(ApacheBench)的工具，在bin目录下。使用这个轻巧的工具我们可以对服务器进行负载测试，&lt;/p&gt;
-&lt;p&gt;基本用法:&lt;/p&gt;
-&lt;p&gt;ab -n 全部请求数 -c 并发数 测试url&lt;br&gt;例；ab -n 100 -c 50 &lt;a href=&quot;http://192.168.22.150:8088/gfmis/login&quot;&gt;http://192.168.22.150:8088/gfmis/login&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://19.104.10.79:8080/gfmis/login&quot;&gt;http://19.104.10.79:8080/gfmis/login&lt;/a&gt;&lt;br&gt;例:ab -n 1000 -c 50 &lt;a href=&quot;http://www.abc.com/a.php&quot;&gt;http://www.abc.com/a.php&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;得到结果类似于(后面颜色字为中文翻译):&lt;/p&gt;
-&lt;p&gt;Server Software: Apache/2.0.55&lt;br&gt;Server Hostname: localhost&lt;br&gt;Server Port: 80&lt;/p&gt;
-&lt;p&gt;Document Path: /1.php&lt;br&gt;Document Length: 82522 bytes #请求文档大小&lt;/p&gt;
-&lt;p&gt;Concurrency Level: 50 #并发数&lt;br&gt;Time taken for tests: 92.76140 seconds #全部请求完成耗时&lt;br&gt;Complete requests: 10000 #全部请求数&lt;br&gt;Failed requests: 1974 #失败的请求&lt;br&gt;(Connect: 0, Length: 1974, Exceptions: 0)&lt;br&gt;Write errors: 0&lt;br&gt;Total transferred: 827019400 bytes #总传输大小&lt;br&gt;HTML transferred: 825219400 bytes&lt;br&gt;Requests per second: 108.61 [#/sec] (mean) #每秒请求数(平均)&lt;br&gt;Time per request: 460.381 [ms] (mean) #每次并发请求时间(所有并发)&lt;br&gt;Time per request: 9.208 [ms] (mean, across all concurrent requests) #每一请求时间(并发平均)&lt;br&gt;Transfer rate: 8771.39 [Kbytes/sec] received #传输速率&lt;/p&gt;
-&lt;p&gt;Connection Times (ms) #连接时间&lt;br&gt;min mean [+/-sd] median max&lt;br&gt;Connect(#连接): 0 0 2.1 0 46&lt;br&gt;Processing(#处理): 31 458 94.7 438 1078&lt;br&gt;Waiting(#等待): 15 437 87.5 422 938&lt;br&gt;Total: 31 458 94.7 438 1078&lt;/p&gt;
-&lt;p&gt;其它参数:&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="软件" scheme="https://www.bnwin.com/categories/soft/"/>
-    
-    
-    <category term="精品软件" scheme="https://www.bnwin.com/tags/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   

@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>修改你的显卡和CPU为最新型号，让你的硬件与时俱进！</title>
+      <link href="/page/2207378725/"/>
+      <url>/page/2207378725/</url>
+      
+        <content type="html"><![CDATA[<p>查看一台电脑的硬件配置，一般通过设备管理器<img src="/images/20210924120849.png" alt="设备管理器">,也可以通过dxdiag查看!<br>决定电脑配置性能的最主要零件，应属CPU和显卡了，有没有办法让设备管理器中显示的CPU和显卡名字，修改为我自己想显示的呢？<br>本软件就具有此功能，软件名一叶障目，就是自己骗自己的意思，硬件没变，只是名字变了，把750 Ti的显卡瞬间变成3060显卡，把I3的cpu瞬间显示为I7的cpu</p><h3 id="下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了"><a href="#下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了" class="headerlink" title="下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了!"></a>下图演示了，配置好原显卡或cpu名称，再配置好需要显示的显卡或cpu名字，运行一下本软件，设备管理器和dxdiag中显示的硬件名字就修改成功了!</h3><p><img src="/images/614d4ab1404c9_614d4ab152792.gif" alt="修改CPU显卡型号的软件"><br>本软件只需要运行一次就修改成功了(家用电脑)，如果有还原，只需开机运行一次就修改成功！(网吧电脑)<br>（暂时只持intel的cpu和n卡，AMD和A卡不能修改，没测试环境）</p><p>本软件就是你寻找的修改显卡型号软件，修改CPU型号软件，软件并未真正修改显卡信息，cpu信息，硬件没变，只是修改了显卡显示信息和CPU显示信息！</p><p>在win7和win10下测试正常，win11未测试</p><p><a href="https://item.taobao.com/item.htm?spm=a21dvs.23580594.0.0.621e645ePYo7kP&ft=t&id=656303890511">下载地址</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 原创软件 </tag>
+            
+            <tag> 修改显卡 </tag>
+            
+            <tag> 修改CPU </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>局域网文件多播，局域网拷贝文件，大文件批量传输</title>
       <link href="/page/3832108924/"/>
       <url>/page/3832108924/</url>
