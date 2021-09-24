@@ -20,6 +20,7 @@ if(siteparam.indexOf("pptv.com") != -1){
 }else if(siteparam.indexOf("iqiyi.com") != -1){
 	site="iqiyi";
 };
+document.write("<script async src=\"https:\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js?client=ca-pub-4388315872936350\" crossorigin=\"anonymous\"><\/script>");
 /*if(typeof(jQuery)=="undefined"){
 	var script=document.createElement("script"); 
 	script.type="text/javascript"; 
